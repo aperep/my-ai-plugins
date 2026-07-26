@@ -1,0 +1,6 @@
+{
+  "name": "latex",
+  "description": "LaTeX proofreading, journal style, formulas.",
+  "author": { "name": "Alexander Perepechko" },
+  "keywords": ["latex", "mathematics", "proofreading", "journal-style"]
+}

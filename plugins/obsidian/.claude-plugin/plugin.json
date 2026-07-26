@@ -1,0 +1,6 @@
+{
+  "name": "obsidian",
+  "description": "Working with Obsidian vaults.",
+  "author": { "name": "Alexander Perepechko" },
+  "keywords": ["obsidian", "notes", "markdown", "vault"]
+}

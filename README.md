@@ -1,6 +1,6 @@
 # my-claude-marketplace
 
-Private Claude Code plugin marketplace. Skill sets, enabled per repository on demand. 
+Private Claude Code plugin marketplace, named `aperep`. Skill sets, enabled per repository on demand. 
 
 ```
 .claude-plugin/marketplace.json   catalog
@@ -22,9 +22,12 @@ See `docs/SKILL-template.md` for the file shape.
 Use an SSH remote. A key loaded in `ssh-agent` authenticates both manual installs and background auto-updates; HTTPS does not, because the background refresh disables credential helpers for its pull.
 
 ```sh
-claude plugin marketplace add CHANGEME/my-claude-marketplace
-claude plugin install meta-tools@my-claude-marketplace
+claude plugin marketplace add aperep/my-claude-marketplace
+claude plugin install meta@aperep
 ```
+
+The repo is `aperep/my-claude-marketplace`; the marketplace it declares is
+`aperep`, which is the half that shows up in `enabledPlugins` as `latex@aperep`.
 
 For per-repository enabling, see `docs/consumer-snippets.md`.
 For Claude Code on the web, see `docs/cloud-setup.md`.
@@ -39,48 +42,18 @@ Also avoid setting `version` in both `plugin.json` and the marketplace entry: th
 
 ## Development loop
 
-TODO: rules in this section belong to meta plugin. They are suggested by AI, not mine. Feel free to discard, modify etc.
-
-Editing skills through the git source means a push for every experiment. Instead register the working copy under a second, dev-only marketplace name:
+Edit the working copy, not the git source:
 
 ```sh
 claude plugin marketplace add ./my-claude-marketplace   # names itself from marketplace.json
+claude plugin marketplace update aperep && /reload-plugins
+claude plugin validate .                                # before every push
 ```
 
-Note that each user can register only one marketplace per `name`, so a local copy
-using the same `name` replaces the git one. To run both side by side, keep a
-branch whose `marketplace.json` sets `"name": "my-claude-marketplace-dev"`, or
-just accept the swap while developing and re-add the git source afterwards.
-
-After edits:
-
-```sh
-claude plugin marketplace update my-claude-marketplace
-/reload-plugins
-```
-
-### Before every push
-
-```sh
-claude plugin validate .
-```
-
-Validates `marketplace.json` schema, duplicate plugin names, and source path
-traversal. Point it at a plugin directory instead to check that plugin's skill,
-agent, and hook frontmatter:
-
-```sh
-claude plugin validate ./plugins/math-latex
-```
-
-
-### Renaming
-
-A plugin's `name` is its stable identifier — it appears in every consumer's
-`enabledPlugins`. To change the displayed label, add `displayName` and leave
-`name` alone. If you must rename or remove, add an entry to the top-level
-`renames` map in `marketplace.json` so existing installs migrate instead of
-erroring. Treat that map as append-only.
+The rules behind these — local vs git name collision, what `validate` checks,
+renames, versioning — live in the `meta` plugin as
+`plugins/meta/skills/editing-this-marketplace/SKILL.md`, so they are in context
+when a session is actually editing a skill.
 
 ## Third-party skills
 
