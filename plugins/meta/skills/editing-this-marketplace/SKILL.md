@@ -89,6 +89,24 @@ existing installs migrate instead of erroring. That map is append-only.
 
 Do not vendor them into `plugins/`. This marketplace holds only skills written
 here; anything upstream (superpowers, brainstorming, and friends) is added as its
-own marketplace, or listed as an entry pointing at its repo with a pinned `sha`
-and `strict: false`. A skill is a prompt executed with your tool permissions, and
-a plugin can also carry hooks and MCP servers — pin what you did not write.
+own marketplace, or listed as an entry pointing at its repo with a pinned `sha`.
+A skill is a prompt executed with your tool permissions, and a plugin can also
+carry hooks and MCP servers — pin what you did not write.
+
+Two entry forms, and picking the wrong one fails at load, not at validate:
+
+- upstream ships bare `SKILL.md` files → `strict: false` plus a `skills` array
+  naming the subset to expose;
+- upstream ships its own `.claude-plugin/plugin.json` → the above is a
+  "conflicting manifests" error, because components are declared on both sides.
+  Take one directory with a `git-subdir` source instead (`url` + `path` + `sha`),
+  as the `defuddle` entry does. Use the `git@github.com:` URL: git over HTTPS is
+  blocked in this environment, while the `github` source type works because it
+  does not clone.
+
+To make one of your plugins pull a third-party entry in automatically, add
+`"dependencies": ["that-entry"]` to its `plugin.json`. Entries in this
+marketplace are same-marketplace dependencies, so no
+`allowCrossMarketplaceDependenciesOn` is needed. Bare strings only — version
+ranges resolve against `{plugin}--v{version}` git tags, which this marketplace
+does not create.

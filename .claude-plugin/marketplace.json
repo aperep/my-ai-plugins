@@ -60,6 +60,22 @@
         "typst",
         "typesetting"
       ]
+    },
+    {
+      "name": "defuddle",
+      "source": {
+        "source": "git-subdir",
+        "url": "git@github.com:kepano/obsidian-skills.git",
+        "path": "skills/defuddle",
+        "sha": "a1dc48e68138490d522c04cbf5822214c6eb1202"
+      },
+      "description": "Clean markdown extraction from web pages via the Defuddle CLI. Not mine: a curated one-skill view of kepano/obsidian-skills, pinned by sha.",
+      "category": "writing",
+      "tags": [
+        "web",
+        "markdown",
+        "third-party"
+      ]
     }
   ],
   "renames": {}

@@ -74,7 +74,10 @@ when a session is actually editing a skill.
 ## Third-party skills
 
 Do not vendor them. Either add the upstream marketplace alongside this one, or
-list their repo as an entry here:
+list their repo as an entry here. Which form depends on what upstream ships.
+
+**Upstream has no manifest** (bare `SKILL.md` files) — `strict: false` plus an
+explicit `skills` array exposes only the subset you want:
 
 ```json
 {
@@ -85,11 +88,29 @@ list their repo as an entry here:
 }
 ```
 
-`strict: false` plus an explicit `skills` array works when the upstream repo
-ships bare `SKILL.md` files with no manifest of its own, and lets you expose only
-the subset you want. Pin `sha` for anything you did not write: a skill is a
-prompt executed with your tool permissions, and a plugin can also carry hooks and
-MCP servers.
+**Upstream has its own `plugin.json`** — the above fails at load with
+"conflicting manifests", because components are then declared on both sides. Use
+`git-subdir` to take one skill directory instead, as `defuddle` does:
+
+```json
+{
+  "name": "defuddle",
+  "source": {
+    "source": "git-subdir",
+    "url": "git@github.com:kepano/obsidian-skills.git",
+    "path": "skills/defuddle",
+    "sha": "…"
+  }
+}
+```
+
+It sparse-clones that path alone, so nothing else from their repo lands on disk.
+Use the SSH URL — git over HTTPS to github.com is blocked in this environment.
+
+Pin `sha` either way for anything you did not write: a skill is a prompt executed
+with your tool permissions, and a plugin can also carry hooks and MCP servers.
+A plugin of yours can then `dependencies: ["their-entry"]` to pull it in
+automatically — same marketplace, so no cross-marketplace allowlist is needed.
 
 ## Migration checklist
 
