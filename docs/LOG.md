@@ -2,6 +2,54 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
+## 2026-07-26 — AGora migrated; kepano's three Obsidian skills un-vendored
+
+Second consumer, same treatment as `academic-workshop`. AGora (the Obsidian
+vault) held its skills two ways: nine symlinks into a `tools/academic-workshop`
+git submodule, and three *copied* third-party skills.
+
+### The three copies
+
+`json-canvas`, `obsidian-bases`, `obsidian-markdown` — all
+`upstream: kepano/obsidian-skills`, the same repo `defuddle` comes from. Added
+as three more `git-subdir` entries pinned to the same sha `a1dc48e6`, and
+`plugins/obsidian` now declares all four as `dependencies`. Installing
+`obsidian@aperep` reports `(+ 4 dependencies)`; the plugin still ships no skill
+of its own and exists purely as the aggregator.
+
+The sparse clone carries each skill's `references/` subdirectory, not just
+`SKILL.md` — worth knowing, since these three are useless without it, unlike
+`defuddle`.
+
+Diffed the copies against the pin before deleting them: the only local edit was
+the `upstream:` frontmatter line, and upstream is *ahead* — the vendored
+`obsidian-bases` still documented `and/or/not` filters as freely combinable
+(upstream: exactly one key), and its `EMBEDS.md` lacked the "Embed Bases"
+section. Vendoring had silently frozen a wrong version. Nothing to preserve.
+
+Not adopted: kepano's repo as one `github` entry. All-or-nothing — it would also
+pull `obsidian-cli`, and the 2026-07-26 entry below records why `strict: false`
+subsetting fails against that repo.
+
+### AGora's side
+
+`.claude/settings.json` declares `aperep` + `claude-plugins-official` and enables
+`obsidian`, `biblio`, `typst`, `superpowers`. Removed: the submodule, the nine
+symlinks, `.claude/skills.manifest`, `tools/setup-skills.sh`, the `.gitignore`
+block listing the symlinks. `.claude/skills/` keeps exactly the two skills that
+are about *this* vault — `arxiv-digest` and `zotero-mcp`.
+
+`academic-research-skills` was symlinked in and is deliberately **not** enabled:
+a notes vault does not write papers, and enabling it would run a third-party
+`PreToolUse` hook on every write in the vault. It stays available per project
+where papers actually get written.
+
+Cross-references needed repair by hand — `arxiv-digest` and `zotero-mcp` name
+their sub-skills in prose (`tools/academic-workshop:mathscinet` →
+`biblio:mathscinet`), and nothing type-checks that. A stale skill reference is
+the failure mode this migration form introduces; grep for the old path after
+every consumer move.
+
 ## 2026-07-26 — Migration of academic-workshop skills into plugins
 
 Source: `~/texlab/academic-workshop/.claude/skills/` (19 skill dirs). Provenance

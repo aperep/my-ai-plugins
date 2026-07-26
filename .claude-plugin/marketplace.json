@@ -78,6 +78,54 @@
       ]
     },
     {
+      "name": "json-canvas",
+      "source": {
+        "source": "git-subdir",
+        "url": "git@github.com:kepano/obsidian-skills.git",
+        "path": "skills/json-canvas",
+        "sha": "a1dc48e68138490d522c04cbf5822214c6eb1202"
+      },
+      "description": "Create and edit JSON Canvas (.canvas) files. Not mine: a curated one-skill view of kepano/obsidian-skills, pinned by sha. Pulled in by obsidian.",
+      "category": "writing",
+      "tags": [
+        "obsidian",
+        "canvas",
+        "third-party"
+      ]
+    },
+    {
+      "name": "obsidian-bases",
+      "source": {
+        "source": "git-subdir",
+        "url": "git@github.com:kepano/obsidian-skills.git",
+        "path": "skills/obsidian-bases",
+        "sha": "a1dc48e68138490d522c04cbf5822214c6eb1202"
+      },
+      "description": "Create and edit Obsidian Bases (.base files) — views, filters, formulas. Not mine: a curated one-skill view of kepano/obsidian-skills, pinned by sha. Pulled in by obsidian.",
+      "category": "writing",
+      "tags": [
+        "obsidian",
+        "bases",
+        "third-party"
+      ]
+    },
+    {
+      "name": "obsidian-markdown",
+      "source": {
+        "source": "git-subdir",
+        "url": "git@github.com:kepano/obsidian-skills.git",
+        "path": "skills/obsidian-markdown",
+        "sha": "a1dc48e68138490d522c04cbf5822214c6eb1202"
+      },
+      "description": "Obsidian Flavored Markdown: wikilinks, embeds, callouts, properties. Not mine: a curated one-skill view of kepano/obsidian-skills, pinned by sha. Pulled in by obsidian.",
+      "category": "writing",
+      "tags": [
+        "obsidian",
+        "markdown",
+        "third-party"
+      ]
+    },
+    {
       "name": "academic-research-skills",
       "source": {
         "source": "github",

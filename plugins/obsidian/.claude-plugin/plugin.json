@@ -3,5 +3,5 @@
   "description": "Working with Obsidian vaults.",
   "author": { "name": "Alexander Perepechko" },
   "keywords": ["obsidian", "notes", "markdown", "vault"],
-  "dependencies": ["defuddle"]
+  "dependencies": ["defuddle", "json-canvas", "obsidian-bases", "obsidian-markdown"]
 }
