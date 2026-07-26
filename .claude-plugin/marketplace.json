@@ -76,6 +76,21 @@
         "markdown",
         "third-party"
       ]
+    },
+    {
+      "name": "academic-research-skills",
+      "source": {
+        "source": "github",
+        "repo": "Imbad0202/academic-research-skills",
+        "sha": "15740c8ef97e1ebe954ad53dd891c82cd23a2edd"
+      },
+      "description": "Not mine: Cheng-I Wu's research/writing/peer-review pipelines (4 skills), pinned. Ships a PreToolUse hook and /ars-* commands \u2014 enable per project, never at user scope.",
+      "category": "writing",
+      "tags": [
+        "academic",
+        "research",
+        "third-party"
+      ]
     }
   ],
   "renames": {}

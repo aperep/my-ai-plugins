@@ -46,11 +46,11 @@ Edits made in the move:
   no individual edits, so the 0–89 line diffs against the installed copies are
   upstream version skew, not local customisation — nothing to preserve.
 - **`Imbad0202/academic-research-skills`** (4: `academic-paper`,
-  `academic-paper-reviewer`, `academic-pipeline`, `deep-research`). Rejected.
-  2.1 MB of generic paper-mill orchestration whose trigger lists fire on bare
-  words like "research" and "review paper" — they would hijack ordinary requests
-  in a repo where real mathematics is being done. If ever wanted: third-party
-  entry, pinned sha, enabled per project, never at user scope.
+  `academic-paper-reviewer`, `academic-pipeline`, `deep-research`). Kept at the
+  user's decision, as a pinned entry rather than a copy — see below. My objection
+  stands on the record: 2.1 MB of generic paper-mill orchestration whose trigger
+  lists fire on bare words like "research" and "review paper". Enabled per
+  project, never at user scope.
 - **`templates/`, `interlinear/`, `setup/`, `proofreading/`** — project content,
   not skills. Stay in the workshop repo.
 
@@ -84,9 +84,39 @@ Bare-string dependencies only: semver ranges resolve against git tags named
 Not resolved: `defuddle` wraps a CLI that is not installed here (no `defuddle`,
 no `node`). The skill is inert until `npm install -g defuddle`.
 
+### academic-research-skills: partial load is impossible, all-or-nothing adopted
+
+Asked for a partial load (the 4 skills, nothing else). Not achievable:
+
+- `strict: false` + a `skills` array fails the same way as kepano —
+  "conflicting manifests". Probed directly: the trigger is the mere *presence* of
+  an upstream `.claude-plugin/plugin.json`, not what it declares. Neither
+  kepano's nor Imbad0202's manifest names a single component, and both conflict.
+  So the README's `strict: false` form only ever applies to upstreams with no
+  manifest at all.
+- per-skill `git-subdir` (as used for `defuddle`) breaks these skills: they
+  reference `../../shared/`, `../../docs/`, and each other's `agents/` and
+  `references/` across directories. A one-directory sparse clone is not
+  self-contained.
+- their own `marketplace.json` publishes all four as a *single* plugin, so adding
+  their marketplace directly is equally all-or-nothing.
+
+Adopted: one entry, `github` source, pinned to sha `15740c8e`. What that drags
+in, verified by `claude plugin details`: **20 skills** (the 4 plus 16 `/ars-*`
+commands), **3 agents**, and **2 hooks** — a `SessionStart` announce and a
+`PreToolUse` matcher on `Write|Edit|MultiEdit|Bash` that shells out to
+`run_guard.sh`. Read before adopting: it is a documented, fail-open write-scope
+guard that emits a pass-through and exits 0 on any error, not something hostile.
+It still means third-party code runs on every write and every Bash call in any
+repo where the plugin is enabled. Licence is CC-BY-NC-4.0.
+
+Consequence: enable it per project only. It is deliberately absent from this
+machine's user scope.
+
 ### Consumers
 
-`academic-workshop/.claude/settings.json` now declares the `aperep` marketplace
-and enables `meta`, `latex`, `biblio`, `typst`. It resolves once this repo is
-pushed. The repo's own `.claude/skills/` copies are still in place and will
-collide by name — deleting them is a separate, reviewed step.
+`academic-workshop/.claude/settings.json` declares `aperep` and
+`claude-plugins-official`, and enables `meta`, `latex`, `biblio`, `typst`,
+`defuddle`, `academic-research-skills`, `superpowers`. All 19 skill directories
+were deleted from `academic-workshop/.claude/skills/`; every one of them is
+covered by an enabled plugin, so nothing was dropped on the floor.
