@@ -29,27 +29,32 @@ Aspirational prose there means the skill never fires. Full template:
 `docs/SKILL-template.md`.
 
 Adding a skill to an existing plugin needs no manifest edit. Adding a *plugin*
-needs a new entry in `marketplace.json` plus its own `plugin.json`.
+needs a new entry in `marketplace.json` plus its own `plugin.json`, then a
+`scripts/dev-marketplace.sh` re-run.
+
+Each `source` is a full path from the marketplace root: `"./plugins/latex"`.
+Do **not** reintroduce `metadata.pluginRoot` — this Claude Code version ignores
+it and still resolves sources against the root, so `"./latex"` fails at install
+with "Source path does not exist" while passing every validation.
 
 ## Dev loop
 
-Editing through the git source means a push per experiment. Register the working
-copy instead:
+Editing through the git source means a push per experiment. `dev/` is a second
+marketplace over the same working tree: `dev/plugins` symlinks to `../plugins`,
+and `dev/.claude-plugin/marketplace.json` is the real catalog with the name
+swapped to `aperep-dev`, generated and gitignored.
+
+The name swap is load-bearing. One marketplace per `name` per user, so a local
+copy calling itself `aperep` *replaces* the git-hosted one.
 
 ```sh
-claude plugin marketplace add ./my-claude-marketplace   # names itself from marketplace.json
+./scripts/dev-marketplace.sh                    # after adding/removing a plugin
+claude plugin marketplace add "$PWD/dev"        # once per machine
+claude plugin marketplace update aperep-dev && /reload-plugins
 ```
 
-One marketplace per `name` per user: a local copy using `name: "aperep"`
-*replaces* the git one. To run both, keep a branch whose `marketplace.json` sets
-`"name": "aperep-dev"`, or accept the swap and re-add the git source after.
-
-After edits:
-
-```sh
-claude plugin marketplace update aperep
-/reload-plugins
-```
+Skill edits need none of it — the symlink serves them live; `/reload-plugins`
+suffices.
 
 If a skill still does not appear, the cause is almost always the manifest, not
 the file: wrong `source` path, plugin missing from `plugins[]`, or the plugin
@@ -60,7 +65,13 @@ not enabled in this repo's `.claude/settings.json`.
 ```sh
 claude plugin validate .                    # catalog: schema, dupes, path traversal
 claude plugin validate ./plugins/latex      # one plugin: skill/agent/hook frontmatter
+claude plugin install latex@aperep-dev      # the only check that resolves sources
 ```
+
+`validate` never checks that a `source` path exists — a catalog pointing at
+nothing passes clean. Install from `aperep-dev` before pushing anything that
+touched `marketplace.json`; `claude plugin details latex@aperep-dev` then prints
+the component inventory it actually loaded.
 
 ## Versioning
 

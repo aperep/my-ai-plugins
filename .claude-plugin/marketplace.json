@@ -6,44 +6,60 @@
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
-  "metadata": {
-    "pluginRoot": "./plugins"
-  },
   "plugins": [
     {
       "name": "meta",
-      "source": "./meta",
+      "source": "./plugins/meta",
       "description": "Rules for self-modifying: editing skills, plugins, and this marketplace.",
       "category": "meta",
-      "tags": ["skills", "plugins", "config"]
+      "tags": [
+        "skills",
+        "plugins",
+        "config"
+      ]
     },
     {
       "name": "latex",
-      "source": "./latex",
+      "source": "./plugins/latex",
       "description": "LaTeX proofreading, journal style, formulas.",
       "category": "writing",
-      "tags": ["latex", "mathematics", "proofreading"]
+      "tags": [
+        "latex",
+        "mathematics",
+        "proofreading"
+      ]
     },
     {
       "name": "biblio",
-      "source": "./biblio",
+      "source": "./plugins/biblio",
       "description": "Bibliography and everything related.",
       "category": "writing",
-      "tags": ["bibtex", "references", "citations"]
+      "tags": [
+        "bibtex",
+        "references",
+        "citations"
+      ]
     },
     {
       "name": "obsidian",
-      "source": "./obsidian",
+      "source": "./plugins/obsidian",
       "description": "Working with Obsidian vaults.",
       "category": "writing",
-      "tags": ["obsidian", "notes", "markdown"]
+      "tags": [
+        "obsidian",
+        "notes",
+        "markdown"
+      ]
     },
     {
       "name": "typst",
-      "source": "./typst",
+      "source": "./plugins/typst",
       "description": "Working with Typst, a lightweight LaTeX alternative.",
       "category": "writing",
-      "tags": ["typst", "typesetting"]
+      "tags": [
+        "typst",
+        "typesetting"
+      ]
     }
   ],
   "renames": {}

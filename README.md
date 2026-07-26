@@ -10,8 +10,10 @@ plugins/
   biblio/                         Bibliography and everything related
   obsidian/                       Working with obsidian vaults
   typst/                          Working with Typst, a lightweight Latex alternative
+dev/                              same tree under the name `aperep-dev` (dev loop)
 docs/                             setup snippets, skill template
 scripts/setup-cloud-auth.sh       cloud sandbox git auth
+scripts/dev-marketplace.sh        regenerates dev/ catalog
 ```
 
 Each plugin holds its skills under `plugins/<name>/skills/<skill-name>/SKILL.md`.
@@ -42,16 +44,24 @@ Also avoid setting `version` in both `plugin.json` and the marketplace entry: th
 
 ## Development loop
 
-Edit the working copy, not the git source:
+`dev/` is the same working tree served under a second marketplace name, so a
+local copy never shadows the git-hosted `aperep`:
 
 ```sh
-claude plugin marketplace add ./my-claude-marketplace   # names itself from marketplace.json
-claude plugin marketplace update aperep && /reload-plugins
-claude plugin validate .                                # before every push
+./scripts/dev-marketplace.sh               # generates dev/ catalog as `aperep-dev`
+claude plugin marketplace add "$PWD/dev"   # once per machine
+claude plugin marketplace update aperep-dev && /reload-plugins
 ```
 
-The rules behind these — local vs git name collision, what `validate` checks,
-renames, versioning — live in the `meta` plugin as
+`dev/plugins` is a symlink, so skill edits are live — no commit, no push.
+Re-run the script only after adding or removing a plugin.
+
+Before pushing anything that touched `marketplace.json`, install from
+`aperep-dev`. `claude plugin validate` does not check that `source` paths exist;
+install is the only thing that resolves them.
+
+The rest of the rules — renames, versioning, why `metadata.pluginRoot` must stay
+out — live in the `meta` plugin as
 `plugins/meta/skills/editing-this-marketplace/SKILL.md`, so they are in context
 when a session is actually editing a skill.
 
