@@ -29,8 +29,7 @@ Aspirational prose there means the skill never fires. Full template:
 `docs/SKILL-template.md`.
 
 Adding a skill to an existing plugin needs no manifest edit. Adding a *plugin*
-needs a new entry in `marketplace.json` plus its own `plugin.json`, then a
-`scripts/dev-marketplace.sh` re-run.
+needs a new entry in `marketplace.json` plus its own `plugin.json`.
 
 Each `source` is a full path from the marketplace root: `"./plugins/latex"`.
 Do **not** reintroduce `metadata.pluginRoot` — this Claude Code version ignores
@@ -39,22 +38,20 @@ with "Source path does not exist" while passing every validation.
 
 ## Dev loop
 
-Editing through the git source means a push per experiment. `dev/` is a second
-marketplace over the same working tree: `dev/plugins` symlinks to `../plugins`,
-and `dev/.claude-plugin/marketplace.json` is the real catalog with the name
-swapped to `aperep-dev`, generated and gitignored.
-
-The name swap is load-bearing. One marketplace per `name` per user, so a local
-copy calling itself `aperep` *replaces* the git-hosted one.
+The same catalog is registered twice: `aperep` from github (`origin/main`) and
+`aperep-dev` as a directory source on the working tree. Edits are visible under
+`aperep-dev` without a commit:
 
 ```sh
-./scripts/dev-marketplace.sh                    # after adding/removing a plugin
-claude plugin marketplace add "$PWD/dev"        # once per machine
 claude plugin marketplace update aperep-dev && /reload-plugins
 ```
 
-Skill edits need none of it — the symlink serves them live; `/reload-plugins`
-suffices.
+The two names must differ — one marketplace per `name` per user, so a local copy
+calling itself `aperep` *replaces* the git-hosted one. The name comes from the
+key under `extraKnownMarketplaces` in `~/.claude/settings.json`, which overrides
+the `name` in `marketplace.json`; `claude plugin marketplace add <path>` has no
+`--name` flag and would register the working tree as `aperep`. Never edit the
+`name` field to get a dev copy — that changes what every consumer installs.
 
 If a skill still does not appear, the cause is almost always the manifest, not
 the file: wrong `source` path, plugin missing from `plugins[]`, or the plugin

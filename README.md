@@ -10,10 +10,8 @@ plugins/
   biblio/                         Bibliography and everything related
   obsidian/                       Working with obsidian vaults
   typst/                          Working with Typst, a lightweight Latex alternative
-dev/                              same tree under the name `aperep-dev` (dev loop)
 docs/                             setup snippets, skill template
 scripts/setup-cloud-auth.sh       cloud sandbox git auth
-scripts/dev-marketplace.sh        regenerates dev/ catalog
 ```
 
 Each plugin holds its skills under `plugins/<name>/skills/<skill-name>/SKILL.md`.
@@ -44,17 +42,25 @@ Also avoid setting `version` in both `plugin.json` and the marketplace entry: th
 
 ## Development loop
 
-`dev/` is the same working tree served under a second marketplace name, so a
-local copy never shadows the git-hosted `aperep`:
+Two registrations of the same catalog:
 
-```sh
-./scripts/dev-marketplace.sh               # generates dev/ catalog as `aperep-dev`
-claude plugin marketplace add "$PWD/dev"   # once per machine
-claude plugin marketplace update aperep-dev && /reload-plugins
+| name | source | what it serves |
+|---|---|---|
+| `aperep` | github `aperep/my-claude-marketplace` | `origin/main` |
+| `aperep-dev` | directory `~/my-claude-marketplace` | the on-device working tree |
+
+They coincide most of the time; `aperep-dev` is what makes a skill edit visible
+without a commit. Add the dev one by hand in `~/.claude/settings.json` — the
+name under `extraKnownMarketplaces` wins over the `name` in `marketplace.json`,
+which `claude plugin marketplace add <path>` does not let you override:
+
+```json
+"aperep-dev": {
+  "source": { "source": "directory", "path": "/home/sage/my-claude-marketplace" }
+}
 ```
 
-`dev/plugins` is a symlink, so skill edits are live — no commit, no push.
-Re-run the script only after adding or removing a plugin.
+After edits: `claude plugin marketplace update aperep-dev` then `/reload-plugins`.
 
 Before pushing anything that touched `marketplace.json`, install from
 `aperep-dev`. `claude plugin validate` does not check that `source` paths exist;

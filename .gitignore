@@ -1,5 +1,4 @@
 local/
-dev/.claude-plugin/marketplace.json
 .DS_Store
 *.swp
 node_modules/
