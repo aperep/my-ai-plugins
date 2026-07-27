@@ -2,6 +2,56 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
+## 2026-07-27 — me_obsidian migrated; no marketplace change needed
+
+Third consumer, and the first that required nothing new here. `~/me_obsidian`
+(the personal vault, `aperep/me_obsidian`) held eight skills in
+`.claude/skills/`, **all** of them copied third-party, **none** of its own —
+unlike AGora, which kept `arxiv-digest` and `zotero-mcp`.
+
+| copies | upstream | already served by |
+|---|---|---|
+| `defuddle`, `json-canvas`, `obsidian-bases`, `obsidian-markdown` | kepano/obsidian-skills | `obsidian@aperep` + its 4 pinned deps |
+| `brainstorming`, `executing-plans`, `using-git-worktrees`, `using-superpowers` | obra/superpowers | `superpowers@claude-plugins-official` 6.1.1 |
+
+So the whole migration was a delete plus a `.claude/settings.json`. Enabled
+`obsidian` and `superpowers` only — no `biblio`/`typst` (a personal vault is not
+a paper repo), and `academic-research-skills` stays absent for the reason
+recorded below: its `PreToolUse` hook would run on every write in the vault.
+
+### The copies were not merely redundant, they were wrong
+
+Diffed all eight against their pins before deleting. Local edits: the
+`upstream:` frontmatter line, nothing else, in all eight. Everything else was
+upstream being *ahead*, and in ways that mislead a session:
+
+- `obsidian-bases` — still documented `and/or/not` as freely combinable
+  (upstream: exactly one key). The identical staleness AGora's copy had, which
+  is what a frozen copy of a shared upstream does twice over.
+- `obsidian-markdown/references/EMBEDS.md` — no "Embed Bases" section.
+- `brainstorming` — offered the visual companion upfront; 6.1.1 offers it
+  just-in-time and starts the server with `--open`. `frame-template.html`
+  rewritten wholesale.
+- `using-superpowers` — predates the "The Rule" restructure and the
+  `references/*-tools.md` platform adaptation.
+- `using-git-worktrees` — still carried the legacy
+  `~/.config/superpowers/worktrees/` global path upstream has dropped.
+
+Worth stating plainly, since it is the argument for the whole marketplace:
+vendoring decays silently. There is no error, just an older prompt, and the
+`obsidian-bases` filter syntax was wrong in two separate vaults simultaneously.
+
+### The `upstream:` field is the thing that makes this cheap
+
+Three consumers sorted with no guesswork because most vendored skills carried
+`upstream:` in frontmatter. Keep the convention on anything vendored in future.
+Its corollary, now confirmed three times: a copy whose *only* diff against the
+pin is that line is by definition safe to delete.
+
+Cross-reference grep (the failure mode flagged in the AGora entry) found one hit
+— `skills/brainstorming/visual-companion.md`, internal to the vendored skill
+itself. No vault note referenced a skill path.
+
 ## 2026-07-26 — AGora migrated; kepano's three Obsidian skills un-vendored
 
 Second consumer, same treatment as `academic-workshop`. AGora (the Obsidian
