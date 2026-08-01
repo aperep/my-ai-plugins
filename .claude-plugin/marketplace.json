@@ -126,6 +126,23 @@
       ]
     },
     {
+      "name": "simple-english",
+      "source": {
+        "source": "github",
+        "repo": "AminBlg/SimpleEnglish",
+        "sha": "379728b51981b6d2ee1de0f201164483a9648972"
+      },
+      "strict": false,
+      "skills": ["./skills/simple-english"],
+      "description": "Not mine: AminBlg's ASD-STE100 Simplified Technical English skill for de-slopping prose, pinned. Pulled in by latex's occam-no-slop.",
+      "category": "writing",
+      "tags": [
+        "writing-style",
+        "de-slop",
+        "third-party"
+      ]
+    },
+    {
       "name": "academic-research-skills",
       "source": {
         "source": "github",

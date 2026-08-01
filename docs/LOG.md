@@ -2,6 +2,28 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
+## 2026-08-01 — occam-no-slop added to latex; simple-english pinned by dependency
+
+New skill `plugins/latex/skills/occam-no-slop/SKILL.md`: an original,
+language-agnostic slop check (narrative smoothness vs. cheap effects) plus an
+Occam's-razor base rule (generalize, merge cases, cut what isn't needed). Runs
+upstream of `speech-style-adaptation`/`russian-translation` — voice
+calibration on a slop-riddled structure just produces well-voiced slop.
+
+Requested as "based on AminBlg/SimpleEnglish". That repo (MIT, bare
+`skills/simple-english/SKILL.md`, no manifest) ships ASD-STE100 Simplified
+Technical English — sentence-level mechanics (20/25-word limits, active
+voice, one instruction per sentence), a different layer from the structural
+checks above. Per the third-party rule, did not vendor its text; added it as
+its own marketplace entry (`simple-english`, `github` source pinned to
+`379728b`, `strict:false` + `skills: ["./skills/simple-english"]` — safe here
+since upstream has no manifest to conflict with, unlike kepano/Imbad0202
+above). `plugins/latex/plugin.json` now declares
+`"dependencies": ["simple-english"]`; `occam-no-slop` delegates to it by name
+for English text only — no Russian equivalent exists, so Russian prose falls
+back to `russian-translation`'s own anti-pattern list. Verified via
+`claude plugin install latex@aperep-dev` → `(+ 1 dependency: simple-english)`.
+
 ## 2026-07-27 — me_obsidian migrated; no marketplace change needed
 
 Third consumer, and the first that required nothing new here. `~/me_obsidian`
