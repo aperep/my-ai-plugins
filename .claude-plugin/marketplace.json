@@ -143,6 +143,23 @@
       ]
     },
     {
+      "name": "creator-vibe",
+      "source": {
+        "source": "github",
+        "repo": "bish-x/creator-vibe",
+        "sha": "58642d69fafc5768627ed16215723c19198c4b4b"
+      },
+      "strict": false,
+      "skills": ["./"],
+      "description": "Not mine: bish-x's lens against overengineering — cut ceremony and architectural wandering, converge on the real working result the person needs. Pinned. General-purpose, not LaTeX-specific.",
+      "category": "general",
+      "tags": [
+        "simplicity",
+        "overengineering",
+        "third-party"
+      ]
+    },
+    {
       "name": "academic-research-skills",
       "source": {
         "source": "github",
