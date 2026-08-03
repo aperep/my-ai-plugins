@@ -2,6 +2,42 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
+## 2026-08-03 — the skills guard is reverted to a reminder; surfaces are for prompts, not code
+
+Two corrections to yesterday's entry, both from the user, both narrowing the
+design.
+
+**No `.gitattributes` means no guard.** The second guard rule — refuse to write a
+skill into a repo declaring no surface for it — is removed. It failed *closed*
+while the human-only rule failed *open*, which inverted the guard's contract for
+one path shape, and it punished an ordinary repo for a state that is simply its
+default. Most repos will never declare surfaces and that is not a fault in them.
+
+The concern was real, so it moved rather than vanished. `review-due.sh` now
+reports at session start, without stopping anything: skills sitting on no
+surface, and a single line when a repo declares no surfaces at all. The absence
+of guards is visible instead of silent, which was the actual goal — blocking was
+just the first tool reached for.
+
+Worth naming the pattern, since it is the second time in two days: a rule was
+built at the strongest enforcement available rather than the one that matched its
+stakes. `ai-controlled` had a label with no consequence; this had a consequence
+out of proportion to its label. The reminder tier exists precisely for rules that
+should be noticed rather than obeyed.
+
+**Surfaces cover prompt-content, not code.** `claude/hooks/**` is off the surface
+map. A shell script is reviewed as code, in the diff, like any script — including
+the two scripts that implement surfaces. A prompt is different in kind: it
+changes what an agent does in a session the user is not present for, and that is
+the whole reason the review machinery exists. Mirror stamps are frontmatter-only
+now; the comment-marker form for scripts is dropped with it.
+
+One wording bug fixed on the way: with the unsurfaced-skills entry added, the
+report still opened "Files on the human-revised surface have changed since the
+user last reviewed them" and closed with an instruction to move a `reviewed=`
+stamp — neither true for a skill that has no surface at all. Header and footer
+are now correct for both cases.
+
 ## 2026-08-02 — content surfaces, enforced by hooks; skill-quality added to meta
 
 Job 1 of two. Spec: `docs/specs/2026-08-02-content-surfaces.md`. Job 2 (harvesting

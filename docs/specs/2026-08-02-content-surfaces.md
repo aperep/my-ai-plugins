@@ -64,37 +64,52 @@ no-ops outside a git repo and in any repo whose `.gitattributes` declares no
 surfaces, so the cost in an unrelated project is one process spawn.
 
 **`surface-guard.sh`** — `PreToolUse` on `Write|Edit|MultiEdit|NotebookEdit`.
-Reads the target path from the tool input, resolves its repo, and enforces two
-rules.
+Denies with exit 2 when `surface=human-only`, and does nothing else. The stderr
+text returns to the agent, which then proposes the change in its reply instead of
+writing it.
 
-1. Deny with exit 2 when `surface=human-only`. The stderr text returns to the
-   agent, which then proposes the change in its reply instead of writing it.
-   This rule fails **open** on anything unexpected — no repo, no
-   `.gitattributes`, malformed input — because failing closed would block edits
-   in every repo that never heard of surfaces.
-2. Deny a write under `*claude/skills/*` when the repo declares no surface for
-   it, or when there is no repo at all. This rule fails **closed**: it only ever
-   fires on a skills path, where an absent surface is the bug rather than a
-   normal state. The message names the line to add.
+It fails **open** on everything: no repo, no `.gitattributes`, malformed input,
+undeclared path. **No `.gitattributes` means no guard**, and that is the correct
+reading rather than a gap — an undeclared repo is a normal repo, not a repo with
+a problem. Blocking is reserved for the one case where the user has explicitly
+claimed a path.
 
-Rule 2 exists because rule 1 cannot cover it. A harvested skill in an unsurfaced
-repo is not a file with the wrong surface — it is a file no surface will ever
-describe, so no review can fall due on it. Stating that as a prompt rule was the
-first attempt, and it is the exact rule shape the hooks exist to replace.
+An earlier version added a second, fail-**closed** rule: refuse to write a skill
+into a repo declaring no surface for it. Removed. It inverted the guard's
+contract for one path shape, and it punished an ordinary repo for a state that is
+its default. That concern belongs in the reminder, which now names unsurfaced
+skills without stopping anything.
 
 Path resolution runs through `pwd -P` before asking git. `~/.claude/skills` is a
 symlink into the dotfiles repo, so the path the agent writes to never starts with
 the repo root, and a prefix strip alone leaves the "relative" path absolute —
-which makes `check-attr` return nothing and the guard fail open exactly where it
-must not.
+which makes `check-attr` return nothing and the guard pass a file it should have
+refused.
 
-**`review-due.sh`** — `SessionStart`. Parses `.gitattributes` for
-`surface=human-revised` lines and prints a per-pattern diffstat since each `reviewed=`
-stamp. Silent when nothing has drifted. A pattern with no stamp reports as never
-reviewed.
+**`review-due.sh`** — `SessionStart`. Carries everything non-blocking:
 
-Prompt rules were rejected for both: a prohibition and a reminder are exactly the
-two rule shapes that fail silently when the model is busy with something else.
+- a per-pattern diffstat since each `reviewed=` stamp, and never-reviewed for a
+  pattern that has no stamp;
+- in-file `reviewed:` mirrors that disagree with the authoritative stamp;
+- skills on no surface, which can therefore never be reported as unread;
+- one line when the repo declares no surfaces at all, so the absence of guards is
+  visible rather than silent.
+
+Silent when nothing has drifted and surfaces are declared.
+
+A prompt rule was rejected for the prohibition, because a prohibition is the rule
+shape that fails silently when the model is busy elsewhere. Everything else is a
+reminder by choice: the reminder is allowed to be missed occasionally, the
+prohibition is not.
+
+## What surfaces cover
+
+Prompt-content: skills, docs, prose that steers a later session without being
+read. **Not code.** A shell script is reviewed as code, in the diff, the way any
+script is — so `dotfiles/claude/hooks/*.sh` sits on no surface despite
+implementing this system. The asymmetry is the point: a script does what it says
+when you read it, while a prompt changes what an agent does in a session you are
+not present for.
 
 ## Skill quality
 
