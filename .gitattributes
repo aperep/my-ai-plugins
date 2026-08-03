@@ -1,15 +1,15 @@
-# Content surfaces. See ~/.claude/CLAUDE.md for what they mean, and
-# docs/specs/2026-08-02-content-surfaces.md for why.
+# Guards. One line per guarded path, added only when the user asks for it.
+# See ~/.claude/CLAUDE.md, and docs/specs/2026-08-02-content-guards.md for why.
 #
-#   human-only      the user owns it; the agent never edits it
-#   human-revised   the agent edits it; reviewed=<sha> is what the user read through
-#   unlisted        the agent edits it, no review tracking
+#   <path>  guard=human-only                      the agent never edits it
+#   <path>  guard=human-revised reviewed=<sha>    the commit the user read through
 #
-# Patterns must be path-anchored, and a trailing slash matches nothing here —
-# use `dir/**`. Leave this file unlisted, or the agent cannot write the stamp.
+# No wildcards. A guard names one file the user has decided to own or to check;
+# a pattern claims files nobody has looked at yet. Guards apply to
+# prompt-content — skills, docs, prose that steers a later session without being
+# read — not to code, which is reviewed in the diff like any code.
 #
-# No human-only path is declared yet. The syntax, when you want one:
-#   docs/some-file.md             surface=human-only
-
-plugins/*/skills/*/SKILL.md       surface=human-revised reviewed=c420771
-plugins/*/skills/*/references/**  surface=human-revised reviewed=c420771
+# Leave this file unguarded, or the stamp cannot be written.
+#
+# Nothing is guarded yet. The session-start hook lists unguarded skills so they
+# can be picked off one at a time.

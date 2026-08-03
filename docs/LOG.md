@@ -2,20 +2,46 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
-## 2026-08-03 — the skills guard is reverted to a reminder; surfaces are for prompts, not code
+## 2026-08-03 — "surfaces" renamed to guards; wildcards abolished
+
+The notion is now **guards**, and the git attribute is `guard=`. Earlier entries
+below were rewritten to the new vocabulary, so "surface" survives only where one
+quotes a message that shipped under the old name.
+
+**No wildcard guarding.** Every pattern is gone from both `.gitattributes` files,
+including the ones added yesterday. A guard names one file the user has decided
+to own or to check; a pattern claims files nobody has looked at yet — the same
+over-reach as `ai-controlled` and the fail-closed skills rule, in a third
+costume. Guards are added on request, one path at a time. Proposing is allowed,
+adding is not.
+
+Both repos therefore declare **zero** guards, and both report "no guards
+declared" at session start. That is the correct starting state, not a regression:
+the mechanism works and nothing has been claimed with it yet.
+
+What fills the gap is the reminder, which now lists any `*/skills/*/SKILL.md`
+sitting on no guard — widened from the old `claude/skills/` check, since this
+repo keeps skills under `plugins/*/skills/`. That listing is the raw material for
+a proposal.
+
+Guards could cover anything eventually. Starting with a few skills is the user's
+call and the right one: the machinery is two days old and has already been wrong
+twice about how hard to push.
+
+## 2026-08-03 — the skills guard is reverted to a reminder; guards are for prompts, not code
 
 Two corrections to yesterday's entry, both from the user, both narrowing the
 design.
 
 **No `.gitattributes` means no guard.** The second guard rule — refuse to write a
-skill into a repo declaring no surface for it — is removed. It failed *closed*
+skill into a repo declaring no guard for it — is removed. It failed *closed*
 while the human-only rule failed *open*, which inverted the guard's contract for
 one path shape, and it punished an ordinary repo for a state that is simply its
-default. Most repos will never declare surfaces and that is not a fault in them.
+default. Most repos will never declare guards and that is not a fault in them.
 
 The concern was real, so it moved rather than vanished. `review-due.sh` now
 reports at session start, without stopping anything: skills sitting on no
-surface, and a single line when a repo declares no surfaces at all. The absence
+guard, and a single line when a repo declares no guards at all. The absence
 of guards is visible instead of silent, which was the actual goal — blocking was
 just the first tool reached for.
 
@@ -25,31 +51,31 @@ stakes. `ai-controlled` had a label with no consequence; this had a consequence
 out of proportion to its label. The reminder tier exists precisely for rules that
 should be noticed rather than obeyed.
 
-**Surfaces cover prompt-content, not code.** `claude/hooks/**` is off the surface
+**Guards cover prompt-content, not code.** `claude/hooks/**` is off the guard
 map. A shell script is reviewed as code, in the diff, like any script — including
-the two scripts that implement surfaces. A prompt is different in kind: it
+the two scripts that implement guards. A prompt is different in kind: it
 changes what an agent does in a session the user is not present for, and that is
 the whole reason the review machinery exists. Mirror stamps are frontmatter-only
 now; the comment-marker form for scripts is dropped with it.
 
-One wording bug fixed on the way: with the unsurfaced-skills entry added, the
+One wording bug fixed on the way: with the unguarded-skills entry added, the
 report still opened "Files on the human-revised surface have changed since the
 user last reviewed them" and closed with an instruction to move a `reviewed=`
-stamp — neither true for a skill that has no surface at all. Header and footer
+stamp — neither true for a skill that has no guard at all. Header and footer
 are now correct for both cases.
 
-## 2026-08-02 — content surfaces, enforced by hooks; skill-quality added to meta
+## 2026-08-02 — content guards, enforced by hooks; skill-quality added to meta
 
-Job 1 of two. Spec: `docs/specs/2026-08-02-content-surfaces.md`. Job 2 (harvesting
+Job 1 of two. Spec: `docs/specs/2026-08-02-content-guards.md`. Job 2 (harvesting
 skills from sessions, work-style reports) is deferred and unstarted.
 
-### Surfaces ride on git attributes
+### Guards ride on git attributes
 
-Two surfaces — `human-only` and `human-revised` — declared in the repo's
-`.gitattributes`, one line per glob. Rejected a purpose-built `.surfaces` file:
+Two guards — `human-only` and `human-revised` — declared in the repo's
+`.gitattributes`, one line per glob. Rejected a purpose-built sidecar file:
 git already implements the glob semantics and last-match-wins, and
-`git check-attr surface -- <path>` answers the per-file question with no glob
-code in the hooks at all. Frontmatter was rejected outright — surfaces have to
+`git check-attr guard -- <path>` answers the per-file question with no glob
+code in the hooks at all. Frontmatter was rejected outright — guards have to
 cover `scripts/` and `evals/`, which have none.
 
 `human-revised` carries `reviewed=<short-sha>` on the same line: the commit the
@@ -57,7 +83,7 @@ user last read through. A review moves that field and touches nothing else, so
 it never blocks on the user rewriting anything, and the drift is exact rather
 than a count of "many changes".
 
-A third surface, `ai-controlled`, was specified, built, and cut the same day at
+A third guard, `ai-controlled`, was specified, built, and cut the same day at
 the user's call. Its rule was "the user never reads this" — which is not a rule,
 because it is what the default already does. Same edits allowed, same hooks
 silent, same tracking absent. It survived the design review only because a
@@ -78,10 +104,10 @@ a review needs.
 that fail silently when the model is busy elsewhere. Both are hooks now, in
 `dotfiles/claude/hooks/`, linked to `~/.claude/hooks/`:
 
-- `surface-guard.sh` — `PreToolUse` on `Write|Edit|MultiEdit|NotebookEdit`,
+- `guard.sh` — `PreToolUse` on `Write|Edit|MultiEdit|NotebookEdit`,
   denies with exit 2 on `human-only`. Fails **open** everywhere else: no repo, no
   `.gitattributes`, malformed stdin, missing path all exit 0. A guard that failed
-  closed would block edits in every repo that never heard of surfaces.
+  closed would block edits in every repo that never heard of guards.
 - `review-due.sh` — `SessionStart`, prints a diffstat per drifted
   `human-revised` pattern, silent otherwise.
 
@@ -145,7 +171,7 @@ hands English prose to `simple-english`. The objection is not solved, only
 accepted and written down: once enabled, its description competes for
 skill-related triggers, and nothing short of vendoring could change that.
 
-### The harvest landing rule was backwards, and self-learning is why surfaces exist
+### The harvest landing rule was backwards, and self-learning is why guards exist
 
 The spec originally sent harvested skills to an *unlisted* path, so as not to
 charge the user with reviewing something they never asked for. Wrong, and wrong
@@ -159,17 +185,17 @@ so they read as never reviewed until someone looks.
 Two gaps that closing this exposed:
 
 - `~/.claude/skills/` — where a *global* harvest lands — was not a git repo, so a
-  globally harvested skill would have had no surface, no stamp and no reminder,
+  globally harvested skill would have had no guard, no stamp and no reminder,
   permanently. Now `dotfiles/claude/skills/`, linked into place, with
-  `claude/skills/** surface=human-revised` and no stamp. `README.md` there is the
-  stub that keeps the empty directory in git and makes the surface visible.
+  `claude/skills/** guard=human-revised` and no stamp. `README.md` there is the
+  stub that keeps the empty directory in git and makes the guard visible.
 - A repo with no `.gitattributes` gets no protection at all, and `self-learning`
   is enabled at user scope, so it will harvest anywhere. This started as a prompt
   rule in the global `CLAUDE.md` — and a prompt rule is the exact shape the hooks
-  exist to replace, so it became `surface-guard.sh`'s second rule: deny any write
-  under `*claude/skills/*` in a repo that declares no surface for it, or in no
+  exist to replace, so it became `guard.sh`'s second rule: deny any write
+  under `*claude/skills/*` in a repo that declares no guard for it, or in no
   repo at all. Unlike the `human-only` rule it fails **closed**, because it fires
-  only on skills paths, where an absent surface is the bug and not a normal
+  only on skills paths, where an absent guard is the bug and not a normal
   state. The refusal names the line to add.
 
 Writing rule 2 surfaced a latent bug in rule 1. The guard stripped the repo root

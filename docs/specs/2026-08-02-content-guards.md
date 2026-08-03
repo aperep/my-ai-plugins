@@ -4,18 +4,18 @@ status: approved
 job: 1 of 2
 ---
 
-# Content surfaces and skill quality gates
+# Content guards and skill quality gates
 
 Job 1 of two. This one is the rules: who owns which file, how a review is
 recorded, and how a skill proves it works. Job 2 is the automation that rides on
 top (harvesting skills from successful sessions, work-style reports) and is not
 specified here.
 
-## Surfaces
+## Guards
 
-Two surfaces, plus the default. They say who owns a file, not what is in it.
+Two guards, plus the default. They say who owns a file, not what is in it.
 
-| surface | the user | the agent |
+| guard | the user | the agent |
 |---|---|---|
 | `human-only` | owns it | never edits it |
 | `human-revised` | reads sometimes, edits | edits freely; must report unreviewed drift with a diff |
@@ -23,23 +23,23 @@ Two surfaces, plus the default. They say who owns a file, not what is in it.
 
 A review does one thing: it moves the stamp. It never requires an edit.
 
-An `ai-controlled` surface was specified and then dropped. Its rule was "the user
+An `ai-controlled` guard was specified and then dropped. Its rule was "the user
 never reads this", which produces no behavior the default does not already
-produce: the agent edits freely, no hook fires, nothing is tracked. A surface
-that changes nothing is not a surface, and carrying it cost a row in every table
+produce: the agent edits freely, no hook fires, nothing is tracked. A guard
+that changes nothing is not a guard, and carrying it cost a row in every table
 and a branch in the reader's head.
 
-## Where a surface is declared
+## Where a guard is declared
 
 In `.gitattributes`, at the root of the repo that holds the file:
 
 ```
-plugins/*/skills/*/SKILL.md    surface=human-revised reviewed=a1b2c3d
-docs/LOG.md                    surface=human-only
+plugins/*/skills/*/SKILL.md    guard=human-revised reviewed=a1b2c3d
+docs/LOG.md                    guard=human-only
 ```
 
 Git supplies the glob matching and the last-match-wins rule. `git check-attr
-surface -- <path>` answers the question for one file with no glob code in the
+guard -- <path>` answers the question for one file with no glob code in the
 hooks.
 
 `reviewed=` holds the short SHA of the commit that the user last reviewed
@@ -61,10 +61,10 @@ Two constraints follow from using git attributes:
 
 Two hooks in `~/.claude/hooks/`, linked from `dotfiles/claude/hooks/`. Both are
 no-ops outside a git repo and in any repo whose `.gitattributes` declares no
-surfaces, so the cost in an unrelated project is one process spawn.
+guards, so the cost in an unrelated project is one process spawn.
 
-**`surface-guard.sh`** — `PreToolUse` on `Write|Edit|MultiEdit|NotebookEdit`.
-Denies with exit 2 when `surface=human-only`, and does nothing else. The stderr
+**`guard.sh`** — `PreToolUse` on `Write|Edit|MultiEdit|NotebookEdit`.
+Denies with exit 2 when `guard=human-only`, and does nothing else. The stderr
 text returns to the agent, which then proposes the change in its reply instead of
 writing it.
 
@@ -75,9 +75,9 @@ a problem. Blocking is reserved for the one case where the user has explicitly
 claimed a path.
 
 An earlier version added a second, fail-**closed** rule: refuse to write a skill
-into a repo declaring no surface for it. Removed. It inverted the guard's
+into a repo declaring no guard for it. Removed. It inverted the guard's
 contract for one path shape, and it punished an ordinary repo for a state that is
-its default. That concern belongs in the reminder, which now names unsurfaced
+its default. That concern belongs in the reminder, which now names unguarded
 skills without stopping anything.
 
 Path resolution runs through `pwd -P` before asking git. `~/.claude/skills` is a
@@ -91,22 +91,22 @@ refused.
 - a per-pattern diffstat since each `reviewed=` stamp, and never-reviewed for a
   pattern that has no stamp;
 - in-file `reviewed:` mirrors that disagree with the authoritative stamp;
-- skills on no surface, which can therefore never be reported as unread;
-- one line when the repo declares no surfaces at all, so the absence of guards is
+- skills on no guard, which can therefore never be reported as unread;
+- one line when the repo declares no guards at all, so the absence of guards is
   visible rather than silent.
 
-Silent when nothing has drifted and surfaces are declared.
+Silent when nothing has drifted and guards are declared.
 
 A prompt rule was rejected for the prohibition, because a prohibition is the rule
 shape that fails silently when the model is busy elsewhere. Everything else is a
 reminder by choice: the reminder is allowed to be missed occasionally, the
 prohibition is not.
 
-## What surfaces cover
+## What guards cover
 
 Prompt-content: skills, docs, prose that steers a later session without being
 read. **Not code.** A shell script is reviewed as code, in the diff, the way any
-script is — so `dotfiles/claude/hooks/*.sh` sits on no surface despite
+script is — so `dotfiles/claude/hooks/*.sh` sits on no guard despite
 implementing this system. The asymmetry is the point: a script does what it says
 when you read it, while a prompt changes what an agent does in a session you are
 not present for.
@@ -142,7 +142,7 @@ skills/<name>/evals/
 | model | date | skill commit | RED reproduced | GREEN cleared | notes |
 
 `evals/` is unlisted. It is evidence for the agent, not reading for the user, and
-nothing about that needs a surface to say it.
+nothing about that needs a guard to say it.
 
 ## Not adopted
 
@@ -155,7 +155,7 @@ bearing part and it costs a paragraph.
 
 ## In-file mirror stamps
 
-`.gitattributes` stays authoritative. A text file on a tracked surface also
+`.gitattributes` stays authoritative. A text file on a tracked guard also
 carries `reviewed: <sha>` — in frontmatter, or behind a comment marker where
 there is none — purely so the state is visible on opening the file. Non-text
 files get no mirror. A territory with no file yet gets a stub that carries the

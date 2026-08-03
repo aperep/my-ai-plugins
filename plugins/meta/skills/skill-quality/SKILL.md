@@ -86,13 +86,14 @@ marketplace keeps the evidence.
 ## Harvested skills
 
 `self-learning` writes skills without asking, so its output is a prompt the user
-has never read that already steers the next session. It lands on
-`surface=human-revised` with **no stamp**, which makes it report as never
-reviewed at every session start.
+has never read that already steers the next session. A session-start hook lists
+unguarded skills; offer to guard the ones worth tracking, one path at a time,
+with the stamp left off so they read as never reviewed.
 
-Do not stamp it. A harvested skill earns a stamp the way any other does: it
-clears the gates above, the user reads it, the user confirms. Until then the
-reminder is the only thing between an unread guess and a permanent instruction.
+Never stamp a skill you wrote. A harvested skill earns a stamp the way any other
+does: it clears the gates above, the user reads it, the user confirms. Until then
+that listing is the only thing between an unread guess and a permanent
+instruction.
 
-`SKILL.md` and `references/` are `surface=human-revised`, so a review falls due
-once they drift. See the global `CLAUDE.md`.
+Guards are added per path when the user asks — no wildcard claims a skill nobody
+has looked at. See the global `CLAUDE.md`.
