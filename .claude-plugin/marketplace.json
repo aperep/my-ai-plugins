@@ -160,6 +160,40 @@
       ]
     },
     {
+      "name": "skillforge",
+      "source": {
+        "source": "github",
+        "repo": "tripleyak/SkillForge",
+        "sha": "4fc8bb486aa8edca12facbf02b53aa1ada76a4a9"
+      },
+      "strict": false,
+      "skills": ["./"],
+      "description": "Not mine: tripleyak's evidence-driven skill pipeline (triage, spec, lint, evals), pinned. Pulled in by meta; skill-quality hands it a large rewrite. Its own description competes for skill-related triggers — that cost is accepted, not solved.",
+      "category": "meta",
+      "tags": [
+        "skills",
+        "evals",
+        "third-party"
+      ]
+    },
+    {
+      "name": "self-learning",
+      "source": {
+        "source": "github",
+        "repo": "Kulaxyz/self-learning-skills",
+        "sha": "d4e0a7ec1f1ae1b5c7f7972b52ad8ed0c2c067ae"
+      },
+      "strict": false,
+      "skills": ["./skills/self-learning"],
+      "description": "Not mine: Kulaxyz's golden-path harvester, pinned. Writes skills without asking first, so its output lands on surface=human-revised with no stamp and reports as never reviewed. Pulled in by meta.",
+      "category": "meta",
+      "tags": [
+        "skills",
+        "memory",
+        "third-party"
+      ]
+    },
+    {
       "name": "academic-research-skills",
       "source": {
         "source": "github",

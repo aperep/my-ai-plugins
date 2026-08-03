@@ -2,5 +2,6 @@
   "name": "meta",
   "description": "Rules for self-modifying: editing skills, plugins, and this marketplace.",
   "author": { "name": "Alexander Perepechko" },
-  "keywords": ["skills", "plugins", "marketplace", "meta"]
+  "keywords": ["skills", "plugins", "marketplace", "meta"],
+  "dependencies": ["skillforge", "self-learning"]
 }

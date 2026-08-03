@@ -1,0 +1,15 @@
+# Content surfaces. See ~/.claude/CLAUDE.md for what they mean, and
+# docs/specs/2026-08-02-content-surfaces.md for why.
+#
+#   human-only      the user owns it; the agent never edits it
+#   human-revised   the agent edits it; reviewed=<sha> is what the user read through
+#   unlisted        the agent edits it, no review tracking
+#
+# Patterns must be path-anchored, and a trailing slash matches nothing here —
+# use `dir/**`. Leave this file unlisted, or the agent cannot write the stamp.
+#
+# No human-only path is declared yet. The syntax, when you want one:
+#   docs/some-file.md             surface=human-only
+
+plugins/*/skills/*/SKILL.md       surface=human-revised reviewed=c420771
+plugins/*/skills/*/references/**  surface=human-revised reviewed=c420771

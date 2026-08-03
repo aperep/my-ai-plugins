@@ -2,6 +2,173 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
+## 2026-08-02 — content surfaces, enforced by hooks; skill-quality added to meta
+
+Job 1 of two. Spec: `docs/specs/2026-08-02-content-surfaces.md`. Job 2 (harvesting
+skills from sessions, work-style reports) is deferred and unstarted.
+
+### Surfaces ride on git attributes
+
+Two surfaces — `human-only` and `human-revised` — declared in the repo's
+`.gitattributes`, one line per glob. Rejected a purpose-built `.surfaces` file:
+git already implements the glob semantics and last-match-wins, and
+`git check-attr surface -- <path>` answers the per-file question with no glob
+code in the hooks at all. Frontmatter was rejected outright — surfaces have to
+cover `scripts/` and `evals/`, which have none.
+
+`human-revised` carries `reviewed=<short-sha>` on the same line: the commit the
+user last read through. A review moves that field and touches nothing else, so
+it never blocks on the user rewriting anything, and the drift is exact rather
+than a count of "many changes".
+
+A third surface, `ai-controlled`, was specified, built, and cut the same day at
+the user's call. Its rule was "the user never reads this" — which is not a rule,
+because it is what the default already does. Same edits allowed, same hooks
+silent, same tracking absent. It survived the design review only because a
+three-row table looks more complete than a two-row one. Worth remembering as the
+failure mode: a taxonomy grows a category that names a feeling rather than a
+behavior, and nothing catches it until someone asks what changes when the label
+is applied.
+
+Two constraints fell out of the choice, both now documented in the file itself:
+patterns must be path-anchored, because a bare `*.md` matches at any depth for
+`check-attr` but only at the root for the `:(glob)` pathspec the drift check
+uses; and `.gitattributes` must stay unlisted, or the guard blocks the one edit
+a review needs.
+
+### Prompt rules were rejected for enforcement
+
+"Never edit this" and "remind me when things pile up" are the two rule shapes
+that fail silently when the model is busy elsewhere. Both are hooks now, in
+`dotfiles/claude/hooks/`, linked to `~/.claude/hooks/`:
+
+- `surface-guard.sh` — `PreToolUse` on `Write|Edit|MultiEdit|NotebookEdit`,
+  denies with exit 2 on `human-only`. Fails **open** everywhere else: no repo, no
+  `.gitattributes`, malformed stdin, missing path all exit 0. A guard that failed
+  closed would block edits in every repo that never heard of surfaces.
+- `review-due.sh` — `SessionStart`, prints a diffstat per drifted
+  `human-revised` pattern, silent otherwise.
+
+Two things the tests forced. `git diff <stamp>..HEAD` was wrong twice over: it
+misses uncommitted edits (drift the user has not seen either), so the range
+became `git diff <stamp>` against the working tree; and it cannot see a file that
+was never added, so untracked matches are collected separately with
+`ls-files --others`. Without that second fix a brand-new unreviewed skill — the
+exact case the reminder exists for — was invisible. A stampless pattern that
+matches nothing is now silent instead of reporting "never reviewed" forever.
+
+### `dotfiles/CLAUDE.md` was wrong about its own links
+
+It claimed `claude/` and `codex/` are linked as whole directories. They are
+linked file by file, and must be: `~/.claude/` also holds Claude Code's own
+sessions, plugins and caches, so it cannot be a symlink. Corrected, with the
+consequence stated — a new file under `claude/` is dead until it gets its own
+`install.conf.yaml` entry. `claude/hooks` is a directory link, like
+`claude/agents`.
+
+Also removed a dead line from the global `CLAUDE.md`: it told every session to
+"use meta-prompting and sdd skills". Neither has ever existed on this machine.
+
+### skill-quality, and why SkillForge is not pinned
+
+New `plugins/meta/skills/skill-quality/`. A gate, not an authoring guide:
+`superpowers:writing-skills` covers how to write one, this covers proving it
+changes behavior. RED (a fresh sonnet subagent fails without the skill, or there
+is no skill to write) → write against those recorded failures only → GREEN (a
+fresh subagent clears them) → trigger tests including the must-not-fire list →
+an adversarial subagent whose job is to refute the result. Evidence lands in
+`evals/{baseline,triggers,TESTED}.md`; `TESTED.md` is one row per model, because
+a skill tested on one model is tested on one model.
+
+Cut a third of it in an Occam pass before shipping. The "is a skill needed?"
+section restated the RED gate. Three of five architecture bullets were already in
+`editing-this-marketplace` or `docs/SKILL-template.md`, and the file-layout tree
+would have been its fourth copy in this repo — a gate skill has no business
+re-teaching authoring. Two bullets survive because nothing else states them: one
+skill one job, and say what to do rather than what to avoid.
+
+`tripleyak/SkillForge` (MIT, 842★) supplied the RED/GREEN idea and nothing else.
+Not adopted as an entry: its description claims "create a skill", "improve the X
+skill" and "which skill should I use", which fires over both
+`superpowers:writing-skills` and `editing-this-marketplace`. It is an
+orchestrator that wants the whole trigger space, and it ships Python tooling for
+what is four subagent calls. Its own doctrine — a skill that steals triggers is
+worse than one that never fires — is the argument against installing it here.
+
+### Job 2 folded in: self-learning and skillforge pinned
+
+Both `strict: false` + a `skills` array over a `github` source.
+`Kulaxyz/self-learning-skills` ships `.claude-plugin/marketplace.json` and
+installs clean anyway — confirming for a second time that the "conflicting
+manifests" trigger is an upstream **`plugin.json`**, not any file under
+`.claude-plugin/`. `plugins/meta` declares both as dependencies.
+
+`tripleyak/SkillForge` is pinned after all, against the objection recorded above,
+because `skill-quality` now hands it a large rewrite the way `occam-no-slop`
+hands English prose to `simple-english`. The objection is not solved, only
+accepted and written down: once enabled, its description competes for
+skill-related triggers, and nothing short of vendoring could change that.
+
+### The harvest landing rule was backwards, and self-learning is why surfaces exist
+
+The spec originally sent harvested skills to an *unlisted* path, so as not to
+charge the user with reviewing something they never asked for. Wrong, and wrong
+in the direction that defeats the whole design. `self-learning` instructs the
+agent to "act on the cue immediately — don't ask for permission first", and what
+it writes is authoritative: the next session trusts it without re-deriving. An
+unread prompt that steers future sessions is the strongest case there is *for* a
+review reminder. Harvested skills now land on `human-revised` with **no stamp**,
+so they read as never reviewed until someone looks.
+
+Two gaps that closing this exposed:
+
+- `~/.claude/skills/` — where a *global* harvest lands — was not a git repo, so a
+  globally harvested skill would have had no surface, no stamp and no reminder,
+  permanently. Now `dotfiles/claude/skills/`, linked into place, with
+  `claude/skills/** surface=human-revised` and no stamp. `README.md` there is the
+  stub that keeps the empty directory in git and makes the surface visible.
+- A repo with no `.gitattributes` gets no protection at all, and `self-learning`
+  is enabled at user scope, so it will harvest anywhere. This started as a prompt
+  rule in the global `CLAUDE.md` — and a prompt rule is the exact shape the hooks
+  exist to replace, so it became `surface-guard.sh`'s second rule: deny any write
+  under `*claude/skills/*` in a repo that declares no surface for it, or in no
+  repo at all. Unlike the `human-only` rule it fails **closed**, because it fires
+  only on skills paths, where an absent surface is the bug and not a normal
+  state. The refusal names the line to add.
+
+Writing rule 2 surfaced a latent bug in rule 1. The guard stripped the repo root
+off the target path by prefix, which breaks the moment the path arrives through a
+symlink — and `~/.claude/skills` is now exactly that, a link into the dotfiles
+repo. `check-attr` was being handed an absolute path outside the repo, returned
+nothing, and the guard failed open precisely where it must not. Resolution now
+goes through `pwd -P` first. Proven by denying a `human-only` file reached
+through a symlink: the refusal names the repo-relative path, so it resolved
+rather than fell through.
+
+### In-file stamps as a visible mirror
+
+`.gitattributes` stays authoritative; text files also carry `reviewed: <sha>` so
+the state is visible on opening the file. Rejected making the in-file stamp
+authoritative: it cannot mark JSON or binaries, and it cannot protect a path
+before the file exists — the guard suite denies `docs/new/deep.md` in a repo
+where that file has never been created. Territory is a glob, a review record is
+per-file, and the mirror buys the per-file visibility without moving authority.
+
+Two copies of one fact drift, so `review-due.sh` compares them and reports a
+mismatch. Writing that check cost one real bug: `git grep` had no `-o` before
+2.44, and passing it made git read `--untracked` as a revision, so the check
+failed silently and reported nothing. Match with git, extract with grep.
+
+Verified: `claude plugin validate` clean (only the deliberate no-`version`
+warnings). Guard tested on 8 cases, reminder on 9 — re-run after the rename and
+again after the mirror check. Both repos report correctly, `~/.claude/skills` is
+linked. Nothing is committed yet.
+
+Always-on cost of the meta layer is now ~800 tokens in every session in every
+repo: `self-learning` ~310, `skillforge` ~190, `skill-quality` ~180,
+`editing-this-marketplace` ~120. Worth revisiting if it starts crowding real
+work; per-project enabling is the lever.
+
 ## 2026-08-01 — occam-no-slop added to latex; simple-english pinned by dependency
 
 New skill `plugins/latex/skills/occam-no-slop/SKILL.md`: an original,
