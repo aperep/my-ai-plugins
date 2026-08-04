@@ -1,0 +1,7 @@
+{
+  "enabledPlugins": {
+    "meta@aperep-dev": true,
+    "skillforge@aperep-dev": true,
+    "self-learning@aperep-dev": true
+  }
+}

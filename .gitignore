@@ -3,3 +3,4 @@ local/
 *.swp
 node_modules/
 output/
+.claude/settings.local.json

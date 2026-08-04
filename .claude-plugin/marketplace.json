@@ -185,7 +185,7 @@
       },
       "strict": false,
       "skills": ["./skills/self-learning"],
-      "description": "Not mine: Kulaxyz's golden-path harvester, pinned. Writes skills without asking first, so its output lands on surface=human-revised with no stamp and reports as never reviewed. Pulled in by meta.",
+      "description": "Not mine: Kulaxyz's golden-path harvester, pinned. Writes skills without asking first, so its output is a prompt nobody has read; it lands with no stamp and the session-start hook lists it as sitting on no guard. Pulled in by meta.",
       "category": "meta",
       "tags": [
         "skills",

@@ -2,6 +2,95 @@
 
 Completed and rejected plans, with the reasoning. Newest first.
 
+## 2026-08-03 — meta split into three skills; meta and skillforge scoped per repo
+
+Spec: `docs/specs/2026-08-03-meta-plugin-decomposition.md`. Two jobs, both done.
+
+### The cut, and the filter that produced it
+
+Three skills instead of two: `skill-quality` (prove, then author),
+`editing-this-marketplace` (place and ship), and a new `trusting-foreign-skills`
+(prompts nobody here wrote — third-party pinning and harvested output, which
+were the two orphan sections at the bottom of the other two files).
+
+Both old bodies were rewritten from this log rather than edited. They were
+single-pass AI drafts that had never been tested; their *facts* were sound
+because they summarised entries here, but their structure was undefended. One
+draft cited "this repo's `.claude/settings.json`" — a file that had never
+existed. Job 2 has since created it.
+
+The filter for what survives: only what a fresh Claude cannot derive. Anthropic's
+authoring guidance says the model writes correct `SKILL.md` structure natively
+and that a skill teaching skill format is unnecessary, so the generic format
+prose went and the repo's traps stayed.
+
+Rejected: **two skills**, closing the one real trigger gap with a one-line
+description edit — `editing-this-marketplace` already claimed vendoring, so only
+the harvested half was orphaned, 119 words of it. Cheaper by ~150 always-on
+tokens. Chosen against for boundary clarity once job 2 confined the cost to two
+repos. Also rejected: four skills, one skill, and cutting for length — the bodies
+were 112 and 99 lines against a 500-line budget, so there was nothing to cut but
+generic content, which is a different operation.
+
+### Job 2: enabling scope was never used at all
+
+Every one of the 20 `enabledPlugins` entries was `true` at user scope, and
+neither this repo nor `dotfiles` had a `.claude/settings.json`. `meta` and
+`skillforge` are now `false` at user scope and enabled in those two repos only.
+
+A description is preloaded exactly when its plugin is enabled — there is no
+"installed but unlisted" state — so scope is the only lever on always-on cost.
+`editing-this-marketplace` names one repository; `skill-quality` fires only where
+skills ship; `skillforge` never self-triggers, being reached by `/skillforge` or
+by `skill-quality` naming it. `self-learning` stays at user scope because it
+harvests anywhere, which is the point of it.
+
+`extraKnownMarketplaces` was left alone deliberately: it is a registry, not a
+switch, and unregistering `aperep-dev` would strand `self-learning` and seven
+other user-wise entries.
+
+Measured, from `claude plugin details`: the three skills cost ~446 tokens
+always-on (~130 / ~150 / ~170), against ~800 for the whole meta layer before.
+
+### Two facts the dev loop was wrong about
+
+Both found by running the procedure on itself, and now in the skill.
+
+`claude plugin marketplace update aperep-dev` refreshes the **catalog only**.
+Cached plugin content sits in a directory named for HEAD's sha, so with HEAD
+unchanged it is treated as current and an uncommitted edit does not propagate —
+the skill kept loading its old `description` while the file on disk said
+otherwise. `claude plugin install` is what re-copies. Caught because a lint
+warning would not clear after the text was fixed.
+
+A bare `claude plugin install` writes `enabledPlugins` at **user** scope. Running
+it as the spec's own verification step silently re-enabled both plugins that job 2
+had just scoped per repo. `-s project` is now mandatory in the skill.
+
+### Evals
+
+`evals/triggers.md` for each of the three: must-load, must-not-load, and the
+competitor that should win each near-miss. `trusting-foreign-skills` appears in
+no collision pair above threshold, so the third description steals nothing.
+
+No RED/GREEN, no `baseline.md`, no `TESTED.md` — a cost decision, not a judgement
+that the drafts are sound. The gate `skill-quality` demands of every other skill
+is still unpaid by the plugin that demands it.
+
+### Deferred
+
+The other 16 user-scope entries, probably the larger saving. And moving consumer
+plugins to `@aperep`: only 5 entries take content from the working tree (the ones
+with relative `source` paths — the other 9 are pinned to github shas and are
+identical under either registry), consumer repos already declare `aperep`, so
+after job 2 this reduces to `latex` alone, whose skills shape paper repos from an
+uncommitted tree. Note `latex@aperep` and `latex@aperep-dev` are distinct IDs:
+enabling both anywhere doubles every skill.
+
+Two orphaned cache copies of `meta` (`1ee2690`, `fe47ffa`) still produce a
+`stale_ref` and a `duplicate_name` in the doctor report. Cache accretion, not a
+repo fault.
+
 ## 2026-08-03 — "surfaces" renamed to guards; wildcards abolished
 
 The notion is now **guards**, and the git attribute is `guard=`. Earlier entries

@@ -1,13 +1,13 @@
 ---
 name: skill-quality
 description: >
-  Use before shipping a new skill or changing an existing one, and when asked
+  Use when shipping a new skill or changing an existing one, and when asked
   whether a skill is any good, whether it is worth writing at all, why it never
-  fires, or which model it was tested on. Runs a RED/GREEN behavioral gate with
-  fresh subagents, checks triggers for collisions against the installed roster,
-  and records the result per model in the skill's evals/ directory. This is the
-  proof step, not the authoring step: superpowers:writing-skills covers how to
-  write one, editing-this-marketplace covers where the files go.
+  fires or fires on the wrong thing, or which model it was tested on. Runs a
+  RED/GREEN behavioral gate with fresh subagents, checks the description for
+  trigger collisions against the installed roster, and records the result per
+  model in the skill's evals/ directory. For where the files go and how to ship
+  them, see editing-this-marketplace.
 ---
 
 # Skill quality
@@ -36,7 +36,10 @@ Two rules the authoring skills do not cover:
 - Say what to do, not what to avoid. A prohibition with no replacement gets
   rationalized around.
 
-File shape, paths and manifests: `editing-this-marketplace`.
+Assume the model already knows the skill format — Anthropic's authoring guidance
+says so outright. Content that a fresh Claude could have derived is dead weight;
+what earns its place is this repo's traps and the bar set here. File shape and
+paths: `editing-this-marketplace`. Frontmatter: `docs/SKILL-template.md`.
 
 ## GREEN
 
@@ -48,13 +51,18 @@ a pass.
 ## Trigger tests
 
 The `description` is the only text read when deciding whether to load, so the
-tests target it. Two lists in `evals/triggers.md`: phrasings that **must** load
-the skill, and phrasings that **must not**.
+tests target it. Name concrete triggers — file types, phrasings the user
+actually says, the task shape. Aspirational prose there means the skill never
+fires.
+
+Two lists in `evals/triggers.md`: phrasings that **must** load the skill, and
+phrasings that **must not**.
 
 Build the second list from the installed roster, not from imagination. A skill
 about writing competes with `superpowers:writing-skills`. One about repo layout
-competes with `editing-this-marketplace`. Stealing a trigger is worse than never
-firing, because it displaces something that worked.
+competes with `editing-this-marketplace`. `skillforge` competes with anything
+skill-shaped, by its own admission in the catalog entry. Stealing a trigger is
+worse than never firing, because it displaces something that worked.
 
 ## Adversarial pass
 
@@ -83,17 +91,12 @@ spec, lint and ecosystem-collision stages this skill does not. Then return here:
 the gates above decide whether the result ships, and `evals/` is where this
 marketplace keeps the evidence.
 
-## Harvested skills
+## Skills nobody has read
 
-`self-learning` writes skills without asking, so its output is a prompt the user
-has never read that already steers the next session. A session-start hook lists
-unguarded skills; offer to guard the ones worth tracking, one path at a time,
-with the stamp left off so they read as never reviewed.
+A skill written by a harvester or lifted from elsewhere is a prompt that steers
+the next session without having been read. It earns a stamp the way any other
+does — it clears the gates above, the user reads it, the user confirms. Never
+stamp a skill you wrote yourself.
 
-Never stamp a skill you wrote. A harvested skill earns a stamp the way any other
-does: it clears the gates above, the user reads it, the user confirms. Until then
-that listing is the only thing between an unread guess and a permanent
-instruction.
-
-Guards are added per path when the user asks — no wildcard claims a skill nobody
-has looked at. See the global `CLAUDE.md`.
+The guard rules themselves are in the global `CLAUDE.md`; do not restate them.
+Where such skills come from and what to do on arrival: `trusting-foreign-skills`.
