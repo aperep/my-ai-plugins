@@ -1,0 +1,25 @@
+{
+  "name": "biblio",
+  "version": "0.1.0",
+  "description": "Bibliography verification and precise mathematical result extraction.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-claude-marketplace",
+  "keywords": ["bibtex", "references", "citations", "mathscinet"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Bibliography",
+    "shortDescription": "Verify citations and extract precise results",
+    "longDescription": "Check bibliography metadata, retrieve MathSciNet identifiers, and extract citable numbered results from mathematical papers.",
+    "developerName": "Alexander Perepechko",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Web", "Execute"],
+    "defaultPrompt": [
+      "Verify the bibliography in this LaTeX project.",
+      "Find the MathSciNet numbers for these papers.",
+      "Extract the exact numbered results from this paper."
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "typst",
+  "version": "0.1.0",
+  "description": "Write, migrate, and validate idiomatic Typst documents.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-claude-marketplace",
+  "keywords": ["typst", "latex", "typesetting", "migration"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Typst",
+    "shortDescription": "Write and migrate idiomatic Typst documents",
+    "longDescription": "Create native Typst documents, migrate LaTeX sources, and run bundled checks for common migration mistakes.",
+    "developerName": "Alexander Perepechko",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Execute"],
+    "defaultPrompt": [
+      "Migrate this LaTeX document to idiomatic Typst.",
+      "Review this Typst file for LaTeX habits.",
+      "Create a mathematical presentation in Typst."
+    ]
+  }
+}

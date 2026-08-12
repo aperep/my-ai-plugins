@@ -1,9 +1,13 @@
 # my-claude-marketplace
 
-Private Claude Code plugin marketplace, named `aperep`. Skill sets, enabled per repository on demand. 
+Private dual-purpose Claude Code and Codex plugin marketplace, named `aperep`.
+The skill directories are shared; each host gets only its own catalog and
+plugin manifest wrapper. See `docs/DUAL.md` for compatibility boundaries and
+installation options.
 
 ```
 .claude-plugin/marketplace.json   catalog
+.agents/plugins/marketplace.json  Codex catalog
 plugins/
   meta/                           Rules for self-modifying, editing skills etc
   latex/                          LaTeX proofreading, journal style, formulas
@@ -17,7 +21,16 @@ scripts/setup-cloud-auth.sh       cloud sandbox git auth
 Each plugin holds its skills under `plugins/<name>/skills/<skill-name>/SKILL.md`.
 See `docs/SKILL-template.md` for the file shape.
 
+Each first-party plugin has parallel manifests:
+
+```
+plugins/<name>/.claude-plugin/plugin.json
+plugins/<name>/.codex-plugin/plugin.json
+```
+
 ## Setup on a new machine
+
+### Claude Code
 
 Use an SSH remote. A key loaded in `ssh-agent` authenticates both manual installs and background auto-updates; HTTPS does not, because the background refresh disables credential helpers for its pull.
 
@@ -32,6 +45,23 @@ The repo is `aperep/my-claude-marketplace`; the marketplace it declares is
 For per-repository enabling, see `docs/consumer-snippets.md`.
 For Claude Code on the web, see `docs/cloud-setup.md`.
 
+### Codex
+
+Use the SSH URL so the private repository uses the key already loaded in
+`ssh-agent`:
+
+```sh
+codex plugin marketplace add git@github.com:aperep/my-claude-marketplace.git --ref main
+codex plugin add latex@aperep
+```
+
+The Codex catalog contains wrappers for all five local plugins. Only `meta` is
+currently installable without changing shared skills. `latex`, `biblio`,
+and `typst` remain unavailable because five existing skill descriptions fail
+strict YAML parsing in both hosts' per-plugin validators; `obsidian` is
+unavailable because it contains only Claude-specific third-party dependencies.
+See `docs/DUAL.md` for the blockers and both installation scenarios.
+
 ## Versioning
 
 No `plugin.json` declares a `version`. For a git-hosted marketplace this means every commit is treated as a new version, 
@@ -40,7 +70,7 @@ which is what you want for something edited continuously.
 If you ever add a `version` field, the plugin is pinned to that string and pushing commits does nothing for existing installs until you bump it. 
 Also avoid setting `version` in both `plugin.json` and the marketplace entry: the manifest value always wins, silently.
 
-## Development loop
+## Claude Code development loop
 
 Two registrations of the same catalog:
 
@@ -71,7 +101,7 @@ out — live in the `meta` plugin as
 `plugins/meta/skills/editing-this-marketplace/SKILL.md`, so they are in context
 when a session is actually editing a skill.
 
-## Third-party skills
+## Claude Code third-party skills
 
 Do not vendor them. Either add the upstream marketplace alongside this one, or
 list their repo as an entry here. Which form depends on what upstream ships.

@@ -1,0 +1,25 @@
+{
+  "name": "meta",
+  "version": "0.1.0",
+  "description": "Quality gates and maintenance guidance for skills and this marketplace.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-claude-marketplace",
+  "keywords": ["skills", "plugins", "marketplace", "quality"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Meta",
+    "shortDescription": "Build, test, and maintain marketplace skills",
+    "longDescription": "Quality gates, trust checks, and maintenance guidance for skills and this dual-host marketplace.",
+    "developerName": "Alexander Perepechko",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "Evaluate whether this skill earns its place.",
+      "Help me safely adopt this third-party skill.",
+      "Update a plugin in this marketplace."
+    ]
+  }
+}

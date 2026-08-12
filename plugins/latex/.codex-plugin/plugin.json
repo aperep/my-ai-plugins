@@ -1,0 +1,25 @@
+{
+  "name": "latex",
+  "version": "0.1.0",
+  "description": "LaTeX proofreading, mathematical prose, journal style, and translation workflows.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-claude-marketplace",
+  "keywords": ["latex", "mathematics", "proofreading", "translation"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LaTeX",
+    "shortDescription": "Proofread and refine mathematical LaTeX",
+    "longDescription": "Proofread LaTeX papers, remove LLM-generated stylistic clutter, and adapt English or Russian mathematical prose.",
+    "developerName": "Alexander Perepechko",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Execute"],
+    "defaultPrompt": [
+      "Proofread this LaTeX paper.",
+      "Remove AI slop from this mathematical prose.",
+      "Translate this mathematical text into Russian."
+    ]
+  }
+}

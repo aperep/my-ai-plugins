@@ -1,0 +1,68 @@
+{
+  "name": "aperep",
+  "interface": {
+    "displayName": "A. Perepechko"
+  },
+  "plugins": [
+    {
+      "name": "meta",
+      "source": {
+        "source": "local",
+        "path": "./plugins/meta"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "latex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/latex"
+      },
+      "policy": {
+        "installation": "NOT_AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "biblio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/biblio"
+      },
+      "policy": {
+        "installation": "NOT_AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "typst",
+      "source": {
+        "source": "local",
+        "path": "./plugins/typst"
+      },
+      "policy": {
+        "installation": "NOT_AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "obsidian",
+      "source": {
+        "source": "local",
+        "path": "./plugins/obsidian"
+      },
+      "policy": {
+        "installation": "NOT_AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
