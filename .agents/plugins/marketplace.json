@@ -17,10 +17,10 @@
       "category": "Developer Tools"
     },
     {
-      "name": "latex",
+      "name": "math-writing",
       "source": {
         "source": "local",
-        "path": "./plugins/latex"
+        "path": "./plugins/math-writing"
       },
       "policy": {
         "installation": "NOT_AVAILABLE",
@@ -36,6 +36,18 @@
       },
       "policy": {
         "installation": "NOT_AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/research"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"

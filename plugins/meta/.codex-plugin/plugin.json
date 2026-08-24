@@ -1,12 +1,12 @@
 {
   "name": "meta",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Quality gates and maintenance guidance for skills and this marketplace.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
-  "repository": "https://github.com/aperep/my-claude-marketplace",
+  "repository": "https://github.com/aperep/my-ai-plugins",
   "keywords": ["skills", "plugins", "marketplace", "quality"],
   "skills": "./skills/",
   "interface": {

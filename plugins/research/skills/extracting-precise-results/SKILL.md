@@ -1,6 +1,10 @@
 ---
 name: extracting-precise-results
-description: Use when summarizing a paper's contributions for a bibliography note, literature survey, or citation, where a prose paraphrase without theorem/proposition numbers would lose citability — e.g. writing "main result: shows existence of X" instead of the exact numbered statement with its hypotheses.
+description: >
+  Use when summarizing a paper's contributions for a bibliography note,
+  literature survey, or citation, where a prose paraphrase without
+  theorem/proposition numbers would lose citability. Extract the exact numbered
+  statement with its hypotheses instead of a generic summary of the main result.
 ---
 
 # Extracting Precise Results

@@ -13,21 +13,21 @@ plugins/<name>/.claude-plugin/         Claude manifest
 ## Codex
 
 ```sh
-codex plugin marketplace add git@github.com:aperep/my-claude-marketplace.git --ref main
+codex plugin marketplace add git@github.com:aperep/my-ai-plugins.git --ref main
 codex plugin add meta@aperep
 ```
 
 Install one plugin per skill group. Installation is currently user-level; list a
 repository's expected plugins in its `AGENTS.md`.
 
-Only `meta` is currently available. `latex`, `biblio`, and `typst` have invalid
-YAML descriptions; `obsidian` depends on Claude-only third-party plugins. See
-`docs/DUAL.md`.
+`meta` and `research` are currently available. `math-writing`, `biblio`, and
+`typst` have invalid YAML descriptions; `obsidian` depends on Claude-only
+third-party plugins. See `docs/DUAL.md`.
 
 For local development, register the checkout instead of the Git source:
 
 ```sh
-codex plugin marketplace add /path/to/my-claude-marketplace
+codex plugin marketplace add /path/to/my-ai-plugins
 ```
 
 Do not register both sources under the `aperep` name.
@@ -35,7 +35,7 @@ Do not register both sources under the `aperep` name.
 ## Claude Code compatibility
 
 ```sh
-claude plugin marketplace add aperep/my-claude-marketplace
+claude plugin marketplace add aperep/my-ai-plugins
 claude plugin install meta@aperep
 ```
 

@@ -2,6 +2,11 @@
 
 ## 2026-08-24
 
+- Updated operational references to the current `aperep/my-ai-plugins`
+  repository name.
+- Renamed the `latex` plugin to `math-writing` with a migration mapping.
+- Created the `research` plugin for precise mathematical literature reading.
+- Moved `extracting-precise-results` from `biblio` to `research`.
 - Added Codex catalogs and manifests around the shared skill tree.
 - Made Codex the primary host while retaining Claude Code compatibility.
 - Kept only `meta` available pending shared-skill validation.

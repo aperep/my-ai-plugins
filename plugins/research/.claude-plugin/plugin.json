@@ -1,0 +1,6 @@
+{
+  "name": "research",
+  "description": "Research reading and precise extraction of mathematical results.",
+  "author": { "name": "Alexander Perepechko" },
+  "keywords": ["academic", "research", "mathematics", "literature-review"]
+}

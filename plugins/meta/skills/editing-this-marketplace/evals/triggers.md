@@ -34,5 +34,5 @@ Each line names the skill that should win instead.
 ## Note
 
 This skill is scoped to one repository by name. It is enabled per project, so it
-should not be loadable at all outside `my-claude-marketplace` and `dotfiles`.
+should not be loadable at all outside `my-ai-plugins` and `dotfiles`.
 Absence elsewhere is the correct behaviour, not a trigger failure.

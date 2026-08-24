@@ -2,7 +2,7 @@
 name: editing-this-marketplace
 description: >
   Use when adding, editing, renaming, or removing a skill or plugin in the
-  aperep marketplace (the my-claude-marketplace repo), and when a skill or
+  aperep marketplace (the my-ai-plugins repo), and when a skill or
   plugin "doesn't show up" after an edit. Covers the local dev loop, the
   validation that must run before every push, versioning, renames, and where the
   files go. For third-party or harvested skills, see trusting-foreign-skills.
@@ -18,9 +18,9 @@ Whether a skill is any good: `skill-quality`.
 Adding a skill to an existing plugin needs no manifest edit. Adding a *plugin*
 needs a new entry in `marketplace.json` plus its own `plugin.json`.
 
-Each `source` is a full path from the marketplace root: `"./plugins/latex"`.
+Each `source` is a full path from the marketplace root: `"./plugins/math-writing"`.
 Do **not** reintroduce `metadata.pluginRoot` — this Claude Code version ignores
-it and still resolves sources against the root, so `"./latex"` fails at install
+it and still resolves sources against the root, so `"./math-writing"` fails at install
 with "Source path does not exist" while passing every validation.
 
 ## Dev loop
@@ -66,8 +66,8 @@ not enabled in this repo's `.claude/settings.json`.
 
 ```sh
 claude plugin validate .                          # catalog: schema, dupes, path traversal
-claude plugin validate ./plugins/latex            # one plugin: skill/agent/hook frontmatter
-claude plugin install latex@aperep-dev -s project # the only check that resolves sources
+claude plugin validate ./plugins/math-writing            # one plugin: skill/agent/hook frontmatter
+claude plugin install math-writing@aperep-dev -s project # the only check that resolves sources
 ```
 
 Expect one "No version specified" warning per plugin. That is deliberate; see
@@ -75,7 +75,7 @@ Versioning.
 
 `validate` never checks that a `source` path exists — a catalog pointing at
 nothing passes clean. Install from `aperep-dev` before pushing anything that
-touched `marketplace.json`; `claude plugin details latex@aperep-dev` then prints
+touched `marketplace.json`; `claude plugin details math-writing@aperep-dev` then prints
 the component inventory it actually loaded.
 
 ## Versioning

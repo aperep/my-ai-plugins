@@ -8,12 +8,13 @@ Commit `.claude/settings.json` in a consumer repository. Enable only its groups:
     "aperep": {
       "source": {
         "source": "github",
-        "repo": "aperep/my-claude-marketplace"
+        "repo": "aperep/my-ai-plugins"
       }
     }
   },
   "enabledPlugins": {
-    "latex@aperep": true,
+    "math-writing@aperep": true,
+    "research@aperep": true,
     "biblio@aperep": true
   }
 }
@@ -22,7 +23,7 @@ Commit `.claude/settings.json` in a consumer repository. Enable only its groups:
 Replace the enabled plugins as needed. The CLI equivalent for registration is:
 
 ```sh
-claude plugin marketplace add aperep/my-claude-marketplace --scope project
+claude plugin marketplace add aperep/my-ai-plugins --scope project
 ```
 
 For an always-on group, install it at user scope instead:

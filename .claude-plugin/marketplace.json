@@ -19,9 +19,9 @@
       ]
     },
     {
-      "name": "latex",
-      "source": "./plugins/latex",
-      "description": "LaTeX proofreading, journal style, formulas.",
+      "name": "math-writing",
+      "source": "./plugins/math-writing",
+      "description": "Mathematical writing, LaTeX proofreading, voice, and translation.",
       "category": "writing",
       "tags": [
         "latex",
@@ -32,12 +32,24 @@
     {
       "name": "biblio",
       "source": "./plugins/biblio",
-      "description": "Bibliography and everything related.",
+      "description": "Bibliography verification and MathSciNet metadata retrieval.",
       "category": "writing",
       "tags": [
         "bibtex",
         "references",
         "citations"
+      ]
+    },
+    {
+      "name": "research",
+      "source": "./plugins/research",
+      "description": "Research reading and precise extraction of mathematical results.",
+      "category": "writing",
+      "tags": [
+        "academic",
+        "research",
+        "mathematics",
+        "literature-review"
       ]
     },
     {
@@ -134,7 +146,7 @@
       },
       "strict": false,
       "skills": ["./skills/simple-english"],
-      "description": "Not mine: AminBlg's ASD-STE100 Simplified Technical English skill for de-slopping prose, pinned. Pulled in by latex's occam-no-slop.",
+      "description": "Not mine: AminBlg's ASD-STE100 Simplified Technical English skill for de-slopping prose, pinned. Pulled in by math-writing's occam-no-slop.",
       "category": "writing",
       "tags": [
         "writing-style",
@@ -209,5 +221,7 @@
       ]
     }
   ],
-  "renames": {}
+  "renames": {
+    "latex": "math-writing"
+  }
 }

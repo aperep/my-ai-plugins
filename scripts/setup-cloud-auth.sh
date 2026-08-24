@@ -9,7 +9,7 @@
 set -euo pipefail
 
 OWNER="${MARKETPLACE_OWNER:-aperep}"
-REPO="${MARKETPLACE_REPO:-my-claude-marketplace}"
+REPO="${MARKETPLACE_REPO:-my-ai-plugins}"
 URL="https://github.com/${OWNER}/${REPO}"
 
 TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
