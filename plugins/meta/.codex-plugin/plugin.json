@@ -1,7 +1,7 @@
 {
   "name": "meta",
-  "version": "0.1.1",
-  "description": "Quality gates and maintenance guidance for skills and this marketplace.",
+  "version": "0.2.0",
+  "description": "Auto-evolution, quality gates, and maintenance guidance for this marketplace.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
@@ -11,13 +11,14 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Meta",
-    "shortDescription": "Build, test, and maintain marketplace skills",
-    "longDescription": "Quality gates, trust checks, and maintenance guidance for skills and this dual-host marketplace.",
+    "shortDescription": "Evolve, test, and maintain marketplace skills",
+    "longDescription": "Codex-first suggestion harvesting, quality gates, trust checks, and maintenance guidance, with isolated Claude Code compatibility.",
     "developerName": "Alexander Perepechko",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],
     "defaultPrompt": [
       "Evaluate whether this skill earns its place.",
+      "Harvest this suggestion into a reviewable plugin draft.",
       "Help me safely adopt this third-party skill.",
       "Update a plugin in this marketplace."
     ]

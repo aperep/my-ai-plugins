@@ -1,0 +1,17 @@
+{
+  "description": "Harvest reusable marketplace suggestions into reviewable skill drafts.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PLUGIN_ROOT/scripts/auto-evolve-context.py\"",
+            "additionalContextLimit": 500
+          }
+        ]
+      }
+    ]
+  }
+}

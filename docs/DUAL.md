@@ -19,7 +19,7 @@ relative to `SKILL.md`.
 
 | plugin | Codex | Claude Code | blocker |
 |---|---|---|---|
-| `meta` | available | available | shared text still contains some Claude terminology |
+| `meta` | available | available | Claude details isolated in one compatibility reference |
 | `math-writing` | available | available | — |
 | `biblio` | available | available | — |
 | `research` | available | available | — |

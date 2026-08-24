@@ -2,6 +2,8 @@
 
 ## 2026-08-24
 
+- Rewrote `meta` around Codex, added guarded suggestion harvesting, and moved
+  Claude-only behavior into one reference.
 - Updated operational references to the current `aperep/my-ai-plugins`
   repository name.
 - Renamed the `latex` plugin to `math-writing` with a migration mapping.
