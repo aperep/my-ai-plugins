@@ -20,9 +20,9 @@ codex plugin add meta@aperep
 Install one plugin per skill group. Installation is currently user-level; list a
 repository's expected plugins in its `AGENTS.md`.
 
-`meta` and `research` are currently available. `math-writing`, `biblio`, and
-`typst` have invalid YAML descriptions; `obsidian` depends on Claude-only
-third-party plugins. See `docs/DUAL.md`.
+All first-party skill groups (`meta`, `research`, `math-writing`, `biblio`, and
+`typst`) are available. `obsidian` remains unavailable in Codex because it
+depends on Claude-only third-party plugins. See `docs/DUAL.md`.
 
 For local development, register the checkout instead of the Git source:
 

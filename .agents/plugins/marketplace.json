@@ -23,7 +23,7 @@
         "path": "./plugins/math-writing"
       },
       "policy": {
-        "installation": "NOT_AVAILABLE",
+        "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
@@ -35,7 +35,7 @@
         "path": "./plugins/biblio"
       },
       "policy": {
-        "installation": "NOT_AVAILABLE",
+        "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
@@ -59,7 +59,7 @@
         "path": "./plugins/typst"
       },
       "policy": {
-        "installation": "NOT_AVAILABLE",
+        "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"

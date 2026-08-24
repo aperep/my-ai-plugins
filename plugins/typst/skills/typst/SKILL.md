@@ -1,10 +1,15 @@
 ---
 name: typst
-author: A. Perepechko
-description: Помогает писать и мигрировать документы в Typst вместо LaTeX: стандартные замены, проверка синтаксиса, контроль типичных ошибок и финальный quality-check.
+description: >
+  Write, migrate, and review academic or technical documents in idiomatic Typst. Use for new Typst documents, LaTeX-to-Typst migration, syntax review, slide creation, or cleanup of LaTeX habits.
 ---
 
 # Typst вместо LaTeX
+
+Reusable Russian note and slide starters are in `assets/templates/`; copy and
+customize them instead of treating their personal titles, dates, or affiliation
+as defaults.
+
 
 Используй этот скилл, когда пользователь:
 - пишет новый академический/технический текст в Typst;

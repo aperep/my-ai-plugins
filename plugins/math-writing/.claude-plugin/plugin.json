@@ -1,6 +1,6 @@
 {
   "name": "math-writing",
-  "description": "Mathematical writing, LaTeX proofreading, voice, and translation.",
+  "description": "Mathematical writing, LaTeX scaffolding, proofreading, voice, and translation.",
   "author": { "name": "Alexander Perepechko" },
   "keywords": ["latex", "mathematics", "proofreading", "journal-style"],
   "dependencies": ["simple-english"]

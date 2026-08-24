@@ -1,25 +1,25 @@
 {
   "name": "research",
-  "version": "0.1.0",
-  "description": "Research reading and precise extraction of mathematical results.",
+  "version": "0.2.0",
+  "description": "Research reading, precise result extraction, and interlinear mathematical review.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["academic", "research", "mathematics", "literature-review"],
+  "keywords": ["academic", "research", "mathematics", "literature-review", "interlinear", "proof-review"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Research",
-    "shortDescription": "Read papers and extract precise results",
-    "longDescription": "Research workflows for reading mathematical literature and extracting citable numbered results with their full hypotheses.",
+    "shortDescription": "Extract results and review mathematical proofs",
+    "longDescription": "Research workflows for precise mathematical reading, citable result extraction, sentence-level context, and proof-on-example review.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
-    "capabilities": ["Read", "Write", "Web"],
+    "capabilities": ["Read", "Write", "Web", "Execute"],
     "defaultPrompt": [
       "Extract the exact numbered results from this paper.",
       "Find the hypotheses and conclusion of this theorem.",
-      "Prepare precise citable results for my research notes."
+      "Build an interlinear review of this proof."
     ]
   }
 }

@@ -1,6 +1,5 @@
 ---
 name: occam-no-slop
-author: A. Perepechko
 description: >
   Catch AI slop and bad AI-generated style in mathematical prose, English or
   Russian, before it ships. Two checks: a slop tell (does the narrative flow

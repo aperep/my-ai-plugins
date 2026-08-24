@@ -1,7 +1,7 @@
 ---
 name: russian-translation
-author: A. Perepechko
-description: Translate or rewrite mathematical prose into Russian in A. Perepechko's authorial voice, calibrated from `P18_ru.tex` (single-author Russian, bundled). Use whenever producing or revising Russian mathematical text (`main_ru.tex`, `*_ru.tex`, `intro_ru.tex`, `resume_ru.tex`, `*_intro_ru.tex`, abstracts, cover letters), translating English chapters into Russian, or polishing co-authored Russian sources to match the single-author voice. Trigger phrases: "переведи на русский", "по-русски", "in Russian", "translate to Russian", "Russian version", "in my style (Russian)", "rewrite in Russian style", "match my Russian voice".
+description: >
+  Translate or revise mathematical prose into Russian in A. Perepechko's authorial voice, calibrated from the bundled P18_ru.tex. Use for Russian mathematical articles, abstracts, chapters, and translations.
 ---
 
 # Russian Translation — A. Perepechko (calibrated on `P18_ru.tex`)

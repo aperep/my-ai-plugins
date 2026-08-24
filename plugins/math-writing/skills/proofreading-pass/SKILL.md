@@ -1,6 +1,5 @@
 ---
 name: proofreading-pass
-author: A. Perepechko
 description: >
   Copyedit a LaTeX paper — typos, grammar, punctuation, LaTeX hygiene — and
   deliver the result as three files: a corrected source, a categorised change

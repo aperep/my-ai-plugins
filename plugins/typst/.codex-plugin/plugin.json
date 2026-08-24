@@ -1,18 +1,18 @@
 {
   "name": "typst",
-  "version": "0.1.1",
-  "description": "Write, migrate, and validate idiomatic Typst documents.",
+  "version": "0.2.0",
+  "description": "Write, migrate, template, and validate idiomatic Typst documents.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["typst", "latex", "typesetting", "migration"],
+  "keywords": ["typst", "latex", "typesetting", "migration", "templates"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Typst",
     "shortDescription": "Write and migrate idiomatic Typst documents",
-    "longDescription": "Create native Typst documents, migrate LaTeX sources, and run bundled checks for common migration mistakes.",
+    "longDescription": "Create native Typst documents from bundled academic templates, migrate LaTeX sources, and check common migration mistakes.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Execute"],

@@ -21,7 +21,7 @@
     {
       "name": "math-writing",
       "source": "./plugins/math-writing",
-      "description": "Mathematical writing, LaTeX proofreading, voice, and translation.",
+      "description": "Mathematical writing, LaTeX scaffolding, proofreading, voice, and translation.",
       "category": "writing",
       "tags": [
         "latex",
@@ -32,7 +32,7 @@
     {
       "name": "biblio",
       "source": "./plugins/biblio",
-      "description": "Bibliography verification and MathSciNet metadata retrieval.",
+      "description": "Bibliography verification, MathSciNet retrieval, and personal bibliography maintenance.",
       "category": "writing",
       "tags": [
         "bibtex",
@@ -43,7 +43,7 @@
     {
       "name": "research",
       "source": "./plugins/research",
-      "description": "Research reading and precise extraction of mathematical results.",
+      "description": "Research reading, precise result extraction, and interlinear mathematical review.",
       "category": "writing",
       "tags": [
         "academic",
@@ -66,7 +66,7 @@
     {
       "name": "typst",
       "source": "./plugins/typst",
-      "description": "Working with Typst, a lightweight LaTeX alternative.",
+      "description": "Working with Typst documents and academic templates.",
       "category": "writing",
       "tags": [
         "typst",

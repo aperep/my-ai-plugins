@@ -20,18 +20,14 @@ relative to `SKILL.md`.
 | plugin | Codex | Claude Code | blocker |
 |---|---|---|---|
 | `meta` | available | available | shared text still contains some Claude terminology |
-| `math-writing` | unavailable | unavailable | two invalid YAML descriptions |
-| `biblio` | unavailable | unavailable | one invalid YAML description |
+| `math-writing` | available | available | — |
+| `biblio` | available | available | — |
 | `research` | available | available | — |
-| `typst` | unavailable | unavailable | one invalid YAML description |
+| `typst` | available | available | — |
 | `obsidian` | unavailable | available | Claude-only third-party dependencies |
 
-The invalid descriptions are in:
-
-- `math-writing/russian-translation`;
-- `math-writing/speech-style-adaptation`;
-- `biblio/bibliography-check`;
-- `typst/typst`.
+The previously malformed first-party skill descriptions were normalized during
+the academic-workshop migration.
 
 The `extracting-precise-results` skill lives in `research`.
 

@@ -1,25 +1,25 @@
 {
   "name": "math-writing",
-  "version": "0.1.1",
-  "description": "Mathematical writing, LaTeX proofreading, authorial voice, and translation workflows.",
+  "version": "0.2.0",
+  "description": "Mathematical writing, LaTeX scaffolding, proofreading, authorial voice, and translation workflows.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["latex", "mathematics", "proofreading", "translation"],
+  "keywords": ["latex", "mathematics", "proofreading", "translation", "templates"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Math Writing",
-    "shortDescription": "Proofread and refine mathematical LaTeX",
-    "longDescription": "Proofread LaTeX papers, remove LLM-generated stylistic clutter, and adapt English or Russian mathematical prose.",
+    "shortDescription": "Write, scaffold, and refine mathematical LaTeX",
+    "longDescription": "Scaffold and proofread LaTeX papers, remove LLM-generated stylistic clutter, and adapt English or Russian mathematical prose.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Execute"],
     "defaultPrompt": [
       "Proofread this LaTeX paper.",
       "Remove AI slop from this mathematical prose.",
-      "Translate this mathematical text into Russian."
+      "Start a mathematical LaTeX article."
     ]
   }
 }

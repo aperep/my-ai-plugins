@@ -1,7 +1,7 @@
 ---
 name: speech-style-adaptation
-author: A. Perepechko
-description: Adapt drafted mathematical prose to A. Perepechko's authorial voice, calibrated from `jems4.tex` (JEMS 2026). Use whenever writing or revising English text for the thesis (`main_en.tex`, `*_en.tex`, `intro_en.tex`, English `*_intro_en.tex`, abstracts, cover letters), or when polishing prose lifted from co-authored sources to match the single-author voice. Trigger phrases: "in my style", "match my voice", "rewrite to my style", "adapt to author's style", "Perepechko style".
+description: >
+  Adapt English mathematical prose to A. Perepechko's authorial voice, calibrated from the bundled jems4.tex. Use for articles, thesis chapters, abstracts, cover letters, or explicit requests to match the author's style.
 ---
 
 # Speech-Style Adaptation — A. Perepechko (calibrated on jems4.tex)

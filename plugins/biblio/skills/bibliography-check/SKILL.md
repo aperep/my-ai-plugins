@@ -1,7 +1,7 @@
 ---
 name: bibliography-check
-author: A. Perepechko
-description: Verify bibliography entries (`\bibitem{...}` blocks in a repo's bibliography `.tex` files — typically `tex/bibliography.tex`, `tex/bibliography_resume.tex`, `tex/ru/bibliography_resume_ru.tex`) against external sources — Semantic Scholar (`api.semanticscholar.org`) for international papers and MathNet (`mathnet.ru`) for Russian-language originals. Use whenever the user asks to "проверить библиографию", "verify references", "сверить bibitem с Semantic Scholar / MathNet", "найти DOI", "проверить том/страницы", or after manual edits to a `.tex` bibliography file. Returns a per-entry report: confirmed metadata, suspected discrepancies (title, authors, year, volume, issue, pages, DOI), and suggested corrections.
+description: >
+  Verify LaTeX bibitem entries against authoritative external metadata and report confirmed fields, discrepancies, and suggested corrections. Use for bibliography verification, DOI checks, or Russian and international mathematical references.
 ---
 
 # Bibliography Check — Semantic Scholar + MathNet

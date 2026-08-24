@@ -1,24 +1,25 @@
 {
   "name": "biblio",
-  "version": "0.1.1",
-  "description": "Bibliography verification and MathSciNet metadata retrieval.",
+  "version": "0.2.0",
+  "description": "Bibliography verification, MathSciNet retrieval, and personal bibliography maintenance.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["bibtex", "references", "citations", "mathscinet"],
+  "keywords": ["bibtex", "references", "citations", "mathscinet", "personal-bibliography"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Bibliography",
-    "shortDescription": "Verify citations and retrieve MR numbers",
-    "longDescription": "Check bibliography metadata and retrieve MathSciNet identifiers for mathematical papers.",
+    "shortDescription": "Verify citations and maintain publication lists",
+    "longDescription": "Check bibliography metadata, retrieve MathSciNet identifiers, and maintain A. Perepechko's publication corpus.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Web", "Execute"],
     "defaultPrompt": [
       "Verify the bibliography in this LaTeX project.",
-      "Find the MathSciNet numbers for these papers."
+      "Update my personal publication list.",
+      "Find MathSciNet numbers for these papers."
     ]
   }
 }

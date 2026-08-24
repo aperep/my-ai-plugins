@@ -1,4 +1,21 @@
-# Claude project setup
+# Academic project setup
+
+## Codex
+
+Install the groups needed by the repository:
+
+```sh
+codex plugin add research@aperep
+codex plugin add typst@aperep
+codex plugin add math-writing@aperep
+codex plugin add biblio@aperep
+```
+
+Record the expected groups in the consumer repository's `AGENTS.md`; Codex
+installation is user-level. An academic workshop using interlinear research
+normally lists `research`, `typst`, `math-writing`, and `biblio`.
+
+## Claude project setup
 
 Commit `.claude/settings.json` in a consumer repository. Enable only its groups:
 
@@ -15,7 +32,8 @@ Commit `.claude/settings.json` in a consumer repository. Enable only its groups:
   "enabledPlugins": {
     "math-writing@aperep": true,
     "research@aperep": true,
-    "biblio@aperep": true
+    "biblio@aperep": true,
+    "typst@aperep": true
   }
 }
 ```

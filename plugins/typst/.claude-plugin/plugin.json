@@ -1,6 +1,6 @@
 {
   "name": "typst",
-  "description": "Working with Typst, a lightweight LaTeX alternative.",
+  "description": "Working with Typst documents and academic templates.",
   "author": { "name": "Alexander Perepechko" },
   "keywords": ["typst", "typesetting"]
 }
