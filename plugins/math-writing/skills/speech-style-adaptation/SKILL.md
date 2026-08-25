@@ -6,6 +6,7 @@ description: >
   match this voice in an article, thesis chapter, abstract, or theorem prose;
   not for ordinary drafting, proofreading, de-slopping, simple-English
   rewriting, or Russian prose.
+reviewed: 1ee66dd
 ---
 
 # English mathematical voice

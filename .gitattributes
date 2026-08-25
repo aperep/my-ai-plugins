@@ -22,3 +22,7 @@ plugins/math-writing/skills/russian-translation/references/metadata.md guard=hum
 plugins/math-writing/skills/occam-no-slop/SKILL.md guard=human-revised reviewed=13f6807
 plugins/math-writing/skills/simple-english/SKILL.md guard=human-revised reviewed=9a2fd9f
 plugins/math-writing/skills/proofreading-pass/SKILL.md guard=human-revised reviewed=d444bd3
+plugins/math-writing/skills/speech-style-adaptation/SKILL.md guard=human-revised reviewed=1ee66dd
+plugins/math-writing/skills/speech-style-adaptation/references/introductions.md guard=human-revised reviewed=1ee66dd
+plugins/math-writing/skills/speech-style-adaptation/references/latex.md guard=human-revised reviewed=1ee66dd
+plugins/math-writing/skills/speech-style-adaptation/references/voice.md guard=human-revised reviewed=1ee66dd

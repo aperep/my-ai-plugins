@@ -1,3 +1,7 @@
+---
+reviewed: 1ee66dd
+---
+
 # LaTeX conventions for the English voice
 
 When consistent with the project:
