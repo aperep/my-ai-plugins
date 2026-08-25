@@ -15,8 +15,8 @@ when the task needs them:
 
 - [references/terminology.md](references/terminology.md) for disputed terms,
   glossary work, or systematic terminology changes;
-- [references/dissertations.md](references/dissertations.md) for dissertation
-  structure, contribution statements, acknowledgments, or personal metadata;
+- [references/metadata.md](references/metadata.md) for contribution statements,
+  affiliation, funding, acknowledgments, or other author metadata;
 - [references/corpus/P18_ru.tex](references/corpus/P18_ru.tex) only when the
   extracted rules do not settle a voice question or the calibration itself is
   being revised.

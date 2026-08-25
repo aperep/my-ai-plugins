@@ -1,11 +1,12 @@
-# Dissertation-specific work
+# Author and project metadata
 
-Project instructions and existing Russian chapters determine dissertation
-structure; do not infer an outline from the calibration article. In a
-co-authored chapter, preserve `мы` as authorial plural, but do not invent or
-relocate a contribution statement.
+## Contribution statements
 
-## Personal and administrative text
+In co-authored work, preserve `мы` as authorial plural. Do not invent or
+relocate a contribution statement; take its wording and placement from the user
+or project.
+
+## Personal details
 
 The author's retained affiliation and address are:
 
