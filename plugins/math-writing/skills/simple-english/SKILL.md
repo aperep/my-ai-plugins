@@ -6,6 +6,7 @@ description: >
   easier reading, or text suitable for non-native readers. Do not use for
   proofreading alone, structural de-slopping, or controlled-language
   compliance.
+reviewed: 9a2fd9f
 ---
 
 # Simple English

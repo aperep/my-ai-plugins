@@ -20,3 +20,4 @@ plugins/math-writing/skills/russian-translation/references/terminology.md guard=
 plugins/math-writing/skills/russian-translation/SKILL.md guard=human-revised reviewed=116b54e
 plugins/math-writing/skills/russian-translation/references/metadata.md guard=human-revised reviewed=116b54e
 plugins/math-writing/skills/occam-no-slop/SKILL.md guard=human-revised reviewed=13f6807
+plugins/math-writing/skills/simple-english/SKILL.md guard=human-revised reviewed=9a2fd9f
