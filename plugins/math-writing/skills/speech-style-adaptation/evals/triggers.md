@@ -25,5 +25,4 @@
 - Improve voice locally without reorganizing an otherwise sound proof.
 - Use a connective only when its logical relation is supported.
 - Ask for or flag unknown contribution, funding, affiliation, or contact facts.
-- Discover a project's build and protected-source rules instead of assuming
-  thesis paths.
+- Use only project-supplied build and source-ownership rules.

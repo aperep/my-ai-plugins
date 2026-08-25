@@ -14,3 +14,6 @@ The skill validator, JSON parsing, the Claude plugin and marketplace
 validators, and local Codex installation passed. The Claude validators
 reported the repository's existing warnings that its plugin manifests omit
 version fields.
+
+These results predate the subsequent Occam pass and are retained only as
+history; the shortened revision still needs fresh-context evaluation.
