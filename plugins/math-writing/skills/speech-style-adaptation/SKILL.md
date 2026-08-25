@@ -21,16 +21,16 @@ references only when the task needs them:
 - [references/introductions.md](references/introductions.md) for an article,
   thesis, part, or chapter introduction.
 
-Consult [jems4.tex](jems4.tex) only when the extracted rules do not settle a
-voice question or the calibration itself is being revised. The corpus is
-evidence, not a template: do not copy its subject matter, notation, metadata,
-or occasional errors into another project.
+Consult [jems4.tex](references/corpus/jems4.tex) only when the extracted rules
+do not settle a voice question or the calibration itself is being revised. The
+corpus is evidence, not a template: do not copy its subject matter, notation,
+metadata, or occasional errors into another project.
 
 ## Work
 
 Preserve mathematical content, notation, TeX structure, references, and the
-source's uncertainty unless the user asks to change them. Edit only prose that
-drifts; do not normalize sound prose to display more signature phrases.
+source's uncertainty unless the user asks to change them. Change only prose
+that does not match the voice. Leave prose that already fits it alone.
 
 Use a connective only when its logical relation is true. Never import
 corpus-specific notation or terminology.

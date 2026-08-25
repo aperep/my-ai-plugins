@@ -1,8 +1,9 @@
 # Calibrated English voice
 
-The calibration source is the bundled single-author paper `../jems4.tex`.
-These are tendencies, not quotas. Preserve a sound passage when a proposed
-change would only make it imitate the corpus more visibly.
+The calibration source is the bundled single-author paper
+[jems4.tex](corpus/jems4.tex). These are tendencies, not quotas. Preserve a
+sound passage when a proposed change would only make it imitate the corpus more
+visibly.
 
 ## Stance and rhythm
 
@@ -11,6 +12,8 @@ change would only make it imitate the corpus more visibly.
 - Use “Let us” sparingly for a setup or proof goal. Imperatives such as
   “Consider”, “Let”, “Recall that”, “Assume that”, and “Write” are common setup
   moves.
+- Prefer short or medium declarative sentences. Split a sentence when its
+  logical chain becomes hard to follow.
 - State the governing reason near the start of a proof step: “By
   Lemma~\ref{...}, ...” or “By construction, ...”. Ordinary subject-first
   sentences are also part of the corpus; never add a connective mechanically.

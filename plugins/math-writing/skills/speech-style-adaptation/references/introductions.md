@@ -7,7 +7,8 @@ introduction. For a local voice pass, preserve the existing architecture.
 
 The calibration paper moves through:
 
-1. context, limitation, and contribution;
+1. context (for example, a relevant classical fact), limitation, and
+   contribution;
 2. setup and the closest prior result;
 3. main results, with a construction sketch when useful;
 4. a section map and, when customary, acknowledgments.

@@ -8,4 +8,4 @@ When consistent with the project:
   `\cite[Theorem~5.1]{...}`;
 - use `---` only for a parenthetical aside in TeX prose.
 
-Preserve the project's macros and symbols.
+Preserve the project's macros and symbols when the corpus differs.
