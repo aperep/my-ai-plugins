@@ -1,5 +1,14 @@
 # Change log
 
+## 2026-08-25
+
+- Reduced `occam-no-slop` to structural economy and continuity in mathematical
+  prose. Its trigger is now explicit, and stronger mathematical claims are
+  flagged instead of edited in.
+- Replaced the separate `simple-english` dependency with a local skill. Plain
+  technical English is the default; rigid ASD-STE100 constraints load only for
+  explicit controlled-English requests.
+
 ## 2026-08-24
 
 - Rewrote `meta` around Codex, added guarded suggestion harvesting, and moved

@@ -1,7 +1,7 @@
 {
   "name": "math-writing",
-  "version": "0.3.4",
-  "description": "Mathematical writing, LaTeX scaffolding, proofreading, authorial voice, and translation workflows.",
+  "version": "0.3.5",
+  "description": "Mathematical writing, LaTeX scaffolding, proofreading, plain English, authorial voice, and translation workflows.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
@@ -12,13 +12,14 @@
   "interface": {
     "displayName": "Math Writing",
     "shortDescription": "Write, scaffold, and refine mathematical LaTeX",
-    "longDescription": "Scaffold and proofread LaTeX papers, remove LLM-generated stylistic clutter, and adapt English or Russian mathematical prose.",
+    "longDescription": "Scaffold and proofread LaTeX papers, simplify technical English, remove stylistic clutter, and adapt English or Russian mathematical prose.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Execute"],
     "defaultPrompt": [
       "Proofread this LaTeX paper.",
       "Remove AI slop from this mathematical prose.",
+      "Rewrite these technical instructions in simple English.",
       "Start a mathematical LaTeX article."
     ]
   }

@@ -64,22 +64,6 @@ Priority: low. Keep the skill.
 
 Done when both minimal variants compile and an existing project is preserved.
 
-### `occam-no-slop`
-
-Priority: high. Revise before relying on it.
-
-- Choose and state one check order; the current overview and workflow disagree.
-- Remove the claim that `simple-english` is installed in Codex. Provide a local
-  fallback when the companion skill is unavailable.
-- Replace Claude tool names with host-neutral actions.
-- Narrow the automatic trigger so ordinary LLM-assisted prose does not load the
-  skill without a real de-slopping pass.
-- Add evals for filler, needless case splits, valid emphasis, mathematical
-  correctness review that must not trigger, and missing companion dependency.
-
-Done when the skill runs independently on both hosts and applies one consistent
-structural pass without claiming to check mathematics.
-
 ### `proofreading-pass`
 
 Priority: high. Revise before relying on it.
@@ -138,11 +122,10 @@ specific host, repository layout, or agent API.
 
 1. `russian-translation`: remove commit/push instructions.
 2. `interlinear-research`: separate candidate and verified references.
-3. `occam-no-slop`: fix dependency and check-order contradictions.
-4. `proofreading-pass`: restore scope consistency.
-5. `speech-style-adaptation`: make the shared skill host-neutral.
-6. `extracting-precise-results`: improve attribution and quoting.
-7. `latex-project-scaffold`: add coverage and refresh tests.
+3. `proofreading-pass`: restore scope consistency.
+4. `speech-style-adaptation`: make the shared skill host-neutral.
+5. `extracting-precise-results`: improve attribution and quoting.
+6. `latex-project-scaffold`: add coverage and refresh tests.
 
 After human review, consider exact `guard=human-revised` entries for the two
 authorial-voice skills. Do not stamp agent-written revisions.
