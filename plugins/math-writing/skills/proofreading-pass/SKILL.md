@@ -12,10 +12,6 @@ description: >
 
 # Proofreading pass
 
-A copyediting pass over a `.tex` paper. Language only. The deliverable is not a
-list of remarks in chat — it is three files the author can compile, read and
-apply piecewise.
-
 ## Output
 
 For a source `foo.tex`, in the same directory:
@@ -26,28 +22,22 @@ For a source `foo.tex`, in the same directory:
 | `foo-changes.tex` | every applied change, by line number, with a reason; plus a separate section of issues flagged and left alone |
 | `foo-diff.tex` | `latexdiff foo.tex foo-corrected.tex > foo-diff.tex` |
 
-Compile to `output/` (`latexmk -pdf -outdir=output foo-changes.tex`), and make
-sure `output/` is gitignored first.
+These files, not a chat list, are the deliverable.
 
 ## Workflow
 
-1. **Split by section, one subagent per section.** A 3000-line paper gets ~6
-   passes. Each subagent proofreads only its own line range and reports entries
-   in the format below. Splitting is what keeps attention uniform — a single
-   pass over a whole paper degrades badly after the first few hundred lines.
-2. **Apply only unambiguous fixes** to `-corrected.tex`. Everything else goes in
-   the flagged list, unedited.
-3. **Write `-changes.tex`** as the log. All line numbers refer to the
-   **original** file, not the corrected one — the author reads them against the
-   source they know.
-4. **Run latexdiff** for the visual check: `latexdiff foo.tex foo-corrected.tex > foo-diff.tex`.
-5. **Compile both** `-changes.tex` and `-diff.tex` before reporting. A change log
-   that does not compile is not a deliverable.
+1. Split the paper by section, one subagent per line range; use about six ranges
+   for 3000 lines so attention stays uniform.
+2. Apply only unambiguous fixes to `foo-corrected.tex`. Flag the rest without
+   editing them.
+3. Write `foo-changes.tex`; all line numbers refer to the original source.
+4. Generate `foo-diff.tex` with `latexdiff`.
+5. Ensure `output/` is gitignored, then compile both auxiliary files there:
+   `latexmk -pdf -outdir=output <file>`.
 
 ## Change-log format
 
-Categorise every entry. The category is what lets the author skim 90 entries and
-approve the mechanical ones in one pass:
+Categorise every entry so the author can skim mechanical changes:
 
 `[Typo]` `[English]` `[Punctuation]` `[LaTeX]` `[Notation]` `[Formatting]`
 `[Duplicate]` `[Flagged — not changed]`
@@ -63,14 +53,13 @@ after and the reason.
   derivation under discussion throughout is $\p$.
 ```
 
-`-changes.tex` quotes math from the paper, so its preamble must carry the
-paper's own macros (`\def\fh{{\mathfrak h}}`, `\def\p{\partial}`, …). Copy the
-ones you actually quote. Quoted math stays inside real `$...$` — never escaped
-`\$`, which stops macro expansion and breaks the compile.
+Copy into `foo-changes.tex` the paper macros used in quotations
+(`\def\fh{{\mathfrak h}}`, `\def\p{\partial}`, …). Keep quoted math inside real
+`$...$`; escaped `\$` prevents math-only macros from expanding.
 
 ## What gets flagged instead of fixed
 
-Anything where the fix is a judgment call:
+Flag any judgment call, including:
 
 - a change that could alter mathematical content (a symbol that looks wrong, an
   index that may or may not be a typo);
@@ -79,11 +68,10 @@ Anything where the fix is a judgment call:
 - inconsistent notation that is used consistently *within* a section — the
   author may have meant it.
 
-Say what is wrong and what you would do; do not do it.
+State the problem and proposed fix, but do not apply it.
 
 ## Scope discipline
 
-Mathematical correctness is out of scope. If a proof looks wrong, note it in the
-flagged section and move on — do not start reviewing the mathematics under cover
-of a copyediting pass, and do not renumber, reorder, or rewrite for style.
-Authorial voice is a different skill (`speech-style-adaptation`).
+Do not renumber, reorder, rewrite for style, or review mathematical correctness.
+Flag a suspect proof and move on. Authorial voice belongs to
+`speech-style-adaptation`.
