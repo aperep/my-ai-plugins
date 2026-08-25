@@ -1,6 +1,6 @@
 {
   "name": "math-writing",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Mathematical writing, LaTeX scaffolding, proofreading, plain English, authorial voice, and translation workflows.",
   "author": {
     "name": "Alexander Perepechko",
@@ -19,7 +19,7 @@
     "defaultPrompt": [
       "Proofread this LaTeX paper.",
       "Remove AI slop from this mathematical prose.",
-      "Rewrite these technical instructions in simple English.",
+      "Rewrite this paragraph in simple English.",
       "Start a mathematical LaTeX article."
     ]
   }

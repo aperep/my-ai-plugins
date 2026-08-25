@@ -5,9 +5,9 @@
 - Reduced `occam-no-slop` to structural economy and continuity in mathematical
   prose. Its trigger is now explicit, and stronger mathematical claims are
   flagged instead of edited in.
-- Replaced the separate `simple-english` dependency with a local skill. Plain
-  technical English is the default; rigid ASD-STE100 constraints load only for
-  explicit controlled-English requests.
+- Replaced the separate `simple-english` dependency with one local general-prose
+  pass. Removed its modes, manual taxonomy, procedure rules, and upstream
+  attribution layer.
 
 ## 2026-08-24
 

@@ -1,18 +1,15 @@
 # Baseline failures
 
-Recorded 2026-08-25 from the repository and the upstream skill at commit
-`8e8a008a13e4b478f9ccc20ca16e79aef66c0739`.
+Recorded 2026-08-25 against revision `11ab79b`.
 
-1. Codex does not install the companion named by `occam-no-slop`.
-2. The upstream description treats “de-slop” and “make this readable” as STE
-   triggers. These collide with structural editing and ordinary prose work.
-3. The upstream default applies rigid 20/25-word limits and controlled-language
-   mechanics to normal documentation, although users did not request STE.
-4. Its full rule catalog loads for every task. Most plain-language edits need a
-   small core, not 53 rules and several lookup tables.
-5. Mathematical narrative and technical procedures need different treatment;
-   one universal clarity pass can damage the former.
+1. The skill splits into plain and ASD-STE100 modes although it needs one job:
+   simple English.
+2. Manual rules dominate the skill: procedures versus descriptions, commands,
+   conditions, warnings, notes, and sentence quotas.
+3. The description narrows simple English to technical documents instead of
+   general prose.
+4. Attribution and compliance text consume instructions without helping the
+   rewrite.
 
-The local refactor passes when it is available on both hosts, routes narrowly,
-keeps ordinary technical English flexible, and loads strict rules only for an
-explicit STE request.
+The revision passes when it has one general-prose task, no modes, and no
+manual-specific machinery.

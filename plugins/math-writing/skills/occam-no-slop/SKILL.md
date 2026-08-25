@@ -50,5 +50,5 @@ intact. Report any suspected mathematical defect separately; do not silently
 repair it during this editorial pass.
 
 If the user also requests authorial voice, apply the relevant voice skill after
-this pass. Use `simple-english` for technical instructions or controlled
-English, not as a mechanical filter for mathematical narrative.
+this pass. Use `simple-english` for explicit wording simplification, not as an
+automatic filter for mathematical narrative.

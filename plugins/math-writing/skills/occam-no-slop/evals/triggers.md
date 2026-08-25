@@ -7,7 +7,7 @@
 | "Make this mathematical argument flow without changing its claims." | Load `occam-no-slop`. |
 | "Proofread this paper for grammar and LaTeX errors." | Load `proofreading-pass`, not this skill. |
 | "Is this theorem true? Check the proof." | Do not load this skill. |
-| "Rewrite this runbook in ASD-STE100." | Load `simple-english`, not this skill. |
+| "Rewrite this paragraph in simple English." | Load `simple-english`, not this skill. |
 | "Adapt this section to Perepechko's voice." | Load the relevant voice skill, not this skill unless de-slopping is also requested. |
 
 ## Behavioral cases

@@ -1,44 +1,29 @@
 ---
 name: simple-english
 description: >
-  Write or rewrite English technical instructions and explanations for quick,
-  unambiguous reading. Use for plain-language documentation, runbooks, error
-  messages, or explicit Simplified Technical English and ASD-STE100 requests.
-  Do not use as a general de-slopping, marketing, literary, or mathematical
-  prose style.
+  Rewrite English prose in simple, direct language while preserving its
+  meaning and voice. Use when the user asks for simple English, plain English,
+  easier reading, or text suitable for non-native readers. Do not use for
+  proofreading alone, structural de-slopping, or controlled-language
+  compliance.
 ---
 
 # Simple English
 
-Preserve facts and technical meaning. Simplify the language, not the subject.
+Make the prose easy to understand on one reading. Preserve its claims, voice,
+intended emphasis, technical terms, quotations, code, and notation.
 
-## Choose the mode
+- Remove repetition, empty framing, and hedges that express no real
+  uncertainty. Keep genuine uncertainty.
+- Prefer the shortest familiar word that preserves the meaning. Keep a precise
+  technical term, and define it when the audience may not know it.
+- Use one term per concept.
+- Put the main subject and verb early. Use active voice when the actor matters;
+  keep passive voice when the actor is unknown or irrelevant.
+- Keep one main point per sentence and one topic per paragraph.
+- Make a logical link or pronoun reference explicit when it is unclear.
+- Replace vague praise with facts present in the source. Do not invent
+  specificity.
 
-- **Plain technical English** is the default. Prefer direct sentences and
-  stable terminology without enforcing an aerospace standard.
-- **ASD-STE100** applies only when the user names STE, ASD-STE100, controlled
-  English, or compliance. Read [references/asd-ste100.md](references/asd-ste100.md)
-  before editing.
-
-## Rewrite
-
-1. Separate procedures, which tell the reader what to do, from descriptions,
-   which explain facts.
-2. Use one term for each concept. Do not rotate synonyms for variety.
-3. Put the actor and action early. Prefer active voice when it identifies who
-   acts; retain a useful passive when the actor is unknown or irrelevant.
-4. In procedures, use direct commands, one action per step. Put a condition
-   before the command that depends on it.
-5. In descriptions, keep one topic per paragraph. Split a sentence when it
-   carries unrelated facts.
-6. Delete framing, hedges, and praise that add no fact. Replace vague claims
-   such as "robust" with the stated property; do not invent a measurement.
-
-Keep code, identifiers, commands, paths, quoted messages, product names, UI
-labels, and mathematical notation exact unless the user asks to change them.
-
-Before delivery, check that terminology is stable, references are clear, each
-procedure step has one action, and no condition trails its command.
-
-This skill is adapted from AminBlg's MIT-licensed SimpleEnglish skill. See
-[UPSTREAM-LICENSE.md](UPSTREAM-LICENSE.md).
+Read the result once more. Restore any nuance or logical relation lost in the
+rewrite.
