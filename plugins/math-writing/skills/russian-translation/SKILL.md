@@ -26,14 +26,10 @@ notation, metadata, or occasional errors into another project.
 
 ## Work
 
-For translation, use two passes:
-
-1. Translate for meaning. Preserve paragraph and statement boundaries, formulas,
-   environments, labels, references, citations, and defined-term markup unless
-   the user asks to restructure them.
-2. Calibrate the Russian prose against the voice reference. Remove literal
-   English syntax, but do not add claims, emphasis, or logical transitions that
-   are absent from the source.
+Translate directly into the calibrated voice. Preserve paragraph and statement
+boundaries, formulas, environments, labels, references, citations, and
+defined-term markup unless the user asks to restructure them. Remove literal
+English syntax without adding claims, emphasis, or logical transitions.
 
 For revision or voice adaptation, change only prose that drifts.
 
