@@ -5,6 +5,7 @@ description: >
   paper's precise theorem, proposition, lemma, or corollary. Extract its number,
   hypotheses, conclusion, and source location. Not for relevance triage from an
   abstract.
+reviewed: 9d7b130
 ---
 
 # Extracting Precise Results

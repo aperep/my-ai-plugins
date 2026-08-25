@@ -26,3 +26,4 @@ plugins/math-writing/skills/speech-style-adaptation/SKILL.md guard=human-revised
 plugins/math-writing/skills/speech-style-adaptation/references/introductions.md guard=human-revised reviewed=1ee66dd
 plugins/math-writing/skills/speech-style-adaptation/references/latex.md guard=human-revised reviewed=1ee66dd
 plugins/math-writing/skills/speech-style-adaptation/references/voice.md guard=human-revised reviewed=1ee66dd
+plugins/research/skills/extracting-precise-results/SKILL.md guard=human-revised reviewed=9d7b130
