@@ -6,6 +6,7 @@ description: >
   de-slopping requests such as "cut the AI slop", "remove filler", "this reads
   like AI", or "make this argument flow". Do not use for ordinary drafting,
   proofreading, voice matching, controlled English, or mathematical review.
+reviewed: 13f6807
 ---
 
 # Occam / No-Slop
