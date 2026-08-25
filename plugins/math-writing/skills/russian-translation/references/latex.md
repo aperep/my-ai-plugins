@@ -1,19 +1,12 @@
 # Translating LaTeX
 
-Read enough project documentation and preamble to identify local macros,
-language packages, theorem environments, bibliography conventions, and the
-actual build entry point.
+Project macros and conventions win.
 
 ## Preserve structure
 
-Unless restructuring is requested, preserve:
-
-- formulas and math delimiters;
-- environment boundaries and optional arguments;
-- `\label`, `\ref`, `\eqref`, `\cite`, and citation keys;
-- macro names and arguments;
-- paragraph boundaries and theorem order;
-- existing `\emph{...}` anchors for defined terms.
+Unless restructuring is requested, preserve formulas, math delimiters,
+environment boundaries, optional arguments, labels, references, citation keys,
+macro names, paragraph boundaries, theorem order, and defined-term markup.
 
 Translate prose inside theorem environments and textual macro arguments. Do not
 translate identifiers, command names, or bibliography keys. Check every edited
@@ -21,7 +14,7 @@ command for balanced braces.
 
 ## Russian TeX conventions
 
-Follow the project first. In the calibration corpus:
+In the calibration corpus:
 
 - a Russian dash is written as spaced `---`; numerical ranges use `--`;
 - non-breaking `~` joins a locator to its reference or citation;
@@ -33,13 +26,3 @@ Follow the project first. In the calibration corpus:
 
 Keep custom math macros inside real math mode. Never use escaped `\$` to quote
 math snippets in prose.
-
-## Validation
-
-Use the project's build instructions. If none exist, identify the likely root
-document from `\documentclass`, `\input`, and `\include` relationships. For a
-standalone project, prefer `latexmk -pdf -outdir=output <root>.tex`; first ensure
-`output/` is ignored. Do not edit generated auxiliary files.
-
-After compilation, distinguish errors introduced by the edit from pre-existing
-or environment failures. Report skipped validation plainly.

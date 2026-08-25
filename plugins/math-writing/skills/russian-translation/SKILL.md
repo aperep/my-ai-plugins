@@ -9,22 +9,12 @@ Produce faithful Russian mathematical prose in A. Perepechko's restrained,
 declarative voice. Project instructions and the user's terminology choices take
 priority over this calibration.
 
-## Before writing
-
-Determine the task:
-
-- **translation**: preserve the source's mathematical meaning and structure;
-- **revision**: improve existing Russian without silently changing claims;
-- **voice adaptation**: change phrasing only, leaving content and notation fixed.
-
-Read [references/voice.md](references/voice.md) for all three modes. For TeX,
+Read [references/voice.md](references/voice.md) for every task. For TeX,
 also read [references/latex.md](references/latex.md). Read other references only
 when the task needs them:
 
 - [references/terminology.md](references/terminology.md) for disputed terms,
   glossary work, or systematic terminology changes;
-- [references/long-documents.md](references/long-documents.md) for a long file or
-  several files;
 - [references/dissertations.md](references/dissertations.md) for dissertation
   structure, contribution statements, acknowledgments, or personal metadata;
 - [references/corpus/P18_ru.tex](references/corpus/P18_ru.tex) only when the
@@ -45,24 +35,20 @@ For translation, use two passes:
    English syntax, but do not add claims, emphasis, or logical transitions that
    are absent from the source.
 
-For revision or voice adaptation, first mark the prose spans that actually
-drift. Leave already suitable text alone.
+For revision or voice adaptation, change only prose that drifts.
 
 Resolve terminology in this order: the project's glossary and prior usage, the
 user's current choice, the terminology reference, then standard Russian
 mathematical literature. Flag a real ambiguity instead of choosing silently.
 
 Never repair a suspected mathematical error as a language edit. Preserve it and
-report it separately. Make no repository, network, bibliography, or
-version-control changes beyond the user's request.
+report it separately.
 
 ## Check
 
 Compare source and result for lost hypotheses, changed quantifiers, altered
-negation, renamed symbols, broken references, and inconsistent terms. For TeX,
-use the project's documented build command when available; otherwise discover
-the entry point and ask before making a consequential guess. Put generated
-files in the project's ignored output directory.
+negation, renamed symbols, broken references, and inconsistent terms. Validate
+TeX with the project's build instructions when available.
 
 Report what changed, unresolved terminology, suspected source errors, and any
 validation not run.
