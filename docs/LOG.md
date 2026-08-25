@@ -2,6 +2,15 @@
 
 ## 2026-08-25
 
+- Rebuilt `russian-translation` as a host-neutral voice skill with focused
+  references, guarded metadata reuse, and routing fixtures. Kept fresh-context
+  behavioral validation as explicit roadmap debt.
+- Replaced project-specific orchestration in `speech-style-adaptation` with
+  portable voice calibration and routing evals. A later shortening invalidated
+  the earlier behavioral run, so reevaluation remains on the roadmap.
+- Reduced `extracting-precise-results` to traceable numbered statements,
+  faithful paraphrase, direct links, and source locations. Routing checks pass;
+  real-paper behavioral cases remain.
 - Reduced `occam-no-slop` to structural economy and continuity in mathematical
   prose. Its trigger is now explicit, and stronger mathematical claims are
   flagged instead of edited in.
