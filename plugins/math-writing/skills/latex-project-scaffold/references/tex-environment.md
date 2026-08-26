@@ -1,3 +1,7 @@
+---
+reviewed: d9f00dd
+---
+
 # TeX environment
 
 The academic-workshop prototype used TinyTeX with these TeX Live packages:

@@ -5,6 +5,7 @@ description: >
   notation, package, contact, and bibliography-input files. Use when asked to
   scaffold a LaTeX paper, create a Russian or English theorem setup, or prepare
   the TeX environment for this template. Not for copyediting an existing paper.
+reviewed: d9f00dd
 ---
 
 # LaTeX project scaffold
