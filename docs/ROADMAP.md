@@ -34,35 +34,28 @@ available; the skill must still work with a local Lean toolchain alone.
 
 ### `interlinear`
 
-Priority: critical. Finish one shared data model and matching Typst/LaTeX
-adapters before adding more annotation types.
+Priority: medium. The shared schema, parsers, safe candidate fields, tag-scoped
+context, both adapters, and the section-3 LaTeX presentation fixture exist.
 
-- Reserve confirmed fields for checked results; lexical lookup writes only to
-  candidate fields.
-- Support `sent` labels in both Typst and LaTeX.
-- Select active context by source span and requested tags.
-- Implement badges, focus-aware inline notes, short footnotes, clickable
-  annotation links, and a printable appendix.
-- Test the LaTeX presentation on section 3 of `texlab/rigid-aut-algebraic`.
-- Compile every Typst mode when a Typst compiler is available.
+- Install Typst in a test environment and compile every documented Typst mode.
+- Check focus/badge layout on a longer mixed theorem-and-proof block.
 
 Done when both adapters consume the same fixture, helper tests pass, and the
 documented rendering modes compile in their available toolchains.
 
 ### `reason`
 
-Priority: high. Add the skill only around failures that ordinary prompting does
-not handle reliably: respecting local tagged context, separating explanation
-from evidence, and reporting gaps without silently strengthening a claim.
+Priority: medium. Routing and the section-3 context behavior pass. Test a full
+proof with a real gap, a valid repair, and a concrete example track.
 
 Done when routing distinguishes mathematical reasoning from copyediting,
 literature extraction, and explicit formalization.
 
 ### `formalize`
 
-Priority: high after the shared schema is stable. Keep invocation explicit.
-Record the exact claim, assumptions, Lean source, toolchain, and result status.
-Treat Aristotle output as unverified until a Lean checker accepts it.
+Priority: high. Routing and generated-versus-checked behavior pass. Test a
+small local Lean declaration and an Aristotle round trip when those tools are
+available.
 
 Done when a small local Lean fixture compiles when Lean is available, failure
 states remain honest, and ordinary proof discussion does not load the skill.

@@ -1,5 +1,15 @@
 # Change log
 
+## 2026-08-26
+
+- Replaced the stale academic-workshop roadmap with one canonical three-skill
+  plan: `interlinear`, `reason`, and `formalize`.
+- Extended `interlinear` to one CSV-backed Typst/LaTeX workflow with balanced
+  source parsing, tag-filtered context, separate candidate references, Lean
+  evidence fields, focus-aware views, and a section-3 PDF fixture.
+- Added `reason` for context-bound informal analysis and `formalize` for
+  explicit Lean/Aristotle work. Fresh routing and boundary probes passed.
+
 ## 2026-08-25
 
 - Rebuilt `russian-translation` as a host-neutral voice skill with focused
