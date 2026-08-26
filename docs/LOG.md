@@ -9,6 +9,8 @@
   evidence fields, focus-aware views, and a section-3 PDF fixture.
 - Added `reason` for context-bound informal analysis and `formalize` for
   explicit Lean/Aristotle work. Fresh routing and boundary probes passed.
+- Replaced the dead Claude `aperep-dev` convention with the manifest-owned
+  `aperep` marketplace name after a local install exposed the stale path.
 
 ## 2026-08-25
 

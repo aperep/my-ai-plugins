@@ -8,6 +8,7 @@
 - "rename a marketplace plugin"
 - "where does SKILL.md go in this repo?"
 - "does the meta plugin own Claude guard hooks, or are they user-wide?"
+- "the local Claude marketplace still points to the old repository path"
 
 ## Must not load
 

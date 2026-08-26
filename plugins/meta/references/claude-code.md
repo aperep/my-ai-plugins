@@ -15,12 +15,14 @@ Claude and Codex share `skills/`; do not fork skill bodies by host.
 
 ## Local development
 
-The Git marketplace is `aperep`; the checkout is registered separately as
-`aperep-dev`. Keep those names distinct.
+Claude takes the marketplace name from its manifest. This checkout and the Git
+marketplace are therefore both named `aperep`; do not invent an `aperep-dev`
+alias in settings. Registering the directory makes `aperep` point to the local
+checkout for development.
 
 ```sh
-claude plugin marketplace update aperep-dev
-claude plugin install <plugin>@aperep-dev -s project
+claude plugin marketplace add /path/to/my-ai-plugins
+claude plugin install <plugin>@aperep -s project
 ```
 
 `marketplace update` refreshes only the catalog. Reinstall to copy changed
@@ -32,7 +34,7 @@ that source paths resolve:
 ```sh
 claude plugin validate .
 claude plugin validate ./plugins/<plugin>
-claude plugin install <plugin>@aperep-dev -s project
+claude plugin install <plugin>@aperep -s project
 ```
 
 Claude manifests stay unversioned. Catalog sources are full paths from the
@@ -49,7 +51,7 @@ top-level `renames` map.
   manifest with `strict: false` causes a conflicting-manifests error.
 - A subdirectory is usable only if it is self-contained.
 
-Inspect `claude plugin details <plugin>@aperep-dev`. Plugins with hooks must be
+Inspect `claude plugin details <plugin>@aperep`. Plugins with hooks must be
 enabled per project, not at user scope.
 
 Claude-only dependencies belong in `.claude-plugin/plugin.json`; never imply
