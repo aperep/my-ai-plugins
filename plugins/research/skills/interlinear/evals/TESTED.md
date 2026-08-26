@@ -1,7 +1,7 @@
 # Interlinear test status
 
-On 2026-08-26, revision `87e5ad0` was installed locally as
-`research@aperep` version `0.4.0` under Codex 0.149.1.
+On 2026-08-26, revision `ac7d6c0` was installed locally as
+`research@aperep` version `0.4.1` under Codex 0.149.1.
 
 - Ten helper tests passed, including balanced Typst/LaTeX parsing, tag-filtered
   context, candidate/reference separation, and Lean evidence validation.

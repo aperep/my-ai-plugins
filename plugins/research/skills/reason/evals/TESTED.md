@@ -1,7 +1,7 @@
 # Reason test status
 
-On 2026-08-26, revision `87e5ad0` was installed locally as
-`research@aperep` version `0.4.0` and tested in fresh context with
+On 2026-08-26, revision `ac7d6c0` was installed locally as
+`research@aperep` version `0.4.1` and tested in fresh context with
 `gpt-5.6-sol` under Codex 0.149.1.
 
 - The proof-explanation routing case selected `research:reason`.
