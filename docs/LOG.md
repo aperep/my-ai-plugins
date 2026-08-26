@@ -2,6 +2,9 @@
 
 ## 2026-08-26
 
+- Added a bounded meta-plugin `SessionStart` inventory for `docs/**/*.md` paths
+  and allowlisted scalar frontmatter. Repository values are labelled untrusted;
+  unknown fields, symlinks, and oversized output are excluded.
 - Replaced the stale academic-workshop roadmap with one canonical three-skill
   plan: `interlinear`, `reason`, and `formalize`.
 - Extended `interlinear` to one CSV-backed Typst/LaTeX workflow with balanced

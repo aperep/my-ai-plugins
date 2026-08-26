@@ -1,7 +1,7 @@
 {
   "name": "meta",
-  "version": "0.2.1",
-  "description": "Auto-evolution, quality gates, and maintenance guidance for this marketplace.",
+  "version": "0.2.2",
+  "description": "Project-doc inventories, auto-evolution, quality gates, and marketplace maintenance guidance.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
@@ -11,8 +11,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Meta",
-    "shortDescription": "Evolve, test, and maintain marketplace skills",
-    "longDescription": "Codex-first suggestion harvesting, quality gates, trust checks, and maintenance guidance, with isolated Claude Code compatibility.",
+    "shortDescription": "Inventory docs; evolve and test skills",
+    "longDescription": "Codex-first project-doc inventories, suggestion harvesting, quality gates, trust checks, and maintenance guidance, with isolated Claude Code compatibility.",
     "developerName": "Alexander Perepechko",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],

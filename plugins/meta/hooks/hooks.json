@@ -1,5 +1,5 @@
 {
-  "description": "Harvest reusable marketplace suggestions into reviewable skill drafts.",
+  "description": "Expose bounded project-doc metadata and harvest reusable marketplace suggestions.",
   "hooks": {
     "SessionStart": [
       {
@@ -9,6 +9,16 @@
             "type": "command",
             "command": "python3 \"$PLUGIN_ROOT/scripts/auto-evolve-context.py\"",
             "additionalContextLimit": 500
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PLUGIN_ROOT/scripts/project_docs_context.py\"",
+            "additionalContextLimit": 0
           }
         ]
       }
