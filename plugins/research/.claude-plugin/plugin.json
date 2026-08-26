@@ -1,6 +1,6 @@
 {
   "name": "research",
-  "description": "Research reading and sentence-level Typst/LaTeX mathematical review.",
+  "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
   "author": { "name": "Alexander Perepechko" },
-  "keywords": ["academic", "research", "mathematics", "literature-review", "interlinear", "proof-review"]
+  "keywords": ["academic", "research", "mathematics", "interlinear", "reasoning", "lean", "formalization"]
 }

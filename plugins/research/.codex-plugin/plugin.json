@@ -1,25 +1,27 @@
 {
   "name": "research",
-  "version": "0.3.0",
-  "description": "Research reading and sentence-level Typst/LaTeX mathematical review.",
+  "version": "0.4.0",
+  "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["academic", "research", "mathematics", "literature-review", "interlinear", "proof-review"],
+  "keywords": ["academic", "research", "mathematics", "interlinear", "reasoning", "lean", "formalization"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Research",
-    "shortDescription": "Extract results and review mathematical proofs",
-    "longDescription": "Research workflows for precise reading, citable result extraction, tag-scoped context, and sentence-level Typst/LaTeX review.",
+    "shortDescription": "Read, reason about, and formalize mathematics",
+    "longDescription": "Precise result extraction, tag-scoped Typst/LaTeX review, informal reasoning, and explicit Lean formalization.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Web", "Execute"],
     "defaultPrompt": [
       "Extract the exact numbered results from this paper.",
       "Find the hypotheses and conclusion of this theorem.",
-      "Build a tag-scoped interlinear review of this proof."
+      "Build a tag-scoped interlinear review of this proof.",
+      "Explain this labelled proof step from its active context.",
+      "Use $formalize to check this selected claim in Lean."
     ]
   }
 }

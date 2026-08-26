@@ -43,13 +43,15 @@
     {
       "name": "research",
       "source": "./plugins/research",
-      "description": "Research reading and sentence-level Typst/LaTeX mathematical review.",
+      "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
       "category": "writing",
       "tags": [
         "academic",
         "research",
         "mathematics",
-        "literature-review"
+        "literature-review",
+        "lean",
+        "formalization"
       ]
     },
     {
