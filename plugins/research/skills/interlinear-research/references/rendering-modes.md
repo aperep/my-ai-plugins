@@ -24,3 +24,21 @@ typst compile --input mode=review --input data=sentences.csv document.typ review
 Typst resolves the CSV path relative to the file containing `csv(...)`. Keep
 the imported library beside the metadata, or pass the appropriate relative
 path.
+
+## PDF annotation policy
+
+Keep the sidecar metadata canonical; PDF annotations are only views of it.
+
+- An explicit user request for a rendering mode overrides these defaults.
+- By default, show compact popup badges beside annotated statements throughout
+  the document.
+- Within the current focus, expand selected annotations inline. Define the
+  focus by a source label and a structural extent, such as a theorem block or
+  subsection; never infer it from PDF page boundaries.
+- Use a footnote only for one short note. Do not pack translation, explanation,
+  active context, and verification state into one footnote.
+- Also provide a printable annotation appendix because PDF popup support varies
+  between viewers.
+
+The bundled Typst renderer does not yet implement this focus-aware policy. The
+policy is a requirement for future matching LaTeX and Typst adapters.
