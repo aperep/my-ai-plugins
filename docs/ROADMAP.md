@@ -18,7 +18,7 @@ For every skill change:
 
 ## Active work
 
-### `interlinear-research`
+### `interlinear`
 
 Priority: critical. Candidate Stacks matches currently write directly into the
 confirmed `stacks_ref` field.
@@ -76,7 +76,7 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ## Suggested order
 
-1. `interlinear-research`: stop candidates entering verified data.
+1. `interlinear`: stop candidates entering verified data.
 2. `proofreading-pass`: restore scope consistency and test its artifacts.
 3. `extracting-precise-results`: close the real-source behavioral gap.
 4. `russian-translation` and `speech-style-adaptation`: close recorded

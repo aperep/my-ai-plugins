@@ -1,6 +1,6 @@
 // Model interlinear document: Hilbert basis theorem with labelled proof steps.
 
-// From the interlinear-research skill root:
+// From the interlinear skill root:
 // typst compile --root . --input mode=review \
 //   --input data=../../examples/noetherian/sentences.csv \
 //   examples/noetherian/document.typ review.pdf

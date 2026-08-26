@@ -1,5 +1,5 @@
 ---
-name: interlinear-research
+name: interlinear
 description: >
   Build or maintain sentence-labelled mathematical documents whose CSV metadata
   drives translations, research comments, local context, Stacks references,
