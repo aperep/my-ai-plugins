@@ -1,10 +1,7 @@
 # Research and math-writing skill roadmap
 
-This roadmap tracks unfinished work in `plugins/research` and
-`plugins/math-writing` after the 2026-08-25 review. Product expansion remains in
-[`academic-workshop-roadmap.md`](academic-workshop-roadmap.md). Work on one
-skill at a time; move completed or rejected items to [`LOG.md`](LOG.md) with
-the decision and reason.
+This is the only active roadmap. Move completed or rejected work to
+[`LOG.md`](LOG.md) with the decision and reason.
 
 For every skill change:
 
@@ -16,24 +13,59 @@ For every skill change:
 4. Keep shared skills host-neutral. Put Claude-only instructions in the meta
    compatibility reference and provide fallbacks for optional dependencies.
 
+## Research architecture
+
+The sentence-level research workflow has three stable skill names:
+
+- `interlinear` owns labelled Typst and LaTeX sources, tag-scoped local
+  context, sidecar metadata, and PDF views. The usual view uses compact badges
+  throughout and expands annotations inline only in the requested theorem
+  block or subsection.
+- `reason` supplies informal or semiformal explanations, local-context notes,
+  examples, and gap analysis to `interlinear`.
+- `formalize` owns Lean and formal prover work. It runs only when explicitly
+  requested and records evidence without silently rewriting the source claim.
+
+`reason` may identify a formalization target, but it does not invoke Lean or
+claim formal verification. `formalize` may use Aristotle when that service is
+available; the skill must still work with a local Lean toolchain alone.
+
 ## Active work
 
 ### `interlinear`
 
-Priority: critical. Candidate Stacks matches currently write directly into the
-confirmed `stacks_ref` field.
+Priority: critical. Finish one shared data model and matching Typst/LaTeX
+adapters before adding more annotation types.
 
-- Add `stacks_candidate`; reserve `stacks_ref` for human-confirmed results.
-- Update the schema, example CSV, renderer, lookup helper, validator, and tests
-  together.
-- Add parser tests for Typst strings, comments, escaped delimiters, and malformed
-  `sent` bodies.
-- Compile every rendering mode in a test environment with Typst installed.
-- Add skill evals for label maintenance and for ordinary Typst formatting that
-  must not trigger the skill.
+- Reserve confirmed fields for checked results; lexical lookup writes only to
+  candidate fields.
+- Support `sent` labels in both Typst and LaTeX.
+- Select active context by source span and requested tags.
+- Implement badges, focus-aware inline notes, short footnotes, clickable
+  annotation links, and a printable appendix.
+- Test the LaTeX presentation on section 3 of `texlab/rigid-aut-algebraic`.
+- Compile every Typst mode when a Typst compiler is available.
 
-Done when lexical matches cannot appear as verified references, helper tests
-pass, and every documented rendering mode compiles.
+Done when both adapters consume the same fixture, helper tests pass, and the
+documented rendering modes compile in their available toolchains.
+
+### `reason`
+
+Priority: high. Add the skill only around failures that ordinary prompting does
+not handle reliably: respecting local tagged context, separating explanation
+from evidence, and reporting gaps without silently strengthening a claim.
+
+Done when routing distinguishes mathematical reasoning from copyediting,
+literature extraction, and explicit formalization.
+
+### `formalize`
+
+Priority: high after the shared schema is stable. Keep invocation explicit.
+Record the exact claim, assumptions, Lean source, toolchain, and result status.
+Treat Aristotle output as unverified until a Lean checker accepts it.
+
+Done when a small local Lean fixture compiles when Lean is available, failure
+states remain honest, and ordinary proof discussion does not load the skill.
 
 ### `proofreading-pass`
 
@@ -76,9 +108,11 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ## Suggested order
 
-1. `interlinear`: stop candidates entering verified data.
-2. `proofreading-pass`: restore scope consistency and test its artifacts.
-3. `extracting-precise-results`: close the real-source behavioral gap.
-4. `russian-translation` and `speech-style-adaptation`: close recorded
+1. `interlinear`: finish the shared data and rendering slice.
+2. `reason`: add context-aware informal review.
+3. `formalize`: add explicit formal verification.
+4. `proofreading-pass`: restore scope consistency and test its artifacts.
+5. `extracting-precise-results`: close the real-source behavioral gap.
+6. `russian-translation` and `speech-style-adaptation`: close recorded
    fresh-context validation gaps.
-5. `latex-project-scaffold`: add coverage and refresh tests.
+7. `latex-project-scaffold`: add coverage and refresh tests.
