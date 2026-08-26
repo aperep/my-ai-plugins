@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Search a local Stacks-style index or fill candidate stacks_ref values."""
+"""Search a local Stacks-style index or fill unverified candidate values."""
 from __future__ import annotations
 
 import argparse
@@ -73,17 +73,17 @@ def main() -> int:
         parser.error("provide a query or --fill")
 
     fields, rows = load_csv(args.data)
-    if "stacks_ref" not in fields or args.query_field not in fields:
-        print(f"ERROR: CSV needs stacks_ref and {args.query_field} columns")
+    if "stacks_candidate" not in fields or args.query_field not in fields:
+        print(f"ERROR: CSV needs stacks_candidate and {args.query_field} columns")
         return 1
     changed = 0
     for row in rows:
-        if row.get("stacks_ref", "") and not args.force:
+        if row.get("stacks_candidate", "") and not args.force:
             continue
         hits = rank(row.get(args.query_field, ""), entries, limit=1)
         if hits and hits[0][0] >= args.min_score:
             value, entry = hits[0]
-            row["stacks_ref"] = str(entry["tag"])
+            row["stacks_candidate"] = str(entry["tag"])
             changed += 1
             print(f"{row.get('label', '')}: candidate {entry['tag']} score={value:.1f}")
     save_csv(args.data, fields, rows)

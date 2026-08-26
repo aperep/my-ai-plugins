@@ -43,7 +43,7 @@
     {
       "name": "research",
       "source": "./plugins/research",
-      "description": "Research reading, precise result extraction, and interlinear mathematical review.",
+      "description": "Research reading and sentence-level Typst/LaTeX mathematical review.",
       "category": "writing",
       "tags": [
         "academic",

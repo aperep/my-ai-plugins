@@ -1,14 +1,21 @@
-# Typst rendering modes
+# Rendering modes
 
-`assets/typst/interlinear.typ` exports `sent` and `mode`. It reads the metadata
-path from `--input data=...`; the default is `sentences.csv`.
+The Typst adapter reads `--input data=...`, `--input mode=...`, and an optional
+semicolon-delimited `--input focus=...`. The LaTeX adapter provides
+`\InterlinearMode{...}`, `\InterlinearFocus{...}`, and
+`\InterlinearPrintAppendix`.
 
 | mode | output |
 |---|---|
 | `plain` | author text only |
 | `draft` | author text with visible labels |
-| `translation` | text plus `translation_en` |
-| `comment` | text plus `ai_comment` |
+| `badges` | compact annotation badges throughout |
+| `focus` | badges throughout; inline annotations for explicit focus labels |
+| `inline` | inline annotation blocks throughout |
+| `footnote` | one short translation note; LaTeX adapter |
+| `popup` | native PDF text annotation with badge fallback; pdfLaTeX adapter |
+| `translation` | text plus the configured translation |
+| `comment` | text plus `explanation` |
 | `parallel` | general step beside its concrete example |
 | `inline-example` | example underneath each general step |
 | `example-only` | only the example track |
@@ -18,7 +25,8 @@ path from `--input data=...`; the default is `sentences.csv`.
 Example after copying the asset beside a document:
 
 ```sh
-typst compile --input mode=review --input data=sentences.csv document.typ review.pdf
+typst compile --input mode=focus --input focus=s008\;s009 \
+  --input data=sentences.csv document.typ review.pdf
 ```
 
 Typst resolves the CSV path relative to the file containing `csv(...)`. Keep
@@ -40,5 +48,6 @@ Keep the sidecar metadata canonical; PDF annotations are only views of it.
 - Also provide a printable annotation appendix because PDF popup support varies
   between viewers.
 
-The bundled Typst renderer does not yet implement this focus-aware policy. The
-policy is a requirement for future matching LaTeX and Typst adapters.
+The Typst adapter provides visual badges and focus-aware inline blocks. Native
+PDF popup annotations are a pdfLaTeX-only enhancement; always include the
+printable appendix because viewer support varies.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate label and CSV invariants for an interlinear Typst document."""
+"""Validate label and CSV invariants for an interlinear Typst or LaTeX document."""
 from __future__ import annotations
 
 import argparse
@@ -10,6 +10,7 @@ from pathlib import Path
 from interlinear_io import load_csv, parse_sentences, tag_set
 
 STACKS_TAG = re.compile(r"[0-9A-Z]{4}")
+LEAN_STATUS = {"", "planned", "generated", "checked", "failed"}
 
 
 def validate(document: Path, data: Path) -> list[str]:
@@ -54,6 +55,19 @@ def validate(document: Path, data: Path) -> list[str]:
         stacks_ref = row.get("stacks_ref", "")
         if stacks_ref and not STACKS_TAG.fullmatch(stacks_ref):
             errors.append(f"{label}: invalid Stacks tag {stacks_ref!r}")
+        stacks_candidate = row.get("stacks_candidate", "")
+        if stacks_candidate and not STACKS_TAG.fullmatch(stacks_candidate):
+            errors.append(
+                f"{label}: invalid candidate Stacks tag {stacks_candidate!r}"
+            )
+        lean_status = row.get("lean_status", "")
+        if lean_status not in LEAN_STATUS:
+            errors.append(f"{label}: invalid Lean status {lean_status!r}")
+        if lean_status == "checked":
+            if not row.get("lean_ref", "").strip():
+                errors.append(f"{label}: checked Lean status needs lean_ref")
+            if not row.get("lean_toolchain", "").strip():
+                errors.append(f"{label}: checked Lean status needs lean_toolchain")
         if "" in tag_set(row.get("tags", "")):
             errors.append(f"{label}: empty tag")
     return errors

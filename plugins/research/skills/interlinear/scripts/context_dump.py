@@ -6,10 +6,12 @@ import argparse
 import json
 from pathlib import Path
 
-from interlinear_io import load_csv, parse_sentences
+from interlinear_io import load_csv, parse_sentences, tag_set
 
 
-def build(document: Path, data: Path) -> dict[str, object]:
+def build(
+    document: Path, data: Path, requested_tags: set[str] | None = None
+) -> dict[str, object]:
     sentences = parse_sentences(document)
     order = {label: index for index, (label, _) in enumerate(sentences)}
     bodies = dict(sentences)
@@ -23,17 +25,26 @@ def build(document: Path, data: Path) -> dict[str, object]:
     result: dict[str, object] = {}
     for label, _ in sentences:
         index = order[label]
-        context = [
-            earlier for earlier, earlier_index in order.items()
-            if earlier_index < index and final_index(earlier) >= index
-        ]
+        context = []
+        for earlier, earlier_index in order.items():
+            if earlier_index >= index or final_index(earlier) < index:
+                continue
+            row = metadata.get(earlier, {})
+            row_tags = tag_set(row.get("tags", ""))
+            if requested_tags and not requested_tags & row_tags:
+                continue
+            context.append({
+                "label": earlier,
+                "text": bodies[earlier],
+                "tags": sorted(row_tags),
+                "active_until": row.get("active_until", ""),
+            })
         result[label] = {
             "index": index,
             "text": bodies[label],
             "tags": metadata.get(label, {}).get("tags", ""),
             "active_until": metadata.get(label, {}).get("active_until", ""),
             "context": context,
-            "context_text": {earlier: bodies[earlier] for earlier in context},
         }
     return result
 
@@ -44,8 +55,15 @@ def main() -> int:
     parser.add_argument("--data", type=Path, default=Path("sentences.csv"))
     parser.add_argument("--output", type=Path)
     parser.add_argument("--label")
+    parser.add_argument(
+        "--tags",
+        help="comma-separated tags; keep active rows matching at least one",
+    )
     args = parser.parse_args()
-    result = build(args.document, args.data)
+    requested_tags = {
+        tag.strip() for tag in (args.tags or "").split(",") if tag.strip()
+    }
+    result = build(args.document, args.data, requested_tags)
     selected = result.get(args.label) if args.label else result
     if args.label and selected is None:
         print(f"ERROR: unknown label {args.label}")

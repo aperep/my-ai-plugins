@@ -1,6 +1,6 @@
 {
   "name": "research",
-  "description": "Research reading, precise result extraction, and interlinear mathematical review.",
+  "description": "Research reading and sentence-level Typst/LaTeX mathematical review.",
   "author": { "name": "Alexander Perepechko" },
   "keywords": ["academic", "research", "mathematics", "literature-review", "interlinear", "proof-review"]
 }

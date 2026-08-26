@@ -3,13 +3,19 @@
 from __future__ import annotations
 
 import csv
+import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 from gap_check import is_proof_step
+from context_dump import build
 from interlinear_io import load_csv, parse_sentences, save_csv, tag_set
 from validate_interlinear import validate
+
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 
 class InterlinearTests(unittest.TestCase):
@@ -18,6 +24,40 @@ class InterlinearTests(unittest.TestCase):
             path = Path(directory) / "document.typ"
             path.write_text('#sent("s1")[Ring $k[x]$ and [nested] text.]\n', encoding="utf-8")
             self.assertEqual(parse_sentences(path), [("s1", "Ring $k[x]$ and [nested] text.")])
+
+    def test_typst_ignores_strings_and_comments(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "document.typ"
+            path.write_text(
+                '// #sent("bad")[Comment.]\n'
+                '#sent("s1")[Text with "a ] string" and \\] escaped.]\n'
+                '/* #sent("bad2")[Block.] */\n',
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                parse_sentences(path),
+                [("s1", 'Text with "a ] string" and \\] escaped.')],
+            )
+
+    def test_latex_balanced_bodies_and_comments(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "document.tex"
+            path.write_text(
+                '% \\sent{bad}{Comment.}\n'
+                '\\sent{sec3.claim}{Text with \\emph{nested braces} and \\{literal\\}.}\n',
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                parse_sentences(path),
+                [("sec3.claim", "Text with \\emph{nested braces} and \\{literal\\}.")],
+            )
+
+    def test_unclosed_body_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "document.tex"
+            path.write_text('\\sent{s1}{Unclosed.\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "unclosed sent body"):
+                parse_sentences(path)
 
     def test_atomic_csv_round_trip(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -44,6 +84,84 @@ class InterlinearTests(unittest.TestCase):
                     {"label": "s2", "active_until": "s1"},
                 ])
             self.assertIn("s2: active_until precedes the row", validate(document, data))
+
+    def test_context_filter_uses_span_and_tags(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            document = root / "document.tex"
+            data = root / "sentences.csv"
+            document.write_text(
+                "\\sent{d1}{Definition one.}\n"
+                "\\sent{aside}{Unrelated note.}\n"
+                "\\sent{p1}{Proof step.}\n",
+                encoding="utf-8",
+            )
+            with data.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(
+                    handle, fieldnames=["label", "active_until", "tags"]
+                )
+                writer.writeheader()
+                writer.writerows([
+                    {"label": "d1", "active_until": "p1", "tags": "definition;topic:ring"},
+                    {"label": "aside", "active_until": "p1", "tags": "translation"},
+                    {"label": "p1", "active_until": "", "tags": "proof;topic:ring"},
+                ])
+            result = build(document, data, {"definition"})
+            self.assertEqual([item["label"] for item in result["p1"]["context"]], ["d1"])
+
+    def test_lookup_writes_candidate_not_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "sentences.csv"
+            index = root / "index.json"
+            with data.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(
+                    handle,
+                    fieldnames=[
+                        "label", "translation_en", "stacks_candidate", "stacks_ref"
+                    ],
+                )
+                writer.writeheader()
+                writer.writerow({
+                    "label": "s1",
+                    "translation_en": "Noetherian polynomial ring Hilbert basis",
+                    "stacks_candidate": "",
+                    "stacks_ref": "",
+                })
+            index.write_text(json.dumps({"entries": [{
+                "tag": "00FN",
+                "title": "Hilbert basis theorem",
+                "statement": "A polynomial ring over a Noetherian ring is Noetherian",
+                "keywords": "Hilbert basis polynomial Noetherian",
+            }]}), encoding="utf-8")
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPT_DIR / "stack_lookup.py"),
+                    "--fill",
+                    "--index", str(index),
+                    "--data", str(data),
+                    "--min-score", "1",
+                ],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            row = load_csv(data)[1][0]
+            self.assertEqual(row["stacks_candidate"], "00FN")
+            self.assertEqual(row["stacks_ref"], "")
+
+    def test_checked_lean_requires_evidence_fields(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            document = root / "document.tex"
+            data = root / "sentences.csv"
+            document.write_text("\\sent{s1}{Claim.}\n", encoding="utf-8")
+            data.write_text("label,lean_status,lean_ref,lean_toolchain\ns1,checked,,\n")
+            errors = validate(document, data)
+            self.assertIn("s1: checked Lean status needs lean_ref", errors)
+            self.assertIn("s1: checked Lean status needs lean_toolchain", errors)
 
 
 if __name__ == "__main__":

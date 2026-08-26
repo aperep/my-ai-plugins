@@ -2,11 +2,12 @@
 
 // Copy this file beside the consumer document and metadata, or pass a CSV path
 // relative to this module with --input data=.... Choose a view with
-// --input mode=plain|draft|translation|comment|parallel|inline-example|
-// example-only|gap-check|review.
+// --input mode=plain|draft|badges|focus|translation|comment|parallel|
+// inline-example|example-only|gap-check|review.
 
-#let mode = sys.inputs.at("mode", default: "plain")
+#let mode = sys.inputs.at("mode", default: "badges")
 #let data-path = sys.inputs.at("data", default: "sentences.csv")
+#let focus-labels = sys.inputs.at("focus", default: "").split(";").map(it => it.trim())
 
 // --- загрузка данных -------------------------------------------------------
 // row-type: dictionary использует первую строку CSV как имена колонок.
@@ -23,6 +24,23 @@
   if v == "" { none } else { v }
 }
 
+#let _first-field(label, names) = {
+  for name in names {
+    let value = _field(label, name)
+    if value != none { return value }
+  }
+  none
+}
+
+#let _translation(label) = _first-field(label, ("translation", "translation_en", "translation_ru"))
+#let _explanation(label) = _first-field(label, ("explanation", "ai_comment"))
+#let _lean(label) = {
+  let status = _field(label, "lean_status")
+  let reference = _field(label, "lean_ref")
+  let note = _field(label, "lean_note")
+  (status, reference, note).filter(it => it != none).join("; ")
+}
+
 #let _is-proof-step(label) = {
   let t = _field(label, "tags")
   if t == none { return false }
@@ -32,6 +50,7 @@
 
 // --- оформление ------------------------------------------------------------
 #let _label-tag(label) = text(size: 0.72em, fill: rgb("#3366cc"))[#raw(label)]
+#let _badge(label) = super(text(size: 0.68em, fill: rgb("#315c9b"))[ann])
 
 #let _missing(label) = text(fill: rgb("#cc0000"), weight: "bold")[⟨нет данных в CSV: #label⟩]
 
@@ -48,6 +67,23 @@
   text(size: 0.85em)[#text(weight: "bold")[Пример:] #subj],
 )
 
+#let _annotation-rows(label) = {
+  let tr = _translation(label)
+  let explanation = _explanation(label)
+  let lean = _lean(label)
+  let confirmed = _field(label, "stacks_ref")
+  let candidate = _field(label, "stacks_candidate")
+  if tr != none { _under("Translation:", emph(tr)) }
+  if explanation != none { _under("Explanation:", explanation) }
+  if lean != "" { _under("Lean:", lean) }
+  if confirmed != none {
+    _under("Stacks:", link("https://stacks.math.columbia.edu/tag/" + confirmed)[Tag #confirmed (checked)])
+  }
+  if candidate != none {
+    _under("Candidate:", [Stacks Tag #candidate — not checked])
+  }
+}
+
 // --- основной макрос -------------------------------------------------------
 #let sent(label, body) = {
   let subj = _field(label, "example_subject")
@@ -58,6 +94,13 @@
     body
   } else if mode == "draft" {
     [#body#h(0.15em)#super(_label-tag(label))]
+  } else if mode == "badges" {
+    [#body#h(0.15em)#_badge(label)]
+  } else if mode == "focus" {
+    block(breakable: true, width: 100%, {
+      [#body#h(0.15em)#_badge(label)]
+      if focus-labels.contains(label) { _annotation-rows(label) }
+    })
 
   // --- фаза 3: только прогон на примере -----------------------------------
   } else if mode == "example-only" {
@@ -122,19 +165,25 @@
       )
       if not _has(label) { _under("", _missing(label)) }
       if mode == "translation" or mode == "review" {
-        let tr = _field(label, "translation_en")
+        let tr = _translation(label)
         if tr != none { _under("EN:", emph(tr)) }
       }
       if mode == "comment" or mode == "review" {
-        let c = _field(label, "ai_comment")
+        let c = _explanation(label)
         if c != none { _under("ИИ:", c) }
       }
       if mode == "review" {
         if ex != none { _under("Пример:", ex) }
         let s = _field(label, "stacks_ref")
         if s != none {
-          _under("Stacks:", link("https://stacks.math.columbia.edu/tag/" + s)[Tag #s])
+          _under("Stacks:", link("https://stacks.math.columbia.edu/tag/" + s)[Tag #s (checked)])
         }
+        let candidate = _field(label, "stacks_candidate")
+        if candidate != none {
+          _under("Candidate:", [Stacks Tag #candidate — not checked])
+        }
+        let lean = _lean(label)
+        if lean != "" { _under("Lean:", lean) }
       }
     })
   }

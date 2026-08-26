@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=30mm]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[russian,english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{../../assets/latex/interlinear}
+
+\input{output/interlinear-data.tex}
+
+\newcommand{\kfield}{\mathbb{k}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\claimtext}{%
+  If \(m>1\), then \(D\) is locally nilpotent. If \(m=1\), then
+  \(D\) is semisimple with integral eigenvalues.}
+
+\begin{document}
+
+\section{The coefficientwise pole lemma}
+
+% Condensed from section 3 of texlab/rigid-aut-algebraic.
+\sent{sec3.setup}{Let \(Q\) be an integral \(\kfield\)-algebra and let
+\(\omega_q\in\Der_{\kfield((z))}(Q\otimes_{\kfield}\kfield((z)))\) be the
+coefficient velocity of a moving frame.}
+
+\subsection*{Usual focus view}
+\InterlinearMode{focus}
+\InterlinearFocus{sec3.claim.focus}
+\sent{sec3.claim.focus}{\claimtext}
+
+\subsection*{Short footnote}
+\InterlinearMode{footnote}
+\sent{sec3.claim.footnote}{\claimtext}
+
+\subsection*{Clickable PDF annotation}
+\InterlinearMode{popup}
+\sent{sec3.claim.popup}{\claimtext}
+
+\InterlinearPrintAppendix
+
+\end{document}
