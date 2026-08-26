@@ -41,15 +41,15 @@ context, both adapters, and the section-3 LaTeX presentation fixture exist.
 - Check focus/badge layout on a longer mixed theorem-and-proof block.
 
 Done when both adapters consume the same fixture, helper tests pass, and the
-documented rendering modes compile in their available toolchains.
+documented Typst modes compile.
 
 ### `reason`
 
 Priority: medium. Routing and the section-3 context behavior pass. Test a full
 proof with a real gap, a valid repair, and a concrete example track.
 
-Done when routing distinguishes mathematical reasoning from copyediting,
-literature extraction, and explicit formalization.
+Done when a full-proof case reports the real gap without strengthening the
+claim and completes its example track.
 
 ### `formalize`
 
@@ -57,8 +57,8 @@ Priority: high. Routing and generated-versus-checked behavior pass. Test a
 small local Lean declaration and an Aristotle round trip when those tools are
 available.
 
-Done when a small local Lean fixture compiles when Lean is available, failure
-states remain honest, and ordinary proof discussion does not load the skill.
+Done when a local Lean fixture compiles, an Aristotle result is checked, and
+ordinary proof discussion still routes elsewhere.
 
 ### `proofreading-pass`
 
@@ -98,14 +98,3 @@ Done when both minimal variants compile and an existing project is preserved.
   of the reviewed revision.
 - `speech-style-adaptation`: repeat fresh-context routing and behavior checks
   after the later Occam pass and shortening.
-
-## Suggested order
-
-1. `interlinear`: finish the shared data and rendering slice.
-2. `reason`: add context-aware informal review.
-3. `formalize`: add explicit formal verification.
-4. `proofreading-pass`: restore scope consistency and test its artifacts.
-5. `extracting-precise-results`: close the real-source behavioral gap.
-6. `russian-translation` and `speech-style-adaptation`: close recorded
-   fresh-context validation gaps.
-7. `latex-project-scaffold`: add coverage and refresh tests.

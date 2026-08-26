@@ -1,9 +1,8 @@
 # Rendering modes
 
-The Typst adapter reads `--input data=...`, `--input mode=...`, and an optional
-semicolon-delimited `--input focus=...`. The LaTeX adapter provides
-`\InterlinearMode{...}`, `\InterlinearFocus{...}`, and
-`\InterlinearPrintAppendix`.
+Typst reads `--input data=...`, `--input mode=...`, and optional semicolon-
+delimited `--input focus=...`. LaTeX provides `\InterlinearMode{...}`,
+`\InterlinearFocus{...}`, and `\InterlinearPrintAppendix`.
 
 | mode | output |
 |---|---|
@@ -22,32 +21,26 @@ semicolon-delimited `--input focus=...`. The LaTeX adapter provides
 | `gap-check` | visually flags proof/claim rows missing examples |
 | `review` | translation, comments, examples, and Stacks links |
 
-Example after copying the asset beside a document:
+Example:
 
 ```sh
 typst compile --input mode=focus --input focus=s008\;s009 \
   --input data=sentences.csv document.typ review.pdf
 ```
 
-Typst resolves the CSV path relative to the file containing `csv(...)`. Keep
-the imported library beside the metadata, or pass the appropriate relative
-path.
+Typst resolves the CSV path relative to the file containing `csv(...)`.
 
 ## PDF annotation policy
 
 Keep the sidecar metadata canonical; PDF annotations are only views of it.
 
-- An explicit user request for a rendering mode overrides these defaults.
-- By default, show compact popup badges beside annotated statements throughout
-  the document.
-- Within the current focus, expand selected annotations inline. Define the
-  focus by a source label and a structural extent, such as a theorem block or
-  subsection; never infer it from PDF page boundaries.
+- An explicit rendering request overrides the defaults.
+- Default to compact badges throughout. Within the requested theorem block or
+  subsection, expand selected annotations inline; never infer focus from PDF
+  pages.
 - Use a footnote only for one short note. Do not pack translation, explanation,
   active context, and verification state into one footnote.
-- Also provide a printable annotation appendix because PDF popup support varies
-  between viewers.
+- Provide a printable appendix because popup support varies by viewer.
 
-The Typst adapter provides visual badges and focus-aware inline blocks. Native
-PDF popup annotations are a pdfLaTeX-only enhancement; always include the
-printable appendix because viewer support varies.
+Native PDF popups are a pdfLaTeX-only enhancement; Typst provides visual badges
+and focus-aware inline blocks.

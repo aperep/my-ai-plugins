@@ -11,6 +11,9 @@
   explicit Lean/Aristotle work. Fresh routing and boundary probes passed.
 - Replaced the dead Claude `aperep-dev` convention with the manifest-owned
   `aperep` marketplace name after a local install exposed the stale path.
+- Shortened the three research skill entrypoints by about one fifth without
+  removing their tested boundaries; also removed the roadmap's obsolete build
+  order.
 
 ## 2026-08-25
 
