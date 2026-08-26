@@ -13,7 +13,7 @@ reviewed: 9d7b130
 Use the full text. An abstract or search snippet cannot support a precise
 attribution.
 
-1. Find the relevant numbered statement. Prefer accessible HTML; otherwise
+1. Find the relevant numbered statement. Prefer accessible HTML or source; otherwise
    inspect the PDF.
 2. Record its number, hypotheses, conclusion, direct link, and page or section
    when available. Paraphrase faithfully; quote only when the wording matters.
