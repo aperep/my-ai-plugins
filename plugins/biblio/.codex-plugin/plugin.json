@@ -1,23 +1,24 @@
 {
   "name": "biblio",
-  "version": "0.2.0",
-  "description": "Bibliography verification, MathSciNet retrieval, and personal bibliography maintenance.",
+  "version": "0.2.1",
+  "description": "Bibliography verification, Zotero library maintenance, MathSciNet retrieval, and personal bibliography maintenance.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["bibtex", "references", "citations", "mathscinet", "personal-bibliography"],
+  "keywords": ["bibtex", "references", "citations", "zotero", "mathscinet", "personal-bibliography"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Bibliography",
-    "shortDescription": "Verify citations and maintain publication lists",
-    "longDescription": "Check bibliography metadata, retrieve MathSciNet identifiers, and maintain A. Perepechko's publication corpus.",
+    "shortDescription": "Verify citations and maintain Zotero records",
+    "longDescription": "Check bibliography metadata, maintain Zotero records safely, retrieve MathSciNet identifiers, and maintain A. Perepechko's publication corpus.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Web", "Execute"],
     "defaultPrompt": [
       "Verify the bibliography in this LaTeX project.",
+      "Add this paper to Zotero and pin my citation key.",
       "Update my personal publication list.",
       "Find MathSciNet numbers for these papers."
     ]

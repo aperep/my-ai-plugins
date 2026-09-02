@@ -32,12 +32,13 @@
     {
       "name": "biblio",
       "source": "./plugins/biblio",
-      "description": "Bibliography verification, MathSciNet retrieval, and personal bibliography maintenance.",
+      "description": "Bibliography verification, Zotero library maintenance, MathSciNet retrieval, and personal bibliography maintenance.",
       "category": "writing",
       "tags": [
         "bibtex",
         "references",
-        "citations"
+        "citations",
+        "zotero"
       ]
     },
     {
@@ -147,7 +148,9 @@
         "sha": "58642d69fafc5768627ed16215723c19198c4b4b"
       },
       "strict": false,
-      "skills": ["./"],
+      "skills": [
+        "./"
+      ],
       "description": "Not mine: bish-x's lens against overengineering — cut ceremony and architectural wandering, converge on the real working result the person needs. Pinned. General-purpose, not LaTeX-specific.",
       "category": "general",
       "tags": [
@@ -164,7 +167,9 @@
         "sha": "4fc8bb486aa8edca12facbf02b53aa1ada76a4a9"
       },
       "strict": false,
-      "skills": ["./"],
+      "skills": [
+        "./"
+      ],
       "description": "Not mine: tripleyak's evidence-driven skill pipeline (triage, spec, lint, evals), pinned. Pulled in by meta; skill-quality hands it a large rewrite. Its own description competes for skill-related triggers — that cost is accepted, not solved.",
       "category": "meta",
       "tags": [
@@ -181,7 +186,9 @@
         "sha": "d4e0a7ec1f1ae1b5c7f7972b52ad8ed0c2c067ae"
       },
       "strict": false,
-      "skills": ["./skills/self-learning"],
+      "skills": [
+        "./skills/self-learning"
+      ],
       "description": "Not mine: Kulaxyz's golden-path harvester, pinned. Writes skills without asking first, so its output is a prompt nobody has read; it lands with no stamp and the session-start hook lists it as sitting on no guard. Pulled in by meta.",
       "category": "meta",
       "tags": [
@@ -197,7 +204,7 @@
         "repo": "Imbad0202/academic-research-skills",
         "sha": "15740c8ef97e1ebe954ad53dd891c82cd23a2edd"
       },
-      "description": "Not mine: Cheng-I Wu's research/writing/peer-review pipelines (4 skills), pinned. Ships a PreToolUse hook and /ars-* commands \u2014 enable per project, never at user scope.",
+      "description": "Not mine: Cheng-I Wu's research/writing/peer-review pipelines (4 skills), pinned. Ships a PreToolUse hook and /ars-* commands — enable per project, never at user scope.",
       "category": "writing",
       "tags": [
         "academic",

@@ -1,6 +1,6 @@
 {
   "name": "biblio",
-  "description": "Bibliography verification, MathSciNet retrieval, and personal bibliography maintenance.",
+  "description": "Bibliography verification, Zotero library maintenance, MathSciNet retrieval, and personal bibliography maintenance.",
   "author": { "name": "Alexander Perepechko" },
-  "keywords": ["bibtex", "biblatex", "references", "citations"]
+  "keywords": ["bibtex", "biblatex", "references", "citations", "zotero"]
 }
