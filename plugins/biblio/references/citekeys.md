@@ -14,18 +14,18 @@ Use author surnames in publication order followed by the last two digits of the 
 
 Capitalize the first letter of each contribution and lowercase the rest. Ignore particles such as `van`, `de`, `von`, and `della`; for example, van Santen contributes `San`.
 
-## Year
+## Year and preprints
 
-- While only an arXiv preprint exists, use the arXiv submission year.
-- Once a journal or proceedings publication has volume and pages, use the publication year and update the key everywhere.
-- Acceptance or online-first publication without volume and pages does not yet change the key year.
+- While only a preprint exists, use the initial preprint submission year and append `-preprint` by default; for example, `Bel26-preprint`.
+- Acceptance or online-first publication without volume and pages still counts as a preprint for citation-key purposes: retain the preprint year and `-preprint`.
+- Once a journal or proceedings publication has volume and pages, use the publication year, remove `-preprint`, and update the key everywhere.
 
-When a year change is required, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions before changing anything.
+When a key change is required, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions before changing anything.
 
 ## Collisions and exceptions
 
-If the computed key is occupied, append the next available lowercase suffix: `Da08`, `Da08a`, `Da08b`. Preserve an existing corpus that already suffixes every member of a collision group; do not rename established keys merely for symmetry.
+If the computed key is occupied, append the next available lowercase suffix before any dash modifier: `Da08`, `Da08a`, `Da08b`; for preprints, `Da08a-preprint`. Preserve an existing corpus that already suffixes every member of a collision group; do not rename established keys merely for symmetry.
 
-A trailing dash modifier such as `-preprint` is an explicit exception. Introduce or change one only at the user's request.
+Other trailing dash modifiers may be introduced only at the user's request.
 
 Do not normalize legacy keys or transliteration choices as a side effect of unrelated work. A deliberate rename requires updating every consumer and the Zotero item together.
