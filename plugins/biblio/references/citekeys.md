@@ -24,7 +24,7 @@ Capitalize the first letter of each contribution and lowercase the rest. Ignore 
 
 A key may carry a trailing `-<modifier>` for a special case. Use `-preprint` by default for a key based on the preprint version; remove it on publication unless the key is deliberately kept pinned to that version. Other modifiers are the user's call; do not invent them.
 
-When a key changes, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions first.
+When a key changes, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions first. When replacing a preprint with the published version, also recheck theorem, proposition, and section numbers recorded in linked notes.
 
 ## Collisions and legacy keys
 
