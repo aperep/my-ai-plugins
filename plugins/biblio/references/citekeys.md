@@ -14,18 +14,20 @@ Use author surnames in publication order followed by the last two digits of the 
 
 Capitalize the first letter of each contribution and lowercase the rest. Ignore particles such as `van`, `de`, `von`, and `della`; for example, van Santen contributes `San`.
 
-## Year and preprints
+## Year
 
-- While only a preprint exists, use the initial preprint submission year and append `-preprint` by default; for example, `Bel26-preprint`.
-- Acceptance or online-first publication without volume and pages still counts as a preprint for citation-key purposes: retain the preprint year and `-preprint`.
-- Once a journal or proceedings publication has volume and pages, use the publication year, remove `-preprint`, and update the key everywhere.
+- While a paper exists only as a preprint, use its initial preprint submission year.
+- Acceptance or online-first publication without volume and pages does not yet count as published; retain the preprint year and `-preprint`.
+- Once a journal or proceedings publication has volume and pages, use the publication year and rename everywhere.
 
-When a key change is required, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions before changing anything.
+## Dash modifiers
 
-## Collisions and exceptions
+A key may carry a trailing `-<modifier>` for a special case. Use `-preprint` by default for a key based on the preprint version; remove it on publication unless the key is deliberately kept pinned to that version. Other modifiers are the user's call; do not invent them.
 
-If the computed key is occupied, append the next available lowercase suffix before any dash modifier: `Da08`, `Da08a`, `Da08b`; for preprints, `Da08a-preprint`. Preserve an existing corpus that already suffixes every member of a collision group; do not rename established keys merely for symmetry.
+When a key changes, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions first.
 
-Other trailing dash modifiers may be introduced only at the user's request.
+## Collisions and legacy keys
 
-Do not normalize legacy keys or transliteration choices as a side effect of unrelated work. A deliberate rename requires updating every consumer and the Zotero item together.
+If the computed key is occupied, append the next available lowercase suffix: `Da08`, `Da08a`, `Da08b`. Preserve an existing corpus that already suffixes every member of a collision group.
+
+Do not normalize legacy keys or transliteration choices as a side effect of unrelated work.
