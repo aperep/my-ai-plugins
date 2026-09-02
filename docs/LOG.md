@@ -1,5 +1,11 @@
 # Change log
 
+## 2026-09-02
+
+- Added the host-neutral `zotero-library` skill for verified, deduplicated, non-destructive Zotero updates and repository synchronization.
+- Centralized the user's citation-key convention in one plugin-level reference and made local-only bibliography records an explicit supported state.
+- Recorded routing and behavioral cases; live Zotero and fresh-context validation remain on the roadmap.
+
 ## 2026-08-26
 
 - Added a bounded meta-plugin `SessionStart` inventory for `docs/**/*.md` paths

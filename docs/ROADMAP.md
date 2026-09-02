@@ -92,6 +92,7 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ## Validation debt
 
+- `zotero-library`: run fresh-context routing, live add/update/dedup checks, and a local Codex install; structural validation only was available when the skill was introduced.
 - `extracting-precise-results`: run behavioral extraction cases against real
   papers, including multiple results and inaccessible full text.
 - `russian-translation`: run and record an independent fresh-context evaluation

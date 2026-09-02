@@ -32,12 +32,13 @@
     {
       "name": "biblio",
       "source": "./plugins/biblio",
-      "description": "Bibliography verification, MathSciNet retrieval, and personal bibliography maintenance.",
+      "description": "Bibliography verification, Zotero library maintenance, MathSciNet retrieval, and personal bibliography maintenance.",
       "category": "writing",
       "tags": [
         "bibtex",
         "references",
-        "citations"
+        "citations",
+        "zotero"
       ]
     },
     {
