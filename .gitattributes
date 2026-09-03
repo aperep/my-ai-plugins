@@ -27,5 +27,5 @@ plugins/math-writing/skills/speech-style-adaptation/references/introductions.md 
 plugins/math-writing/skills/speech-style-adaptation/references/latex.md guard=human-revised reviewed=1ee66dd
 plugins/math-writing/skills/speech-style-adaptation/references/voice.md guard=human-revised reviewed=1ee66dd
 plugins/research/skills/extracting-precise-results/SKILL.md guard=human-revised reviewed=9d7b130
-plugins/math-writing/skills/project-scaffold/SKILL.md guard=human-revised reviewed=d9f00dd
-plugins/math-writing/skills/project-scaffold/references/tex-environment.md guard=human-revised reviewed=d9f00dd
+plugins/math-writing/skills/project-scaffold/SKILL.md guard=human-revised reviewed=dbb0f59
+plugins/math-writing/skills/project-scaffold/references/tex-environment.md guard=human-revised reviewed=dbb0f59
