@@ -76,7 +76,7 @@ Priority: high. Revise before relying on it.
 Done when every applied edit is unambiguous, every judgment call is only
 flagged, and all three promised artifacts compile.
 
-### `latex-project-scaffold`
+### `project-scaffold`
 
 Priority: low. Keep the skill.
 

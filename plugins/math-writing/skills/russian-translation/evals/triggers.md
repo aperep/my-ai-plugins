@@ -16,5 +16,5 @@
 | "Translate this business email into Russian." | ordinary translation |
 | "Check whether the theorem is true." | mathematical review |
 | "Adapt this English paper to Perepechko's English voice." | `speech-style-adaptation` |
-| "Set up Russian theorem environments in a new LaTeX project." | `latex-project-scaffold` |
+| "Set up Russian theorem environments in a new LaTeX project." | `project-scaffold` |
 | "Remove filler from this English mathematical paragraph." | `occam-no-slop` |

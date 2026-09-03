@@ -1,11 +1,12 @@
-
-\newtheorem{theorem}{Теорема}
-\newtheorem{proposition}[theorem]{Предложение}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
 \newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{statement}[theorem]{Утверждение}
 \newtheorem{corollary}[theorem]{Следствие}
 \newtheorem{conjecture}[theorem]{Гипотеза}
+\newtheorem*{conjecture*}{Гипотеза}
 \newtheorem{question}[theorem]{Вопрос}
-\newtheorem{statement}[theorem]{Утверждение}
 \newtheorem{problem}[theorem]{Задача}
 
 \theoremstyle{definition}
@@ -19,5 +20,9 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Замечание}
 \newtheorem{remarks}[theorem]{Замечания}
-
+\newtheorem{claim}[theorem]{Утверждение}
 \newtheorem{sit}[theorem]{}
+
+\newenvironment{claimproof}
+  {\begin{proof}[Доказательство утверждения]\renewcommand{\qedsymbol}{$\blacksquare$}}
+  {\end{proof}}

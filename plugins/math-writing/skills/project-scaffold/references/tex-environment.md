@@ -4,6 +4,9 @@ reviewed: d9f00dd
 
 # TeX environment
 
+The common assets were reconciled with the arXiv source bundles for
+`2607.14055`, `2607.00652`, `2508.07924`, and `2312.08359v4` on 2026-09-03.
+
 The academic-workshop prototype used TinyTeX with these TeX Live packages:
 
 ```text

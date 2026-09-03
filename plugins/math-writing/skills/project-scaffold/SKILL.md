@@ -1,17 +1,19 @@
 ---
-name: latex-project-scaffold
+name: project-scaffold
 description: >
-  Start or refresh a mathematical LaTeX article project using reusable theorem,
-  notation, package, contact, and bibliography-input files. Use when asked to
-  scaffold a LaTeX paper, create a Russian or English theorem setup, or prepare
-  the TeX environment for this template. Not for copyediting an existing paper.
+  Start or refresh a mathematical typesetting project using reusable LaTeX
+  article assets and a reserved Typst layout. Use for article scaffolding,
+  Russian or English theorem setups, or project preambles. Not for copyediting.
 reviewed: d9f00dd
 ---
 
-# LaTeX project scaffold
+# Mathematical project scaffold
 
 Copy only the files the project needs from `assets/latex/`; do not overwrite an
 existing preamble, notation file, or author block without comparing it first.
+
+Wrap prose by sentence: put one sentence on each source line. If a sentence is
+too long, break it at a natural clause boundary; do not hard-wrap by column.
 
 The bundled files are personal starting points, not universal style rules:
 
@@ -22,6 +24,9 @@ The bundled files are personal starting points, not universal style rules:
   Russian theorem families.
 - `common/contacts.tex` contains A. Perepechko's HSE affiliation and must be
   confirmed before reuse.
+
+`assets/typst/` reserves the matching project structure but is not yet a usable
+template.
 
 After copying, adjust relative `\input` paths, language/font setup, title,
 abstract, acknowledgements, and bibliography source. Compile the smallest
