@@ -1,18 +1,29 @@
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{theo}[theorem]{Theorem}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem*{conjecture*}{Conjecture}
-\newtheorem{question}[theorem]{Question}
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{statement}[theorem]{Statement}
 \newtheorem{corollary}[theorem]{Corollary}
-%
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{problem}[theorem]{Problem}
+
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
-%
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{notation}[theorem]{Notation}
+
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{claim}[theorem]{Claim}
 \newtheorem{sit}[theorem]{}
+
+\newenvironment{claimproof}
+  {\begin{proof}[Proof of the claim]\renewcommand{\qedsymbol}{$\blacksquare$}}
+  {\end{proof}}
