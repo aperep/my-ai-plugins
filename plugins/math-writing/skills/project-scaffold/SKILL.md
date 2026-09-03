@@ -15,6 +15,11 @@ existing preamble, notation file, or author block without comparing it first.
 Wrap prose by sentence: put one sentence on each source line. If a sentence is
 too long, break it at a natural clause boundary; do not hard-wrap by column.
 
+When merging preambles, take the union of notation and environment names.
+Keep the existing package baseline enabled; group additions by purpose and
+leave new or mutually exclusive packages commented unless the user asks for
+them.
+
 The bundled files are personal starting points, not universal style rules:
 
 - `main.tex` shows the include structure and AMS article layout.
