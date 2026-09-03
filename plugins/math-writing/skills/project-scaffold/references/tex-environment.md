@@ -4,8 +4,7 @@ reviewed: 5a172f3
 
 # TinyTeX packages
 
-Install packages as the document needs them; this list is a useful starting
-point. `tlmgr` will install their dependencies automatically.
+Install packages as the document needs them; this list is a useful starting point. `tlmgr` will install their dependencies automatically.
 
 ```text
 adjustbox appendix babel-english babel-russian beamer bookmark booktabs caption
