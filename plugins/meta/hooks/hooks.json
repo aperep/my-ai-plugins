@@ -1,5 +1,5 @@
 {
-  "description": "Expose bounded project-doc metadata and harvest reusable marketplace suggestions.",
+  "description": "Guide and inventory project docs, and harvest reusable marketplace suggestions.",
   "hooks": {
     "SessionStart": [
       {
