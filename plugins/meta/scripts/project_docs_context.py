@@ -231,7 +231,11 @@ def choose_parent(relative: str, documents: set[str]) -> str | None:
             return candidates[0]
         if len(candidates) > 1:
             return None
-    return "AGENTS.md" if "AGENTS.md" in documents else None
+    is_index = path.name.lower() in {"agents.md", "readme.md"}
+    is_top_level = path.parent in {Path("."), Path("docs")}
+    if "AGENTS.md" in documents and (is_index or is_top_level):
+        return "AGENTS.md"
+    return None
 
 
 def append_child_link(parent: Path, child: Path) -> None:

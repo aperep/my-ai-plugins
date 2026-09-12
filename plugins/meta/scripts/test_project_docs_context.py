@@ -240,6 +240,15 @@ class RepositoryDocsTreeTests(unittest.TestCase):
         self.assertTrue(migrated.endswith(original))
         self.assertNotIn(b"\n# Project\n", migrated)
 
+    def test_migrate_refuses_ambiguous_nested_document(self):
+        self.write("AGENTS.md", "# Repository guide\n")
+        plan = self.write("docs/plans/change.md", "# Change\n")
+
+        unresolved = docs_context.migrate_docs_tree(self.root)
+
+        self.assertEqual(unresolved, ["docs/plans/change.md"])
+        self.assertNotIn("parent:", plan.read_text())
+
 
 if __name__ == "__main__":
     unittest.main()

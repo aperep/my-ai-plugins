@@ -54,9 +54,9 @@ python3 /path/to/meta/scripts/project_docs_context.py --check
 
 Run `--check` for a read-only report. Run `--migrate` only when edits are
 authorized. Migration adds missing metadata and links using the nearest
-directory `AGENTS.md` or README, falling back to root `AGENTS.md`; it reports
-ambiguous cases instead of guessing. Review placement and parent semantics,
-then rerun `--check`.
+directory `AGENTS.md` or README. Top-level docs and component indexes may fall
+back to root `AGENTS.md`; ambiguous nested documents are reported instead of
+guessed. Review placement and parent semantics, then rerun `--check`.
 
 The checker includes tracked and untracked non-ignored Markdown and excludes
 paths inside `skills/`. It reports missing roots or parents, absent parent
