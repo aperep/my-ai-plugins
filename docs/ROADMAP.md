@@ -92,6 +92,10 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ## Validation debt
 
+- `managing-repository-docs`: teach migration to keep top-level `docs/*.md`
+  as direct children of `AGENTS.md`, route nested documentation through
+  `docs/MAP.md` or a relevant top-level document, and group sibling component
+  readmes under a common directory readme such as `core/mcp/README.md`.
 - `zotero-library`: run fresh-context routing, live add/update/dedup checks, and a local Codex install; structural validation only was available when the skill was introduced.
 - `extracting-precise-results`: run behavioral extraction cases against real
   papers, including multiple results and inaccessible full text.
