@@ -205,6 +205,18 @@
         "research",
         "third-party"
       ]
+    },
+    {
+      "name": "dev",
+      "source": "./plugins/dev",
+      "description": "A restrained development workflow: intake, requirements, implementation, debugging, verification, review, and delivery.",
+      "category": "development",
+      "tags": [
+        "development",
+        "debugging",
+        "testing",
+        "review"
+      ]
     }
   ],
   "renames": {

@@ -1,0 +1,8 @@
+{
+  "name": "dev",
+  "description": "A restrained development workflow for intake, requirements, implementation, debugging, verification, review, and delivery.",
+  "author": {
+    "name": "Alexander Perepechko"
+  },
+  "homepage": "https://github.com/aperep/my-ai-plugins"
+}

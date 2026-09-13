@@ -1,0 +1,9 @@
+This plugin is a modified, curated fork of:
+
+  Jason-chen-coder/dev-skills
+  https://github.com/Jason-chen-coder/dev-skills
+
+The selected upstream skills were distributed under the MIT License reproduced
+in LICENSE. Modifications include a smaller skill set, a new dev-start router,
+shared baseline instructions, removal of unavailable sibling dependencies, and
+repository-native documentation paths.

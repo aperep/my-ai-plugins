@@ -1,0 +1,26 @@
+{
+  "name": "dev",
+  "version": "0.1.0",
+  "description": "A small development workflow: intake, requirements, implementation, debugging, verification, review, and authorized delivery.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "license": "MIT",
+  "keywords": ["development", "debugging", "tdd", "review", "verification", "git"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Dev Skills",
+    "shortDescription": "A restrained development workflow",
+    "longDescription": "A curated fork of Jason-chen-coder/dev-skills with one small intake router, six cohesive workflows, docs-native durable artifacts, and no hooks, bundled scripts, MCP servers, or apps.",
+    "developerName": "Alexander Perepechko",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "Start by determining whether this request needs requirements work, debugging, or implementation.",
+      "Trace and fix this failure, then verify and review it.",
+      "Finish this verified change using only the Git actions I authorize."
+    ]
+  }
+}
