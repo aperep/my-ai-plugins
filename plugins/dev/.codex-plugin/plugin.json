@@ -1,6 +1,6 @@
 {
   "name": "dev",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small development workflow: intake, requirements, implementation, debugging, verification, review, and authorized delivery.",
   "author": {
     "name": "Alexander Perepechko",
@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "Dev Skills",
     "shortDescription": "A restrained development workflow",
-    "longDescription": "A curated fork of Jason-chen-coder/dev-skills with one small intake router, six cohesive workflows, docs-native durable artifacts, and no hooks, bundled scripts, MCP servers, or apps.",
+    "longDescription": "A trimmed fork of Jason-chen-coder/dev-skills with one small intake router, six cohesive workflows, docs-native durable artifacts, and no hooks, scripts, MCP servers, or apps.",
     "developerName": "Alexander Perepechko",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],

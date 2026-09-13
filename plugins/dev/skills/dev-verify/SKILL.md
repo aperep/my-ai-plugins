@@ -7,10 +7,6 @@ description: Verify implemented changes before claiming they are complete, fixed
 
 Make completion claims no broader than the evidence. This workflow verifies behavior and artifacts; it does not authorize commits, publishing, merge, or cleanup.
 
-## Load baseline
-
-Read [the shared development baseline](../../references/dev-baseline.md) before execution.
-
 ## Choose evidence
 
 Identify what the user expects to be true and the smallest sufficient proof. Use project commands and conventions; inspect their actual scope before relying on their names.
@@ -44,9 +40,3 @@ Use the current request and relevant repository specs, plans, ADRs, or fix notes
 For substantial work, map requirements to evidence and list missing coverage. Small changes need only a short verification statement. Report what changed, which checks passed or failed, and material residual limits; do not force a fixed checklist into every response.
 
 Verification does not substitute for independent code review. A `READY` review is not proof that tests ran, and passing tests do not prove every review concern resolved. Use `dev-code-review` when available and required, or perform the equivalent independent review.
-
-## Multi-Agent Profile
-
-Recommended agent_type: worker
-
-When delegation is permitted, give the verifier the current task contract, change scope, and raw artifacts. The verifier evaluates evidence independently and reports claims checked, commands/results, and limitations without changing source or staging files. Follow repository coordination conventions when present.

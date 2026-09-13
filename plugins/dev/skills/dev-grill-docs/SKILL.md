@@ -7,7 +7,7 @@ description: 'Clarify feature requirements, pressure-test scope and domain terms
 
 Turn the user's feature intent into a usable contract. Preserve decisions already made and ask only about gaps that change behavior, scope, acceptance, or substantial cost. This skill does not implement code or replace analysis-only requests with document work.
 
-Read [the shared development baseline](../../references/dev-baseline.md). Project artifacts belong in the user's project, not the skill directory.
+Project artifacts belong in the user's project, not the installed skill directory.
 
 ## Routing and depth
 
@@ -97,7 +97,3 @@ Report the artifact path and status, material decisions, remaining blockers, and
 ## SDD Contract
 
 The downstream anchors are `In scope`, `Out of scope`, `Assumptions`, `Open questions`, and stable `Acceptance criteria`. Existing glossary and ADR decisions also constrain implementation. Report and reconcile material spec drift before delivery instead of treating the artifact as proof that code complies.
-
-## Multi-Agent Note
-
-Main-agent-first: one agent owns user questions and contract writes. When delegation is available and authorized, independent explorers may gather bounded facts or challenge a substantial draft. Avoid duplicate interviews; do not invent independent approval from role labels. Follow repository coordination conventions when present.

@@ -7,10 +7,6 @@ description: Implement scoped behavior changes using meaningful tests before cod
 
 Use tests to establish the behavior being implemented, then make the smallest coherent change. Honor an explicit request for strict TDD; otherwise choose verification proportional to the behavior and risk.
 
-## Load baseline
-
-Read [the shared development baseline](../../references/dev-baseline.md) before execution.
-
 ## Establish the behavior
 
 - Read the affected implementation, nearby tests, and project test commands before choosing a test boundary.
@@ -38,11 +34,3 @@ A second reversal of the fix is optional when the original red result already pr
 ## Completion and handoff
 
 Report the changed behavior, commands and observed results, and material limitations. Map evidence to relevant SDD acceptance criteria when present. Use `dev-verify` if available for completion evidence and `dev-code-review` when review is requested or required; their names do not force a new workflow or extra user turn. Without those skills, perform equivalent scoped checks directly. Commit, PR, and branch operations require the corresponding user authorization.
-
-## Multi-Agent Profile
-
-Recommended agent_type: worker
-
-Delegate only when permitted and a bounded behavior can be implemented independently. Each worker owns explicit files or modules and reports its source requirement, changed files, test evidence, and limitations. Keep concurrent changes and index state intact. A reviewer or verifier evaluates the resulting implementation in a separate pass without inheriting its conclusions as proof.
-
-Follow repository coordination conventions when available; otherwise use the ownership and evidence rules above.

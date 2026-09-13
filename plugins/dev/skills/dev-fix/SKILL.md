@@ -7,10 +7,6 @@ description: Investigate bugs, regressions, failing tests, or broken behavior by
 
 Trace the failure to the state or value that first violates the intended contract. Fix the supported cause, and verify the original symptom rather than treating a plausible patch as proof.
 
-## Load baseline
-
-Read [the shared development baseline](../../references/dev-baseline.md) before execution.
-
 ## Scope and triage
 
 - Distinguish diagnosis-only requests from requests to fix. "Why does this fail?" or "先别动代码" authorizes investigation, not file edits.
@@ -50,11 +46,3 @@ The failure contract is: symptom and expectation, reproduction, causal trace, fi
 For a short fix, report that contract concisely in the answer. Maintain `docs/fixes/<bug-slug>.md` when requested, required by the project, or useful for a substantial investigation's durable handoff. Follow an established project documentation layout when present. Record status accurately, such as `FIXED`, `DIAGNOSED`, `PARTIALLY_VERIFIED`, or `BLOCKED`; include only observed commands/results, and never invent an introduction commit or RCA history.
 
 Search for analogous defects when the root cause plausibly recurs; report out-of-scope findings separately. Finish authorized investigation/fix work without requiring the user to manually invoke another skill. Do explicit design reasoning when needed within scope; use `dev-verify` or equivalent checks before a completion claim. Bug regression work stays here and does not require a second TDD workflow.
-
-## Multi-Agent Profile
-
-Recommended agent_type: worker
-
-When delegation is permitted, assign a bounded failure path or independent hypothesis with explicit read/write ownership. Workers report raw observations, the causal trace, changed files, and verification limits. A separate reviewer/verifier evaluates the resulting fix rather than rubber-stamping the author's diagnosis.
-
-Follow repository coordination conventions when available; otherwise use the ownership and evidence rules above.

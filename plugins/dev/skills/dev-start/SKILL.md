@@ -6,8 +6,7 @@ description: Start an ambiguous development request by inspecting enough evidenc
 # Development Start
 
 Choose the first useful development lane without creating a preliminary artifact
-or turning the choice into a workflow ceremony. Read
-[the shared development baseline](../../references/dev-baseline.md).
+or turning the choice into a workflow ceremony.
 
 ## Establish only what changes the route
 

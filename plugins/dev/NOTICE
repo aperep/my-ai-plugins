@@ -5,5 +5,5 @@ This plugin is a modified, curated fork of:
 
 The selected upstream skills were distributed under the MIT License reproduced
 in LICENSE. Modifications include a smaller skill set, a new dev-start router,
-shared baseline instructions, removal of unavailable sibling dependencies, and
-repository-native documentation paths.
+removal of generic and unavailable supporting material, and repository-native
+documentation paths.

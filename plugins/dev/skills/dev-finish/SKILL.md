@@ -7,10 +7,6 @@ description: Complete an implemented development branch through an authorized lo
 
 Complete the delivery action the user requested, using the actual Git state and evidence. Permission for one action does not imply permission for unrelated publication or cleanup.
 
-## Load baseline
-
-Read [the shared development baseline](../../references/dev-baseline.md) before execution.
-
 ## Preflight
 
 Inspect the repository root, branch or detached HEAD, current commit, working-tree/index status, remotes, upstream, and worktrees as relevant. Preserve unrelated changes and partial staging. Do not stash, reset, or discard user work to obtain a clean tree.
@@ -46,7 +42,3 @@ Clean up only task-owned branches/worktrees covered by authorization, after conf
 ## Completion
 
 Report the result appropriate to the action: commit hash, merge target, PR link, retained path, or exact discarded scope. Include relevant verification and any unfinished step. A tool command being launched or a PR existing is not evidence that merge or CI completed.
-
-## Multi-Agent Note
-
-The main agent controls Git mutations and user-facing delivery. Independent agents may review diffs or verify snapshots when delegation is permitted, but they do not independently push, merge, or delete shared work. Follow repository coordination rules when present.
