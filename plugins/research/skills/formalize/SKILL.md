@@ -9,7 +9,9 @@ description: >
 
 # Formalize a selected claim
 
-Identify the exact claim and assumptions; formalize no wider scope.
+Identify the exact claim and assumptions. For a paper-sized request, map the
+published results and external proof dependencies, then choose a small first
+target with the user. Exclude commented-out source material from that map.
 
 ## Inputs and evidence
 
@@ -29,6 +31,12 @@ Keep generated artifacts outside the source document:
 Prefer the project's Lean toolchain. Use Aristotle only when the user or
 project selects it. Its output remains `generated` until Lean accepts the
 recorded declaration without `sorry` or an equivalent placeholder.
+
+When Aristotle is selected, read [the round-trip workflow](references/aristotle.md).
+It supplies a pinned SDK helper for explicit input snapshots, resumable jobs,
+result retrieval, and local acceptance. A missing API key blocks the live job,
+not local scaffolding or Lean checking. Never infer proof acceptance from a
+successful build alone: check the target's original type and transitive axioms.
 
 ## Result states
 
