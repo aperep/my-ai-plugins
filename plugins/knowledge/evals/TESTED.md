@@ -1,0 +1,50 @@
+---
+parent: plugins/knowledge/README.md
+---
+
+# Validation record
+
+2026-09-18, GPT-6. Baseline agent: `knowledge_baseline`; independent
+skill-enabled agent: `knowledge_forward`. Both used synthetic fixtures and
+proposed actions; neither executed storage mutations.
+
+## Behavioral assessment
+
+Cases A–H from [the case list](triggers.md) were exercised with the four
+knowledge skills and `meta:maintenance`. The enabled pass resolved the two
+baseline gaps: no invented inbox/source path, and no processing during capture.
+It retained the baseline's correct handling of duplicate capture, extraction,
+restricted sharing, failed delivery, source retention, conservative audits,
+audit-only maintenance, and an unrelated formatting request.
+
+The first pass exposed ambiguity around partial captures and the meta warning.
+After clarifying those two instructions, the same independent agent reran A,
+B (including an existing professional excerpt but missing personal excerpts),
+and G. All matched the expected outcomes; no regressions were reported.
+
+Final reviewed skill revision: SHA-256
+`b0518e6f5c78a9c49f43d689f20eede9cb69a6f6136a1cca1de0eb4cff0aa781`.
+Computed from sorted knowledge `skills/*/SKILL.md` followed by meta's
+`skills/maintenance/SKILL.md`, concatenating each repository-relative path,
+a NUL byte, and its file bytes.
+
+Automatic host skill selection is not proven by these explicitly loaded
+scenarios. Real cloud delivery and inbox mutations were not tested.
+
+## Structural and installation checks
+
+- `quick_validate.py`: all four knowledge skills, meta maintenance, and the
+  changed managing-repository-docs skill passed.
+- `validate_plugin.py`: knowledge and meta passed.
+- Parsed all 18 marketplace catalogs and plugin manifests. Both knowledge
+  catalog entries resolve to the same shared plugin.
+- `codex plugin add knowledge@aperep` and `codex plugin add meta@aperep` passed
+  from the local checkout with Codex CLI 0.154.0. Both are enabled. Installed
+  manifests and all ten skill files match the checkout.
+- Documentation-tree checking found no issues in changed documents. Existing
+  issues remain outside scope: marketplace 10, me 60, AGora 234, us 243.
+- `git diff --check` passed for the changed scope.
+
+Claude CLI was unavailable: its JSON was parsed, but Claude host validation
+and installation were not run. Use a new Codex thread to test automatic
+discovery of the installed skills.

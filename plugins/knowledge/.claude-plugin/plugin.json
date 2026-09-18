@@ -1,0 +1,6 @@
+{
+  "name": "knowledge",
+  "description": "Capture, place, process, and maintain knowledge across repositories and services.",
+  "author": { "name": "Alexander Perepechko" },
+  "keywords": ["knowledge", "notes", "inbox", "maintenance"]
+}

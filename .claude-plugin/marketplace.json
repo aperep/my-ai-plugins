@@ -217,6 +217,13 @@
         "testing",
         "review"
       ]
+    },
+    {
+      "name": "knowledge",
+      "source": "./plugins/knowledge",
+      "description": "Capture, place, process, and maintain knowledge across storages.",
+      "category": "writing",
+      "tags": ["knowledge", "notes", "inbox", "maintenance"]
     }
   ],
   "renames": {

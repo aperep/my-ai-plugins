@@ -1,7 +1,7 @@
 {
   "name": "meta",
-  "version": "0.3.1",
-  "description": "Project-doc inventories, auto-evolution, quality gates, and marketplace maintenance guidance.",
+  "version": "0.4.0",
+  "description": "Project documentation, repository maintenance, skill quality, and marketplace editing.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
@@ -11,17 +11,15 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Meta",
-    "shortDescription": "Structure docs; evolve and test skills",
-    "longDescription": "Codex-first project-doc trees and inventories, suggestion harvesting, quality gates, trust checks, and maintenance guidance, with isolated Claude Code compatibility.",
+    "shortDescription": "Structure docs, run maintenance, and test skills",
+    "longDescription": "Project-doc trees, repository maintenance, suggestion harvesting, quality gates, trust checks, and marketplace editing, with isolated Claude Code compatibility.",
     "developerName": "Alexander Perepechko",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],
     "defaultPrompt": [
-      "Evaluate whether this skill earns its place.",
-      "Harvest this suggestion into a reviewable plugin draft.",
-      "Help me safely adopt this third-party skill.",
-      "Update a plugin in this marketplace.",
-      "Check or migrate this repository's documentation tree."
+      "Check or migrate this repository's documentation tree.",
+      "Run this repository's documented maintenance checks.",
+      "Evaluate and update a skill in this marketplace."
     ]
   }
 }

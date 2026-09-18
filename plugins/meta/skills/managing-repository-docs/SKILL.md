@@ -29,6 +29,9 @@ invariant.
 - Put component-specific knowledge in that component's directory. Keep
   repository-wide plans, decisions, bugs, and maps under `docs/`.
 - Reference existing material instead of repeating it.
+- Content folders explain their purpose and lifecycle in a README. Put
+  agent-specific refinements in `AGENTS.md`, linking to that contract rather
+  than repeating it. Storage-specific knowledge rules belong to `knowledge`.
 
 Before adding a substantial section, ask whether it has its own lifecycle,
 audience, or topic. If so, create a child document and leave a short summary

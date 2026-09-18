@@ -1,3 +1,7 @@
+---
+parent: AGENTS.md
+---
+
 # aperep skill marketplace
 
 Codex-first marketplace with Claude Code compatibility. Each plugin is a
@@ -21,7 +25,7 @@ Install one plugin per skill group. Installation is currently user-level; list a
 repository's expected plugins in its `AGENTS.md`.
 
 All first-party skill groups (`meta`, `dev`, `research`, `math-writing`,
-`biblio`, and `typst`) are available. `obsidian` remains unavailable in Codex
+`biblio`, `typst`, and `knowledge`) are available. `obsidian` remains unavailable in Codex
 because it depends on Claude-only third-party plugins. See `docs/DUAL.md`.
 
 For local development, register the checkout instead of the Git source:
@@ -31,6 +35,15 @@ codex plugin marketplace add /path/to/my-ai-plugins
 ```
 
 Do not register both sources under the `aperep` name.
+
+## Knowledge and maintenance
+
+[Knowledge](plugins/knowledge/README.md) handles capture, canonical homes,
+inbox processing, boundary crossing, and audits across storages.
+[Meta maintenance](plugins/meta/skills/maintenance/SKILL.md) follows the
+current repository's maintenance instructions and delegates domain checks.
+The existing `obsidian` wrapper remains for Claude compatibility; `knowledge`
+does not depend on it.
 
 ## Claude Code compatibility
 
