@@ -41,6 +41,10 @@ scenarios. Real cloud delivery and inbox mutations were not tested.
 - `codex plugin add knowledge@aperep` and `codex plugin add meta@aperep` passed
   from the local checkout with Codex CLI 0.154.0. Both are enabled. Installed
   manifests and all ten skill files match the checkout.
+- The portable Agent Plugin manifest parsed successfully. Nanobot v0.3.5
+  discovered and enabled all four skills from a read-only package mount;
+  Hermes v2026.9.11 listed the same four as enabled local skills from a
+  read-only `skills.external_dirs` mount.
 - Documentation-tree checking found no issues in changed documents. Existing
   issues remain outside scope: marketplace 10, me 60, AGora 234, us 243.
 - `git diff --check` passed for the changed scope.

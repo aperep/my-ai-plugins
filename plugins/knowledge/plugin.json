@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "knowledge",
+  "version": "0.1.1",
+  "description": "Capture, place, process, and maintain knowledge across repositories and services.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "keywords": ["knowledge", "notes", "inbox", "maintenance"]
+}

@@ -16,6 +16,10 @@ Use with `meta` for documentation conventions and repository maintenance.
 Without it, warn once and use the available local instructions.
 No Obsidian dependency, storage connector, or background scheduler is bundled.
 
+The root `plugin.json` packages these skills as a portable Agent Plugin.
+Codex and Claude keep using their client-specific manifests; all three formats
+share the same `skills/` directory.
+
 A consumer links its storage map from `AGENTS.md`. Each entry needs only
 purpose, inbox (what and how), and relationships. Resolve maintenance and
 lifecycle instructions inside the relevant repository. Local work needs a
