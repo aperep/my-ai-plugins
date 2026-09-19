@@ -92,7 +92,7 @@ def is_skill_markdown(relative: Path) -> bool:
 
 
 def repository_docs(root: Path) -> list[Path]:
-    """List repository-owned Markdown, including untracked non-ignored files."""
+    """List Markdown explicitly participating in the AGENTS.md document map."""
     try:
         result = subprocess.run(
             [
@@ -123,7 +123,8 @@ def repository_docs(root: Path) -> list[Path]:
             path.resolve().relative_to(root)
         except ValueError:
             continue
-        files.append(path)
+        if relative.as_posix() == "AGENTS.md" or frontmatter(path).get("parent"):
+            files.append(path)
     return sorted(
         files,
         key=lambda path: path.relative_to(root).as_posix(),
@@ -189,105 +190,6 @@ def check_docs_tree(root: Path) -> list[str]:
     return sorted(set(issues))
 
 
-def read_preserving_newlines(path: Path) -> str:
-    with path.open(encoding="utf-8", errors="replace", newline="") as source:
-        return source.read()
-
-
-def write_preserving_newlines(path: Path, content: str) -> None:
-    with path.open("w", encoding="utf-8", newline="") as destination:
-        destination.write(content)
-
-
-def set_parent(path: Path, parent: str) -> None:
-    """Add parent metadata while preserving existing content."""
-    content = read_preserving_newlines(path)
-    opening = "---\r\n" if content.startswith("---\r\n") else "---\n"
-    if content.startswith(opening):
-        end = content.find("\n---", len(opening))
-        if end != -1:
-            content = opening + f"parent: {parent}\n" + content[len(opening) :]
-        else:
-            content = f"---\nparent: {parent}\n---\n" + content
-    else:
-        content = f"---\nparent: {parent}\n---\n" + content
-    write_preserving_newlines(path, content)
-
-
-def choose_parent(relative: str, documents: set[str]) -> str | None:
-    """Choose the nearest directory index, then the root AGENTS.md."""
-    path = Path(relative)
-    for directory in (path.parent, *path.parent.parents):
-        if directory == Path("."):
-            break
-        candidates = [
-            candidate
-            for candidate in documents
-            if Path(candidate).parent == directory
-            and Path(candidate).name.lower() in {"agents.md", "readme.md"}
-            and candidate != relative
-        ]
-        if len(candidates) == 1:
-            return candidates[0]
-        if len(candidates) > 1:
-            return None
-    is_index = path.name.lower() in {"agents.md", "readme.md"}
-    is_top_level = path.parent in {Path("."), Path("docs")}
-    if "AGENTS.md" in documents and (is_index or is_top_level):
-        return "AGENTS.md"
-    return None
-
-
-def append_child_link(parent: Path, child: Path) -> None:
-    """Append a short child reference if the parent does not already link it."""
-    root = project_root(parent)
-    child_relative = child.relative_to(root).as_posix()
-    if child_relative in markdown_links(parent, root):
-        return
-    target = os.path.relpath(child, parent.parent).replace(os.sep, "/")
-    content = read_preserving_newlines(parent)
-    if re.search(r"(?:^|\n)## Documentation\r?\n", content):
-        separator = "" if content.endswith("\n") else "\n"
-        addition = f"{separator}- [{child.stem}]({target})\n"
-    else:
-        if content.endswith("\n\n"):
-            separator = ""
-        elif content.endswith("\n"):
-            separator = "\n"
-        else:
-            separator = "\n\n"
-        addition = f"{separator}## Documentation\n\n- [{child.stem}]({target})\n"
-    write_preserving_newlines(parent, content + addition)
-
-
-def migrate_docs_tree(root: Path) -> list[str]:
-    """Build a conservative parent tree, returning ambiguous documents."""
-    root = root.resolve()
-    paths = repository_docs(root)
-    documents = {path.relative_to(root).as_posix() for path in paths}
-    unresolved = []
-    assignments = {}
-    for path in paths:
-        relative = path.relative_to(root).as_posix()
-        if relative == "AGENTS.md":
-            continue
-        parent = frontmatter(path).get("parent")
-        if parent:
-            assignments[relative] = parent
-            continue
-        parent = choose_parent(relative, documents)
-        if parent is None:
-            unresolved.append(relative)
-            continue
-        set_parent(path, parent)
-        assignments[relative] = parent
-    for child, parent in assignments.items():
-        parent_path = root / parent
-        if parent_path.is_file():
-            append_child_link(parent_path, root / child)
-    return unresolved
-
-
 def docs_metadata(cwd: Path) -> dict[str, object] | None:
     """Collect path and safe frontmatter metadata for one repository."""
     root = project_root(cwd)
@@ -295,7 +197,7 @@ def docs_metadata(cwd: Path) -> dict[str, object] | None:
     if not docs.is_dir() or docs.is_symlink():
         return None
 
-    files = markdown_files(docs)
+    files = [path for path in markdown_files(docs) if frontmatter(path).get("parent")]
     if not files:
         return None
 
@@ -314,17 +216,16 @@ def docs_metadata(cwd: Path) -> dict[str, object] | None:
 def additional_context(cwd: Path) -> str | None:
     """Render bounded metadata as explicitly untrusted repository data."""
     guidance = (
-        "Meta repository-doc convention: AGENTS.md is the root of a parent tree. "
-        "Every other repository-owned agent-facing Markdown file has a repository-relative "
-        "parent field in leading YAML frontmatter, and that parent makes the child "
-        "observable with a direct Markdown link. "
+        "Meta doc-map convention: AGENTS.md is the root of a parent tree. "
+        "Agent-facing repository documents opt in with a repository-relative parent "
+        "field in leading YAML frontmatter; other Markdown is repository content. "
+        "The named parent makes each mapped child observable with a direct Markdown link. "
         "Keep component documentation in its component directory. Before substantially "
         "expanding a section, consider extracting it into a linked child document. "
         "Put repository changes proposed during other work in docs/INBOX.md when it "
         "exists; docs/MAINTENANCE.md processes that inbox and routine work, while "
         "docs/ROADMAP.md holds durable repository-wide plans. "
-        "Use this plugin's project_docs_context.py --check or --migrate for verification "
-        "or conservative migration.\n"
+        "Use this plugin's project_docs_context.py --check to verify the declared map.\n"
     )
     metadata = docs_metadata(cwd)
     if metadata is None:
@@ -358,11 +259,15 @@ def hook_output(cwd: Path) -> dict[str, object] | None:
 
 
 def main() -> None:
-    if "--check" in sys.argv or "--migrate" in sys.argv:
+    if "--migrate" in sys.argv:
+        print(
+            "--migrate was removed: classify agent-facing documents explicitly, "
+            "add parent metadata and links, then run --check",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    if "--check" in sys.argv:
         root = project_root(Path.cwd())
-        if "--migrate" in sys.argv:
-            for path in migrate_docs_tree(root):
-                print(f"{path}: ambiguous parent", file=sys.stderr)
         issues = check_docs_tree(root)
         for issue in issues:
             print(issue)

@@ -34,7 +34,7 @@ scenarios. Real cloud delivery and inbox mutations were not tested.
 ## Structural and installation checks
 
 - `quick_validate.py`: all four knowledge skills, meta maintenance, and the
-  changed managing-repository-docs skill passed.
+  then-named `managing-repository-docs` skill (now `doc-map`) passed.
 - `validate_plugin.py`: knowledge and meta passed.
 - Parsed all 18 marketplace catalogs and plugin manifests. Both knowledge
   catalog entries resolve to the same shared plugin.

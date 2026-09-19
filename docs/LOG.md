@@ -6,6 +6,11 @@ parent: docs/ROADMAP.md
 
 ## 2026-09-19
 
+- Renamed `managing-repository-docs` to `doc-map`. The map now explicitly
+  includes only agent-facing operational documents; Markdown templates,
+  fixtures, eval artifacts, and domain references remain repository content.
+  Removed automatic migration because paths and syntax cannot determine that
+  distinction safely.
 - Removed Claude Code packaging and configuration, added Agent Plugins 1.0
   manifests to every plugin, and synchronized portable and Codex versions.
 - Documented every plugin in the repository README. Made `knowledge` the

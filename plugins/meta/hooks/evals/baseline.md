@@ -18,3 +18,11 @@ With `meta` 0.2.2, `project_docs_context.py --check` ignores the flag, exits
 successfully, and emits SessionStart JSON even when repository documents have
 no parent metadata or parent links. There is no migration workflow, so an agent
 must rediscover the desired structure and repair it by hand.
+
+# Repository content classification baseline
+
+With `meta` 0.4.4, the checker treats every tracked Markdown file outside a
+`skills/` directory as repository documentation. Templates, migration records,
+shared domain references, and hook eval baselines therefore receive false
+"missing parent metadata" failures, even though they are repository content
+rather than guidance agents should navigate from `AGENTS.md`.

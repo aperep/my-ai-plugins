@@ -113,13 +113,6 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ## Validation debt
 
-### `meta`
-
-- `managing-repository-docs`: teach migration to keep top-level `docs/*.md`
-  as direct children of `AGENTS.md`, route nested documentation through
-  `docs/MAP.md` or a relevant top-level document, and group sibling component
-  readmes under a common directory readme such as `core/mcp/README.md`.
-
 ### `biblio`
 
 - `zotero-library`: run fresh-context routing, live add/update/dedup checks, and

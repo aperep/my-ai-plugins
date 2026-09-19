@@ -50,7 +50,7 @@ class ProjectDocsContextTests(unittest.TestCase):
             "---\n"
             "# Roadmap\n",
         )
-        self.write_doc("notes/LOG.md", "# Log\n")
+        self.write_doc("notes/fixture.md", "# Markdown content\n")
         nested = self.root / "src" / "package"
         nested.mkdir(parents=True)
 
@@ -69,14 +69,16 @@ class ProjectDocsContextTests(unittest.TestCase):
                     "status": "active",
                     "parent": "AGENTS.md",
                 },
-                {"path": "docs/notes/LOG.md"},
             ],
         )
         self.assertNotIn("ignore the user", context)
 
     def test_output_is_bounded(self):
         for number in range(docs_context.MAX_DOCUMENTS + 3):
-            self.write_doc(f"{number:03}.md", "---\nsummary: " + "x" * 500 + "\n---\n")
+            self.write_doc(
+                f"{number:03}.md",
+                "---\nparent: AGENTS.md\nsummary: " + "x" * 500 + "\n---\n",
+            )
 
         context = docs_context.additional_context(self.root)
         payload = json.loads(context.rsplit("\n", 1)[1])
@@ -91,17 +93,20 @@ class ProjectDocsContextTests(unittest.TestCase):
         )
 
     def test_symlinked_doc_is_ignored(self):
-        self.write_doc("REAL.md", "# Real\n")
+        self.write_doc("REAL.md", "---\nparent: AGENTS.md\n---\n# Real\n")
         outside = self.root / "outside.md"
         outside.write_text("---\nstatus: injected\n---\n", encoding="utf-8")
         (self.root / "docs" / "LINK.md").symlink_to(outside)
 
         metadata = docs_context.docs_metadata(self.root)
 
-        self.assertEqual(metadata["documents"], [{"path": "docs/REAL.md"}])
+        self.assertEqual(
+            metadata["documents"],
+            [{"path": "docs/REAL.md", "parent": "AGENTS.md"}],
+        )
 
     def test_command_uses_hook_cwd_and_emits_session_start_json(self):
-        self.write_doc("BUGS.md", "# Bugs\n")
+        self.write_doc("BUGS.md", "---\nparent: AGENTS.md\n---\n# Bugs\n")
         nested = self.root / "src"
         nested.mkdir()
         hook_input = json.dumps({"cwd": str(nested), "source": "startup"})
@@ -134,17 +139,6 @@ class RepositoryDocsTreeTests(unittest.TestCase):
         path.write_text(content, encoding="utf-8")
         subprocess.run(["git", "-C", str(self.root), "add", relative], check=True)
         return path
-
-    def test_check_reports_missing_parent_and_reference(self):
-        self.write("AGENTS.md", "# Repository guide\n")
-        self.write("docs/ROADMAP.md", "# Roadmap\n")
-
-        issues = docs_context.check_docs_tree(self.root)
-
-        self.assertEqual(
-            issues,
-            ["docs/ROADMAP.md: missing parent metadata"],
-        )
 
     def test_check_rejects_parent_on_root(self):
         self.write("AGENTS.md", "---\nparent: README.md\n---\n# Guide\n")
@@ -197,6 +191,17 @@ class RepositoryDocsTreeTests(unittest.TestCase):
             ["AGENTS.md"],
         )
 
+    def test_unmapped_markdown_is_repository_content(self):
+        self.write("AGENTS.md", "# Repository guide\n")
+        self.write("docs/template.md", "# Template\n")
+        self.write("fixtures/baseline.md", "# Baseline\n")
+
+        self.assertEqual(
+            [path.relative_to(self.root).as_posix() for path in docs_context.repository_docs(self.root)],
+            ["AGENTS.md"],
+        )
+        self.assertEqual(docs_context.check_docs_tree(self.root), [])
+
     def test_repository_doc_symlink_is_ignored(self):
         self.write("AGENTS.md", "# Repository guide\n")
         outside = self.root.parent / f"{self.root.name}-outside.md"
@@ -214,46 +219,16 @@ class RepositoryDocsTreeTests(unittest.TestCase):
             ["AGENTS.md"],
         )
 
-    def test_migrate_builds_tree_from_nearest_readme(self):
-        self.write("AGENTS.md", "# Repository guide\n")
-        self.write("README.md", "# Project\n")
-        self.write("services/agents/readme.md", "# Agents\n")
-        self.write("services/agents/PRINCIPLES.md", "# Principles\n")
-
-        unresolved = docs_context.migrate_docs_tree(self.root)
-
-        self.assertEqual(unresolved, [])
-        self.assertEqual(docs_context.check_docs_tree(self.root), [])
-        self.assertIn("parent: AGENTS.md", (self.root / "README.md").read_text())
-        self.assertIn(
-            "parent: services/agents/readme.md",
-            (self.root / "services/agents/PRINCIPLES.md").read_text(),
+    def test_migrate_flag_explains_manual_classification(self):
+        result = subprocess.run(
+            [sys.executable, str(SCRIPT), "--migrate"],
+            cwd=self.root,
+            text=True,
+            capture_output=True,
         )
-        root_index = (self.root / "AGENTS.md").read_text()
-        self.assertEqual(root_index.count("## Documentation"), 1)
-        self.assertEqual(root_index.count("\n\n- ["), 1)
 
-    def test_migrate_preserves_crlf_content(self):
-        self.write("AGENTS.md", "# Repository guide\n")
-        readme = self.root / "README.md"
-        original = b"# Project\r\nexisting trailing space \r\n"
-        readme.write_bytes(original)
-        subprocess.run(["git", "-C", str(self.root), "add", "README.md"], check=True)
-
-        docs_context.migrate_docs_tree(self.root)
-
-        migrated = readme.read_bytes()
-        self.assertTrue(migrated.endswith(original))
-        self.assertNotIn(b"\n# Project\n", migrated)
-
-    def test_migrate_refuses_ambiguous_nested_document(self):
-        self.write("AGENTS.md", "# Repository guide\n")
-        plan = self.write("docs/plans/change.md", "# Change\n")
-
-        unresolved = docs_context.migrate_docs_tree(self.root)
-
-        self.assertEqual(unresolved, ["docs/plans/change.md"])
-        self.assertNotIn("parent:", plan.read_text())
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("classify agent-facing documents explicitly", result.stderr)
 
 
 if __name__ == "__main__":

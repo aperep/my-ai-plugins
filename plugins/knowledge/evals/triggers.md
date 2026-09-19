@@ -24,7 +24,7 @@ in its inbox and uses `#in-progress`.
 | H | Reformat a Markdown table. | None of these skills should load. |
 
 Additional routing boundaries: a repository doc-tree check belongs to
-`meta:managing-repository-docs`; a routine rename inside one vault does not need
+`meta:doc-map`; a routine rename inside one vault does not need
 `cross-boundary`. Zotero library edits stay with `biblio:zotero-library`.
 
 Use fresh context, the fixture and requests, and skill instructions. Do not give
