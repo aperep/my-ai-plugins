@@ -1,4 +1,13 @@
+---
+parent: docs/ROADMAP.md
+---
+
 # Change log
+
+## 2026-09-19
+
+- Added a repository inbox and maintenance policy, exposed their roles through
+  the meta plugin, and made the roadmap repository-wide.
 
 ## 2026-09-02
 

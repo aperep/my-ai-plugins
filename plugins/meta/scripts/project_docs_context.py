@@ -320,6 +320,9 @@ def additional_context(cwd: Path) -> str | None:
         "observable with a direct Markdown link. "
         "Keep component documentation in its component directory. Before substantially "
         "expanding a section, consider extracting it into a linked child document. "
+        "Put repository changes proposed during other work in docs/INBOX.md when it "
+        "exists; docs/MAINTENANCE.md processes that inbox and routine work, while "
+        "docs/ROADMAP.md holds durable repository-wide plans. "
         "Use this plugin's project_docs_context.py --check or --migrate for verification "
         "or conservative migration.\n"
     )

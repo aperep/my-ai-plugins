@@ -1,7 +1,13 @@
-# Research and math-writing skill roadmap
+---
+parent: AGENTS.md
+---
 
-This is the only active roadmap. Move completed or rejected work to
-[`LOG.md`](LOG.md) with the decision and reason.
+# Repository roadmap
+
+This is the only active roadmap. Move completed or rejected work to the
+[change log](LOG.md) with the decision and reason.
+
+## Shared plugin rules
 
 For every skill change:
 
@@ -13,7 +19,9 @@ For every skill change:
 4. Keep shared skills host-neutral. Put Claude-only instructions in the meta
    compatibility reference and provide fallbacks for optional dependencies.
 
-## Research architecture
+## `research`
+
+### Architecture
 
 The sentence-level research workflow has three stable skill names:
 
@@ -30,9 +38,9 @@ The sentence-level research workflow has three stable skill names:
 claim formal verification. `formalize` may use Aristotle when that service is
 available; the skill must still work with a local Lean toolchain alone.
 
-## Active work
+### Active work
 
-### `interlinear`
+#### `interlinear`
 
 Priority: medium. The shared schema, parsers, safe candidate fields, tag-scoped
 context, both adapters, and the section-3 LaTeX presentation fixture exist.
@@ -43,7 +51,7 @@ context, both adapters, and the section-3 LaTeX presentation fixture exist.
 Done when both adapters consume the same fixture, helper tests pass, and the
 documented Typst modes compile.
 
-### `reason`
+#### `reason`
 
 Priority: medium. Routing and the section-3 context behavior pass. Test a full
 proof with a real gap, a valid repair, and a concrete example track.
@@ -51,7 +59,7 @@ proof with a real gap, a valid repair, and a concrete example track.
 Done when a full-proof case reports the real gap without strengthening the
 claim and completes its example track.
 
-### `formalize`
+#### `formalize`
 
 Priority: high. Routing and generated-versus-checked behavior pass. Test a
 small local Lean declaration and an Aristotle round trip when those tools are
@@ -59,6 +67,8 @@ available.
 
 Done when a local Lean fixture compiles, an Aristotle result is checked, and
 ordinary proof discussion still routes elsewhere.
+
+## `math-writing`
 
 ### `proofreading-pass`
 
@@ -92,13 +102,26 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ## Validation debt
 
+### `meta`
+
 - `managing-repository-docs`: teach migration to keep top-level `docs/*.md`
   as direct children of `AGENTS.md`, route nested documentation through
   `docs/MAP.md` or a relevant top-level document, and group sibling component
   readmes under a common directory readme such as `core/mcp/README.md`.
-- `zotero-library`: run fresh-context routing, live add/update/dedup checks, and a local Codex install; structural validation only was available when the skill was introduced.
+
+### `biblio`
+
+- `zotero-library`: run fresh-context routing, live add/update/dedup checks, and
+  a local Codex install; structural validation only was available when the
+  skill was introduced.
+
+### `research`
+
 - `extracting-precise-results`: run behavioral extraction cases against real
   papers, including multiple results and inaccessible full text.
+
+### `math-writing`
+
 - `russian-translation`: run and record an independent fresh-context evaluation
   of the reviewed revision.
 - `speech-style-adaptation`: repeat fresh-context routing and behavior checks

@@ -6,16 +6,15 @@ description: Run a repository's documented maintenance session and delegate its 
 # Repository maintenance
 
 Read the maintenance document linked from the repository's instructions;
-otherwise look for `MAINTENANCE.md` or `Maintenance.md` locally. Follow its
-scope, lifecycle links, thresholds, and requested mode. If missing, report
-that gap and propose a small local checklist based on repository evidence.
+otherwise look for `docs/MAINTENANCE.md`, then a legacy root `MAINTENANCE.md`.
+Follow its scope, routine checklist, and requested mode. If missing, report the
+gap and propose a small checklist based on repository evidence.
 
-Use `knowledge:audit-knowledge` for knowledge checks when available.
-Invoke `knowledge:process-inbox` only when processing is part of the requested
-session; an audit alone does not authorize it. Use other domain skills only
-for checks the local checklist calls for. If one is unavailable, report the
-limit and perform only supported checks.
+Process `docs/INBOX.md` when the maintenance document calls for it. Apply small,
+unambiguous items within the requested scope, move deferred work to the
+repository-wide `docs/ROADMAP.md`, and remove rejected items. Use domain skills
+only for checks the local checklist calls for.
 
-Default to findings and proposed diffs, not automatic cleanup. Report what
-was checked and what remains unresolved. Recurring execution needs a separate
-scheduled invocation; this skill does not create one.
+Report what was done, what remains unresolved, and any unavailable checks.
+Recurring execution needs a separate scheduled invocation; this skill does
+not create one.

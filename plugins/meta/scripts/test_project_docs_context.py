@@ -31,6 +31,12 @@ class ProjectDocsContextTests(unittest.TestCase):
 
         context = output["hookSpecificOutput"]["additionalContext"]
         self.assertIn("AGENTS.md is the root", context)
+        self.assertIn(
+            "Put repository changes proposed during other work in docs/INBOX.md",
+            context,
+        )
+        self.assertIn("docs/MAINTENANCE.md", context)
+        self.assertIn("docs/ROADMAP.md", context)
         self.assertNotIn('"documents"', context)
 
     def test_nested_cwd_gets_paths_and_allowlisted_frontmatter(self):
