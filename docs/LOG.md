@@ -6,6 +6,8 @@ parent: docs/ROADMAP.md
 
 ## 2026-09-19
 
+- Removed the unused `human-only` guard and its write-blocking hooks; retained
+  `human-revised` review tracking through repository maintenance.
 - Renamed `managing-repository-docs` to `doc-map`. The map now explicitly
   includes only agent-facing operational documents; Markdown templates,
   fixtures, eval artifacts, and domain references remain repository content.

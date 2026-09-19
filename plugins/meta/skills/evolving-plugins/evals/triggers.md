@@ -5,6 +5,8 @@
 - "harvest that suggestion and draft a plugin improvement"
 - "this workaround should become marketplace guidance"
 - "remember this validated lesson in the relevant skill"
+- "remember this lesson in a human-revised skill" — edit without changing its
+  review stamp
 
 ## Must not load
 

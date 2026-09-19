@@ -1,11 +1,10 @@
-# Guards. One line per guarded path, added only when the user asks for it.
+# Review guards. One line per path, added only when the user asks for it.
 # See AGENTS.md for the repository policy.
 #
-#   <path>  guard=human-only                      the agent never edits it
 #   <path>  guard=human-revised reviewed=<sha>    the commit the user read through
 #
-# No wildcards. A guard names one file the user has decided to own or to check;
-# a pattern claims files nobody has looked at yet. Guards apply to
+# No wildcards. A guard names one file the user has decided to check; a pattern
+# claims files nobody has looked at yet. Guards apply to
 # prompt-content — skills, docs, prose that steers a later session without being
 # read — not to code, which is reviewed in the diff like any code.
 #
