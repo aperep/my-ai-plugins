@@ -4,14 +4,14 @@ parent: AGENTS.md
 
 # aperep skill marketplace
 
-Codex-first marketplace with Claude Code compatibility. Each plugin is a
-selectable skill group; both hosts share `plugins/<name>/skills/`.
+Codex marketplace whose plugins also implement the portable Agent Plugins 1.0
+format. Both formats discover the same `plugins/<name>/skills/` tree.
 
 ```text
-.agents/plugins/marketplace.json       Codex catalog
-.claude-plugin/marketplace.json        Claude compatibility catalog
-plugins/<name>/.codex-plugin/          Codex manifest
-plugins/<name>/.claude-plugin/         Claude manifest
+.agents/plugins/marketplace.json          Codex catalog
+plugins/<name>/.codex-plugin/plugin.json  Codex manifest
+plugins/<name>/plugin.json                Agent Plugins manifest
+plugins/<name>/skills/                    shared Agent Skills
 ```
 
 ## Codex
@@ -24,9 +24,9 @@ codex plugin add meta@aperep
 Install one plugin per skill group. Installation is currently user-level; list a
 repository's expected plugins in its `AGENTS.md`.
 
-All first-party skill groups (`meta`, `dev`, `research`, `math-writing`,
-`biblio`, `typst`, and `knowledge`) are available. `obsidian` remains unavailable in Codex
-because it depends on Claude-only third-party plugins. See `docs/DUAL.md`.
+All functional plugins are available. `obsidian` is intentionally unavailable:
+it is an empty placeholder while the need for a separate Obsidian-specific
+technical plugin is evaluated.
 
 For local development, register the checkout instead of the Git source:
 
@@ -36,29 +36,66 @@ codex plugin marketplace add /path/to/my-ai-plugins
 
 Do not register both sources under the `aperep` name.
 
-## Knowledge and maintenance
+## Agent Plugins
 
-[Knowledge](plugins/knowledge/README.md) handles capture, canonical homes,
-inbox processing, boundary crossing, and audits across storages.
-[Meta maintenance](plugins/meta/skills/maintenance/SKILL.md) follows the
-current repository's maintenance instructions and delegates domain checks.
-The existing `obsidian` wrapper remains for Claude compatibility; `knowledge`
-does not depend on it.
+Every plugin directory has a root `plugin.json` targeting Agent Plugins 1.0.
+A compatible client can load that directory and discover its immediate
+`skills/*/SKILL.md` children. The portable specification does not define a
+marketplace or installation command; use the client's package-loading flow.
 
-## Claude Code compatibility
+See [packaging compatibility](docs/DUAL.md) and
+[consumer setup](docs/consumer-snippets.md).
 
-```sh
-claude plugin marketplace add aperep/my-ai-plugins
-claude plugin install meta@aperep
-```
+## Plugins
 
-See `docs/consumer-snippets.md` for project scope and `docs/cloud-setup.md` for
-Claude Code on the web.
+### `meta`
+
+Repository documentation trees, maintenance, skill quality, marketplace
+editing, trust review, and guarded plugin evolution.
+
+### `dev`
+
+A restrained development workflow covering intake, requirements, debugging,
+test-driven implementation, verification, review, and authorized delivery.
+
+### `research`
+
+Precise result extraction, contextual mathematical reasoning, interlinear
+review, and opt-in Lean formalization.
+
+### `math-writing`
+
+LaTeX project scaffolding, proofreading, plain English, style cleanup,
+authorial voice adaptation, and Russian mathematical translation.
+
+### `biblio`
+
+Bibliography verification, MathSciNet lookup, Zotero maintenance, and personal
+publication records.
+
+### `typst`
+
+Idiomatic Typst authoring, LaTeX migration, academic templates, and migration
+checks.
+
+### `knowledge`
+
+[Knowledge management](plugins/knowledge/README.md): canonical placement,
+capture, inbox processing, cross-storage boundaries, and audits. This plugin
+subsumes general knowledge-management work.
+
+### `obsidian`
+
+Reserved, empty, and unavailable. A separate plugin should exist only if
+concrete Obsidian-specific technical workflows cannot live cleanly in
+`knowledge`; that decision remains open on the roadmap.
 
 ## Validation
 
-1. Parse both catalogs and all manifests as JSON.
-2. Validate every plugin with both hosts.
-3. Install from the local marketplace; catalog validation does not resolve
-   plugin sources.
-4. Bump a Codex manifest version when its content changes.
+1. Parse the Codex catalog and every manifest as JSON.
+2. Validate every root `plugin.json` against the Agent Plugins 1.0 schema and
+   every `SKILL.md` against the Agent Skills specification.
+3. Install a changed plugin from the local Codex marketplace; catalog
+   parsing does not prove that sources resolve.
+4. Keep portable and Codex manifest versions synchronized and bump both when
+   plugin content changes.

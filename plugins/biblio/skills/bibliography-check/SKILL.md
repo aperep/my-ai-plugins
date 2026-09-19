@@ -59,23 +59,25 @@ If the user does not specify, default to `tex/bibliography_resume.tex` (smaller,
 
 The skill works in two modes depending on network access available to the harness.
 
-### Mode A — `WebSearch` (primary, works in sandboxed Claude Code)
+### Mode A — web search (primary in a restricted sandbox)
 
-Direct calls to `api.semanticscholar.org` and `mathnet.ru` are blocked by the default tool sandbox in Claude Code on the web (`Host not in allowlist` from Bash, `403 Forbidden` from `WebFetch`). **`WebSearch` is the working tool.** Use it as follows.
+When direct calls to `api.semanticscholar.org` or `mathnet.ru` are blocked by
+the active sandbox, use the available web-search capability.
 
 For each bibitem, issue **two queries**:
 
-1. **Semantic Scholar / general:** `WebSearch query="<authors> <distinctive title words> <year> doi"` — Google indexes Semantic Scholar; the first hits typically contain canonical metadata.
-2. **MathNet:** `WebSearch query="<author surname> <Russian title or transliteration> mathnet <year>"` — MathNet entries are well-indexed; the result includes a `mathnet.ru/eng/<slug>` or `mathnet.ru/rus/<slug>` URL.
+1. **Semantic Scholar / general:** search for `<authors> <distinctive title words> <year> doi`; indexed results typically expose canonical metadata.
+2. **MathNet:** search for `<author surname> <Russian title or transliteration> mathnet <year>`; results include a `mathnet.ru/eng/<slug>` or `mathnet.ru/rus/<slug>` URL.
 
-If WebSearch returns the canonical record inline (typical for `mathnet.ru/eng/...`), record it directly in the report. Do **not** then attempt `WebFetch` on the same URL — it will 403 in the sandbox.
+If search returns the canonical record inline, record it directly. Do not keep
+opening the same URL after the sandbox has rejected it.
 
 The skill helper script at `scripts/check_bibitems.py` will fall back to printing `MISS` in this environment because direct HTTPS to the APIs is blocked. Use it only for **offline parsing** (`--offline`), which extracts fields from the bibitem block (title, volume, year, issue, pages, DOI, arXiv) without network. The parsed metadata is then handed to `WebSearch`.
 
 ```bash
 # offline parse — produces the input rows for the WebSearch loop
-python3 .claude/skills/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex --offline
-python3 .claude/skills/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex --offline --keys Sh66,Is78,KPZ11
+python3 /absolute/path/to/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex --offline
+python3 /absolute/path/to/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex --offline --keys Sh66,Is78,KPZ11
 ```
 
 ### Mode B — direct API (only when the harness has full network)
@@ -83,8 +85,8 @@ python3 .claude/skills/bibliography-check/scripts/check_bibitems.py tex/bibliogr
 In a non-sandboxed shell, the same script does the lookups itself:
 
 ```bash
-python3 .claude/skills/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex
-python3 .claude/skills/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex --keys Sh66,Is78,KPZ11
+python3 /absolute/path/to/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex
+python3 /absolute/path/to/bibliography-check/scripts/check_bibitems.py tex/bibliography_resume.tex --keys Sh66,Is78,KPZ11
 ```
 
 Emits one block per bibitem to stdout:
@@ -135,10 +137,11 @@ curl -s --data "query=$(printf 'Трёхмерные многообразия Ф
   | grep -oE 'href="/rus/[a-z0-9_]+"' | head -10
 ```
 
-Each `mathnet.ru/rus/<slug>` URL fetches a record page with canonical metadata. Open with WebFetch:
+Each `mathnet.ru/rus/<slug>` URL exposes canonical metadata. Open it with the
+available web-reading capability:
 
 ```text
-WebFetch url=https://www.mathnet.ru/rus/im1822 prompt="Extract authors, title, journal, year, volume, issue, pages, DOI"
+https://www.mathnet.ru/rus/im1822
 ```
 
 ## Output format
@@ -149,15 +152,16 @@ Write the final report as a Markdown table in the assistant message and (if the 
 
 When the user asks to verify the bibliography:
 1. Confirm the target file (default: `tex/bibliography_resume.tex`).
-2. Run `python3 .claude/skills/bibliography-check/scripts/check_bibitems.py <file>` via Bash.
+2. Resolve this skill's installed directory from `SKILL.md`, then run
+   `python3 <skill-directory>/scripts/check_bibitems.py <file>`.
 3. Read the report; for each `MAJOR` discrepancy, surface it to the user with the proposed fix.
-4. Apply edits via the `Edit` tool only after the user confirms.
+4. Apply edits only after the user confirms.
 5. Re-run the script to verify all issues are resolved.
 
 When verifying a single new bibitem mid-edit, pass it as a one-shot via stdin:
 
 ```bash
-echo '\bibitem{Test} ...' | python3 .claude/skills/bibliography-check/scripts/check_bibitems.py -
+echo '\bibitem{Test} ...' | python3 /absolute/path/to/bibliography-check/scripts/check_bibitems.py -
 ```
 
 ## Calibration notes

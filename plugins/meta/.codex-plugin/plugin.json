@@ -1,6 +1,6 @@
 {
   "name": "meta",
-  "version": "0.4.2",
+  "version": "0.4.4",
   "description": "Project documentation, repository maintenance, skill quality, and marketplace editing.",
   "author": {
     "name": "Alexander Perepechko",
@@ -12,7 +12,7 @@
   "interface": {
     "displayName": "Meta",
     "shortDescription": "Structure docs, run maintenance, and test skills",
-    "longDescription": "Project-doc trees, repository maintenance, suggestion harvesting, quality gates, trust checks, and marketplace editing, with isolated Claude Code compatibility.",
+    "longDescription": "Project-doc trees, repository maintenance, suggestion harvesting, quality gates, trust checks, and marketplace editing.",
     "developerName": "Alexander Perepechko",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],

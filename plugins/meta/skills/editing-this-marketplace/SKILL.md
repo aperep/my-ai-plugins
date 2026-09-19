@@ -5,18 +5,18 @@ description: Use when adding, changing, renaming, removing, validating, or local
 
 # Edit this marketplace
 
-Codex owns the primary wrappers:
+Each plugin has Codex and portable wrappers around one skill tree:
 
 ```text
 .agents/plugins/marketplace.json
 plugins/<plugin>/.codex-plugin/plugin.json
+plugins/<plugin>/plugin.json
 plugins/<plugin>/skills/<skill>/SKILL.md
 ```
 
 Shared skills belong only under `skills/`. Adding one needs no catalog edit.
-Adding a plugin needs both a catalog entry and a Codex manifest. Copy an
-existing first-party plugin's shape; keep catalog sources as
-`./plugins/<plugin>`.
+Adding a plugin needs a catalog entry plus both manifests. Copy an existing
+first-party plugin's shape; keep catalog sources as `./plugins/<plugin>`.
 
 Before editing, run `git check-attr guard -- <path>`. Obey the repository's
 `AGENTS.md` guard policy.
@@ -24,9 +24,11 @@ Before editing, run `git check-attr guard -- <path>`. Obey the repository's
 ## Dev loop
 
 1. Make the smallest change.
-2. Bump the version in `.codex-plugin/plugin.json` when plugin content changes.
-3. Parse all changed JSON.
-4. Reinstall it from the local marketplace:
+2. Bump the synchronized version in `.codex-plugin/plugin.json` and root
+   `plugin.json` when plugin content changes.
+3. Parse all changed JSON, validate root `plugin.json` against its declared
+   Agent Plugins schema, and run `skills-ref validate` on each skill.
+4. Reinstall it from the local Codex marketplace:
 
 ```sh
 codex plugin marketplace add /path/to/my-ai-plugins # once
@@ -37,15 +39,19 @@ Start a new thread before judging changed skill routing or text. If an edit is
 missing, first confirm that `codex plugin list` points to this checkout and that
 the manifest version changed.
 
-Before pushing, perform one local install. Parsing the catalog alone does not
-prove that plugin sources resolve.
+Before pushing, perform at least one local install. Install additional changed
+plugins when their Codex-specific shape or source layout differs; parsing the
+catalog alone does not prove that sources resolve.
+
+Agent Plugins 1.0 discovers skills only from immediate children of `skills/`
+and does not define marketplaces or plugin dependencies. Keep portable
+packages self-contained or document them as unavailable.
+
+Agent Skills allow repository-specific data only inside `metadata`. Keep a
+guard mirror at `metadata.reviewed`, never as a custom top-level field.
 
 ## Names
 
 Treat plugin and skill names as stable IDs. Prefer changing display text. For a
 real rename, search the whole repo and update every catalog, manifest,
 cross-reference, and consumer instruction.
-
-Claude Code compatibility is isolated in
-[`../../references/claude-code.md`](../../references/claude-code.md). Read that
-file only when a change affects the Claude wrapper.

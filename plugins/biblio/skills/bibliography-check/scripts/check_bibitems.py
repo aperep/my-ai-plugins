@@ -19,7 +19,7 @@ from html.parser import HTMLParser
 
 SS_BASE = "https://api.semanticscholar.org/graph/v1/paper"
 MATHNET_SEARCH = "https://www.mathnet.ru/php/search.phtml"
-USER_AGENT = "thesis-bibcheck/1.0 (claude-code skill)"
+USER_AGENT = "thesis-bibcheck/1.0 (agent skill)"
 SLEEP_BETWEEN_QUERIES = 1.5  # be polite
 
 

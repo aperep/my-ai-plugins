@@ -9,7 +9,9 @@ Retrieve the MathSciNet review number (MR number) for a paper using the HSE libr
 
 ## Prerequisites
 
-Env vars set in `.claude/settings.json`:
+Provide these environment variables to the active client or shell without
+committing their values:
+
 - `HSE_PROXY` — `http://libtest.hse.ru:3128`
 - `HSE_PROXY_USER` — proxy username
 - `HSE_PROXY_PASS` — proxy password

@@ -6,6 +6,11 @@ parent: docs/ROADMAP.md
 
 ## 2026-09-19
 
+- Removed Claude Code packaging and configuration, added Agent Plugins 1.0
+  manifests to every plugin, and synchronized portable and Codex versions.
+- Documented every plugin in the repository README. Made `knowledge` the
+  canonical knowledge-management plugin and left the need for an
+  Obsidian-specific technical plugin as an explicit roadmap question.
 - Added a repository inbox and maintenance policy, exposed their roles through
   the meta plugin, and made the roadmap repository-wide.
 - Moved content-guard review-drift reminders from session startup into

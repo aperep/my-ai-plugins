@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "biblio",
+  "version": "0.2.2",
+  "description": "Bibliography verification, Zotero library maintenance, MathSciNet retrieval, and personal bibliography maintenance.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "keywords": ["bibtex", "references", "citations", "zotero", "mathscinet", "personal-bibliography"]
+}

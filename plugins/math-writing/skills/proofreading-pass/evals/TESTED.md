@@ -6,5 +6,9 @@ validator ran on an exact temporary copy without the repository-only
 `reviewed:` stamp, which that validator does not accept. The package installed
 locally in Codex as version 0.3.12.
 
+On 2026-09-19, the review mirror moved to the standard
+`metadata.reviewed` field, so portable validators no longer need that
+workaround.
+
 The behavioral cases in `triggers.md` still need a fresh-context test. No model
 behavior is claimed here; the Stasenko pass records the baseline failure.

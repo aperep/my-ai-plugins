@@ -37,7 +37,5 @@ repository with minimal credentials.
 Generated skills are foreign until a person reviews them. Leave them unstamped;
 offer one exact-path guard for important prompt content, but never add or stamp
 one without the user's instruction. Use `skill-quality` to decide whether the
-skill works.
-
-Claude Code source forms and auto-evolution rules are isolated in
-[`../../references/claude-code.md`](../../references/claude-code.md).
+skill works. For Agent Plugins packages, inspect root `plugin.json`, `mcp.json`,
+and every client-extension directory in addition to the shared skill tree.

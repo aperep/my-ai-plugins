@@ -1,5 +1,5 @@
 # Guards. One line per guarded path, added only when the user asks for it.
-# See ~/.claude/CLAUDE.md, and docs/specs/2026-08-02-content-guards.md for why.
+# See AGENTS.md for the repository policy.
 #
 #   <path>  guard=human-only                      the agent never edits it
 #   <path>  guard=human-revised reviewed=<sha>    the commit the user read through
@@ -9,7 +9,8 @@
 # prompt-content — skills, docs, prose that steers a later session without being
 # read — not to code, which is reviewed in the diff like any code.
 #
-# Leave this file unguarded, or the stamp cannot be written.
+# Agent Skills mirror the stamp as `metadata.reviewed`; other Markdown may use
+# top-level `reviewed`. Leave this file unguarded, or the stamp cannot be written.
 #
 plugins/meta/skills/evolving-plugins/SKILL.md guard=human-revised reviewed=f690474
 plugins/math-writing/skills/russian-translation/references/voice.md guard=human-revised reviewed=3356562

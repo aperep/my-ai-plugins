@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "typst",
+  "version": "0.2.1",
+  "description": "Write, migrate, template, and validate idiomatic Typst documents.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "keywords": ["typst", "latex", "typesetting", "migration", "templates"]
+}

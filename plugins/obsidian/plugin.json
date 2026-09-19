@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "obsidian",
+  "version": "0.1.2",
+  "description": "Reserved package for possible Obsidian-specific technical skills.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "keywords": ["obsidian", "notes", "markdown", "vault"]
+}

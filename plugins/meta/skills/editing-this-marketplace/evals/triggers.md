@@ -7,8 +7,8 @@
 - "check this Codex plugin before pushing; there is no validate command"
 - "rename a marketplace plugin"
 - "where does SKILL.md go in this repo?"
-- "does the meta plugin own Claude guard hooks, or are they user-wide?"
-- "the local Claude marketplace still points to the old repository path"
+- "make every plugin compatible with Agent Plugins 1.0"
+- "why does this portable plugin manifest load no skills?"
 
 ## Must not load
 

@@ -4,7 +4,8 @@ description: >
   Start or refresh a mathematical typesetting project using reusable LaTeX
   article assets and a reserved Typst layout. Use for article scaffolding,
   Russian or English theorem setups, or project preambles. Not for copyediting.
-reviewed: ae6e368
+metadata:
+  reviewed: ae6e368
 ---
 
 # Mathematical project scaffold

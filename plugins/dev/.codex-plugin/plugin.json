@@ -1,6 +1,6 @@
 {
   "name": "dev",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A small development workflow: intake, requirements, implementation, debugging, verification, review, and authorized delivery.",
   "author": {
     "name": "Alexander Perepechko",

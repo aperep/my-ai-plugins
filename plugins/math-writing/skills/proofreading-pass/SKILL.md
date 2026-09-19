@@ -8,7 +8,8 @@ description: >
   coauthor's or referee's draft before submission. Not for mathematical
   correctness: statements, proofs and numbering are out of scope except where a
   language fix would silently change the mathematics.
-reviewed: d444bd3
+metadata:
+  reviewed: d444bd3
 ---
 
 # Proofreading pass

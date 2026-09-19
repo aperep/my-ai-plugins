@@ -1,7 +1,7 @@
 {
   "name": "obsidian",
-  "version": "0.1.1",
-  "description": "Compatibility wrapper reserved for the Obsidian skill bundle.",
+  "version": "0.1.2",
+  "description": "Reserved package for possible Obsidian-specific technical skills.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
@@ -10,8 +10,8 @@
   "keywords": ["obsidian", "notes", "markdown", "vault"],
   "interface": {
     "displayName": "Obsidian",
-    "shortDescription": "Reserved wrapper for Obsidian companion skills",
-    "longDescription": "Codex compatibility placeholder for the Claude dependency-only Obsidian bundle; unavailable until its companion skills have Codex wrappers.",
+    "shortDescription": "Reserved Obsidian technical package",
+    "longDescription": "Empty package reserved while concrete Obsidian-specific technical workflows and their ownership are evaluated.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": [],

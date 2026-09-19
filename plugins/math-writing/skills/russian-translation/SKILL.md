@@ -1,7 +1,8 @@
 ---
 name: russian-translation
 description: Translate, draft, or revise Russian mathematical prose in A. Perepechko's authorial voice. Use for articles, thesis chapters, abstracts, theorem prose, and explicit voice adaptation; not for ordinary Russian copyediting or non-mathematical translation.
-reviewed: 116b54e
+metadata:
+  reviewed: 116b54e
 ---
 
 # Russian mathematical prose

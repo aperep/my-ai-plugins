@@ -14,10 +14,21 @@ For every skill change:
 1. Record baseline, trigger, and must-not-trigger cases under the skill's
    `evals/` directory.
 2. Make the smallest change that clears the baseline failure.
-3. Test in fresh context, validate both plugin wrappers, and bump the Codex
-   plugin version.
-4. Keep shared skills host-neutral. Put Claude-only instructions in the meta
-   compatibility reference and provide fallbacks for optional dependencies.
+3. Test in fresh context, validate the portable and Codex manifests, and bump
+   both synchronized plugin versions.
+4. Keep shared skills client-neutral and provide fallbacks for optional
+   dependencies.
+
+## Knowledge and Obsidian
+
+The `knowledge` plugin subsumes general knowledge management: canonical homes,
+capture, inbox processing, boundary crossing, and audits.
+
+Whether a separate `obsidian` technical plugin is needed is not yet known.
+Reason from concrete Obsidian-only workflows, the ownership and update cost of
+any third-party skills, and portable client support. If no repeated gap
+justifies it, remove the reserved empty wrapper rather than duplicating
+`knowledge`.
 
 ## `research`
 

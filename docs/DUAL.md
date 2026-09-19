@@ -1,30 +1,35 @@
-# Codex and Claude Code compatibility
+---
+parent: README.md
+---
 
-Skills have one copy. Host-specific catalogs and manifests wrap it:
+# Codex and Agent Plugins compatibility
+
+Skills have one copy. Codex and the portable format wrap it:
 
 ```text
 .agents/plugins/marketplace.json
-.claude-plugin/marketplace.json
 plugins/<plugin>/
   .codex-plugin/plugin.json
-  .claude-plugin/plugin.json
+  plugin.json
   skills/
 ```
 
-Keep host-specific commands and paths out of shared skills. Prefer capability
-wording such as “run a command” or “search the web,” and resolve bundled files
-relative to `SKILL.md`.
+Keep client-specific commands and cache paths out of shared skills. Prefer
+capability wording such as “run a command” or “search the web,” and resolve
+bundled files relative to `SKILL.md`.
 
 ## Status
 
-| plugin | Codex | Claude Code | blocker |
+| plugin | Codex | Agent Plugins 1.0 | note |
 |---|---|---|---|
-| `meta` | available | available | Claude details isolated in one compatibility reference |
-| `math-writing` | available | available | — |
-| `biblio` | available | available | — |
-| `research` | available | available | — |
-| `typst` | available | available | — |
-| `obsidian` | unavailable | available | Claude-only third-party dependencies |
+| `meta` | available | compatible | — |
+| `math-writing` | available | compatible | — |
+| `biblio` | available | compatible | — |
+| `research` | available | compatible | — |
+| `typst` | available | compatible | — |
+| `dev` | available | compatible | — |
+| `knowledge` | available | compatible | canonical knowledge-management plugin |
+| `obsidian` | unavailable | manifest only | empty pending a justified technical scope |
 
 The previously malformed first-party skill descriptions were normalized during
 the academic-workshop migration.
@@ -36,18 +41,18 @@ The `extracting-precise-results` skill lives in `research`.
 Codex plugin installation is user-level. A consumer repository may record its
 required plugins in `AGENTS.md`; it does not install them automatically.
 
-Claude supports project-scoped enablement and plugin dependencies. Codex
-manifests currently have no matching dependency field, so do not claim that a
-companion skill is installed. Keep dependent plugins unavailable or provide a
-fallback.
+Agent Plugins 1.0 defines a root manifest and fixed discovery locations for
+skills and MCP servers. It defines neither a marketplace nor plugin
+dependencies. Keep dependent plugins unavailable, make them self-contained, or
+provide a fallback.
 
-Claude manifests remain unversioned. Codex manifests use semantic versions and
-must be bumped when shared content or Codex metadata changes.
+Keep the version in root `plugin.json` synchronized with the Codex manifest.
+Bump both when shared content or package metadata changes.
 
-## Before enabling a Codex plugin
+## Before enabling a plugin
 
-1. Make its shared skills host-neutral.
-2. Validate both host wrappers.
-3. Change its catalog policy to `AVAILABLE`.
-4. Bump its Codex version.
-5. Test a local install and start a new session.
+1. Make its shared skills client-neutral.
+2. Validate the portable manifest, every shared skill, and the Codex wrapper.
+3. Change its Codex catalog policy to `AVAILABLE`.
+4. Synchronize and bump both manifest versions.
+5. Test a local Codex install and start a new session.

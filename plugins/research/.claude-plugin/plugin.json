@@ -1,6 +1,0 @@
-{
-  "name": "research",
-  "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
-  "author": { "name": "Alexander Perepechko" },
-  "keywords": ["academic", "research", "mathematics", "interlinear", "reasoning", "lean", "formalization"]
-}

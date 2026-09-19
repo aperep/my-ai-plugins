@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "meta",
+  "version": "0.4.4",
+  "description": "Project documentation, repository maintenance, skill quality, and marketplace editing.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "keywords": ["skills", "plugins", "marketplace", "quality"]
+}

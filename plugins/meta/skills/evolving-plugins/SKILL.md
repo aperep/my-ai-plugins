@@ -1,7 +1,8 @@
 ---
 name: evolving-plugins
 description: Use automatically in the my-ai-plugins marketplace when a task produces a validated, reusable suggestion for improving its plugins; harvest the suggestion and draft the smallest guarded, testable skill change before finishing.
-reviewed: f690474
+metadata:
+  reviewed: f690474
 ---
 
 # Evolve plugins

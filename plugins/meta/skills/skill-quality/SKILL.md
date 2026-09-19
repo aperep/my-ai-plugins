@@ -34,5 +34,4 @@ behavior matters, record the exact model, date, skill revision, and result in
 Use `skill-creator` for a substantial build or rewrite, then apply this gate.
 Use `editing-this-marketplace` for packaging and installation.
 
-Guard and Claude-specific notes are in
-[`../../references/claude-code.md`](../../references/claude-code.md).
+Repository `AGENTS.md` and `.gitattributes` define content-guard policy.

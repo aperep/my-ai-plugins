@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "research",
+  "version": "0.5.1",
+  "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
+  "author": {
+    "name": "Alexander Perepechko",
+    "url": "https://github.com/aperep"
+  },
+  "repository": "https://github.com/aperep/my-ai-plugins",
+  "keywords": ["academic", "research", "mathematics", "interlinear", "reasoning", "lean", "formalization"]
+}

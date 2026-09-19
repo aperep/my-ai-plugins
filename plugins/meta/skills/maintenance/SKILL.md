@@ -17,7 +17,8 @@ only for checks the local checklist calls for.
 
 If `.gitattributes` declares `guard=human-revised`, report paths changed since
 their `reviewed=<sha>` commit, missing or invalid stamps, and disagreement with
-any in-file `reviewed:` mirror. Do not change review stamps.
+any in-file mirror. Agent Skills use `metadata.reviewed`; other Markdown may
+use top-level `reviewed`. Do not change review stamps.
 
 Report what was done, what remains unresolved, and any unavailable checks.
 Recurring execution needs a separate scheduled invocation; this skill does
