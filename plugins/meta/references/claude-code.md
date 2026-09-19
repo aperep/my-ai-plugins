@@ -68,6 +68,6 @@ unstamped until the user confirms them.
 `skillforge` may handle large rewrites and `superpowers:writing-skills` may
 handle authoring. These are Claude routing names, not shared dependencies.
 
-Claude guard hooks are user-scoped in `~/.claude/settings.json`; they are not
-bundled with `meta`. Repository `AGENTS.md` and `.gitattributes` remain
-authoritative here.
+Claude's `human-only` write guard is user-scoped in `~/.claude/settings.json`;
+it is not bundled with `meta`. Repository `AGENTS.md` and `.gitattributes`
+remain authoritative here.

@@ -8,6 +8,8 @@ parent: docs/ROADMAP.md
 
 - Added a repository inbox and maintenance policy, exposed their roles through
   the meta plugin, and made the roadmap repository-wide.
+- Moved content-guard review-drift reminders from session startup into
+  repository maintenance.
 
 ## 2026-09-02
 

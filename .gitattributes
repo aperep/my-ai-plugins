@@ -11,8 +11,6 @@
 #
 # Leave this file unguarded, or the stamp cannot be written.
 #
-# Nothing is guarded yet. The session-start hook lists unguarded skills so they
-# can be picked off one at a time.
 plugins/meta/skills/evolving-plugins/SKILL.md guard=human-revised reviewed=f690474
 plugins/math-writing/skills/russian-translation/references/voice.md guard=human-revised reviewed=3356562
 plugins/math-writing/skills/russian-translation/references/latex.md guard=human-revised reviewed=3356562
