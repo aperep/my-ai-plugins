@@ -33,4 +33,4 @@ A second reversal of the fix is optional when the original red result already pr
 
 ## Completion and handoff
 
-Report the changed behavior, commands and observed results, and material limitations. Map evidence to relevant SDD acceptance criteria when present. Use `dev-verify` if available for completion evidence and `dev-code-review` when review is requested or required; their names do not force a new workflow or extra user turn. Without those skills, perform equivalent scoped checks directly. Commit, PR, and branch operations require the corresponding user authorization.
+Report the changed behavior, commands and observed results, and material limitations. Map evidence to relevant SDD acceptance criteria when present. Use `dev-verify` if available for completion evidence and `dev-review` when review is requested or required; their names do not force a new workflow or extra user turn. Without those skills, perform equivalent scoped checks directly. Honor an active `dev-flow` Git mode; otherwise commit, PR, and branch operations require the corresponding user authorization.

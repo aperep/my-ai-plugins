@@ -10,4 +10,4 @@
 
 - “The cause is the missing null guard; add it with a regression test.” → `dev-tdd`
 - “Add the specified export endpoint.” → `dev-tdd`
-- “Review the proposed fix.” → `dev-code-review`
+- “Review the proposed fix.” → `dev-review`

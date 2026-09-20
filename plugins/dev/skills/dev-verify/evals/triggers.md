@@ -8,6 +8,6 @@
 
 ## Must not load
 
-- “Review this diff for design and correctness problems.” → `dev-code-review`
+- “Review this diff for design and correctness problems.” → `dev-review`
 - “Fix the failing checks.” → `dev-fix` or `dev-tdd`, depending on diagnosis
-- “Commit and push the verified change.” → `dev-finish`
+- “Commit and push the verified change.” → `dev-flow`

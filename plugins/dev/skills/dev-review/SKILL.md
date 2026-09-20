@@ -1,9 +1,9 @@
 ---
-name: dev-code-review
-description: Review a requested Git diff for bugs, regressions, integration gaps, and material risks before commit. Use for review requests and the review phase of commit requests. A request for only a commit message is outside this skill. Review is read-only; a broader authorized commit workflow may continue after review.
+name: dev-review
+description: Review a requested Git diff for bugs, regressions, integration gaps, and material risks before commit. Use for review requests and the review phase of commit requests. A request for only a commit message is outside this skill. Review is read-only; a broader authorized development flow may continue after review.
 ---
 
-# Dev Code Review
+# Dev Review
 
 Evaluate the requested change against its intended behavior and surrounding code. Prioritize actionable defects over stylistic preferences. Review and implementation are separate passes.
 
@@ -53,6 +53,6 @@ Lead with findings ordered by severity, followed by open questions, verification
 
 Preserve the existing verdict names: `BLOCK` for critical issues, `FIX P1` for high-priority defects that should be fixed before delivery, and `READY` when review finds no blockers. Use `INCOMPLETE` when missing evidence prevents a verdict. `READY` is limited to the reviewed scope and is not a blanket test or production guarantee. Do not emit an unqualified `READY` while a material review gap remains.
 
-A review-only request does not authorize editing, staging, stashing, or committing. If the user already requested fixes or the full commit flow, report the review result, then let the authorized implementation/delivery lane continue in the same task; do not demand a new user turn solely because review finished. After edits, review the changed result again in a separate pass.
+A review-only request does not authorize editing, staging, stashing, or committing. If the user already requested fixes or the full development flow, report the review result, then let the authorized implementation/delivery lane continue in the same task; do not demand a new user turn solely because review finished. After edits, review the changed result again in a separate pass.
 
 Generate a commit message only when requested by the user or as part of an authorized commit flow and the intended commit is ready. Follow repository history and actual diff intent. Add artifact `Refs:` only when the association is supported and compatible with repository convention; omit uncertain associations.

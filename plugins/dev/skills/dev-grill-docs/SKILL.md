@@ -26,6 +26,8 @@ Read the supplied brief and relevant existing spec, `docs/CONTEXT.md`, ADRs, mod
 
 Distinguish confirmed requirements, codebase facts, proposed defaults, and unresolved decisions. Do not ask the user for facts the repository can establish. Do not treat an implementation's current behavior as proof of intended behavior.
 
+If the request spans independent subsystems, decompose it before refining details and align the first coherent delivery. For a consequential architectural choice with multiple viable answers, present two or three approaches with tradeoffs and a recommendation. Do not invent alternatives when one approach clearly follows from the evidence.
+
 ## Resolve the material gaps
 
 Check whether the intended user, desired outcome, in/out boundary, acceptance behavior, and integration surface are clear enough to write a contract. Ask the highest-impact unresolved question first, with concise context and an evidence-backed recommendation when useful. Group tightly related questions only when the answers depend on each other or the user requests a questionnaire.
@@ -80,6 +82,8 @@ Status semantics:
 - `ALIGNED`: material requirements are supported by user direction or an accepted source, and no implementation-blocking question remains. Routine inferred details may be recorded as assumptions.
 - `STUCK`: a concrete unanswered decision or unavailable evidence blocks the intended scope. Identify it explicitly; do not advance affected implementation on that basis.
 - `IMPLEMENTED`: retain only when actual implementation evidence supports it; this intake skill does not implement the feature. Changed requirements invalidate that status for the affected scope.
+
+Before handoff, check the contract for placeholders, internal contradictions, avoidable ambiguity, and scope too large for one coherent implementation. Fix supported defects directly; surface only decisions that still require the user.
 
 ## Durable documentation
 

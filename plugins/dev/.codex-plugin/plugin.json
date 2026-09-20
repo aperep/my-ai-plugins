@@ -1,6 +1,6 @@
 {
   "name": "dev",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A small development workflow: intake, requirements, implementation, debugging, verification, review, and authorized delivery.",
   "author": {
     "name": "Alexander Perepechko",
@@ -13,14 +13,14 @@
   "interface": {
     "displayName": "Dev Skills",
     "shortDescription": "A restrained development workflow",
-    "longDescription": "A trimmed fork of Jason-chen-coder/dev-skills with one small intake router, six cohesive workflows, docs-native durable artifacts, and no hooks, scripts, MCP servers, or apps.",
+    "longDescription": "A trimmed fork of Jason-chen-coder/dev-skills with one lifecycle router, five focused workflows, docs-native durable artifacts, and no hooks, scripts, MCP servers, or apps.",
     "developerName": "Alexander Perepechko",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],
     "defaultPrompt": [
-      "Start by determining whether this request needs requirements work, debugging, or implementation.",
+      "Carry this change from a safe start through the appropriate development workflow and delivery.",
       "Trace and fix this failure, then verify and review it.",
-      "Finish this verified change using only the Git actions I authorize."
+      "Finish this verified change using the selected Git workflow."
     ]
   }
 }

@@ -1,4 +1,4 @@
-# Trigger tests — dev-code-review
+# Trigger tests — dev-review
 
 ## Must load
 
@@ -8,5 +8,5 @@
 ## Must not load
 
 - “Write a commit message for this diff.” → ordinary message composition
-- “Fix the failing parser test.” → `dev-fix`
+- “Fix the failing parser test.” → `dev-flow` and `dev-fix`
 - “Run the test suite and tell me whether it passes.” → `dev-verify`
