@@ -8,7 +8,8 @@ Reusable operations for knowledge in vaults, Git repositories, clouds, and
 private stores. Paths, schemas, and lifecycles stay in the consuming storage.
 
 - [knowledge-rule](skills/knowledge-rule/SKILL.md): placement and capture.
-- [cross-boundary](skills/cross-boundary/SKILL.md): references and transfers.
+- [move](skills/move/SKILL.md): safe relocation and source retirement.
+- [cross-boundary](skills/cross-boundary/SKILL.md): audience-aware transfers.
 - [process-inbox](skills/process-inbox/SKILL.md): a separate processing session.
 - [audit-knowledge](skills/audit-knowledge/SKILL.md): findings and proposed diffs.
 

@@ -1,23 +1,24 @@
 {
   "name": "knowledge",
-  "version": "0.1.2",
-  "description": "Capture, place, process, and maintain knowledge across repositories and services.",
+  "version": "0.2.0",
+  "description": "Capture, place, move, process, and maintain knowledge across repositories and services.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["knowledge", "notes", "inbox", "maintenance"],
+  "keywords": ["knowledge", "notes", "inbox", "move", "maintenance"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Knowledge",
     "shortDescription": "Capture knowledge and respect storage boundaries",
-    "longDescription": "Keep one canonical home, preserve sources, process inboxes using local rules, and propose maintenance changes.",
+    "longDescription": "Keep one canonical home, move knowledge safely, preserve sources, process inboxes using local rules, and propose maintenance changes.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
     "defaultPrompt": [
       "Capture this message in the right inbox.",
+      "Move these knowledge items safely.",
       "Process this repository's knowledge inbox.",
       "Audit this knowledge storage and propose changes."
     ]

@@ -15,7 +15,7 @@ full source in its authorized home; use a suitable excerpt when sharing only
 part of it. If authority or destination is unclear, resolve that before sending.
 
 Prefer a link plus local context when the object already has the right home.
-For a move, verify the destination before removing source content, update known
-references, and leave a useful redirect where local conventions support one.
-If the destination is unavailable, keep the source and report the pending work.
-On retry, check what already arrived before creating another copy.
+For a move, apply [move](../move/SKILL.md); crossing the boundary does not weaken
+its transport checks. If the destination is unavailable, keep the source and
+report the pending work. On retry, check what already arrived before creating
+another copy.

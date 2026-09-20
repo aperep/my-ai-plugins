@@ -31,6 +31,12 @@ a NUL byte, and its file bytes.
 Automatic host skill selection is not proven by these explicitly loaded
 scenarios. Real cloud delivery and inbox mutations were not tested.
 
+The 2026-09-21 move-safety revision added `move`, changed `cross-boundary` and
+`process-inbox`, and added or changed cases D, E, and I–K. Those cases have not
+received an independent fresh-context behavioral run. The final reviewed skill
+hash above therefore applies only to the earlier skill revision and the
+pre-2026-09-21 versions of cases A–H.
+
 ## Structural and installation checks
 
 - `quick_validate.py`: all four knowledge skills, meta maintenance, and the

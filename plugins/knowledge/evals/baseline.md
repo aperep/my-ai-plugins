@@ -22,3 +22,14 @@ without knowledge work. No improvement over those baseline behaviors is claimed.
 The user explicitly requested these conventions as a reusable plugin. Passing
 baseline cases remain regression cases, not evidence that every rule fixes a
 newly observed defect.
+
+## 2026-09-21 move-safety gap
+
+No skill owned moves in general. `cross-boundary` required destination
+verification before source removal, but moves can also occur within one storage
+and during ordinary inbox processing. The earlier guidance supplied no batch
+inventory, per-item reconciliation, fidelity criteria, or required user-facing
+transfer report. That leaves partial inbox migrations vulnerable to
+unverifiable omissions or unsafe bulk cleanup. Cases D, E, and I–K record the
+requested behavior; no independent behavioral run has yet exercised the new
+workflow.

@@ -12,8 +12,9 @@ it before doing destructive processing.
 
 For each item, find an existing canonical object before creating another.
 Update an existing paragraph or extract an independent object as appropriate;
-carry its provenance and relevant context. Use
-[cross-boundary](../cross-boundary/SKILL.md) for material belonging elsewhere.
+carry its provenance and relevant context. Use [move](../move/SKILL.md) when
+processing relocates knowledge and retires its inbox source; it adds
+[cross-boundary](../cross-boundary/SKILL.md) when material belongs elsewhere.
 
 Keep durable source artifacts. Remove processed raw material only when the
 local policy and requested operation allow it and its useful content and

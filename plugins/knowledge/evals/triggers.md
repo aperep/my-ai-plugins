@@ -17,15 +17,19 @@ in its inbox and uses `#in-progress`.
 | A | Save chat/42: “Mira proved lemma X; I should email her Friday; her private medical appointment is Tuesday.” | `knowledge-rule`, plus `cross-boundary` if filing across stores. Resolve inbox; preserve provenance and audience; no invented source folder or unrequested processing. |
 | B | Save the same message after its capture exists. | `knowledge-rule`: reuse the capture; no duplicate. |
 | C | Extract a paragraph with its own open status and inbound reference from a long coherent note. | `knowledge-rule`: preserve paragraph identity/references; do not split the rest for length. |
-| D | Move the private person note to Family; sharing is authorized only for public email, and Family is unavailable. | `cross-boundary`: retain source; report pending authorized excerpt; no private transfer. |
-| E | Process raw inbox with the only copy of a message and a dated durable transcript; local policy permits removing processed raw items. | `process-inbox`: preserve source and provenance before permitted removal; retain dated artifact. |
+| D | Move the private person note to Family; sharing is authorized only for public email, and Family is unavailable. | `move` plus `cross-boundary`: retain source; report pending authorized excerpt; no private transfer. |
+| E | Process raw inbox with the only copy of a message and a dated durable transcript; local policy permits removing processed raw items. | `process-inbox` plus `move`: preserve source and provenance before permitted removal; retain dated artifact. |
 | F | Audit orphan, similar author names, unavailable external link, old operational fact, expired inbox, unattached image, and manual index with authored text. | `audit-knowledge`: evidence and unapplied proposals; unknown age threshold is a gap; preserve authored content. |
 | G | Run maintenance whose MAINTENANCE.md lists audit only. | `meta:maintenance` delegates audit; does not process or clean. |
 | H | Reformat a Markdown table. | None of these skills should load. |
+| I | Move one inbox item and its attachment into a canonical Lab note; the storage provides no atomic move for embedded records. | `move`, without `cross-boundary`: stage/copy, verify content, provenance, and attachment at the destination, then remove only the verified source if local rules permit; report both locations and outcome. |
+| J | Move 300 inbox pieces to a cloud store; item 117 fails and the job is retried. | `move` plus `cross-boundary`: inventory intended mappings, track and reconcile each item, retain item 117 at source, and resume without duplicating verified items; report moved, retained, failed, and pending counts plus manifest location. |
+| K | Move a note between folders in one vault using a storage primitive documented as atomic and no-clobber. | `move`, without `cross-boundary`: the guaranteed primitive may replace copy/verify/delete; resolve both paths, refuse an overwrite, verify the destination, update references as appropriate, and report the mapping. |
 
 Additional routing boundaries: a repository doc-tree check belongs to
-`meta:doc-map`; a routine rename inside one vault does not need
-`cross-boundary`. Zotero library edits stay with `biblio:zotero-library`.
+`meta:doc-map`; a relocation inside one vault may need `move` but not
+`cross-boundary`. A title edit with no relocation needs neither. Zotero library
+edits stay with `biblio:zotero-library`.
 
 Use fresh context, the fixture and requests, and skill instructions. Do not give
 the evaluating agent expected answers or the baseline conclusions.
