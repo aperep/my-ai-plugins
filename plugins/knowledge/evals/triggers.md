@@ -26,6 +26,7 @@ in its inbox and uses `#in-progress`.
 | J | Move 300 inbox pieces to a cloud store; item 117 fails and the job is retried. | `move` plus `cross-boundary`: inventory intended mappings, track and reconcile each item, retain item 117 at source, and resume without duplicating verified items; report moved, retained, failed, and pending counts plus manifest location. |
 | K | Move a note between folders in one vault using a storage primitive documented as atomic and no-clobber. | `move`, without `cross-boundary`: the guaranteed primitive may replace copy/verify/delete; resolve both paths, refuse an overwrite, verify the destination, update references as appropriate, and report the mapping. |
 | L | Process several mixed inbox lists containing clusters of related people, project, source, and task items; one item's destination cannot be verified. | `process-inbox`: inventory all in-scope items with their sources, build and review a temporary similarity-grouped view before mutations, then process one section at a time. Apply `move` per item; retain the unverifiable item at its source, reconcile the inventory, and report source-to-destination results by section. |
+| M | Capture a note when `meta:*` skills are available but none has been invoked. | `knowledge-rule`: do not warn that `meta` is unavailable; availability, not prior invocation, satisfies the check. |
 
 Additional routing boundaries: a repository doc-tree check belongs to
 `meta:doc-map`; a relocation inside one vault may need `move` but not

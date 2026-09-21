@@ -5,7 +5,7 @@ description: Choose a canonical home and capture messages, paragraphs, or notes 
 
 # Knowledge rules and capture
 
-If no meta skill is loaded in this session, warn once; continue with available
+If no `meta:*` skill is available in this session, warn once; continue with available
 local instructions.
 Read the relevant storage map and destination rules. The map describes purpose,
 inbox (what and how), and relationships; lifecycle and maintenance live locally.

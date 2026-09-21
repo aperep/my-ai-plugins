@@ -14,7 +14,8 @@ private stores. Paths, schemas, and lifecycles stay in the consuming storage.
 - [audit-knowledge](skills/audit-knowledge/SKILL.md): findings and proposed diffs.
 
 Use with `meta` for documentation conventions and repository maintenance.
-Without it, warn once and use the available local instructions.
+If no `meta:*` skill is available, warn once and use the available local
+instructions.
 No Obsidian dependency, storage connector, or background scheduler is bundled.
 
 The root `plugin.json` packages these skills as a portable Agent Plugin. Codex

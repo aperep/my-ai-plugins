@@ -39,3 +39,10 @@ workflow.
 `process-inbox` lacked classify-first series handling with per-item sources,
 risking inconsistent routing or bulk retirement. Case L covers this untested
 behavior.
+
+## 2026-09-21 meta-availability wording gap
+
+A user observed that `knowledge-rule` warned that its `meta` dependency was not
+loaded even though `meta:*` skills were available. The instruction tested the
+ambiguous state "loaded" instead of the observable state "available". Case M
+covers the corrected distinction.

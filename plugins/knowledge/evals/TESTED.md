@@ -36,7 +36,8 @@ The 2026-09-21 move-safety revision added `move`, changed `cross-boundary` and
 received an independent fresh-context behavioral run. The final reviewed skill
 hash above therefore applies only to the earlier skill revision and the
 pre-2026-09-21 versions of cases A–H. The later series-processing change and
-case L are also untested.
+case L are also untested. Case M records a user-observed false warning; the
+reworded instruction has not received a fresh-context behavioral run.
 
 ## Structural and installation checks
 
