@@ -1,6 +1,6 @@
 {
   "name": "knowledge",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Capture, place, move, process, and maintain knowledge across repositories and services.",
   "author": {
     "name": "Alexander Perepechko",

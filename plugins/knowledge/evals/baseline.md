@@ -33,3 +33,9 @@ transfer report. That leaves partial inbox migrations vulnerable to
 unverifiable omissions or unsafe bulk cleanup. Cases D, E, and I–K record the
 requested behavior; no independent behavioral run has yet exercised the new
 workflow.
+
+## 2026-09-21 series-processing gap
+
+`process-inbox` lacked classify-first series handling with per-item sources,
+risking inconsistent routing or bulk retirement. Case L covers this untested
+behavior.

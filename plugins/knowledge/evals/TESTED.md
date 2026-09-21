@@ -35,7 +35,8 @@ The 2026-09-21 move-safety revision added `move`, changed `cross-boundary` and
 `process-inbox`, and added or changed cases D, E, and I–K. Those cases have not
 received an independent fresh-context behavioral run. The final reviewed skill
 hash above therefore applies only to the earlier skill revision and the
-pre-2026-09-21 versions of cases A–H.
+pre-2026-09-21 versions of cases A–H. The later series-processing change and
+case L are also untested.
 
 ## Structural and installation checks
 

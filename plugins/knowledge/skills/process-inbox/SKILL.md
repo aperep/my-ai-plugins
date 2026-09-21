@@ -1,6 +1,6 @@
 ---
 name: process-inbox
-description: Process a knowledge storage's accumulated inbox in a dedicated session using its local lifecycle. Use for inbox triage and turning raw material into maintained notes, not for capturing one incoming message or auditing without edits.
+description: Process accumulated inboxes, lists, or other series in a dedicated session using their local lifecycle. Use for classifying and triaging raw material into maintained notes, not for capturing one incoming message or auditing without edits.
 ---
 
 # Process a knowledge inbox
@@ -10,13 +10,19 @@ and relevant folder readmes. Follow its distinction between dated incoming
 artifacts and disposable raw inbox. If that distinction is missing, propose
 it before doing destructive processing.
 
-For each item, find an existing canonical object before creating another.
-Update an existing paragraph or extract an independent object as appropriate;
-carry its provenance and relevant context. Use [move](../move/SKILL.md) when
-processing relocates knowledge and retires its inbox source; it adds
-[cross-boundary](../cross-boundary/SKILL.md) when material belongs elsewhere.
+Before changing sources, inventory the items with their source locations or
+existing identifiers. Build and review a temporary view grouped by similarity,
+including an unresolved section. Classification changes nothing.
 
-Keep durable source artifacts. Remove processed raw material only when the
-local policy and requested operation allow it and its useful content and
-provenance survive. Preserve the only copy of a source before deleting its
-inbox container. Leave unresolved items in place and report what remains.
+Process one section at a time. For each item, find an existing canonical object
+before creating another. Update an existing paragraph or extract an independent
+object as appropriate; carry its provenance and relevant context. Use
+[move](../move/SKILL.md) when processing relocates knowledge and retires its
+inbox source; it adds [cross-boundary](../cross-boundary/SKILL.md) when material
+belongs elsewhere.
+
+A section is not a unit of deletion: retire an item only through `move` after
+verifying every destination, including when one item produces several objects.
+Keep durable source artifacts. Retain the temporary view until it reconciles
+verified destinations with unresolved or failed sources, then report
+source-to-destination results by section.

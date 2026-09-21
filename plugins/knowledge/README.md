@@ -10,7 +10,7 @@ private stores. Paths, schemas, and lifecycles stay in the consuming storage.
 - [knowledge-rule](skills/knowledge-rule/SKILL.md): placement and capture.
 - [move](skills/move/SKILL.md): safe relocation and source retirement.
 - [cross-boundary](skills/cross-boundary/SKILL.md): audience-aware transfers.
-- [process-inbox](skills/process-inbox/SKILL.md): a separate processing session.
+- [process-inbox](skills/process-inbox/SKILL.md): classify and process inbox series.
 - [audit-knowledge](skills/audit-knowledge/SKILL.md): findings and proposed diffs.
 
 Use with `meta` for documentation conventions and repository maintenance.
