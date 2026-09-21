@@ -1,9 +1,9 @@
 ---
-name: dev-grill-docs
+name: grill-docs
 description: 'Clarify feature requirements, pressure-test scope and domain terms, and produce a feature spec before implementation. Use for fuzzy requirements, PRD/spec requests, 需求对齐, 拷问需求, or 设计文档. Read existing evidence before asking focused questions. A generic "do not edit code" instruction alone does not trigger intake. Supports --quick, --deep, and --spec-only.'
 ---
 
-# Dev Grill Docs
+# Grill Docs
 
 Turn the user's feature intent into a usable contract. Preserve decisions already made and ask only about gaps that change behavior, scope, acceptance, or substantial cost. This skill does not implement code or replace analysis-only requests with document work.
 
@@ -13,7 +13,7 @@ Project artifacts belong in the user's project, not the installed skill director
 
 - Use this entry point for requirement alignment. `--spec-only` limits output to the feature specification.
 - When scope is already clear and the user wants implementation steps, plan directly from repository evidence; a particular phrase such as "写个方案" does not override the conversation's actual intent.
-- Broken behavior belongs to `dev-fix`. Persistent visual direction belongs in the project's design documentation, outside this requirements workflow.
+- Broken behavior belongs to `debug`. Persistent visual direction belongs in the project's design documentation, outside this requirements workflow.
 - `--quick` requests a compact contract and minimal questions; zero questions is correct when evidence is sufficient.
 - Default depth covers the material uncertainties. `--deep` adds scrutiny of lifecycle, invariants, compatibility, failures, and reversibility where relevant.
 - `--spec-only` disables glossary and ADR writes. It is independent of interview depth.

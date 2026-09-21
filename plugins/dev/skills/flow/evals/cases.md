@@ -1,4 +1,4 @@
-# Behavioral cases — dev-flow
+# Behavioral cases — flow
 
 ## Dirty state depends on phase
 
@@ -13,3 +13,10 @@ file:
   dirty files as possible task scope, establish which changes belong to the
   delivery, and continue finish preflight instead of presenting the new-task
   dirty-state choice.
+
+## Occam at the implementation boundary
+
+Given a request that would extend an existing one-implementation registry and
+factory, evaluate whether the existing and proposed structures are necessary
+before choosing the implementation. Preserve them only when required behavior
+or a known constraint justifies them.

@@ -1,4 +1,4 @@
-# Trigger tests — dev-tdd
+# Trigger tests — tdd
 
 ## Must load
 
@@ -8,6 +8,6 @@
 
 ## Must not load
 
-- “Something corrupts this state; investigate why.” → `dev-fix`
-- “Clarify what this feature should do.” → `dev-grill-docs`
-- “Verify the existing implementation without editing it.” → `dev-verify`
+- “Something corrupts this state; investigate why.” → `debug`
+- “Clarify what this feature should do.” → `grill-docs`
+- “Verify the existing implementation without editing it.” → `verify`

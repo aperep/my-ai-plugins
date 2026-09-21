@@ -1,4 +1,4 @@
-# Trigger tests — dev-verify
+# Trigger tests — verify
 
 ## Must load
 
@@ -8,6 +8,6 @@
 
 ## Must not load
 
-- “Review this diff for design and correctness problems.” → `dev-review`
-- “Fix the failing checks.” → `dev-fix` or `dev-tdd`, depending on diagnosis
-- “Commit and push the verified change.” → `dev-flow`
+- “Review this diff for design and correctness problems.” → `review`
+- “Fix the failing checks.” → `debug` or `tdd`, depending on diagnosis
+- “Commit and push the verified change.” → `flow`

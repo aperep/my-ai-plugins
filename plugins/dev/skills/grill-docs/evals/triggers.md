@@ -1,4 +1,4 @@
-# Trigger tests — dev-grill-docs
+# Trigger tests — grill-docs
 
 ## Must load
 
@@ -9,5 +9,5 @@
 ## Must not load
 
 - “Do not edit code; explain this function.” → ordinary analysis
-- “Implement these complete acceptance criteria.” → `dev-tdd`
-- “The existing behavior is broken and we do not know why.” → `dev-fix`
+- “Implement these complete acceptance criteria.” → `tdd`
+- “The existing behavior is broken and we do not know why.” → `debug`

@@ -1,9 +1,9 @@
 ---
-name: dev-review
-description: Review a requested Git diff for bugs, regressions, integration gaps, and material risks before commit. Use for review requests and the review phase of commit requests. A request for only a commit message is outside this skill. Review is read-only; a broader authorized development flow may continue after review.
+name: review
+description: Review a requested Git diff for correctness risks, unnecessary complexity, or both. Use for review requests and the review phase of commit requests; infer the requested lens from bugs/regressions versus over-engineering/deletion language. Do not use for whole-repository audits, verification-only requests, or commit-message-only requests.
 ---
 
-# Dev Review
+# Review
 
 Evaluate the requested change against its intended behavior and surrounding code. Prioritize actionable defects over stylistic preferences. Review and implementation are separate passes.
 
@@ -16,6 +16,17 @@ For a general working-tree review, review staged and unstaged changes while dist
 Untracked files are absent from `git diff`; inspect them when they belong to the requested scope. For a staged review, read index versions and evaluate the staged snapshot, including caller relationships. A working-tree test run does not prove a staged snapshot with different contents passes. Use an isolated snapshot when necessary or state that verification limit.
 
 Read changed logic and enough callers, definitions, tests, and configuration to assess behavior. Expand context where a question requires it; do not read entire large files by default. Inspect generated code, dependency resolution, or data changes when they can alter behavior. Binary or generated files may need source or artifact checks, not an unconditional skip.
+
+Choose the lens from the request:
+
+- **Correctness** (default): bugs, regressions, integration gaps, and material
+  risks.
+- **Complexity**: only over-engineering and what can be deleted. Use concise
+  findings tagged `delete`, `stdlib`, `native`, `yagni`, or `shrink`, and end
+  with the estimated net lines and dependencies removable.
+- **Both**: run both lenses and keep their findings in separate sections.
+
+A whole-repository complexity scan belongs to `audit`.
 
 ## Review behavior and integration
 

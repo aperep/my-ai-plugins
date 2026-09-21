@@ -56,7 +56,8 @@ editing, trust review, and guarded plugin evolution.
 ### `dev`
 
 A restrained development workflow covering intake, requirements, debugging,
-test-driven implementation, verification, review, and authorized delivery.
+test-driven implementation, Occam-driven solution design, verification,
+review, and authorized delivery.
 
 ### `research`
 

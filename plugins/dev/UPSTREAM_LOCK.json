@@ -1,0 +1,25 @@
+{
+  "dev-skills": {
+    "repository": "https://github.com/Jason-chen-coder/dev-skills",
+    "commit": null,
+    "local_import_commit": "5c8f2662879c887d692134b85e68d20ef4d5cdea",
+    "note": "The original import did not record an upstream revision.",
+    "skill_lineage": {
+      "flow": ["dev-start", "dev-finish"],
+      "grill-docs": ["dev-grill-docs"],
+      "debug": ["dev-fix"],
+      "tdd": ["dev-tdd"],
+      "review": ["dev-code-review"],
+      "verify": ["dev-verify"]
+    }
+  },
+  "ponytail": {
+    "repository": "https://github.com/DietrichGebert/ponytail",
+    "commit": "356918eba965ee1eac64bd3a7f0dd02108350de5",
+    "component_lineage": {
+      "references/occam.md": ["ponytail"],
+      "skills/review": ["ponytail-review"],
+      "skills/audit": ["ponytail-audit"]
+    }
+  }
+}

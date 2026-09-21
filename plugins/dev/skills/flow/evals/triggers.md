@@ -1,4 +1,4 @@
-# Trigger tests — dev-flow
+# Trigger tests — flow
 
 ## Must load
 
@@ -7,10 +7,11 @@
 - “Use a worktree for this feature and open a PR when it is ready.”
 - “Finish this verified branch by merging it locally.”
 - “Commit and push cohesive checkpoints while you build this.”
+- “Use Ponytail and implement the simplest sufficient version.”
 
 ## Must not load
 
-- “Review the staged diff without changing it.” → `dev-review`
-- “Run the relevant checks and tell me whether this is complete.” → `dev-verify`
+- “Review the staged diff without changing it.” → `review`
+- “Run the relevant checks and tell me whether this is complete.” → `verify`
 - “Write a possible commit message.” → ordinary message composition
 - “Explain how this module works; do not change anything.” → ordinary analysis

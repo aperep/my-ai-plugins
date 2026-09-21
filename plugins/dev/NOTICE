@@ -1,9 +1,21 @@
-This plugin is a modified, curated fork of:
+This plugin is derived from two MIT-licensed plugins:
 
-  Jason-chen-coder/dev-skills
-  https://github.com/Jason-chen-coder/dev-skills
+1. Jason-chen-coder/dev-skills
+   https://github.com/Jason-chen-coder/dev-skills
+   Upstream revision: not recorded by the original import
+   Local import: 5c8f2662879c887d692134b85e68d20ef4d5cdea
+   Imported lineage: dev-start and dev-finish became flow;
+   dev-code-review became review; dev-grill-docs became grill-docs;
+   dev-fix became debug; dev-tdd became tdd; dev-verify became verify.
 
-The selected upstream skills were distributed under the MIT License reproduced
-in LICENSE. Modifications include a smaller skill set, a lifecycle router,
-removal of generic and unavailable supporting material, and repository-native
-documentation paths.
+2. DietrichGebert/ponytail
+   https://github.com/DietrichGebert/ponytail
+   Upstream revision: 356918eba965ee1eac64bd3a7f0dd02108350de5
+   Imported lineage: ponytail became references/occam.md;
+   ponytail-review became the complexity lens in review;
+   ponytail-audit became audit.
+
+The upstream MIT licenses are preserved in `third_party_licenses/`.
+Modifications include a smaller skill set, a lifecycle router, an Occam-based
+solution-shape lens, removal of unavailable supporting material, and
+repository-native documentation paths.

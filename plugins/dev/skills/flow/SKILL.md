@@ -1,9 +1,9 @@
 ---
-name: dev-flow
-description: Govern an end-to-end development change from a safe start through requirements, investigation, implementation, and verified delivery. Use when asked to begin, perform, resume, or finish a code change, including work that may need a Git workflow, branch, worktree, commit, push, merge, or PR. Do not use for review-only, verification-only, or commit-message-only requests.
+name: flow
+description: Govern an end-to-end development change from a safe start through requirements, investigation, implementation, and verified delivery. Use when asked to begin, perform, resume, or finish a code change, including explicit Ponytail, YAGNI, or simplest-solution requests that change code. Do not use for review-only, verification-only, or commit-message-only requests.
 ---
 
-# Dev Flow
+# Flow
 
 Carry one development change from its actual current phase to the requested
 outcome. Enter at start, continuation, or finish; do not replay completed phases
@@ -50,12 +50,14 @@ active Git mode. Inspect relevant code and documentation before asking
 questions. Ask one focused question at a time, and only when the answer changes
 behavior, scope, acceptance, or the safe working setup.
 
-- Use `dev-grill-docs` when intended behavior or material scope remains unclear.
-- Use `dev-fix` when established behavior is broken and the cause needs
+- Use `grill-docs` when intended behavior or material scope remains unclear.
+- Use `debug` when established behavior is broken and the cause needs
   investigation.
-- Use `dev-tdd` when the desired behavior and correction are understood.
-- Use `dev-review` or `dev-verify` directly when the request is limited to that
+- Use `tdd` when the desired behavior and correction are understood.
+- Use `review` or `verify` directly when the request is limited to that
   phase.
+- When choosing or changing implementation structure, read
+  [Occam](../../references/occam.md).
 
 A feasibility spike produces findings, not production code. Keeping a
 prototype is a new implementation decision. If implementation uncovers a

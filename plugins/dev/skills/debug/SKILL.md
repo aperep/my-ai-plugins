@@ -1,9 +1,9 @@
 ---
-name: dev-fix
+name: debug
 description: Investigate bugs, regressions, failing tests, or broken behavior by tracing evidence to the root cause, then implement and verify a scoped fix when requested. For explanation-only requests, diagnose without editing. Does not handle new feature design or commit-message-only requests.
 ---
 
-# Dev Fix
+# Debug
 
 Trace the failure to the state or value that first violates the intended contract. Fix the supported cause, and verify the original symptom rather than treating a plausible patch as proof.
 
@@ -30,6 +30,8 @@ When repeated attempts fail, reassess assumptions and choose a different evidenc
 
 When a fix is requested and the causal explanation is supported:
 
+Read [Occam](../../references/occam.md) before choosing the fix structure.
+
 1. Prefer a regression test that fails for the original symptom before editing production code. Existing failing tests may already provide this evidence.
 2. Change the cause and directly required callers or restore/save paths together. Avoid speculative fallbacks and unrelated cleanup. Add boundary validation only when necessary to establish the intended invariant.
 3. Rerun the original reproduction, then checks covering affected neighboring behavior. Scale wider testing to blast radius and project requirements.
@@ -45,4 +47,4 @@ The failure contract is: symptom and expectation, reproduction, causal trace, fi
 
 For a short fix, report that contract concisely in the answer. Maintain `docs/fixes/<bug-slug>.md` when requested, required by the project, or useful for a substantial investigation's durable handoff. Follow an established project documentation layout when present. Record status accurately, such as `FIXED`, `DIAGNOSED`, `PARTIALLY_VERIFIED`, or `BLOCKED`; include only observed commands/results, and never invent an introduction commit or RCA history.
 
-Search for analogous defects when the root cause plausibly recurs; report out-of-scope findings separately. Finish authorized investigation/fix work without requiring the user to manually invoke another skill. Do explicit design reasoning when needed within scope; use `dev-verify` or equivalent checks before a completion claim. Bug regression work stays here and does not require a second TDD workflow.
+Search for analogous defects when the root cause plausibly recurs; report out-of-scope findings separately. Finish authorized investigation/fix work without requiring the user to manually invoke another skill. Do explicit design reasoning when needed within scope; use `verify` or equivalent checks before a completion claim. Bug regression work stays here and does not require a second TDD workflow.

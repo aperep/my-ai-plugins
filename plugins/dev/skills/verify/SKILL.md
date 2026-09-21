@@ -1,9 +1,9 @@
 ---
-name: dev-verify
+name: verify
 description: Verify implemented changes before claiming they are complete, fixed, passing, or ready for delivery. Match checks to requested behavior and risk, inspect current evidence, and report limits. Use for completion checks, not general factual answers or a replacement for code review.
 ---
 
-# Dev Verify
+# Verify
 
 Make completion claims no broader than the evidence. This workflow verifies behavior and artifacts; it does not authorize commits, publishing, merge, or cleanup.
 
@@ -39,4 +39,4 @@ Use the current request and relevant repository specs, plans, ADRs, or fix notes
 
 For substantial work, map requirements to evidence and list missing coverage. Small changes need only a short verification statement. Report what changed, which checks passed or failed, and material residual limits; do not force a fixed checklist into every response.
 
-Verification does not substitute for independent code review. A `READY` review is not proof that tests ran, and passing tests do not prove every review concern resolved. Use `dev-review` when available and required, or perform the equivalent independent review.
+Verification does not substitute for independent code review. A `READY` review is not proof that tests ran, and passing tests do not prove every review concern resolved. Use `review` when available and required, or perform the equivalent independent review.

@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "dev",
-  "version": "0.2.0",
-  "description": "A small development workflow: intake, requirements, implementation, debugging, verification, review, and authorized delivery.",
+  "version": "0.4.0+codex.20260921193430",
+  "description": "A small development workflow with Occam-driven solution design, requirements, implementation, debugging, verification, review, and authorized delivery.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
   "license": "MIT",
-  "keywords": ["development", "debugging", "tdd", "review", "verification", "git"]
+  "keywords": ["development", "debugging", "tdd", "review", "verification", "git", "simplicity", "yagni"]
 }
