@@ -34,3 +34,4 @@ plugins/math-writing/skills/project-scaffold/assets/latex/common/environments_ru
 plugins/math-writing/skills/project-scaffold/assets/latex/common/notation.tex guard=human-revised reviewed=ae6e368
 plugins/math-writing/skills/project-scaffold/assets/latex/common/packages.tex guard=human-revised reviewed=ae6e368
 plugins/math-writing/skills/project-scaffold/assets/latex/main.tex guard=human-revised reviewed=ae6e368
+plugins/dev/references/occam.md guard=human-revised reviewed=04038a2

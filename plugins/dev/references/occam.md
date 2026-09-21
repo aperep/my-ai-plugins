@@ -1,3 +1,7 @@
+---
+reviewed: 04038a2
+---
+
 # Occam
 
 Apply this only after the required behavior and known constraints are clear.
