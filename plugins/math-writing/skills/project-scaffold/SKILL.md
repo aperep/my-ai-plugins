@@ -5,7 +5,7 @@ description: >
   article assets and a reserved Typst layout. Use for article scaffolding,
   Russian or English theorem setups, or project preambles. Not for copyediting.
 metadata:
-  reviewed: ae6e368
+  human-revised: ae6e368
 ---
 
 # Mathematical project scaffold

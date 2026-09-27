@@ -48,7 +48,8 @@ and does not define marketplaces or plugin dependencies. Keep portable
 packages self-contained or document them as unavailable.
 
 Agent Skills allow repository-specific data only inside `metadata`. Keep a
-guard mirror at `metadata.reviewed`, never as a custom top-level field.
+guard mirror at `metadata.human-revised`, never as a custom top-level field.
+Read `metadata.reviewed` as a legacy alias, but do not write new stamps there.
 
 ## Names
 

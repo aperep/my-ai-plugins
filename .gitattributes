@@ -8,10 +8,12 @@
 # prompt-content — skills, docs, prose that steers a later session without being
 # read — not to code, which is reviewed in the diff like any code.
 #
-# In-file `reviewed` metadata may contain an ISO date, a short commit ID, `now`,
-# or any combination. Canonical new stamps are `YYYY-MM-DD <short-id>`. If the
+# Agent Skills use `metadata.human-revised`; accept `metadata.reviewed` as a
+# legacy alias. Its value may contain an ISO date, a short commit ID, `now`, or
+# any combination. Canonical new stamps are `YYYY-MM-DD <short-id>`. If the
 # metadata has no ID, recover it from the commit that introduced its current
-# line. Leave this file unguarded, or the stamp cannot be written.
+# line. Other Markdown may use top-level `reviewed`. Leave this file unguarded,
+# or the stamp cannot be written.
 #
 plugins/meta/skills/evolving-plugins/SKILL.md guard=human-revised reviewed=f690474
 plugins/math-writing/skills/russian-translation/references/voice.md guard=human-revised reviewed=3356562

@@ -9,7 +9,7 @@ description: >
   correctness: statements, proofs and numbering are out of scope except where a
   language fix would silently change the mathematics.
 metadata:
-  reviewed: d444bd3
+  human-revised: d444bd3
 ---
 
 # Proofreading pass

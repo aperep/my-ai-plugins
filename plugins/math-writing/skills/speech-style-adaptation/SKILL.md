@@ -7,7 +7,7 @@ description: >
   not for ordinary drafting, proofreading, de-slopping, simple-English
   rewriting, or Russian prose.
 metadata:
-  reviewed: 1ee66dd
+  human-revised: 1ee66dd
 ---
 
 # English mathematical voice

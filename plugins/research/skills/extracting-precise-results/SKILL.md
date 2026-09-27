@@ -6,7 +6,7 @@ description: >
   hypotheses, conclusion, and source location. Not for relevance triage from an
   abstract.
 metadata:
-  reviewed: 9d7b130
+  human-revised: 9d7b130
 ---
 
 # Extracting Precise Results

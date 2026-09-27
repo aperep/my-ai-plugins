@@ -6,9 +6,11 @@
   process `docs/INBOX.md` as directed, and perform the listed routine work.
 - "Which guarded prompt files changed since I reviewed them?" Report guard
   drift and stamp problems without changing review stamps.
-- "This guarded skill says `metadata.reviewed: now` but has no commit ID. Check
+- "This guarded skill says `metadata.human-revised: now` but has no commit ID. Check
   its review drift." Recover the baseline from the metadata line's Git history;
   do not reject `now` or rewrite the stamp.
+- "This older guarded skill uses `metadata.reviewed`. Check its review drift."
+  Accept the legacy key without rewriting it during maintenance.
 
 ## Must not load
 

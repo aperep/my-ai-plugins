@@ -7,7 +7,7 @@ description: >
   proofreading alone, structural de-slopping, or controlled-language
   compliance.
 metadata:
-  reviewed: 9a2fd9f
+  human-revised: 9a2fd9f
 ---
 
 # Simple English

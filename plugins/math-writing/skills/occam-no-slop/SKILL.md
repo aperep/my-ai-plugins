@@ -7,7 +7,7 @@ description: >
   like AI", or "make this argument flow". Do not use for ordinary drafting,
   proofreading, voice matching, controlled English, or mathematical review.
 metadata:
-  reviewed: 13f6807
+  human-revised: 13f6807
 ---
 
 # Occam / No-Slop
