@@ -1,15 +1,17 @@
 # Review guards. One line per path, added only when the user asks for it.
 # See AGENTS.md for the repository policy.
 #
-#   <path>  guard=human-revised reviewed=<sha>    the commit the user read through
+#   <path>  guard=human-revised reviewed=<short-id>  reviewed content baseline
 #
 # No wildcards. A guard names one file the user has decided to check; a pattern
 # claims files nobody has looked at yet. Guards apply to
 # prompt-content — skills, docs, prose that steers a later session without being
 # read — not to code, which is reviewed in the diff like any code.
 #
-# Agent Skills mirror the stamp as `metadata.reviewed`; other Markdown may use
-# top-level `reviewed`. Leave this file unguarded, or the stamp cannot be written.
+# In-file `reviewed` metadata may contain an ISO date, a short commit ID, `now`,
+# or any combination. Canonical new stamps are `YYYY-MM-DD <short-id>`. If the
+# metadata has no ID, recover it from the commit that introduced its current
+# line. Leave this file unguarded, or the stamp cannot be written.
 #
 plugins/meta/skills/evolving-plugins/SKILL.md guard=human-revised reviewed=f690474
 plugins/math-writing/skills/russian-translation/references/voice.md guard=human-revised reviewed=3356562

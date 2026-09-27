@@ -16,9 +16,15 @@ repository-wide `docs/ROADMAP.md`, and remove rejected items. Use domain skills
 only for checks the local checklist calls for.
 
 If `.gitattributes` declares `guard=human-revised`, report paths changed since
-their `reviewed=<sha>` commit, missing or invalid stamps, and disagreement with
-any in-file mirror. Agent Skills use `metadata.reviewed`; other Markdown may
-use top-level `reviewed`. Do not change review stamps.
+their reviewed revision, missing or invalid stamps, and disagreement between
+explicit commit IDs. Prefer its `reviewed=<short-id>` baseline. In-file
+`reviewed` metadata may contain an ISO date, a short commit ID, `now`, or any
+combination; Agent Skills put it under `metadata`, while other Markdown may use
+it at the top level. When in-file metadata has no ID, recover its revision from
+the commit that introduced the current line with `git blame`; use `HEAD` when
+that line is uncommitted. Treat a date or `now` without an ID as valid.
+Canonical new stamps are `YYYY-MM-DD <short-id>`, but maintenance does not
+change review stamps.
 
 Report what was done, what remains unresolved, and any unavailable checks.
 Recurring execution needs a separate scheduled invocation; this skill does
