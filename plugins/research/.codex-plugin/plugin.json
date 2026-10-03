@@ -1,6 +1,6 @@
 {
   "name": "research",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
   "author": {
     "name": "Alexander Perepechko",
@@ -12,7 +12,7 @@
   "interface": {
     "displayName": "Research",
     "shortDescription": "Read, reason about, and formalize mathematics",
-    "longDescription": "Precise result extraction, tag-scoped Typst/LaTeX review, informal reasoning, and explicit Lean formalization.",
+    "longDescription": "Precise result extraction, typed LaTeX annotation review, informal reasoning, and explicit Lean formalization.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write", "Web", "Execute"],

@@ -9,6 +9,9 @@ parent: docs/ROADMAP.md
 - Replaced LaTeX `\sent{label}{...}` wrappers in `interlinear` with one
   sentence-or-clause per source line ending in a stable four-character
   `\itag`; kept its behavior and validation in `interlinear.sty`.
+- Split stable package mechanics from document data: `interlinear.sty` now
+  auto-loads typed comments from `<jobname>.interlinear.tex`. Removed the CSV,
+  generated-TeX, Python, popup, and Typst paths.
 
 ## 2026-09-19
 

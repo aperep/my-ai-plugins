@@ -1,34 +1,30 @@
-# Interlinear CSV schema
+# Interlinear sidecar contract
 
-The source order, not lexical label order, defines all spans.
+The package automatically loads `<jobname>.interlinear.tex`. The sidecar is
+TeX-native document data, not package code.
 
-| column | meaning | required |
-|---|---|---|
-| `label` | stable ID matching a source `sent` or `\itag`; use four random alphanumeric characters for new labels | yes |
-| `translation_<lang>` | translation, e.g. `translation_en` | no |
-| `explanation` | informal explanation; must not masquerade as verified fact | no |
-| `active_until` | final source label for which this row remains active | no |
-| `tags` | semicolon-delimited roles/topics used to select local context | no |
-| `stacks_candidate` | unchecked lexical Stacks match, without URL prefix | no |
-| `stacks_ref` | human-checked Stacks tag, without URL prefix | no |
-| `example_subject` | object used for an example track | no |
-| `example_step` | general step worked through on that object | no |
-| `lean_status` | blank, `planned`, `generated`, `checked`, or `failed` | no |
-| `lean_ref` | Lean file and declaration name | no |
-| `lean_toolchain` | exact Lean version or pinned project revision | no |
-| `lean_note` | short formalization note or checker failure | no |
+```latex
+\ic{dJ2z}{translation}[ru]{Всякое конечное поле совершенно.}
+\ic{dJ2z}{explanation}{Frobenius is bijective on a finite field.}
+\ic{dJ2z}{reference}[candidate]{Possible source match.}
+\ic{dJ2z}{formal}[planned]{Prove finite injective implies surjective.}
+```
 
-Required operational rules:
+`\ic{id}{type}[qualifier]{content}` has four fields:
 
-- Keep one row per source label in source order.
-- Treat `active_until` as inclusive. An empty value means only the statement
-  itself unless a project explicitly defines another policy.
-- Filter context first by source lifetime, then by exact requested tags;
-  `proof-outline` is not `proof`.
-- A missing example is a review signal, not a disproof.
-- A lexical lookup may change `stacks_candidate`, never `stacks_ref`.
-- Set `lean_status=checked` only when the recorded declaration passed a Lean
-  checker, and record both `lean_ref` and `lean_toolchain`. Aristotle
-  suggestions and generated Lean start as `generated`.
-- Keep prover logs and Lean source outside the CSV; store only their stable
-  summary and reference there.
+| field | rule |
+|---|---|
+| `id` | exactly four alphanumeric characters, matching one source `\itag` |
+| `type` | `translation`, `explanation`, `context`, `reference`, `formal`, or `example` |
+| `qualifier` | optional language, trust state, or formal state |
+| `content` | ordinary LaTeX rendered by the selected view |
+
+Use qualifiers consistently:
+
+- `translation`: language code such as `en` or `ru`;
+- `reference`: `candidate` or `checked`;
+- `formal`: `planned`, `generated`, `checked`, or `failed`.
+
+Each ID/type pair occurs at most once. Put the Lean declaration and toolchain in
+a `formal[checked]` comment; put unchecked lexical references in
+`reference[candidate]`, never `reference[checked]`.

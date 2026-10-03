@@ -1,8 +1,0 @@
-label,translation_ru,explanation,active_until,tags,stacks_candidate,stacks_ref,example_subject,example_step,lean_status,lean_ref,lean_note
-Q7mK,Пусть Q — целостная k-алгебра и omega_q — скорость коэффициентов подвижного репера.,This setup fixes the coefficientwise connection and the pole-order convention.,Z6bV,setup;definition;topic:pole,,,,,,,
-dJ2z,"Если m>1, то D локально нильпотентно.",The pole order makes the induced operator move a finite filtration.,dJ2z,claim;theorem;topic:pole,,,,,planned,,Formalize the finite-dimensional filtered-module argument first.
-a9Px,"Если m=1, то D полупросто и имеет целые собственные значения.",The operator preserves its integer-indexed layers.,a9Px,claim;theorem;topic:pole,,,,,planned,,Formalize the finite-dimensional graded argument first.
-h3Tf,"Если m>1, то D локально нильпотентно.",The footnote mode deliberately shows only this short translation.,h3Tf,claim;theorem;topic:pole,,,,,,,
-K8wN,"Если m=1, то D полупросто и имеет целые собственные значения.",The footnote mode deliberately shows only this short translation.,K8wN,claim;theorem;topic:pole,,,,,,,
-r4Yq,"Если m>1, то D локально нильпотентно.",The native PDF note is optional; the appendix remains the portable view.,r4Yq,claim;theorem;topic:pole,,,,,generated,,Generated status is not checked.
-Z6bV,"Если m=1, то D полупросто и имеет целые собственные значения.",The native PDF note is optional; the appendix remains the portable view.,Z6bV,claim;theorem;topic:pole,,,,,generated,,Generated status is not checked.

@@ -1,72 +1,99 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{interlinear}[2026/10/03 sentence-level research annotations]
+\NeedsTeXFormat{LaTeX2e}[2020-10-01]
+\ProvidesPackage{interlinear}[2026/10/03 typed interlinear annotations]
 
-\RequirePackage{xparse}
 \RequirePackage{xcolor}
 \RequirePackage[unicode]{hyperref}
 
 \definecolor{InterlinearTranslation}{HTML}{315C9B}
 \definecolor{InterlinearExplanation}{HTML}{555555}
 \definecolor{InterlinearContext}{HTML}{6A4C93}
+\definecolor{InterlinearReference}{HTML}{8A5A00}
 \definecolor{InterlinearFormal}{HTML}{2E7D32}
+\definecolor{InterlinearExample}{HTML}{00796B}
 
 \ExplSyntaxOn
-\prop_new:N \g_interlinear_translation_prop
-\prop_new:N \g_interlinear_explanation_prop
-\prop_new:N \g_interlinear_context_prop
-\prop_new:N \g_interlinear_formal_prop
-\prop_new:N \g_interlinear_reference_prop
-\prop_new:N \g_interlinear_popup_prop
-\seq_new:N \g_interlinear_labels_seq
+\prop_new:N \g_interlinear_comment_prop
+\prop_new:N \g_interlinear_qualifier_prop
 \seq_new:N \g_interlinear_source_labels_seq
+\clist_const:Nn \c_interlinear_types_clist
+  { translation, explanation, context, reference, formal, example }
 \clist_new:N \g_interlinear_focus_clist
 \tl_new:N \g_interlinear_mode_tl
 \tl_gset:Nn \g_interlinear_mode_tl { badges }
 
-\msg_new:nnn {interlinear} {invalid-tag}
-  {Interlinear~tag~'#1'~must~be~four~alphanumeric~characters.}
+\msg_new:nnn {interlinear} {invalid-id}
+  {Interlinear~ID~'#1'~must~be~four~alphanumeric~characters.}
+\msg_new:nnn {interlinear} {unknown-type}
+  {Unknown~interlinear~comment~type~'#1'.}
+\msg_new:nnn {interlinear} {duplicate-comment}
+  {Comment~type~'#2'~is~already~defined~for~ID~'#1'.}
 \msg_new:nnn {interlinear} {duplicate-tag}
-  {Interlinear~tag~'#1'~is~used~more~than~once.}
+  {Interlinear~ID~'#1'~is~used~more~than~once~in~the~document.}
 
 \NewDocumentCommand{\InterlinearMode}{m}
   { \tl_gset:Nn \g_interlinear_mode_tl {#1} }
 \NewDocumentCommand{\InterlinearFocus}{m}
   { \clist_gset:Nn \g_interlinear_focus_clist {#1} }
 
-\NewDocumentCommand{\InterlinearDeclare}{mmmmmmm}
+\cs_new_protected:Npn \interlinear_comment:nnnn #1#2#3#4
   {
-    \seq_if_in:NnF \g_interlinear_labels_seq {#1}
-      { \seq_gput_right:Nn \g_interlinear_labels_seq {#1} }
-    \prop_gput:Nnn \g_interlinear_translation_prop {#1} {#2}
-    \prop_gput:Nnn \g_interlinear_explanation_prop {#1} {#3}
-    \prop_gput:Nnn \g_interlinear_context_prop {#1} {#4}
-    \prop_gput:Nnn \g_interlinear_formal_prop {#1} {#5}
-    \prop_gput:Nnn \g_interlinear_reference_prop {#1} {#6}
-    \prop_gput:Nnn \g_interlinear_popup_prop {#1} {#7}
+    \regex_match:nnTF {\A[A-Za-z0-9]{4}\Z} {#1}
+      {
+        \clist_if_in:NnTF \c_interlinear_types_clist {#2}
+          {
+            \prop_if_in:NnTF \g_interlinear_comment_prop {#1/#2}
+              { \msg_error:nnnn {interlinear} {duplicate-comment} {#1} {#2} }
+              {
+                \prop_gput:Nnn \g_interlinear_comment_prop {#1/#2} {#4}
+                \prop_gput:Nnn \g_interlinear_qualifier_prop {#1/#2} {#3}
+              }
+          }
+          { \msg_error:nnn {interlinear} {unknown-type} {#2} }
+      }
+      { \msg_error:nnn {interlinear} {invalid-id} {#1} }
   }
 
-\cs_new_protected:Npn \interlinear_prop_row:Nnnn #1#2#3#4
+\NewDocumentCommand{\ic}{mmO{}+m}
+  { \interlinear_comment:nnnn {#1} {#2} {#3} {#4} }
+
+\cs_new_protected:Npn \interlinear_comment_row:nn #1#2
   {
-    \prop_get:NnN #1 {#4} \l_tmpa_tl
-    \tl_if_blank:VF \l_tmpa_tl
+    \prop_get:NnNT \g_interlinear_comment_prop {#1/#2} \l_tmpa_tl
       {
+        \prop_get:NnN \g_interlinear_qualifier_prop {#1/#2} \l_tmpb_tl
+        \str_case:nn {#2}
+          {
+            {translation}
+              { \tl_set:Nn \l_tmpc_tl {Translation}
+                \tl_set:Nn \l_tmpd_tl {InterlinearTranslation} }
+            {explanation}
+              { \tl_set:Nn \l_tmpc_tl {Explanation}
+                \tl_set:Nn \l_tmpd_tl {InterlinearExplanation} }
+            {context}
+              { \tl_set:Nn \l_tmpc_tl {Active~context}
+                \tl_set:Nn \l_tmpd_tl {InterlinearContext} }
+            {reference}
+              { \tl_set:Nn \l_tmpc_tl {Reference}
+                \tl_set:Nn \l_tmpd_tl {InterlinearReference} }
+            {formal}
+              { \tl_set:Nn \l_tmpc_tl {Formal}
+                \tl_set:Nn \l_tmpd_tl {InterlinearFormal} }
+            {example}
+              { \tl_set:Nn \l_tmpc_tl {Example}
+                \tl_set:Nn \l_tmpd_tl {InterlinearExample} }
+          }
         \par\noindent
-        \textcolor{#2}{\textbf{#3}}\quad \l_tmpa_tl
+        \textcolor{\l_tmpd_tl}
+          {\textbf{\l_tmpc_tl
+            \tl_if_blank:VF \l_tmpb_tl {~(\l_tmpb_tl)}}}
+        \quad \l_tmpa_tl
       }
   }
 
 \cs_new_protected:Npn \interlinear_rows:n #1
   {
-    \interlinear_prop_row:Nnnn \g_interlinear_translation_prop
-      {InterlinearTranslation} {Translation} {#1}
-    \interlinear_prop_row:Nnnn \g_interlinear_explanation_prop
-      {InterlinearExplanation} {Explanation} {#1}
-    \interlinear_prop_row:Nnnn \g_interlinear_context_prop
-      {InterlinearContext} {Active~context} {#1}
-    \interlinear_prop_row:Nnnn \g_interlinear_formal_prop
-      {InterlinearFormal} {Lean} {#1}
-    \interlinear_prop_row:Nnnn \g_interlinear_reference_prop
-      {InterlinearExplanation} {Reference} {#1}
+    \clist_map_inline:Nn \c_interlinear_types_clist
+      { \interlinear_comment_row:nn {#1} {##1} }
   }
 
 \cs_new_protected:Npn \interlinear_badge:n #1
@@ -90,25 +117,8 @@
 
 \cs_new_protected:Npn \interlinear_footnote:n #1
   {
-    \prop_get:NnN \g_interlinear_translation_prop {#1} \l_tmpa_tl
-    \tl_if_blank:VF \l_tmpa_tl {\footnote{\l_tmpa_tl}}
-  }
-
-\cs_new_protected:Npn \interlinear_popup:n #1
-  {
-    \ifdefined\pdfannot
-      \prop_get:NnN \g_interlinear_popup_prop {#1} \l_tmpa_tl
-      \leavevmode
-      \pdfannot width 1em height 1em depth .2em
-        {
-          /Subtype~/Text~/Name~/Comment
-          /Contents~<\l_tmpa_tl>
-          /C~[0.19~0.36~0.61]~/Open~false
-        }
-      \hspace{1.1em}
-    \else
-      \interlinear_badge:n {#1}
-    \fi
+    \prop_get:NnNT \g_interlinear_comment_prop {#1/translation} \l_tmpa_tl
+      { \footnote{\l_tmpa_tl} }
   }
 
 \cs_new_protected:Npn \interlinear_after:n #1
@@ -116,10 +126,11 @@
     \str_case:VnF \g_interlinear_mode_tl
       {
         {plain}    { }
+        {draft}
+          { \nobreak\hspace{0.15em}\textsuperscript{\texttt{#1}} }
         {badges}   { \interlinear_badge:n {#1} }
         {inline}   { \interlinear_inline:n {#1} }
         {footnote} { \interlinear_footnote:n {#1} }
-        {popup}    { \interlinear_popup:n {#1} }
         {focus}
           {
             \interlinear_badge:n {#1}
@@ -141,7 +152,7 @@
             \interlinear_after:n {#1}
           }
       }
-      { \msg_error:nnn {interlinear} {invalid-tag} {#1} }
+      { \msg_error:nnn {interlinear} {invalid-id} {#1} }
   }
 
 \NewDocumentCommand{\itag}{m}{\interlinear_tag:n {#1}}
@@ -149,11 +160,14 @@
 \NewDocumentCommand{\InterlinearPrintAppendix}{}
   {
     \section*{Annotation~appendix}
-    \seq_map_inline:Nn \g_interlinear_labels_seq
+    \seq_map_inline:Nn \g_interlinear_source_labels_seq
       {
         \par\medskip\noindent
         \hypertarget{interlinear-ann-##1}{\textbf{\texttt{##1}}}
         \begingroup\raggedright\interlinear_rows:n {##1}\par\endgroup
       }
   }
+
+\AtBeginDocument
+  { \InputIfFileExists{\jobname.interlinear.tex}{}{} }
 \ExplSyntaxOff

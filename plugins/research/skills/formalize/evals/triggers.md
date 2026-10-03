@@ -2,7 +2,7 @@
 
 ## Explicit requests that must load
 
-- “Use `$formalize` on `sec3.claim`.”
+- “Use `$formalize` on `dJ2z`.”
 - “Formalize this lemma in Lean and compile it.”
 - “Ask Aristotle for a proof, then verify the returned Lean.”
 - “Set up a Lean formalization pipeline for this paper using Aristotle.”

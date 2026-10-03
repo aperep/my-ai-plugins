@@ -1,54 +1,41 @@
 ---
 name: interlinear
 description: >
-  Maintain sentence-labelled Typst or LaTeX research documents whose shared
-  sidecar drives translations, explanations, tag-scoped context, references,
-  formal status, and review views. Use for labelled claims, active-context
-  dumps, annotation presentation, or proof-on-example tracks. Not for ordinary
+  Maintain sentence-tagged LaTeX research documents and their typed annotation
+  sidecars. Use for interlinear translations, explanations, local context,
+  references, formal status, examples, or annotation views. Not for ordinary
   formatting, informal reasoning, or Lean work.
 ---
 
 # Interlinear research
 
-Treat the labelled source and its CSV as one dataset. Preserve stable labels;
-renaming a label changes citations, context ranges, and external annotations.
+Keep three concerns separate:
+
+- `<jobname>.tex` contains author text and stable `\itag` IDs;
+- `<jobname>.interlinear.tex` contains document-specific `\ic` records;
+- `interlinear.sty` is stable package code and contains no document data.
 
 ## Workflow
 
-1. For a new document, copy `assets/typst/interlinear.typ` or
-   `assets/latex/interlinear.sty`. Read
-   [references/schema.md](references/schema.md) before changing metadata.
-2. Make each labelled unit one complete sentence or independently meaningful
-   clause. In LaTeX, keep it on one physical source line and append
-   `\itag{dJ2z}`. Generate each four-character alphanumeric ID once,
-   keep it unique, and never rewrite it. In Typst, wrap the same unit in
-   `sent("dJ2z")[...]`.
-3. Run `scripts/validate_interlinear.py` before and after metadata changes.
-4. Use the helpers for mechanical work:
-   - `populate_context.py` proposes `active_until`; writing requires `--write`.
-   - `context_dump.py` exports active earlier statements, optionally filtered
-     with `--tags definition,setup,...`.
-   - `stack_lookup.py` searches a supplied local index; filling requires
-     `--fill` and writes only `stacks_candidate`, never a confirmed reference.
-   - `gap_check.py` reports proof/claim rows without `example_step`.
-5. Review semantic suggestions before writing them. Lexical spans and
-   token-overlap matches are leads, not mathematical evidence.
-
-For LaTeX, run `render_latex_data.py` after changing the source or CSV, then
-input its generated declarations after loading `interlinear.sty`. Use
-[references/rendering-modes.md](references/rendering-modes.md) when choosing a
-view. Keep annotation behavior in `interlinear.sty`; source lines contain only
-the author text and `\itag`. Do not use `\tag`, which belongs to
-`amsmath` equation numbering.
+1. Copy `assets/latex/interlinear.sty` into the LaTeX project or load an
+   installed copy. The package automatically inputs
+   `<jobname>.interlinear.tex` at the start of the document.
+2. Put each labelled sentence or independently meaningful clause on one
+   physical source line and append `\itag{dJ2z}`. Generate each four-character
+   alphanumeric ID once, keep it unique, and never rewrite it.
+3. Store each annotation as
+   `\ic{dJ2z}{type}[qualifier]{content}` in the sidecar. Read
+   [the data contract](references/schema.md) before editing it.
+4. Use [the rendering modes](references/rendering-modes.md) to select a view.
+   Semantic comment type and display mode are independent.
 
 ## Invariants
 
-- Source labels and CSV rows correspond one-to-one; labels are unique and
-  stable. New labels are random four-character alphanumeric IDs.
-- `active_until` is empty or names the same/later source label.
-- Tags are semicolon-delimited. Source lifetime and requested tags jointly
-  determine local context; `proof` and `claim` mark example-track steps.
-- Only checked results enter `stacks_ref` or the `checked` Lean status.
-  `reason` writes informal fields; `formalize` writes formal status after an
-  explicit request.
-- Keep generated PDFs, images, and context dumps outside the skill sources.
+- Every `\ic` ID names a source `\itag`; each ID/type pair occurs at most once.
+- Types are `translation`, `explanation`, `context`, `reference`, `formal`, or
+  `example`. Qualifiers carry language, reference trust, or formal status.
+- Mark a reference `checked` only after checking it. Mark formal work `checked`
+  only after the named declaration passes the recorded Lean toolchain.
+- `reason` writes informal comments; `formalize` writes formal comments only
+  after an explicit request. Neither rewrites the source claim.
+- Keep generated PDFs and prover artifacts outside the skill sources.

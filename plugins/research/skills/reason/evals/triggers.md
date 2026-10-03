@@ -2,9 +2,9 @@
 
 ## Must load
 
-- “Explain why the step at `sec3.claim` follows from the active setup.”
+- “Explain why the step at `dJ2z` follows from its recorded context.”
 - “Check this proof for hidden assumptions and try a counterexample.”
-- “Work every proof step through the example and fill `example_step`.”
+- “Work every tagged proof step through its `example` comment.”
 
 ## Must not load
 

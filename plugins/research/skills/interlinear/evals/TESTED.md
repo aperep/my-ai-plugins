@@ -1,28 +1,10 @@
 # Interlinear test status
 
-On 2026-10-03, `research@aperep` 0.5.4 from the working tree based on revision
-`ac123a2` installed locally and passed twelve helper tests. The `\itag` parser
-accepted comments and nested LaTeX commands, rejected misplaced, malformed,
-and duplicate tags, and the seven-row `rigid-section3` sidecar validated
-against both its LaTeX and Typst sources. `render_latex_data.py` generated all
-seven declarations.
+On 2026-10-03, `research@aperep` 0.6.0 from the working tree based on revision
+`5c62e58` installed locally. Structural checks confirmed that the example uses
+only `\itag` in its source, keeps all six typed `\ic` forms in the automatically
+named sidecar, and contains no interlinear Python, CSV, generated-data, or Typst
+path.
 
-PDF compilation was not rerun because this environment has no `latexmk`,
-`pdflatex`, or `tectonic`. Fresh-context routing was not rerun; the skill's
-routing description did not change.
-
-On 2026-08-26, revision `ac7d6c0` was installed locally as
-`research@aperep` version `0.4.1` under Codex 0.149.1.
-
-- Ten helper tests passed, including balanced Typst/LaTeX parsing, tag-filtered
-  context, candidate/reference separation, and Lean evidence validation.
-- The shared `rigid-section3` CSV validated against both its LaTeX and Typst
-  sources.
-- pdfTeX from TeX Live 2026 compiled the section-3 presentation fixture into a
-  valid two-page PDF. `mutool` parsed both pages and rendered the focus block,
-  short footnote, native popup badge, and printable appendix.
-- A fresh `gpt-5.6-sol` routing probe selected `research:interlinear` for
-  focus-aware LaTeX annotation rendering.
-
-Typst compilation remains untested because no Typst executable is installed in
-the test environment.
+PDF compilation remains untested because the host has no TeX engine.
+Fresh-context routing was not rerun in this session.

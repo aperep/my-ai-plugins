@@ -1,5 +1,12 @@
 # Formalize test status
 
+## Typed sidecar adaptation: 2026-10-03, research 0.6.0
+
+Formal status now uses one `\ic{id}{formal}[status]{...}` record containing the
+artifact reference and toolchain evidence. The Aristotle runtime did not
+change; its existing offline tests remain applicable. Fresh-context behavior
+was not rerun.
+
 ## Pipeline scaffold: 2026-09-17, research 0.5.0
 
 Implemented and checked in the Codex GPT-6 session on `comal-lean`:

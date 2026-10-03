@@ -15,9 +15,9 @@ target with the user. Exclude commented-out source material from that map.
 
 ## Inputs and evidence
 
-For labelled documents, use `interlinear/scripts/context_dump.py` to collect
-active definitions, assumptions, and earlier statements. Record the target and
-source location; report missing context instead of guessing it.
+For labelled documents, read the target `\itag`, its `context` comment, and the
+earlier tagged source lines it explicitly invokes. Record the target and source
+location; report missing context instead of guessing it.
 
 Keep generated artifacts outside the source document:
 
@@ -40,15 +40,15 @@ successful build alone: check the target's original type and transitive axioms.
 
 ## Result states
 
-Use the shared interlinear schema exactly:
+Use one typed interlinear comment for the target:
 
-- `planned`: target and route identified; no code claimed;
-- `generated`: Lean or Aristotle produced code that has not passed the checker;
-- `checked`: the recorded declaration passed the recorded Lean toolchain;
-- `failed`: the checker rejected the artifact; keep the useful diagnostic in
-  `lean_note`.
+- `\ic{id}{formal}[planned]{...}`: target and route identified;
+- `\ic{id}{formal}[generated]{...}`: unchecked generated code;
+- `\ic{id}{formal}[checked]{...}`: the declaration passed the named toolchain;
+- `\ic{id}{formal}[failed]{...}`: useful checker diagnostic.
 
-For `checked`, record `lean_ref` and `lean_toolchain`. Preserve the source
-claim: report added hypotheses, weakened conclusions, counterexamples, and
-translation mismatches explicitly. Update the sidecar only after preserving
-the evidence artifact; examples and citations are not formal verification.
+For `checked`, include the Lean file, declaration, and toolchain in the comment.
+Preserve the source claim: report added hypotheses, weakened conclusions,
+counterexamples, and translation mismatches explicitly. Update the sidecar
+only after preserving the evidence artifact; examples and citations are not
+formal verification.

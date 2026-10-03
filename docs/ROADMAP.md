@@ -36,11 +36,11 @@ justifies it, remove the reserved empty wrapper rather than duplicating
 
 The sentence-level research workflow has three stable skill names:
 
-- `interlinear` owns labelled Typst sources and line-tagged LaTeX sources,
-  tag-scoped local context, sidecar metadata, and PDF views. LaTeX keeps one
-  sentence or clause per source line and all annotation behavior in
-  `interlinear.sty`. The usual view uses compact badges throughout and expands
-  annotations inline only in the requested theorem block or subsection.
+- `interlinear` owns line-tagged LaTeX sources, typed TeX sidecars, and PDF
+  views. The distributable `interlinear.sty` contains only stable mechanics;
+  `<jobname>.interlinear.tex` contains document data. The usual view uses
+  compact badges throughout and expands comments inline only in the requested
+  theorem block or subsection.
 - `reason` supplies informal or semiformal explanations, local-context notes,
   examples, and gap analysis to `interlinear`.
 - `formalize` owns Lean and formal prover work. It runs only when explicitly
@@ -54,14 +54,15 @@ available; the skill must still work with a local Lean toolchain alone.
 
 #### `interlinear`
 
-Priority: medium. The shared schema, parsers, safe candidate fields, tag-scoped
-context, both adapters, and the section-3 LaTeX presentation fixture exist.
+Priority: medium. The stable package, typed sidecar contract, six semantic
+comment types, and section-3 fixture exist without Python, CSV, or generated
+data.
 
-- Install Typst in a test environment and compile every documented Typst mode.
+- Compile every documented mode in a TeX-enabled environment.
 - Check focus/badge layout on a longer mixed theorem-and-proof block.
 
-Done when both adapters consume the same fixture, helper tests pass, and the
-documented Typst modes compile.
+Done when the fixture and a longer proof compile under the supported TeX
+engines and fresh routing selects the skill for typed annotation work.
 
 #### `reason`
 

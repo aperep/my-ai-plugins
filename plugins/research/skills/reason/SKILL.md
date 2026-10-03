@@ -14,9 +14,10 @@ correct.
 
 ## Context
 
-For an interlinear document, identify the target label and use
-`interlinear/scripts/context_dump.py` to collect active earlier rows. Filter by
-relevant tags; an earlier annotation is not automatically a hypothesis.
+For an interlinear document, identify the target `\itag`, read its typed
+comments from `<jobname>.interlinear.tex`, and inspect the earlier tagged source
+lines it actually invokes. An earlier annotation is not automatically a
+hypothesis.
 
 State the context actually used:
 
@@ -37,9 +38,10 @@ Mark separately:
 - a missing hypothesis or genuine gap;
 - a check on a concrete example, which cannot prove the general claim.
 
-In an interlinear sidecar, write only informal fields such as `explanation`,
-`example_subject`, and `example_step`. Preserve labels and the source claim;
-propose stronger hypotheses or corrections separately.
+In an interlinear sidecar, write only `explanation`, `context`, or `example`
+comments. Update the existing ID/type record rather than adding a duplicate.
+Preserve IDs and the source claim; propose stronger hypotheses or corrections
+separately.
 
 Never set Lean status. For an explicit Lean or Aristotle request, hand the
 exact claim, assumptions, and gap to `formalize`.

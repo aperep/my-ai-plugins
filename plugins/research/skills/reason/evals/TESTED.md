@@ -1,5 +1,9 @@
 # Reason test status
 
+On 2026-10-03, `research@aperep` 0.6.0 moved interlinear context and examples
+to typed `\ic` comments. The instructions and eval cases now read those
+records directly; fresh-context routing and behavior were not rerun.
+
 On 2026-08-26, revision `ac7d6c0` was installed locally as
 `research@aperep` version `0.4.1` and tested in fresh context with
 `gpt-5.6-sol` under Codex 0.149.1.

@@ -2,14 +2,14 @@
 
 ## Respect tagged local context
 
-**Task.** Explain a labelled proof step using the definitions currently active
-under the tags `setup` and `topic:pole`.
+**Task.** Explain the step at `dJ2z` using its explicit `context` comment and
+the earlier tagged source line it names.
 
 **Failure without the skill.** Summarize every earlier note, treat a translation
 as a hypothesis, or omit which assumptions the explanation used.
 
-**Expected behavior.** Apply source lifetime and tag filters, name the selected
-definitions and statements, then explain the target from that context.
+**Expected behavior.** Name only the definitions and statements actually
+invoked by the context comment, then explain the target from them.
 
 ## Do not strengthen the claim
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "research",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "description": "Research reading, contextual reasoning, and opt-in Lean formalization.",
   "author": {
     "name": "Alexander Perepechko",
