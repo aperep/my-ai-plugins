@@ -26,11 +26,15 @@ a compact native text annotation whose icon depended on the PDF viewer.
 **Task.** Label matching statements in a Typst source and a LaTeX source, then
 validate both against one CSV sidecar.
 
-**Baseline failure.** The parser recognizes only Typst. A valid
-`\sent{sec3.claim}{...}` LaTeX source is reported as having no labels.
+**Baseline failure.** The LaTeX adapter wraps whole passages in
+`\sent{semantic.label}{...}`, so sentence boundaries disappear inside nested
+arguments and labels expose document structure.
 
-**Expected behavior.** Detect the source format from its extension, parse
-balanced bodies in both forms, and apply the same label/row invariants.
+**Expected behavior.** Put every LaTeX sentence or independently meaningful
+clause on one physical source line ending in a stable marker such as
+`\itag{dJ2z}`. Require one unique four-character alphanumeric ID per
+line, keep the command implementation in `interlinear.sty`, parse matching
+Typst units, and apply the same label/row invariants to both formats.
 
 ## Candidate matches are not confirmed references
 

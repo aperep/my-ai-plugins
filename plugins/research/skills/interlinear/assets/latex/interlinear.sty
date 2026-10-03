@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{interlinear}[2026/08/26 sentence-level research annotations]
+\ProvidesPackage{interlinear}[2026/10/03 sentence-level research annotations]
 
 \RequirePackage{xparse}
 \RequirePackage{xcolor}
@@ -18,9 +18,15 @@
 \prop_new:N \g_interlinear_reference_prop
 \prop_new:N \g_interlinear_popup_prop
 \seq_new:N \g_interlinear_labels_seq
+\seq_new:N \g_interlinear_source_labels_seq
 \clist_new:N \g_interlinear_focus_clist
 \tl_new:N \g_interlinear_mode_tl
 \tl_gset:Nn \g_interlinear_mode_tl { badges }
+
+\msg_new:nnn {interlinear} {invalid-tag}
+  {Interlinear~tag~'#1'~must~be~four~alphanumeric~characters.}
+\msg_new:nnn {interlinear} {duplicate-tag}
+  {Interlinear~tag~'#1'~is~used~more~than~once.}
 
 \NewDocumentCommand{\InterlinearMode}{m}
   { \tl_gset:Nn \g_interlinear_mode_tl {#1} }
@@ -124,7 +130,21 @@
       { \interlinear_badge:n {#1} }
   }
 
-\ProvideDocumentCommand{\sent}{mm}{#2\interlinear_after:n {#1}}
+\cs_new_protected:Npn \interlinear_tag:n #1
+  {
+    \regex_match:nnTF {\A[A-Za-z0-9]{4}\Z} {#1}
+      {
+        \seq_if_in:NnTF \g_interlinear_source_labels_seq {#1}
+          { \msg_error:nnn {interlinear} {duplicate-tag} {#1} }
+          {
+            \seq_gput_right:Nn \g_interlinear_source_labels_seq {#1}
+            \interlinear_after:n {#1}
+          }
+      }
+      { \msg_error:nnn {interlinear} {invalid-tag} {#1} }
+  }
+
+\NewDocumentCommand{\itag}{m}{\interlinear_tag:n {#1}}
 
 \NewDocumentCommand{\InterlinearPrintAppendix}{}
   {

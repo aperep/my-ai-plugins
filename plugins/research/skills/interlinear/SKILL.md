@@ -18,9 +18,11 @@ renaming a label changes citations, context ranges, and external annotations.
 1. For a new document, copy `assets/typst/interlinear.typ` or
    `assets/latex/interlinear.sty`. Read
    [references/schema.md](references/schema.md) before changing metadata.
-2. Wrap complete mathematical sentences or proof steps in
-   `sent("label")[...]` (Typst) or `\sent{label}{...}` (LaTeX). Keep fragments
-   that cannot be understood independently in one labelled unit.
+2. Make each labelled unit one complete sentence or independently meaningful
+   clause. In LaTeX, keep it on one physical source line and append
+   `\itag{dJ2z}`. Generate each four-character alphanumeric ID once,
+   keep it unique, and never rewrite it. In Typst, wrap the same unit in
+   `sent("dJ2z")[...]`.
 3. Run `scripts/validate_interlinear.py` before and after metadata changes.
 4. Use the helpers for mechanical work:
    - `populate_context.py` proposes `active_until`; writing requires `--write`.
@@ -35,11 +37,14 @@ renaming a label changes citations, context ranges, and external annotations.
 For LaTeX, run `render_latex_data.py` after changing the source or CSV, then
 input its generated declarations after loading `interlinear.sty`. Use
 [references/rendering-modes.md](references/rendering-modes.md) when choosing a
-view.
+view. Keep annotation behavior in `interlinear.sty`; source lines contain only
+the author text and `\itag`. Do not use `\tag`, which belongs to
+`amsmath` equation numbering.
 
 ## Invariants
 
-- Source labels and CSV rows correspond one-to-one; labels are unique.
+- Source labels and CSV rows correspond one-to-one; labels are unique and
+  stable. New labels are random four-character alphanumeric IDs.
 - `active_until` is empty or names the same/later source label.
 - Tags are semicolon-delimited. Source lifetime and requested tags jointly
   determine local context; `proof` and `claim` mark example-track steps.

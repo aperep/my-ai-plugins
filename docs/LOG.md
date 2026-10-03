@@ -4,6 +4,12 @@ parent: docs/ROADMAP.md
 
 # Change log
 
+## 2026-10-03
+
+- Replaced LaTeX `\sent{label}{...}` wrappers in `interlinear` with one
+  sentence-or-clause per source line ending in a stable four-character
+  `\itag`; kept its behavior and validation in `interlinear.sty`.
+
 ## 2026-09-19
 
 - Removed the unused `human-only` guard and its write-blocking hooks; retained

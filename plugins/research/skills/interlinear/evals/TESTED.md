@@ -1,5 +1,16 @@
 # Interlinear test status
 
+On 2026-10-03, `research@aperep` 0.5.4 from the working tree based on revision
+`ac123a2` installed locally and passed twelve helper tests. The `\itag` parser
+accepted comments and nested LaTeX commands, rejected misplaced, malformed,
+and duplicate tags, and the seven-row `rigid-section3` sidecar validated
+against both its LaTeX and Typst sources. `render_latex_data.py` generated all
+seven declarations.
+
+PDF compilation was not rerun because this environment has no `latexmk`,
+`pdflatex`, or `tectonic`. Fresh-context routing was not rerun; the skill's
+routing description did not change.
+
 On 2026-08-26, revision `ac7d6c0` was installed locally as
 `research@aperep` version `0.4.1` under Codex 0.149.1.
 

@@ -3,8 +3,9 @@
 ## Must load
 
 - “Label these theorem steps and add tag-scoped explanations in the sidecar.”
+- “Put each LaTeX sentence on its own line and give it an interlinear tag.”
 - “Render this interlinear review in both Typst and LaTeX.”
-- “Dump the definitions active at `sec3.claim`.”
+- “Dump the definitions active at `dJ2z`.”
 
 ## Must not load
 

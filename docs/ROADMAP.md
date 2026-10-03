@@ -36,10 +36,11 @@ justifies it, remove the reserved empty wrapper rather than duplicating
 
 The sentence-level research workflow has three stable skill names:
 
-- `interlinear` owns labelled Typst and LaTeX sources, tag-scoped local
-  context, sidecar metadata, and PDF views. The usual view uses compact badges
-  throughout and expands annotations inline only in the requested theorem
-  block or subsection.
+- `interlinear` owns labelled Typst sources and line-tagged LaTeX sources,
+  tag-scoped local context, sidecar metadata, and PDF views. LaTeX keeps one
+  sentence or clause per source line and all annotation behavior in
+  `interlinear.sty`. The usual view uses compact badges throughout and expands
+  annotations inline only in the requested theorem block or subsection.
 - `reason` supplies informal or semiformal explanations, local-context notes,
   examples, and gap analysis to `interlinear`.
 - `formalize` owns Lean and formal prover work. It runs only when explicitly

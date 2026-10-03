@@ -8,8 +8,9 @@ import tempfile
 from pathlib import Path
 
 TYPST_SENT = re.compile(r'#sent\(\s*"([^"]+)"\s*\)\s*\[')
-LATEX_SENT = re.compile(r"\\sent\s*\{([^{}]+)\}\s*\{")
+LATEX_TAG = re.compile(r"\\itag\s*\{([^{}]+)\}")
 LABEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9:._-]*")
+SHORT_ID = re.compile(r"[A-Za-z0-9]{4}")
 
 
 def _mask_typst(source: str, hide_strings: bool) -> str:
@@ -120,9 +121,36 @@ def parse_sentences(path: str | Path) -> list[tuple[str, str]]:
         matches = TYPST_SENT.finditer(searchable)
         opening, closing = "[", "]"
     elif source_path.suffix.lower() == ".tex":
-        searchable = structural = _mask_latex_comments(source)
-        matches = LATEX_SENT.finditer(searchable)
-        opening, closing = "{", "}"
+        masked = _mask_latex_comments(source)
+        labels: set[str] = set()
+        for line_number, (line, masked_line) in enumerate(
+            zip(source.splitlines(), masked.splitlines(), strict=True), start=1
+        ):
+            if "\\itag" not in masked_line:
+                continue
+            markers = list(LATEX_TAG.finditer(masked_line))
+            if len(markers) != 1:
+                raise ValueError(f"line {line_number}: expected one itag")
+            marker = markers[0]
+            if masked_line[marker.end():].strip():
+                raise ValueError(
+                    f"line {line_number}: itag must be at the end of its line"
+                )
+            label = marker.group(1).strip()
+            if not SHORT_ID.fullmatch(label):
+                raise ValueError(
+                    f"line {line_number}: interlinear tag must be four alphanumeric characters"
+                )
+            if label in labels:
+                raise ValueError(f"line {line_number}: duplicate interlinear tag {label!r}")
+            body = line[:marker.start()].strip()
+            if not body:
+                raise ValueError(
+                    f"line {line_number}: itag needs a sentence or clause"
+                )
+            labels.add(label)
+            result.append((label, body))
+        return result
     else:
         raise ValueError(f"unsupported source format: {source_path.suffix or '(none)'}")
     for match in matches:

@@ -39,24 +39,42 @@ class InterlinearTests(unittest.TestCase):
                 [("s1", 'Text with "a ] string" and \\] escaped.')],
             )
 
-    def test_latex_balanced_bodies_and_comments(self):
+    def test_latex_line_tags_and_comments(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "document.tex"
             path.write_text(
-                '% \\sent{bad}{Comment.}\n'
-                '\\sent{sec3.claim}{Text with \\emph{nested braces} and \\{literal\\}.}\n',
+                '% Comment.\\itag{nope}\n'
+                'Text with \\emph{nested braces} and '
+                '\\{literal\\}.\\itag{dJ2z}\n',
                 encoding="utf-8",
             )
             self.assertEqual(
                 parse_sentences(path),
-                [("sec3.claim", "Text with \\emph{nested braces} and \\{literal\\}.")],
+                [("dJ2z", "Text with \\emph{nested braces} and \\{literal\\}.")],
             )
 
-    def test_unclosed_body_is_rejected(self):
+    def test_latex_tag_must_end_the_line(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "document.tex"
-            path.write_text('\\sent{s1}{Unclosed.\n', encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "unclosed sent body"):
+            path.write_text('First.\\itag{dJ2z} Second.\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "end of its line"):
+                parse_sentences(path)
+
+    def test_latex_tag_requires_short_id(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "document.tex"
+            path.write_text('Claim.\\itag{semantic-label}\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "four alphanumeric"):
+                parse_sentences(path)
+
+    def test_latex_tags_are_unique(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "document.tex"
+            path.write_text(
+                'First.\\itag{dJ2z}\nSecond.\\itag{dJ2z}\n',
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "duplicate interlinear tag"):
                 parse_sentences(path)
 
     def test_atomic_csv_round_trip(self):
@@ -91,9 +109,9 @@ class InterlinearTests(unittest.TestCase):
             document = root / "document.tex"
             data = root / "sentences.csv"
             document.write_text(
-                "\\sent{d1}{Definition one.}\n"
-                "\\sent{aside}{Unrelated note.}\n"
-                "\\sent{p1}{Proof step.}\n",
+                "Definition one.\\itag{D1a2}\n"
+                "Unrelated note.\\itag{A3b4}\n"
+                "Proof step.\\itag{P5c6}\n",
                 encoding="utf-8",
             )
             with data.open("w", newline="", encoding="utf-8") as handle:
@@ -102,12 +120,23 @@ class InterlinearTests(unittest.TestCase):
                 )
                 writer.writeheader()
                 writer.writerows([
-                    {"label": "d1", "active_until": "p1", "tags": "definition;topic:ring"},
-                    {"label": "aside", "active_until": "p1", "tags": "translation"},
-                    {"label": "p1", "active_until": "", "tags": "proof;topic:ring"},
+                    {
+                        "label": "D1a2",
+                        "active_until": "P5c6",
+                        "tags": "definition;topic:ring",
+                    },
+                    {
+                        "label": "A3b4",
+                        "active_until": "P5c6",
+                        "tags": "translation",
+                    },
+                    {"label": "P5c6", "active_until": "", "tags": "proof;topic:ring"},
                 ])
             result = build(document, data, {"definition"})
-            self.assertEqual([item["label"] for item in result["p1"]["context"]], ["d1"])
+            self.assertEqual(
+                [item["label"] for item in result["P5c6"]["context"]],
+                ["D1a2"],
+            )
 
     def test_lookup_writes_candidate_not_reference(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -157,11 +186,11 @@ class InterlinearTests(unittest.TestCase):
             root = Path(directory)
             document = root / "document.tex"
             data = root / "sentences.csv"
-            document.write_text("\\sent{s1}{Claim.}\n", encoding="utf-8")
-            data.write_text("label,lean_status,lean_ref,lean_toolchain\ns1,checked,,\n")
+            document.write_text("Claim.\\itag{C1a2}\n", encoding="utf-8")
+            data.write_text("label,lean_status,lean_ref,lean_toolchain\nC1a2,checked,,\n")
             errors = validate(document, data)
-            self.assertIn("s1: checked Lean status needs lean_ref", errors)
-            self.assertIn("s1: checked Lean status needs lean_toolchain", errors)
+            self.assertIn("C1a2: checked Lean status needs lean_ref", errors)
+            self.assertIn("C1a2: checked Lean status needs lean_toolchain", errors)
 
 
 if __name__ == "__main__":

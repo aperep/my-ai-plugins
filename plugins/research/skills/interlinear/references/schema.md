@@ -4,7 +4,7 @@ The source order, not lexical label order, defines all spans.
 
 | column | meaning | required |
 |---|---|---|
-| `label` | stable identifier matching a source `sent` label | yes |
+| `label` | stable ID matching a source `sent` or `\itag`; use four random alphanumeric characters for new labels | yes |
 | `translation_<lang>` | translation, e.g. `translation_en` | no |
 | `explanation` | informal explanation; must not masquerade as verified fact | no |
 | `active_until` | final source label for which this row remains active | no |
