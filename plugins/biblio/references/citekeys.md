@@ -17,17 +17,18 @@ Capitalize the first letter of each contribution and lowercase the rest. Ignore 
 ## Year
 
 - While a paper exists only as a preprint, use its initial preprint submission year.
-- Acceptance or online-first publication without volume and pages does not yet count as published; retain the preprint year and `-preprint`.
+- Acceptance or online-first publication without volume and pages does not yet count as published; retain the preprint year and `-pr`.
 - Once a journal or proceedings publication has volume and pages, use the publication year and rename everywhere.
 
 ## Dash modifiers
 
-A key may carry a trailing `-<modifier>` for a special case. Use `-preprint` by default for a key based on the preprint version; remove it on publication unless the key is deliberately kept pinned to that version. Other modifiers are the user's call; do not invent them.
+A key may carry a trailing `-<modifier>` for a special case. Use `-pr` by default for a key based on the preprint version; remove it on publication unless the key is deliberately kept pinned to that version. Other modifiers are the user's call; do not invent them.
 
 When a key changes, update the Zotero pinned key, repository filename and metadata, and all references. Check collisions first. When replacing a preprint with the published version, also recheck theorem, proposition, and section numbers recorded in linked notes.
 
 ## Collisions and legacy keys
 
 If the computed key is occupied, append the next available lowercase suffix: `Da08`, `Da08a`, `Da08b`. Preserve an existing corpus that already suffixes every member of a collision group.
+Place a collision suffix before a modifier, for example `Da08a-pr`.
 
 Do not normalize legacy keys or transliteration choices as a side effect of unrelated work.
