@@ -27,6 +27,10 @@ in its inbox and uses `#in-progress`.
 | K | Move a note between folders in one vault using a storage primitive documented as atomic and no-clobber. | `move`, without `cross-boundary`: the guaranteed primitive may replace copy/verify/delete; resolve both paths, refuse an overwrite, verify the destination, update references as appropriate, and report the mapping. |
 | L | Process several mixed inbox lists containing clusters of related people, project, source, and task items; one item's destination cannot be verified. | `process-inbox`: inventory all in-scope items with their sources, build and review a temporary similarity-grouped view before mutations, then process one section at a time. Apply `move` per item; retain the unverifiable item at its source, reconcile the inventory, and report source-to-destination results by section. |
 | M | Capture a note when `meta:*` skills are available but none has been invoked. | `knowledge-rule`: do not warn that `meta` is unavailable; availability, not prior invocation, satisfies the check. |
+| N | Create a blueprint for the agent attached to a repository. | `agent-charter`: use `docs/charter/` with the six standard files; keep runtime state and live tasks elsewhere. |
+| O | Add an AGora charter that inherits the main Рэсси charter in `me`. | `agent-charter`: name the parent, read it first, keep only local additions, and require explicit local text for overrides. |
+| P | The attached agent updates its internal `SOUL.md`. | `agent-charter`: do not edit the charter; report the exact changed path and exact diff or before-and-after change. |
+| Q | Update ordinary repository editing guidance in `AGENTS.md`; no attached-agent blueprint or self-change is involved. | `agent-charter` should not load. |
 
 Additional routing boundaries: a repository doc-tree check belongs to
 `meta:doc-map`; a relocation inside one vault may need `move` but not

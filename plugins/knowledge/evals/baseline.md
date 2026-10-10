@@ -46,3 +46,13 @@ A user observed that `knowledge-rule` warned that its `meta` dependency was not
 loaded even though `meta:*` skills were available. The instruction tested the
 ambiguous state "loaded" instead of the observable state "available". Case M
 covers the corrected distinction.
+
+## 2026-10-10 agent-charter gap
+
+Repository agent blueprints existed as infrastructure-adjacent role,
+capability, and preference files without a reusable vault-local structure.
+There was no shared rule for inheritance, manual materialization into runtime
+Markdown, or exact disclosure after an agent edits its own durable files. The
+user explicitly requested one reusable knowledge skill and the standard
+`docs/charter/` layout. Cases N–Q record the requested behavior; no independent
+behavioral run has exercised them yet.

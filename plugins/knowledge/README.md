@@ -12,6 +12,7 @@ private stores. Paths, schemas, and lifecycles stay in the consuming storage.
 - [cross-boundary](skills/cross-boundary/SKILL.md): audience-aware transfers.
 - [process-inbox](skills/process-inbox/SKILL.md): classify and process inbox series.
 - [audit-knowledge](skills/audit-knowledge/SKILL.md): findings and proposed diffs.
+- [agent-charter](skills/agent-charter/SKILL.md): repository blueprints for attached agents and reconciliation with runtime Markdown.
 
 Use with `meta` for documentation conventions and repository maintenance.
 If no `meta:*` skill is available, warn once and use the available local

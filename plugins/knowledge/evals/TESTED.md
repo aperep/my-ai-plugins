@@ -39,6 +39,12 @@ pre-2026-09-21 versions of cases A–H. The later series-processing change and
 case L are also untested. Case M records a user-observed false warning; the
 reworded instruction has not received a fresh-context behavioral run.
 
+The 2026-10-10 `agent-charter` addition and cases N–Q have not received an
+independent fresh-context behavioral run. Structural and installation checks
+for that revision passed: `quick_validate.py` accepted the skill, both JSON
+manifests parsed, local `codex plugin add knowledge@aperep` installed and
+enabled version 0.3.0, and the installed skill tree matched the checkout.
+
 ## Structural and installation checks
 
 - `quick_validate.py`: all four knowledge skills, meta maintenance, and the
