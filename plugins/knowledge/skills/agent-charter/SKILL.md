@@ -17,7 +17,8 @@ Use these standard files:
 - `CAPABILITIES.md`: intended access, authority, and enforced limits;
 - `PERSONALITY.md`: character, communication style, and stable preferences;
 - `CONTEXT.md`: durable local context and canonical sources;
-- `SCENARIOS.md`: recurring triggers, actions, outcomes, and escalation cases.
+- `SCENARIOS.md`: named recurring triggers, actions, outcomes, and escalation
+  cases.
 
 Keep live tasks, schedules, transient memory, tool schemas, and deployment
 configuration in their existing canonical systems. Link them from the charter
@@ -31,6 +32,18 @@ Name the parent charter in the local `README.md`. Read the complete parent and
 then the local charter. Local text adds repository-specific behavior and
 overrides the parent only when it says so explicitly. Report unresolved
 conflicts instead of inventing merge semantics.
+
+## Scenarios and validation
+
+Give every scenario a short user-facing name. When the attached agent follows
+a scenario, it must explicitly tell the user which named scenario is active.
+
+After a material charter change, or a material change to its runtime
+materialization, exercise every affected scenario end to end. If different
+models will execute those scenarios, test each affected scenario on every such
+model; one model's pass is not evidence for another. Record the scenario name,
+model, charter or runtime revision, date, and outcome. Cosmetic edits do not
+require a scenario run.
 
 ## Reconciliation and self-change
 

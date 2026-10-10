@@ -45,6 +45,15 @@ for that revision passed: `quick_validate.py` accepted the skill, both JSON
 manifests parsed, local `codex plugin add knowledge@aperep` installed and
 enabled version 0.3.0, and the installed skill tree matched the checkout.
 
+The 2026-10-11 scenario-validation revision and cases R–S have not received an
+independent fresh-context behavioral run. They require named scenario
+disclosure, affected-scenario testing after material changes, and separate
+evidence for each model that will execute the scenario. `quick_validate.py`,
+the declared Agent Plugins JSON Schema, JSON parsing, and `git diff --check`
+passed. Local installation enabled `knowledge@aperep` version 0.3.1, and its
+installed tree matched the checkout. The `skills-ref` executable was not
+available in this environment.
+
 ## Structural and installation checks
 
 - `quick_validate.py`: all four knowledge skills, meta maintenance, and the

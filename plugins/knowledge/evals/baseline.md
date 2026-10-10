@@ -56,3 +56,13 @@ Markdown, or exact disclosure after an agent edits its own durable files. The
 user explicitly requested one reusable knowledge skill and the standard
 `docs/charter/` layout. Cases N–Q record the requested behavior; no independent
 behavioral run has exercised them yet.
+
+## 2026-10-11 scenario validation and disclosure gap
+
+The charter workflow did not require scenarios to have user-facing names, did
+not tell an attached agent to identify the active scenario to the user, and did
+not require affected scenarios to be retested after material changes. It also
+treated no multi-model execution boundary explicitly, so a pass on one model
+could be mistaken for evidence about another. The user explicitly requested
+these conventions. Cases R and S cover the material-change rule and its
+cosmetic-edit boundary; neither has received an independent behavioral run.

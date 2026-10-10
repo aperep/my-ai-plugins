@@ -31,6 +31,8 @@ in its inbox and uses `#in-progress`.
 | O | Add an AGora charter that inherits the main Рэсси charter in `me`. | `agent-charter`: name the parent, read it first, keep only local additions, and require explicit local text for overrides. |
 | P | The attached agent updates its internal `SOUL.md`. | `agent-charter`: do not edit the charter; report the exact changed path and exact diff or before-and-after change. |
 | Q | Update ordinary repository editing guidance in `AGENTS.md`; no attached-agent blueprint or self-change is involved. | `agent-charter` should not load. |
+| R | Materially change a recurring charter workflow that is executed by GPT-6 and GPT-6 Luna. | `agent-charter`: give the scenario a user-facing name, require the agent to name it to the user when active, and test the affected scenario end to end on both executing models while recording scenario, model, revision, date, and outcome. |
+| S | Correct a typo in `CONTEXT.md` without changing agent behavior. | `agent-charter`: preserve the correction, but do not require a scenario run for the cosmetic edit. |
 
 Additional routing boundaries: a repository doc-tree check belongs to
 `meta:doc-map`; a relocation inside one vault may need `move` but not
