@@ -1,22 +1,23 @@
 {
   "name": "knowledge",
-  "version": "0.3.1",
-  "description": "Capture, place, move, process, and maintain knowledge and repository agent charters.",
+  "version": "0.4.0",
+  "description": "Find, capture, place, move, process, and maintain knowledge and repository agent charters.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["knowledge", "notes", "inbox", "move", "maintenance", "agent-charter"],
+  "keywords": ["knowledge", "search", "retrieval", "notes", "inbox", "move", "maintenance", "agent-charter"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Knowledge",
-    "shortDescription": "Capture knowledge and respect storage boundaries",
-    "longDescription": "Keep one canonical home, move knowledge safely, preserve sources, process inboxes using local rules, maintain repository agent charters, and propose maintenance changes.",
+    "shortDescription": "Find and manage knowledge across storage boundaries",
+    "longDescription": "Recover recorded knowledge through mapped sources, keep one canonical home, move knowledge safely, preserve sources, process inboxes using local rules, maintain repository agent charters, and propose maintenance changes.",
     "developerName": "Alexander Perepechko",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
     "defaultPrompt": [
+      "Find what I previously recorded about this topic.",
       "Capture this message in the right inbox.",
       "Move these knowledge items safely.",
       "Process this repository's knowledge inbox.",

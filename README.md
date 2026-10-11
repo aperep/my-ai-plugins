@@ -81,9 +81,9 @@ checks.
 
 ### `knowledge`
 
-[Knowledge management](plugins/knowledge/README.md): canonical placement,
-safe moves, capture, inbox processing, cross-storage boundaries, and audits.
-This plugin subsumes general knowledge-management work.
+[Knowledge management](plugins/knowledge/README.md): source-mapped retrieval,
+canonical placement, safe moves, capture, inbox processing, cross-storage
+boundaries, and audits. This plugin subsumes general knowledge-management work.
 
 ### `obsidian`
 

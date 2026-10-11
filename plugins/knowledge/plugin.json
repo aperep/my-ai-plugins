@@ -1,12 +1,12 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "knowledge",
-  "version": "0.3.1",
-  "description": "Capture, place, move, process, and maintain knowledge and repository agent charters.",
+  "version": "0.4.0",
+  "description": "Find, capture, place, move, process, and maintain knowledge and repository agent charters.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["knowledge", "notes", "inbox", "move", "maintenance", "agent-charter"]
+  "keywords": ["knowledge", "search", "retrieval", "notes", "inbox", "move", "maintenance", "agent-charter"]
 }

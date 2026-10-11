@@ -24,56 +24,6 @@ For every skill change:
 The `knowledge` plugin subsumes general knowledge management: canonical homes,
 capture, inbox processing, boundary crossing, and audits.
 
-### Proposed `find-knowledge`
-
-Priority: unassigned. Do not create the skill until a baseline proves a
-repeatable retrieval failure.
-
-Goal: recover previously recorded information without requiring the user to
-remember its wording or location. Start from the current storage's contract and
-source map, follow only documented and authorized routes, and distinguish “not
-found” from “not searched”. This is read-only retrieval, not web research,
-capture, maintenance, or permission expansion.
-
-Negative control, 2026-10-11: search for a `DEMI` / `ДЭМИ` school desk starting
-from `me` and `us`, then the Telegram chats mapped there. Exact local search
-found only unrelated uses of “деми”; hybrid and semantic `me` search returned
-irrelevant results. The storage map identified plausible family/home Telegram
-sources, but host Codex exposes neither `us` semantic search nor Telegram tools;
-filesystem search covered `us`, while Telegram remained explicitly unsearched.
-The user confirmed that the remembered knowledge does not exist and that this
-search handled the case correctly. This case therefore does not justify a new
-skill; retain it only to test honest negative results. A skill cannot repair the
-capability boundary and must report it.
-
-Before implementation:
-
-- Run a positive case with a known existing record in a mapped secondary source,
-  using a fresh context whose client is authorized for that source. Record
-  whether the unskilled agent misses the result, loses provenance, stops before
-  the mapped source, or overstates coverage. If representative positive and
-  negative cases succeed, reject the new skill.
-- Add must-load cases for recovering a vaguely remembered fact or artifact across
-  mapped stores, and must-not-load cases for code search, web research, filing a
-  note, and auditing a storage.
-- Test exact spelling, Cyrillic/Latin aliases, inflection, and a cautious category
-  paraphrase. Reject semantic matches that lack supporting text.
-
-If the gate passes, add only `skills/find-knowledge/SKILL.md` and its `evals/`.
-The workflow should inventory candidate sources from local maps, search each
-source with observable query variants, follow documented cross-storage links,
-respect audience and tool authorization, and return cited findings plus a
-coverage ledger of searched, unavailable, truncated, and still-pending sources.
-For Telegram, search one allowlisted numeric chat at a time and account for
-pagination, 2,000-character truncation, and unavailable media; do not hardcode
-personal paths, chat IDs, or client names in the shared skill.
-
-Done when the enabled fresh-context run finds the relevant record when it is in
-an accessible mapped source, or accurately reports the covered sources and gaps
-when it is not; it must not present an inaccessible source or a semantic near-hit
-as evidence. Then validate and locally install `knowledge` and bump both
-manifests together.
-
 Whether a separate `obsidian` technical plugin is needed is not yet known.
 Reason from concrete Obsidian-only workflows, the ownership and update cost of
 any third-party skills, and portable client support. If no repeated gap
@@ -164,6 +114,13 @@ Priority: low. Keep the skill.
 Done when both minimal variants compile and an existing project is preserved.
 
 ## Validation debt
+
+### `knowledge`
+
+- `find-knowledge`: run fresh-context routing and a positive retrieval case with
+  a known record in a mapped secondary source. Compare it with the recorded
+  unskilled negative control; do not claim measured improvement before an
+  observable baseline failure clears.
 
 ### `biblio`
 

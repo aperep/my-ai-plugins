@@ -7,6 +7,7 @@ parent: README.md
 Reusable operations for knowledge in vaults, Git repositories, clouds, and
 private stores. Paths, schemas, and lifecycles stay in the consuming storage.
 
+- [find-knowledge](skills/find-knowledge/SKILL.md): source-mapped retrieval with explicit coverage.
 - [knowledge-rule](skills/knowledge-rule/SKILL.md): placement and capture.
 - [move](skills/move/SKILL.md): safe relocation and source retirement.
 - [cross-boundary](skills/cross-boundary/SKILL.md): audience-aware transfers.
@@ -31,5 +32,5 @@ brief routing map, not an inventory of other storages' contents.
 Existing vault migrations are separate changes: flag conflicting local rules
 instead of silently replacing their schemas or moving their notes.
 
-Evaluation: [baseline](evals/baseline.md), [cases](evals/triggers.md),
-[results](evals/TESTED.md).
+Plugin evaluation: [baseline](evals/baseline.md), [cases](evals/triggers.md),
+[results](evals/TESTED.md). Newer skills keep their own evals beside the skill.
