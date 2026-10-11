@@ -56,11 +56,11 @@ available in this environment.
 
 The 2026-10-11 clarification-default revision and case T have not received an
 independent fresh-context behavioral run. It requires a safe default alongside
-a clarification and accepts an unambiguous message or supported reaction
-without expanding the agent's authority. `quick_validate.py`, JSON parsing,
-`git diff --check`, and local installation of `knowledge@aperep` version 0.5.1
-passed; the installed skill tree matched the checkout. The `skills-ref`
-executable was unavailable.
+a clarification, puts it first in interactive choices when supported, and
+accepts either that choice or a message without expanding the agent's
+authority. `quick_validate.py`, JSON parsing, `git diff --check`, and local
+installation of `knowledge@aperep` version 0.5.2 passed; the installed skill
+tree matched the checkout. The `skills-ref` executable was unavailable.
 
 ## Structural and installation checks
 

@@ -71,7 +71,8 @@ cosmetic-edit boundary; neither has received an independent behavioral run.
 
 Scenario guidance allowed an attached agent to stop at a clarification even
 when a safe, authorized default was available. The user explicitly requested
-that the question name that default and that approval by message or a supported
-reaction continue with it without another round trip. Case T records this
-behavior and preserves existing authority limits; it has not received an
-independent behavioral run.
+that the question name that default and that one-tap approval continue with it
+without another round trip. Because reactions do not resume every agent
+runtime, the accepted portable behavior uses the first interactive choice when
+available and a message otherwise. Case T records this behavior and preserves
+existing authority limits; it has not received an independent behavioral run.
