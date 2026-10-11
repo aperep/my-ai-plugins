@@ -26,7 +26,8 @@ capture, inbox processing, boundary crossing, and audits.
 
 ### Proposed `find-knowledge`
 
-Priority: high. Validate the need before creating the skill.
+Priority: unassigned. Do not create the skill until a baseline proves a
+repeatable retrieval failure.
 
 Goal: recover previously recorded information without requiring the user to
 remember its wording or location. Start from the current storage's contract and
@@ -34,20 +35,24 @@ source map, follow only documented and authorized routes, and distinguish “not
 found” from “not searched”. This is read-only retrieval, not web research,
 capture, maintenance, or permission expansion.
 
-Baseline example, 2026-10-11: search for a `DEMI` / `ДЭМИ` school desk starting
+Negative control, 2026-10-11: search for a `DEMI` / `ДЭМИ` school desk starting
 from `me` and `us`, then the Telegram chats mapped there. Exact local search
 found only unrelated uses of “деми”; hybrid and semantic `me` search returned
 irrelevant results. The storage map identified plausible family/home Telegram
 sources, but host Codex exposes neither `us` semantic search nor Telegram tools;
 filesystem search covered `us`, while Telegram remained explicitly unsearched.
-A skill cannot repair that capability boundary and must report it.
+The user confirmed that the remembered knowledge does not exist and that this
+search handled the case correctly. This case therefore does not justify a new
+skill; retain it only to test honest negative results. A skill cannot repair the
+capability boundary and must report it.
 
 Before implementation:
 
-- Repeat this case in a fresh context whose client is authorized for both vaults
-  and the mapped Telegram chats. Record whether the unskilled agent misses a
-  relevant result, loses provenance, stops before a mapped source, or overstates
-  coverage. If it succeeds, reject the new skill.
+- Run a positive case with a known existing record in a mapped secondary source,
+  using a fresh context whose client is authorized for that source. Record
+  whether the unskilled agent misses the result, loses provenance, stops before
+  the mapped source, or overstates coverage. If representative positive and
+  negative cases succeed, reject the new skill.
 - Add must-load cases for recovering a vaguely remembered fact or artifact across
   mapped stores, and must-not-load cases for code search, web research, filing a
   note, and auditing a storage.
