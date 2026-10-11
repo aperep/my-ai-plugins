@@ -37,6 +37,11 @@ conflicts instead of inventing merge semantics.
 
 Give every scenario a short user-facing name. When the attached agent follows
 a scenario, it must explicitly tell the user which named scenario is active.
+When a scenario needs clarification, pair the focused question with one
+concrete safe default action. If the user approves that default by message or
+by a supported reaction unambiguously attached to the proposal, proceed with
+it without asking again. A default does not bypass the scenario's authority or
+approval limits; if no safe authorized default exists, say so.
 
 After a material charter change, or a material change to its runtime
 materialization, exercise every affected scenario end to end. If different

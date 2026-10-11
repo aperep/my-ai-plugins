@@ -33,6 +33,7 @@ in its inbox and uses `#in-progress`.
 | Q | Update ordinary repository editing guidance in `AGENTS.md`; no attached-agent blueprint or self-change is involved. | `agent-charter` should not load. |
 | R | Materially change a recurring charter workflow that is executed by GPT-6 and GPT-6 Luna. | `agent-charter`: give the scenario a user-facing name, require the agent to name it to the user when active, and test the affected scenario end to end on both executing models while recording scenario, model, revision, date, and outcome. |
 | S | Correct a typo in `CONTEXT.md` without changing agent behavior. | `agent-charter`: preserve the correction, but do not require a scenario run for the cosmetic edit. |
+| T | Add a scenario whose agent may need one clarification before an authorized write. | `agent-charter`: ask the focused question with one safe concrete default, then act without asking again when the user approves that proposal by message or a supported reaction unambiguously attached to it. Do not let the default widen authority. |
 
 Additional routing boundaries: a repository doc-tree check belongs to
 `meta:doc-map`; a relocation inside one vault may need `move` but not

@@ -66,3 +66,12 @@ treated no multi-model execution boundary explicitly, so a pass on one model
 could be mistaken for evidence about another. The user explicitly requested
 these conventions. Cases R and S cover the material-change rule and its
 cosmetic-edit boundary; neither has received an independent behavioral run.
+
+## 2026-10-11 clarification-default gap
+
+Scenario guidance allowed an attached agent to stop at a clarification even
+when a safe, authorized default was available. The user explicitly requested
+that the question name that default and that approval by message or a supported
+reaction continue with it without another round trip. Case T records this
+behavior and preserves existing authority limits; it has not received an
+independent behavioral run.
