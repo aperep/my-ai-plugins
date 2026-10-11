@@ -1,7 +1,7 @@
 # Baseline status
 
 Recorded 2026-10-11 against repository revision `dd2ab45` in the current Codex
-session, before `find-knowledge` existed.
+session, before `find` existed.
 
 The user asked to find information about a `DEMI` / `ДЭМИ` school desk starting
 from the `me` and `us` knowledge stores and then the Telegram chats mapped from

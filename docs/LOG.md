@@ -6,12 +6,13 @@ parent: docs/ROADMAP.md
 
 ## 2026-10-11
 
-- Added `find-knowledge` for read-only retrieval across source-mapped knowledge
-  stores. It preserves source locators, verifies semantic near-hits, respects
-  access boundaries, and distinguishes searched sources from unavailable or
-  partial coverage. The confirmed `DEMI` / `ДЭМИ` no-result search is retained
-  as a negative control; positive fresh-context validation remains on the
-  roadmap.
+- Added `find` for read-only retrieval across source-mapped knowledge stores.
+  It preserves source locators, verifies semantic near-hits, respects access
+  boundaries, and distinguishes searched sources from unavailable or partial
+  coverage. The skill was first published as `find-knowledge` and immediately
+  renamed before behavioral adoption. The confirmed `DEMI` / `ДЭМИ` no-result
+  search is retained as a negative control; positive fresh-context validation
+  remains on the roadmap.
 
 ## 2026-10-03
 

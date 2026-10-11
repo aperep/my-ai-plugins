@@ -2,10 +2,10 @@
 
 | Request | Expected |
 |---|---|
-| “Find what I previously wrote about replacing the children's desk; I do not remember where.” | Load `find-knowledge`. |
-| “Search my mapped vaults and chats for our decision about the repair.” | Load `find-knowledge`. |
-| “Where did I save or discuss this idea? Start from this knowledge repository and follow its source map.” | Load `find-knowledge`. |
-| “Recover the document I remember only as a red budget table.” | Load `find-knowledge`. |
+| “Find what I previously wrote about replacing the children's desk; I do not remember where.” | Load `find`. |
+| “Search my mapped vaults and chats for our decision about the repair.” | Load `find`. |
+| “Where did I save or discuss this idea? Start from this knowledge repository and follow its source map.” | Load `find`. |
+| “Recover the document I remember only as a red budget table.” | Load `find`. |
 | “Find every caller of `parse_record` in this repository.” | Do not load this skill. |
 | “Search the web for current adjustable-desk prices.” | Do not load this skill. |
 | “Audit this vault for orphan notes and duplicates.” | Load `audit-knowledge`, not this skill. |

@@ -117,7 +117,7 @@ Done when both minimal variants compile and an existing project is preserved.
 
 ### `knowledge`
 
-- `find-knowledge`: run fresh-context routing and a positive retrieval case with
+- `find`: run fresh-context routing and a positive retrieval case with
   a known record in a mapped secondary source. Compare it with the recorded
   unskilled negative control; do not claim measured improvement before an
   observable baseline failure clears.

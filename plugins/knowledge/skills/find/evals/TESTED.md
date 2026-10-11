@@ -1,15 +1,17 @@
 # Test status
 
-On 2026-10-11, the initial `find-knowledge` revision passed:
+On 2026-10-11, the initial `find` revision passed:
 
 - `quick_validate.py` for every skill in `knowledge`;
 - Codex plugin validation;
 - JSON parsing and the declared Agent Plugins 1.0 schema;
 - `git diff --check`;
-- local installation as enabled `knowledge@aperep` version `0.4.0`.
+- local installation as enabled `knowledge@aperep` version `0.5.0`.
 
-The installed manifest and complete installed skill tree matched the checkout.
-The `skills-ref` executable was unavailable in this environment.
+The skill was first published as `find-knowledge` in version `0.4.0` and renamed
+to `find` immediately afterward, before behavioral adoption. The installed
+manifest and complete installed skill tree matched the renamed checkout. The
+`skills-ref` executable was unavailable in this environment.
 
 The unskilled `DEMI` / `ДЭМИ` negative control was run in the current
 GPT-5-based Codex session before the skill existed, and the user confirmed its

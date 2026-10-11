@@ -7,7 +7,7 @@ parent: README.md
 Reusable operations for knowledge in vaults, Git repositories, clouds, and
 private stores. Paths, schemas, and lifecycles stay in the consuming storage.
 
-- [find-knowledge](skills/find-knowledge/SKILL.md): source-mapped retrieval with explicit coverage.
+- [find](skills/find/SKILL.md): source-mapped retrieval with explicit coverage.
 - [knowledge-rule](skills/knowledge-rule/SKILL.md): placement and capture.
 - [move](skills/move/SKILL.md): safe relocation and source retirement.
 - [cross-boundary](skills/cross-boundary/SKILL.md): audience-aware transfers.

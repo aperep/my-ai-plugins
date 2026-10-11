@@ -1,5 +1,5 @@
 ---
-name: find-knowledge
+name: find
 description: Find previously recorded facts, decisions, ideas, artifacts, or conversations across mapped knowledge storages and linked sources. Use when the user asks what or where they recorded something and may not remember its wording or location. Do not use for web research, code search, storage audits, or filing new material.
 ---
 
