@@ -67,12 +67,12 @@ Codex.
 | [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | Когда хотите упростить английский текст | Переписывает его прямым языком, сохраняя смысл и авторский голос |
 | [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | Когда сокращаете математический текст и убираете словесный наполнитель | Убирает лишнюю риторику, повторы и разбиения на случаи, сохраняя утверждения |
 | [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | Когда начинаете новую статью или обновляете преамбулу существующей | Подбирает LaTeX-каркас, пакеты, обозначения и окружения; сравнивает с существующими файлами перед изменением |
-| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Когда переводите, пишете или редактируете математический текст по-русски | Применяет русскую математическую терминологию и стиль А. Перепечко, сохраняя смысл и LaTeX |
-| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Когда хотите написать или переработать английский текст в стиле А. Перепечко | Применяет правила авторского стиля из корпуса: лексику, ритм и логические переходы |
+| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Когда переводите, пишете или редактируете математический текст по-русски | Применяет русскую математическую терминологию и стиль автора плагина, сохраняя смысл и LaTeX |
+| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Когда хотите написать или переработать английский текст в стиле автора плагина | Применяет правила авторского стиля из корпуса: лексику, ритм и логические переходы |
 
 Встроено: LaTeX-каркас, окружения, обозначения, `latexmk`/`latexdiff` workflow,
 терминология и два авторских корпуса. `project-scaffold` содержит заглушки для
-контактов; оба voice-навыка настроены на стиль А. Перепечко.
+контактов; оба voice-навыка настроены на стиль автора плагина.
 Typst-каркас в этом плагине пока зарезервирован, но не является готовым
 шаблоном.
 
@@ -84,8 +84,8 @@ Typst-каркас в этом плагине пока зарезервиров�
 |---|---|---|
 | [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | При проверке списка литературы или отдельной библиографической записи | Сверяет авторов, название, год, страницы и DOI с Semantic Scholar и MathNet |
 | [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | Когда ищете, добавляете или обновляете записи в Zotero | Проверяет метаданные, ищет дубликаты, сохраняет ключи цитирования и синхронизирует локальные записи |
-| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | Когда нужен MR-номер статьи | Ищет совпадение в MathSciNet через библиотечный прокси; сообщает, если получить номер не удалось |
-| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | Когда готовите список работ А. Перепечко или используете его библиографию | Выбирает или обновляет записи во встроенных TeX-корпусах, сохраняя ключи цитирования |
+| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | Когда нужен MR-номер статьи | Ищет совпадение в MathSciNet через указанный прокси; сообщает, если получить номер не удалось |
+| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | Когда готовите список работ автора плагина или используете его библиографию | Выбирает или обновляет записи во встроенных TeX-корпусах, сохраняя ключи цитирования |
 
 Встроено: Python-парсер `\bibitem`, web-запросы к Semantic Scholar и MathNet,
 правила citation keys и персональные TeX-корпуса. `zotero-library` требует
@@ -217,13 +217,13 @@ Preparing and editing mathematical prose.
 | [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | When simplifying English prose | Rewrites it in direct language while preserving meaning and authorial voice |
 | [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | When tightening mathematical prose and removing filler | Cuts unnecessary rhetoric, repetition, and case splits while preserving the claims |
 | [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | When starting a new paper or refreshing an existing preamble | Selects a LaTeX scaffold, packages, notation, and environments; compares existing files before changing them |
-| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | When translating, drafting, or revising mathematical prose in Russian | Applies Russian mathematical terminology and A. Perepechko's style while preserving meaning and LaTeX |
-| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | When drafting or revising English prose in A. Perepechko's style | Applies corpus-based voice rules for word choice, rhythm, and logical transitions |
+| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | When translating, drafting, or revising mathematical prose in Russian | Applies Russian mathematical terminology and the plugin author's style while preserving meaning and LaTeX |
+| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | When drafting or revising English prose in the plugin author's style | Applies corpus-based voice rules for word choice, rhythm, and logical transitions |
 
 Bundled mechanisms: a LaTeX scaffold, environments, notation,
 `latexmk`/`latexdiff` workflow, terminology, and two authorial corpora.
 `project-scaffold` contains contact placeholders; both voice skills are
-calibrated to A. Perepechko's style. The Typst scaffold in this
+calibrated to the plugin author's style. The Typst scaffold in this
 plugin is reserved but not yet a usable template.
 
 ### `biblio`
@@ -234,8 +234,8 @@ Bibliography verification and record synchronisation.
 |---|---|---|
 | [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | When checking a bibliography or an individual citation | Verifies authors, title, year, pages, and DOI against Semantic Scholar and MathNet |
 | [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | When finding, adding, or updating Zotero records | Verifies metadata, checks for duplicates, preserves citation keys, and synchronises local records |
-| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | When you need a paper's MR number | Looks for a matching MathSciNet record through a library proxy and reports unsuccessful lookups |
-| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | When preparing A. Perepechko's publication list or using his bibliography | Selects or maintains entries in the bundled TeX corpora while preserving citation keys |
+| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | When you need a paper's MR number | Looks for a matching MathSciNet record through the specified proxy and reports unsuccessful lookups |
+| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | When preparing the plugin author's publication list or using their bibliography | Selects or maintains entries in the bundled TeX corpora while preserving citation keys |
 
 Bundled mechanisms: a local `\bibitem` parser, web requests to Semantic Scholar
 and MathNet, citation-key rules, and personal TeX corpora. `zotero-library`
@@ -311,6 +311,35 @@ inside this marketplace; the other adds a bounded index of documentation in
 the current repository.
 
 The `obsidian` package is reserved and currently unavailable for installation.
+
+## Свой стиль / Your own writing style
+
+В своей копии плагина замените образцы статей и заново выведите из них правила
+стиля. Одной замены корпуса недостаточно: при каждой задаче агент читает
+`voice.md`, а к статьям обращается только при необходимости.
+
+In your copy of the plugin, replace the sample papers and derive new voice
+rules from them. Replacing the corpus alone is not enough: the agent reads
+`voice.md` for every task and consults the papers only when needed.
+
+| Навык / Skill | Образец / Sample paper | Правила / Voice rules |
+|---|---|---|
+| `speech-style-adaptation` | [jems4.tex](plugins/math-writing/skills/speech-style-adaptation/references/corpus/jems4.tex) | [voice.md](plugins/math-writing/skills/speech-style-adaptation/references/voice.md) |
+| `russian-translation` | [P18_ru.tex](plugins/math-writing/skills/russian-translation/references/corpus/P18_ru.tex) | [voice.md](plugins/math-writing/skills/russian-translation/references/voice.md) |
+
+Также пересмотрите правила [введений](plugins/math-writing/skills/speech-style-adaptation/references/introductions.md),
+[терминологию](plugins/math-writing/skills/russian-translation/references/terminology.md),
+LaTeX-соглашения ([EN](plugins/math-writing/skills/speech-style-adaptation/references/latex.md),
+[RU](plugins/math-writing/skills/russian-translation/references/latex.md)) и
+[сведения об авторе](plugins/math-writing/skills/russian-translation/references/metadata.md).
+В обоих `SKILL.md` обновите имя автора и ссылки на заменённые корпуса.
+
+Also review the [introduction rules](plugins/math-writing/skills/speech-style-adaptation/references/introductions.md),
+[terminology](plugins/math-writing/skills/russian-translation/references/terminology.md),
+LaTeX conventions ([EN](plugins/math-writing/skills/speech-style-adaptation/references/latex.md),
+[RU](plugins/math-writing/skills/russian-translation/references/latex.md)), and
+[author metadata](plugins/math-writing/skills/russian-translation/references/metadata.md).
+Update the author's name and corpus links in both `SKILL.md` files.
 
 ## Compatibility / Совместимость
 
