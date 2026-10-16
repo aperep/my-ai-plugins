@@ -1,12 +1,12 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "math-writing",
-  "version": "0.4.8",
-  "description": "Mathematical writing, LaTeX scaffolding, proofreading, plain English, authorial voice, and translation workflows.",
+  "version": "0.5.0",
+  "description": "Mathematical writing, LaTeX and Typst scaffolding, proofreading, plain English, authorial voice, and translation workflows.",
   "author": {
     "name": "Alexander Perepechko",
     "url": "https://github.com/aperep"
   },
   "repository": "https://github.com/aperep/my-ai-plugins",
-  "keywords": ["latex", "mathematics", "proofreading", "translation", "templates"]
+  "keywords": ["latex", "typst", "mathematics", "proofreading", "translation", "templates"]
 }

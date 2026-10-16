@@ -4,6 +4,15 @@ parent: docs/ROADMAP.md
 
 # Change log
 
+## 2026-10-16
+
+- Completed the Typst article scaffold with all 89 LaTeX notation macros,
+  English and Russian theorem families, native references and bibliography,
+  and placeholder contacts. Compiled both languages and checked counters,
+  proof symbols, and rendered notation.
+- Fixed invalid delimiter symbols in the full Typst slide example and a
+  convergence warning in the Russian slide starter. Both now compile cleanly.
+
 ## 2026-10-11
 
 - Added `find` for read-only retrieval across source-mapped knowledge stores.

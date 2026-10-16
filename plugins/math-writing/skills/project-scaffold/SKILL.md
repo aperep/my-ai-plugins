@@ -2,7 +2,7 @@
 name: project-scaffold
 description: >
   Start or refresh a mathematical typesetting project using reusable LaTeX
-  article assets and a reserved Typst layout. Use for article scaffolding,
+  and Typst article assets. Use for article scaffolding,
   Russian or English theorem setups, or project preambles. Not for copyediting.
 metadata:
   human-revised: ae6e368
@@ -10,7 +10,8 @@ metadata:
 
 # Mathematical project scaffold
 
-Copy only the files the project needs from `assets/latex/`; do not overwrite an
+Choose `assets/latex/` or `assets/typst/` for the project's typesetter.
+Copy only the files the project needs; do not overwrite an
 existing preamble, notation file, or author block without comparing it first.
 
 Wrap prose by sentence: put one sentence on each source line. If a sentence is
@@ -26,12 +27,20 @@ The bundled files are starting points, not universal style rules:
 - `common/contacts.tex` contains author, affiliation, and email placeholders;
   fill them only from the user or target project's confirmed details.
 
-`assets/typst/` reserves the matching project structure but is not yet a usable
-template.
+`assets/typst/` provides a working article with the same notation and English
+or Russian theorem families.
+Read its [README](assets/typst/README.md) for imports, language selection,
+contacts, native citations, and the few macro names whose syntax differs.
+Use native Typst math operators, symbols, and markup; preserve the meaning of
+LaTeX notation without imitating TeX expansion or layout commands.
+Check the generated PDF, including theorem numbering and references, rather
+than relying only on the LaTeX-pattern checker.
 
 After copying, adjust relative `\input` paths, language/font setup, title,
 abstract, acknowledgements, and bibliography source. Compile the smallest
 document before adding optional packages.
+For Typst, run `typst compile main.typ output/main.pdf` from the copied
+directory after creating and ignoring `output/`.
 
 For the original TinyTeX package inventory and safe setup boundaries, read
 [references/tex-environment.md](references/tex-environment.md). Never run a

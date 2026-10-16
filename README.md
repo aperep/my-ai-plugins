@@ -66,15 +66,15 @@ Codex.
 | [`proofreading-pass`](plugins/math-writing/skills/proofreading-pass/SKILL.md) | При вычитке LaTeX-статьи перед отправкой соавторам или в журнал | Исправляет однозначные языковые и LaTeX-ошибки; готовит исправленный исходник, журнал и `latexdiff` |
 | [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | Когда хотите упростить английский текст | Переписывает его прямым языком, сохраняя смысл и авторский голос |
 | [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | Когда сокращаете математический текст и убираете словесный наполнитель | Убирает лишнюю риторику, повторы и разбиения на случаи, сохраняя утверждения |
-| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | Когда начинаете новую статью или обновляете преамбулу существующей | Подбирает LaTeX-каркас, пакеты, обозначения и окружения; сравнивает с существующими файлами перед изменением |
+| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | Когда начинаете новую статью или обновляете преамбулу существующей | Подбирает LaTeX- или Typst-каркас, обозначения и окружения; сравнивает с существующими файлами перед изменением |
 | [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Когда переводите, пишете или редактируете математический текст по-русски | Применяет русскую математическую терминологию и стиль А. Перепечко, сохраняя смысл и LaTeX |
 | [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Когда хотите написать или переработать английский текст в стиле А. Перепечко | Применяет правила авторского стиля из корпуса: лексику, ритм и логические переходы |
 
-Встроено: LaTeX-каркас, окружения, обозначения, `latexmk`/`latexdiff` workflow,
+Встроено: LaTeX- и Typst-каркасы, окружения, обозначения, `latexmk`/`latexdiff` workflow,
 терминология и два авторских корпуса. `project-scaffold` содержит заглушки для
 контактов; оба voice-навыка настроены на стиль А. Перепечко.
-Typst-каркас в этом плагине пока зарезервирован, но не является готовым
-шаблоном.
+Typst-каркас содержит все обозначения из LaTeX, русские и английские окружения
+и использует нативные формулы, ссылки и библиографию Typst.
 
 ### `biblio`
 
@@ -216,15 +216,16 @@ Preparing and editing mathematical prose.
 | [`proofreading-pass`](plugins/math-writing/skills/proofreading-pass/SKILL.md) | When copyediting a LaTeX paper before sharing it with coauthors or submitting it | Applies unambiguous language and LaTeX fixes; produces a corrected source, change log, and `latexdiff` |
 | [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | When simplifying English prose | Rewrites it in direct language while preserving meaning and authorial voice |
 | [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | When tightening mathematical prose and removing filler | Cuts unnecessary rhetoric, repetition, and case splits while preserving the claims |
-| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | When starting a new paper or refreshing an existing preamble | Selects a LaTeX scaffold, packages, notation, and environments; compares existing files before changing them |
+| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | When starting a new paper or refreshing an existing preamble | Selects a LaTeX or Typst scaffold, notation, and environments; compares existing files before changing them |
 | [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | When translating, drafting, or revising mathematical prose in Russian | Applies Russian mathematical terminology and A. Perepechko's style while preserving meaning and LaTeX |
 | [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | When drafting or revising English prose in A. Perepechko's style | Applies corpus-based voice rules for word choice, rhythm, and logical transitions |
 
-Bundled mechanisms: a LaTeX scaffold, environments, notation,
+Bundled mechanisms: LaTeX and Typst scaffolds, environments, notation,
 `latexmk`/`latexdiff` workflow, terminology, and two authorial corpora.
 `project-scaffold` contains contact placeholders; both voice skills are
-calibrated to A. Perepechko's style. The Typst scaffold in this
-plugin is reserved but not yet a usable template.
+calibrated to A. Perepechko's style. The Typst scaffold includes every LaTeX
+notation macro and both theorem languages, using native Typst math,
+references, and bibliography.
 
 ### `biblio`
 
