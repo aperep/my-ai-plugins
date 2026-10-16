@@ -1,0 +1,28 @@
+License scope
+
+The root LICENSE grants MIT terms for original plugin instructions, scripts,
+documentation, and templates, subject to the exclusions below.
+
+Bundled source material excluded from that grant:
+
+- plugins/math-writing/skills/russian-translation/references/corpus/
+- plugins/math-writing/skills/speech-style-adaptation/references/corpus/
+- plugins/biblio/skills/personal-bibliography/assets/
+- plugins/math-writing/skills/project-scaffold/assets/latex/bibliography.tex
+- plugins/research/skills/interlinear/examples/
+- plugins/typst/skills/typst/references/slides.typ
+
+These papers, bibliography corpora, and source examples retain their existing
+rights. Their inclusion does not grant an MIT license to them. Logos and
+institutional branding, if present, are also excluded from the MIT grant.
+
+Existing third-party licenses and notices remain in force. In particular,
+plugins/dev contains material derived from Jason-chen-coder/dev-skills and
+DietrichGebert/ponytail under their own MIT notices. Preserve:
+
+- plugins/dev/NOTICE
+- plugins/dev/third_party_licenses/dev-skills-LICENSE
+- plugins/dev/third_party_licenses/ponytail-LICENSE
+
+External software and packages referenced by the plugins retain their own
+licenses; this repository does not relicense them.

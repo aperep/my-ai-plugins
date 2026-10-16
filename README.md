@@ -36,9 +36,9 @@ Codex.
   навык по контексту.
 - При необходимости назовите навык явно: например, «используй
   `research:reason`».
-- Навык может включать инструкции, справочные материалы, шаблоны, локальные
-  скрипты, hooks или обращение к внешнему сервису. Существенные механизмы
-  перечислены ниже.
+- Навык содержит инструкции и может использовать справочные материалы, шаблоны,
+  локальные скрипты или внешние сервисы. Плагин также может добавлять hooks.
+  Существенные механизмы перечислены ниже.
 
 ### `research`
 
@@ -56,6 +56,8 @@ Codex.
 `formalize` использует локальный Lean; Aristotle подключается только по явному
 выбору, через закреплённый `aristotlelib`, и получает только явно выбранные
 файлы.
+Для Aristotle нужны `uv`, Python ≥3.12 и переменная окружения
+`ARISTOTLE_API_KEY`; для локальной проверки — Lean с зависимостями проекта.
 
 ### `math-writing`
 
@@ -75,6 +77,8 @@ Codex.
 контактов; оба voice-навыка настроены на стиль автора плагина.
 Typst-каркас в этом плагине пока зарезервирован, но не является готовым
 шаблоном.
+Для компиляции нужны TeX-дистрибутив и `latexmk`; для `proofreading-pass` —
+также `latexdiff`. Плагин их не устанавливает.
 
 ### `biblio`
 
@@ -91,6 +95,9 @@ Typst-каркас в этом плагине пока зарезервиров�
 правила citation keys и персональные TeX-корпуса. `zotero-library` требует
 доступного Zotero connector. `mathscinet` требует частной конфигурации доступа
 и сети вашего учреждения или VPN; значения credentials в плагин не входят.
+Для локального парсера нужен Python 3; для поиска MR — также `curl`.
+Доступ к MathSciNet задаётся переменными `MATHSCINET_PROXY`,
+`MATHSCINET_PROXY_USER` и `MATHSCINET_PROXY_PASS`.
 
 ### `typst`
 
@@ -119,9 +126,11 @@ Typst-каркас в этом плагине пока зарезервиров�
 | [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | При плановой проверке базы заметок | Ищет дубликаты, сироты, битые ссылки и устаревшие сведения; предлагает исправления |
 | [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | Когда задаёте или меняете назначение, правила и личность прикреплённого к репозиторию агента | Ведёт `docs/charter`, сравнивает его с рабочими инструкциями и сообщает точные самоизменения агента |
 
-Встроено: карты хранилищ, локальные lifecycle и правила границ. Плагин не
-зашивает личные пути; он использует инструкции текущего хранилища и доступные
-connectors.
+Встроено: правила размещения, переноса и проверки заметок. Карту хранилищ и
+локальные правила задайте в своём репозитории и свяжите с `AGENTS.md`.
+Подключения к внешним хранилищам настраиваются отдельно; плагин их не включает.
+Для агентской документации и обслуживания репозитория используйте вместе с
+`meta`; без него навыки опираются на доступные локальные инструкции.
 
 ### `dev`
 
@@ -161,6 +170,8 @@ connectors.
 Два Python session-start hook: один напоминает об улучшении плагинов
 только внутри marketplace; второй добавляет правила карты и ограниченный
 индекс документации текущего репозитория.
+Для скриптов нужен Python 3. Codex запускает hooks только после того, как
+пользователь проверит их определения и разрешит выполнение.
 
 Плагин `obsidian` зарезервирован и сейчас недоступен для установки.
 
@@ -172,7 +183,9 @@ and managing research notes. Install only the plugins you need.
 
 ### Installation
 
-Add the marketplace and install a first plugin:
+Give your agent a link to this repository and ask it to install the plugins.
+
+Explicit installation commands for OpenAI's `codex` agent:
 
 ```sh
 codex plugin marketplace add aperep/my-ai-plugins --ref main
@@ -191,8 +204,9 @@ installation.
 - Usually, describe the task normally and Codex selects the relevant skill from
   context.
 - Name a skill explicitly when needed, for example: “use `research:reason`.”
-- A skill may include instructions, references, templates, local scripts,
-  hooks, or an external service. Material mechanisms are listed below.
+- A skill contains instructions and may use references, templates, local
+  scripts, or external services. A plugin may also add hooks. Material
+  mechanisms are listed below.
 
 ### `research`
 
@@ -209,6 +223,8 @@ formalisation.
 Bundled mechanisms: the `interlinear.sty` LaTeX package, annotation schema, and
 rendering modes. `formalize` uses local Lean; Aristotle is opt-in, uses a pinned
 `aristotlelib`, and receives only explicitly selected files.
+Aristotle requires `uv`, Python ≥3.12, and the `ARISTOTLE_API_KEY` environment
+variable; local checking requires Lean and the project's dependencies.
 
 ### `math-writing`
 
@@ -228,6 +244,8 @@ Bundled mechanisms: a LaTeX scaffold, environments, notation,
 `project-scaffold` contains contact placeholders; both voice skills are
 calibrated to the plugin author's style. The Typst scaffold in this
 plugin is reserved but not yet a usable template.
+Compilation requires a TeX distribution and `latexmk`; `proofreading-pass`
+also requires `latexdiff`. The plugin does not install them.
 
 ### `biblio`
 
@@ -244,6 +262,9 @@ Bundled mechanisms: a local `\bibitem` parser, web requests to Semantic Scholar
 and MathNet, citation-key rules, and personal TeX corpora. `zotero-library`
 requires an available Zotero connector. `mathscinet` requires private access
 configuration and your institution's network or VPN; credentials are not bundled.
+The local parser requires Python 3; MR lookup also requires `curl`.
+Configure MathSciNet access through `MATHSCINET_PROXY`,
+`MATHSCINET_PROXY_USER`, and `MATHSCINET_PROXY_PASS`.
 
 ### `typst`
 
@@ -272,9 +293,11 @@ Finding and maintaining research notes and related stores.
 | [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | When carrying out a periodic review of a knowledge store | Finds duplicates, orphans, broken links, and stale information; proposes corrections |
 | [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | When defining or changing an attached agent's purpose, rules, or personality | Maintains `docs/charter`, compares it with runtime instructions, and reports the agent's exact self-changes |
 
-Bundled mechanisms: storage maps, local lifecycles, and boundary rules. The
-plugin does not hard-code personal paths; it uses the current store's
-instructions and available connectors.
+Bundled mechanisms: rules for placing, moving, and auditing notes. Define the
+storage map and local rules in your own repository and link them from
+`AGENTS.md`. Configure external storage connections separately; none are bundled.
+Use with `meta` for agent-facing documentation and repository maintenance;
+without it, the skills use available local instructions.
 
 ### `dev`
 
@@ -315,6 +338,8 @@ human-review boundary: revision tracking, not an editing lock or a hook.
 Two Python session-start hooks: one prompts plugin improvements only
 inside a marketplace; the other adds map conventions and a bounded index of
 the current repository's documentation.
+The scripts require Python 3. Codex runs hooks only after the user reviews
+and trusts their definitions.
 
 The `obsidian` plugin is reserved and currently unavailable for installation.
 
@@ -349,6 +374,11 @@ Update the author's name and corpus links in both `SKILL.md` files.
 
 ## Compatibility / Совместимость
 
+Codex — основной клиент. У каждого плагина есть также манифест Agent Plugins
+1.0; установка в других клиентах зависит от клиента. Подробнее:
+[совместимость форматов](docs/DUAL.md) и
+[настройка рабочего репозитория](docs/consumer-snippets.md).
+
 Codex is the primary client. Each plugin also has an Agent Plugins 1.0 manifest;
 installation in other clients is client-specific. See
 [packaging compatibility](docs/DUAL.md) and
@@ -356,12 +386,24 @@ installation in other clients is client-specific. See
 
 ## Development / Разработка
 
-Marketplace layout and validation rules are documented in this repository's
-[agent instructions](AGENTS.md). Maintainers should validate both plugin
-manifests, every changed skill, and a local Codex installation.
+Структура marketplace и порядок проверок описаны в
+[`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md).
+При изменении плагина проверяйте оба манифеста, изменённые навыки и локальную
+установку в Codex.
+
+Marketplace layout and validation rules are documented in
+[`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md).
+When changing a plugin, validate both manifests, the changed skills, and a
+local Codex installation.
 
 ## License / Лицензия
 
-The `dev` plugin is MIT-licensed and preserves its upstream notices. The
-repository does not yet have one license covering every plugin, corpus, and
-template; do not assume redistribution rights for unlicensed bundled material.
+Оригинальные инструкции, код, документация и шаблоны — под [MIT](LICENSE).
+Встроенные корпуса статей, библиографии, исходные примеры и сторонние материалы
+исключены из этого разрешения; точные пути и сохранённые лицензии — в
+[NOTICE](NOTICE).
+
+Original instructions, code, documentation, and templates are licensed under
+[MIT](LICENSE). Bundled paper corpora, bibliographies, source examples, and
+third-party material are excluded from this grant; see [NOTICE](NOTICE) for
+the exact paths and retained licenses.
