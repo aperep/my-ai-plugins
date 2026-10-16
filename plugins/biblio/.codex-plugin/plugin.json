@@ -1,6 +1,6 @@
 {
   "name": "biblio",
-  "version": "0.2.3+codex.20261005182141",
+  "version": "0.2.4",
   "description": "Bibliography verification, Zotero library maintenance, MathSciNet retrieval, and personal bibliography maintenance.",
   "author": {
     "name": "Alexander Perepechko",

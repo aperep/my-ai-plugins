@@ -12,9 +12,9 @@ Retrieve the MathSciNet review number (MR number) for a paper using the HSE libr
 Provide these environment variables to the active client or shell without
 committing their values:
 
-- `HSE_PROXY` — `http://libtest.hse.ru:3128`
-- `HSE_PROXY_USER` — proxy username
-- `HSE_PROXY_PASS` — proxy password
+- `MATHSCINET_PROXY` — `http://libtest.hse.ru:3128`
+- `MATHSCINET_PROXY_USER` — proxy username
+- `MATHSCINET_PROXY_PASS` — proxy password
 
 **Network requirement:** HSE proxy is only reachable from the HSE network or via VPN. If the lookup fails with a timeout, note this in the report and leave `msnumber: ""`.
 
@@ -40,8 +40,8 @@ YEAR="2024"
 TITLE_ENC=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$TITLE")
 
 curl -s --max-time 30 \
-  -x "$HSE_PROXY" \
-  -U "${HSE_PROXY_USER}:${HSE_PROXY_PASS}" \
+  -x "$MATHSCINET_PROXY" \
+  -U "${MATHSCINET_PROXY_USER}:${MATHSCINET_PROXY_PASS}" \
   "https://mathscinet.ams.org/mathscinet/search/publications.html?pg1=TI&s1=${TITLE_ENC}&dr=pubyear&yearRangeFirst=${YEAR}&yearRangeSecond=${YEAR}&yrop=eq" \
   -o /tmp/msn_result.html
 ```
@@ -94,8 +94,8 @@ If the year-filtered search returns nothing (paper year may differ from publicat
 
 ```bash
 curl -s --max-time 30 \
-  -x "$HSE_PROXY" \
-  -U "${HSE_PROXY_USER}:${HSE_PROXY_PASS}" \
+  -x "$MATHSCINET_PROXY" \
+  -U "${MATHSCINET_PROXY_USER}:${MATHSCINET_PROXY_PASS}" \
   "https://mathscinet.ams.org/mathscinet/search/publications.html?pg1=TI&s1=${TITLE_ENC}" \
   -o /tmp/msn_result.html
 ```
