@@ -1,22 +1,25 @@
 ---
 name: mathscinet
-description: Fetch MathSciNet (MR) numbers for mathematical papers. Use when creating biblio notes and the msnumber field needs to be filled. Requires HSE network or VPN.
+description: Fetch MathSciNet (MR) numbers for mathematical papers. Use when creating biblio notes and the msnumber field needs to be filled. Requires institutional MathSciNet access.
 ---
 
 # MathSciNet Skill
 
-Retrieve the MathSciNet review number (MR number) for a paper using the HSE library proxy.
+Retrieve the MathSciNet review number (MR number) for a paper using the user's institutional library proxy.
 
 ## Prerequisites
 
 Provide these environment variables to the active client or shell without
 committing their values:
 
-- `MATHSCINET_PROXY` — `http://libtest.hse.ru:3128`
+- `MATHSCINET_PROXY` — your institution's proxy URL, for example `http://proxy.example.org:3128`
 - `MATHSCINET_PROXY_USER` — proxy username
 - `MATHSCINET_PROXY_PASS` — proxy password
 
-**Network requirement:** HSE proxy is only reachable from the HSE network or via VPN. If the lookup fails with a timeout, note this in the report and leave `msnumber: ""`.
+**Network requirement:** use the network or VPN required by your institution.
+Obtain the real proxy URL and credentials from your library; the example URL
+is a placeholder. If access is not configured or a lookup times out, report
+the reason and leave `msnumber: ""`.
 
 ---
 

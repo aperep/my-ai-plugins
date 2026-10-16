@@ -12,11 +12,11 @@ or project.
 
 ## Personal details
 
-The author's retained affiliation and address are:
+Use the target author's confirmed affiliation and address. The following is
+only a placeholder:
 
-> НИУ ВШЭ, факультет компьютерных наук, Покровский б-р, 11, Москва, 109028,
-> Россия.
+> Учреждение, подразделение, улица и дом, город, индекс, страна.
 
-Use this when the target calls for the author's affiliation or address, unless
-the project provides a newer value. Confirm grant numbers, email addresses,
-acknowledgments, and contribution claims from the user or project.
+Do not copy this placeholder or the calibration corpus's personal metadata
+into a deliverable. Confirm affiliations, addresses, grant numbers, email
+addresses, acknowledgments, and contribution claims from the user or project.

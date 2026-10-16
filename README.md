@@ -71,8 +71,8 @@ Codex.
 | [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Общая редактура стирает узнаваемый английский голос автора | Английский математический текст в персональном стиле А. Перепечко |
 
 Встроено: LaTeX-каркас, окружения, обозначения, `latexmk`/`latexdiff` workflow,
-терминология и два авторских корпуса. Файл контактов в `project-scaffold` и оба
-voice-навыка персональны; не используйте их как общие данные без проверки.
+терминология и два авторских корпуса. `project-scaffold` содержит заглушки для
+контактов; оба voice-навыка настроены на стиль А. Перепечко.
 Typst-каркас в этом плагине пока зарезервирован, но не является готовым
 шаблоном.
 
@@ -90,7 +90,7 @@ Typst-каркас в этом плагине пока зарезервиров�
 Встроено: Python-парсер `\bibitem`, web-запросы к Semantic Scholar и MathNet,
 правила citation keys и персональные TeX-корпуса. `zotero-library` требует
 доступного Zotero connector. `mathscinet` требует частной конфигурации доступа
-и сети ВШЭ или VPN; значения credentials в плагин не входят.
+и сети вашего учреждения или VPN; значения credentials в плагин не входят.
 
 ### `typst`
 
@@ -102,7 +102,7 @@ Typst-каркас в этом плагине пока зарезервиров�
 
 Встроено: таблица LaTeX → Typst, шаблоны русской заметки и слайдов и локальный
 `check_typst_migration.py`. Для компиляции нужен Typst; шаблоны содержат
-персональные элементы, которые следует заменить.
+заглушки для автора, даты, учреждения и логотипа, которые следует заменить.
 
 ### `knowledge`
 
@@ -221,9 +221,9 @@ Preparing and editing mathematical prose.
 | [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Generic editing erases a recognisable English authorial voice | English mathematical prose in A. Perepechko's personal style |
 
 Bundled mechanisms: a LaTeX scaffold, environments, notation,
-`latexmk`/`latexdiff` workflow, terminology, and two authorial corpora. The
-contact file in `project-scaffold` and both voice skills are personal; do not
-treat them as generic data without confirmation. The Typst scaffold in this
+`latexmk`/`latexdiff` workflow, terminology, and two authorial corpora.
+`project-scaffold` contains contact placeholders; both voice skills are
+calibrated to A. Perepechko's style. The Typst scaffold in this
 plugin is reserved but not yet a usable template.
 
 ### `biblio`
@@ -240,7 +240,7 @@ Bibliography verification and record synchronisation.
 Bundled mechanisms: a local `\bibitem` parser, web requests to Semantic Scholar
 and MathNet, citation-key rules, and personal TeX corpora. `zotero-library`
 requires an available Zotero connector. `mathscinet` requires private access
-configuration and the HSE network or VPN; credentials are not bundled.
+configuration and your institution's network or VPN; credentials are not bundled.
 
 ### `typst`
 
@@ -252,7 +252,7 @@ Native Typst authoring and LaTeX migration.
 
 Bundled mechanisms: a LaTeX-to-Typst map, Russian note and slide templates, and
 the local `check_typst_migration.py` checker. Typst is required for compilation;
-the templates contain personal elements that should be replaced.
+the templates contain author, date, institution, and logo placeholders to replace.
 
 ### `knowledge`
 

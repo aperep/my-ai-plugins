@@ -1,6 +1,6 @@
 {
   "name": "typst",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Write, migrate, template, and validate idiomatic Typst documents.",
   "author": {
     "name": "Alexander Perepechko",
