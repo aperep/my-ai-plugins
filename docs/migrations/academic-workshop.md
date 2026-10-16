@@ -5,8 +5,7 @@ Source: `/home/sage/texlab/academic-workshop` at commit `b0ac1eb`.
 The useful authored material was distributed by responsibility:
 
 - interlinear research mechanics and the Noetherian fixture: `research`;
-- Typst note/slide templates: `typst` (institutional branding is now replaced
-  with placeholders on `main`);
+- Typst note/slide templates and HSE logo: `typst`;
 - LaTeX project scaffold and TeX package inventory: `math-writing`;
 - the original TinyTeX installer became a reviewed package inventory rather than an executable remote-installer pipeline;
 - personal bibliography corpora: `biblio`;

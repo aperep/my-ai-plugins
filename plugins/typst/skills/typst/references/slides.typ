@@ -49,10 +49,10 @@
     title: [Structure of \ Unipotent Automorphism Groups],
     short-title: [Unipotent Automorphism Groups],
     subtitle: [arXiv:2312.08359v4 (to appear)],
-    author: [Author Name],
-    date: "YYYY-MM-DD",
-    institution: [Institution Name],
-    logo: [Logo],
+    author: [Alexander Perepechko],
+    date: "2026-03-02", //"18.10.2024"
+    institution: [HSE University],
+    logo: image("HSE_logo_2.png", width:25%),
   ),
 )
 
@@ -948,9 +948,11 @@ _Definition_: A variety is _uniformly rational_ (or _plain_, or _locally flatten
 
 
 // === Acknowledgements
-// Funding statement, if applicable.
+// The talk was prepared with support from the HSE University project "International Academic Cooperation".
 
 
 // == Drafts
 
 // A bijection between $LND(cal(O)(X))$ and unipotent automorphisms of $X$ is given by $exp(partial)$ and $g |-> log(g)$.
+
+

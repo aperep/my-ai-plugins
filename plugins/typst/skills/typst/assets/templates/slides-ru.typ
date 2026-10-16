@@ -36,13 +36,13 @@
   header-right: none,
   // config-common(handout: true),
   config-info(
-    title: [Название доклада],
-    short-title: [Краткое название],
+    title: [Максимальные унипотентные подгруппы автоморфизмов],
+    short-title: [Максимальные унипотентные подгруппы автоморфизмов],
     subtitle: [],
-    author: [Имя автора],
-    date: "ГГГГ-ММ-ДД",
-    institution: [Название учреждения],
-    logo: [Логотип],
+    author: [Александр Перепечко],
+    date: "2024-11-13", //"18.10.2024"
+    institution: [НИУ ВШЭ],
+    logo: image("HSE_logo_2.png", width:20%),
   ),
 )
 
