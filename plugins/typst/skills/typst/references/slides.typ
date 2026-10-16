@@ -151,7 +151,7 @@ Algebraic unipotent groups isomorphic to subgroups of unitriangular matrices $U_
 
 == Infinite transitivity and flexibility
 
-Let $"SAut"(X)= angle.l GG_a"-subgroups" angle.r subset Aut(X)$
+Let $"SAut"(X)= chevron.l GG_a "-subgroups" chevron.r subset Aut(X)$
 
 #definition[
   A point $p in X$ is called _flexible_ if the tangent space $T_p X$ is spanned by tangent vectors to $GG_a$-orbits.
@@ -269,7 +269,7 @@ then it is a connected algebraic group.
 ]
 
 
-Let $"AAut"(X):=angle.l GG_a"-", GG_m"-subgroups" angle.r$, then
+Let $"AAut"(X):=chevron.l GG_a "-", GG_m "-subgroups" chevron.r$, then
 $ Aut(X) supset Aut^0(X) supset "AAut"(X) supset SAut(X). $
 
 The _component group_ $Aut(X)slash Aut^0(X)$ is at most countable.
@@ -808,7 +808,7 @@ It uses the following facts for a $GG_a$-generated subgroup $U$ (proofs on next 
 
 #definition("Regeta-van Santen'24")[
   For an algebraic commutative unipotent subgroup $U subset Aut(X)$, we define:
-  $ R_X (U) := angle.l exp(f partial) in Bir(X) | f in KK(X)^U, partial in Lie(U) angle.r inter Aut(X). $
+  $ R_X (U) := chevron.l exp(f partial) in Bir(X) | f in KK(X)^U, partial in Lie(U) chevron.r inter Aut(X). $
 ]
 
 #fact(title:"(Regeta-van Santen'24)")[
@@ -818,7 +818,7 @@ It uses the following facts for a $GG_a$-generated subgroup $U$ (proofs on next 
 
 Alternatively, we can define it via its Lie algebra:
 For an arbitrary commutative subset $S subset LND(cal(O)(X))$, let $K := ker_(KK(X)) S$. Then:
-$ R_X (S) := exp(angle.l S angle.r_K inter Der(cal(O)(X))). $
+$ R_X (S) := exp(chevron.l S chevron.r_K inter Der(cal(O)(X))). $
 In particular, we have $R_X (U) = R_X (log U)$.
 
 #proposition[
@@ -900,7 +900,7 @@ Uniruledness:
 Simplicity:
 - *(Blanc'24)* a normal subgroup $G subset "SAut"(AA^n)$ contains $"SAff"(AA^n)$ and $Jonq_u (AA^n)$.
     Hence $"SAut"(AA^2)$ simple (using Jung--van der Kulk).
-- *(Shestakov--Umirbaev'02)* $"Aut"(AA^3) != angle.l "Aff"(AA^3),Jonq(AA^3) angle.r$, i.e. wild automorphisms exist.
+- *(Shestakov--Umirbaev'02)* $"Aut"(AA^3) != chevron.l "Aff"(AA^3),Jonq(AA^3) chevron.r$, i.e. wild automorphisms exist.
 - *Question*: $"SAut"(AA^n)$ simple?
 - *(Shafarevich'66)* $Lie(SAut AA^n)$ simple. //TODO check
 
