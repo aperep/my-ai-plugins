@@ -45,12 +45,12 @@ Codex.
 Чтение и разбор математических текстов, аннотирование и явно запрошенная
 формализация.
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`extracting-precise-results`](plugins/research/skills/extracting-precise-results/SKILL.md) | Пересказ статьи упрощает формулировку или теряет точный источник результата | Номер, полные гипотезы, заключение и положение теоремы, леммы или следствия в источнике |
-| [`reason`](plugins/research/skills/reason/SKILL.md) | Нужно проверить или придумать доказательство с учётом предположений и с дополнительными проверками | Локальный разбор шага, предположений, примеров или пробела без заявления о формальной проверке |
-| [`interlinear`](plugins/research/skills/interlinear/SKILL.md) | Нужен подстрочник с содержимым произвольного типа (пояснения, перевод, замечания) | LaTeX-текст со стабильными `\itag`-метками и отдельный типизированный файл аннотаций |
-| [`formalize`](plugins/research/skills/formalize/SKILL.md) | Нужно систематизировать работу агента с Lean | Lean-файл, зафиксированный toolchain и явный статус `planned`, `generated`, `checked` или `failed` |
+| [`extracting-precise-results`](plugins/research/skills/extracting-precise-results/SKILL.md) | При чтении статьи для обзора литературы или точного цитирования результата | Извлекает номер, гипотезы, заключение и точное место утверждения в источнике |
+| [`reason`](plugins/research/skills/reason/SKILL.md) | Когда ищете доказательство или разбираете существующее | Неформально разбирает шаги, предположения, примеры и пробелы по указанному контексту |
+| [`interlinear`](plugins/research/skills/interlinear/SKILL.md) | Когда нужен подстрочник с пояснениями, переводом или замечаниями | Размечает предложения LaTeX стабильными `\itag`-метками и хранит типизированные аннотации в отдельном файле |
+| [`formalize`](plugins/research/skills/formalize/SKILL.md) | Когда формализуете выбранное утверждение или проверяете доказательство в Lean | Готовит Lean-код, запускает проверку, фиксирует toolchain и отделяет сгенерированное от проверенного |
 
 Встроено: LaTeX-пакет `interlinear.sty`, схема аннотаций и режимы отображения.
 `formalize` использует локальный Lean; Aristotle подключается только по явному
@@ -61,14 +61,14 @@ Codex.
 
 Подготовка и языковая правка математических текстов.
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`proofreading-pass`](plugins/math-writing/skills/proofreading-pass/SKILL.md) | Языковая правка может незаметно изменить математику или потеряться в списке замечаний | Исправленный `.tex`, категоризированный журнал и `latexdiff`; сомнительные изменения только предлагаются |
-| [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | Корректный английский остаётся излишне сложным для чтения | Более прямой английский без смены смысла и голоса автора |
-| [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | Текст разрастается за счёт наполнителя, лишних случаев и риторики | Сокращённый текст с сохранёнными утверждениями |
-| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | Новая статья получает случайный или несовместимый набор пакетов, окружений и обозначений | Минимальный LaTeX-каркас либо осторожное обновление существующего проекта |
-| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Буквальный перевод ломает русскую математическую норму или LaTeX | Русский математический текст в персональном стиле А. Перепечко |
-| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Общая редактура стирает узнаваемый английский голос автора | Английский математический текст в персональном стиле А. Перепечко |
+| [`proofreading-pass`](plugins/math-writing/skills/proofreading-pass/SKILL.md) | При вычитке LaTeX-статьи перед отправкой соавторам или в журнал | Исправляет однозначные языковые и LaTeX-ошибки; готовит исправленный исходник, журнал и `latexdiff` |
+| [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | Когда хотите упростить английский текст | Переписывает его прямым языком, сохраняя смысл и авторский голос |
+| [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | Когда сокращаете математический текст и убираете словесный наполнитель | Убирает лишнюю риторику, повторы и разбиения на случаи, сохраняя утверждения |
+| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | Когда начинаете новую статью или обновляете преамбулу существующей | Подбирает LaTeX-каркас, пакеты, обозначения и окружения; сравнивает с существующими файлами перед изменением |
+| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Когда переводите, пишете или редактируете математический текст по-русски | Применяет русскую математическую терминологию и стиль А. Перепечко, сохраняя смысл и LaTeX |
+| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Когда хотите написать или переработать английский текст в стиле А. Перепечко | Применяет правила авторского стиля из корпуса: лексику, ритм и логические переходы |
 
 Встроено: LaTeX-каркас, окружения, обозначения, `latexmk`/`latexdiff` workflow,
 терминология и два авторских корпуса. `project-scaffold` содержит заглушки для
@@ -80,12 +80,12 @@ Typst-каркас в этом плагине пока зарезервиров�
 
 Проверка библиографии и синхронизация библиографических записей.
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | Правдоподобная ссылка содержит неверные авторов, год, страницы, DOI или переводные данные | Сверка каждого поля с Semantic Scholar и, для русских публикаций, MathNet |
-| [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | Ручное добавление создаёт дубликаты или перезаписывает устойчивый citation key | Проверенная запись, дедупликация и синхронизация Zotero с локальными записями |
-| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | MR-номер угадывается или переносится без проверки | Найденный и сопоставленный MR-номер либо явный отчёт, что совпадение не найдено |
-| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | Личная библиография копируется из разных версий и расходится по ключам | Выбранные записи из встроенного корпуса А. Перепечко |
+| [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | При проверке списка литературы или отдельной библиографической записи | Сверяет авторов, название, год, страницы и DOI с Semantic Scholar и MathNet |
+| [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | Когда ищете, добавляете или обновляете записи в Zotero | Проверяет метаданные, ищет дубликаты, сохраняет ключи цитирования и синхронизирует локальные записи |
+| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | Когда нужен MR-номер статьи | Ищет совпадение в MathSciNet через библиотечный прокси; сообщает, если получить номер не удалось |
+| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | Когда готовите список работ А. Перепечко или используете его библиографию | Выбирает или обновляет записи во встроенных TeX-корпусах, сохраняя ключи цитирования |
 
 Встроено: Python-парсер `\bibitem`, web-запросы к Semantic Scholar и MathNet,
 правила citation keys и персональные TeX-корпуса. `zotero-library` требует
@@ -96,9 +96,9 @@ Typst-каркас в этом плагине пока зарезервиров�
 
 Нативное написание Typst-документов и перенос из LaTeX.
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`typst`](plugins/typst/skills/typst/SKILL.md) | Механический перенос оставляет LaTeX-команды и неидиоматические конструкции | Typst-документ с нативными формулами, ссылками, списками, таблицами и рисунками |
+| [`typst`](plugins/typst/skills/typst/SKILL.md) | Когда пишете статью или слайды в Typst, переносите LaTeX либо проверяете `.typ` | Применяет нативный синтаксис Typst, использует шаблоны и проверяет остаточные LaTeX-конструкции |
 
 Встроено: таблица LaTeX → Typst, шаблоны русской заметки и слайдов и локальный
 `check_typst_migration.py`. Для компиляции нужен Typst; шаблоны содержат
@@ -109,15 +109,15 @@ Typst-каркас в этом плагине пока зарезервиров�
 Поиск и обслуживание исследовательских заметок и связанных хранилищ.
 [Подробное описание плагина](plugins/knowledge/README.md).
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`find`](plugins/knowledge/skills/find/SKILL.md) | Поиск только в текущей папке пропускает каноническую заметку в связанном хранилище | Поиск по документированной карте источников с указанием найденного места |
-| [`knowledge-rule`](plugins/knowledge/skills/knowledge-rule/SKILL.md) | Заметки складываются в случайные папки или получают несколько канонических копий | Выбор одного канонического места по локальным правилам |
-| [`move`](plugins/knowledge/skills/move/SKILL.md) | После переноса остаются дубликаты, битые ссылки или потерянные вложения | Перенос канонического объекта с проверкой зависимостей и источника |
-| [`cross-boundary`](plugins/knowledge/skills/cross-boundary/SKILL.md) | Частный источник копируется в общее хранилище целиком либо доставка ошибочно становится переносом | Явное различение ссылки, доставки копии и смены канонического места |
-| [`process-inbox`](plugins/knowledge/skills/process-inbox/SKILL.md) | Сырой inbox бесконечно смешивает временные материалы и долговечные записи | Обработка серии по lifecycle конкретного хранилища |
-| [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | Дубликаты, сироты, битые ссылки и устаревшие факты накапливаются незаметно | Отчёт и предлагаемые изменения без автоматической чистки по умолчанию |
-| [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | Долговечное устройство прикреплённого агента расходится между runtime-инструкциями | Канонический `docs/charter` и явный отчёт о самоизменениях агента |
+| [`find`](plugins/knowledge/skills/find/SKILL.md) | Когда ищете записанную идею, решение или разговор и не помните точное место | Ищет по карте связанных хранилищ и возвращает найденные источники |
+| [`knowledge-rule`](plugins/knowledge/skills/knowledge-rule/SKILL.md) | Когда сохраняете сообщение, факт или заметку и выбираете для них место | Выбирает каноническое место по локальным правилам и сохраняет материал с указанием происхождения |
+| [`move`](plugins/knowledge/skills/move/SKILL.md) | Когда переносите заметки или другие объекты на новое постоянное место | Переносит объекты и вложения, удаляет исходники после проверки результата и обновляет известные ссылки |
+| [`cross-boundary`](plugins/knowledge/skills/cross-boundary/SKILL.md) | Когда передаёте материалы между личным и общим хранилищами или разными сервисами | Определяет аудиторию и способ передачи: ссылку, копию или перенос; проверяет доступ и доставку |
+| [`process-inbox`](plugins/knowledge/skills/process-inbox/SKILL.md) | Когда разбираете накопившийся inbox или серию материалов | Классифицирует материалы и обрабатывает их по правилам конкретного хранилища |
+| [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | При плановой проверке базы заметок | Ищет дубликаты, сироты, битые ссылки и устаревшие сведения; предлагает исправления |
+| [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | Когда задаёте или меняете назначение, правила и личность прикреплённого к репозиторию агента | Ведёт `docs/charter`, сравнивает его с рабочими инструкциями и сообщает точные самоизменения агента |
 
 Встроено: карты хранилищ, локальные lifecycle и правила границ. Плагин не
 зашивает личные пути; он использует инструкции текущего хранилища и доступные
@@ -127,15 +127,15 @@ connectors.
 
 Разработка программного обеспечения, в том числе математического.
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`flow`](plugins/dev/skills/flow/SKILL.md) | Агент повторяет уже выполненные стадии, смешивает чужие изменения или неясно распоряжается Git | Один процесс от текущего состояния до проверенной доставки с явным Git-режимом |
-| [`grill-docs`](plugins/dev/skills/grill-docs/SKILL.md) | Реализация начинается до согласования пользователя, границ и проверяемого результата | Компактный контракт требований и только существенные вопросы |
-| [`debug`](plugins/dev/skills/debug/SKILL.md) | Правка маскирует симптом, не находя первую нарушенную величину или состояние | Диагноз причины, ограниченное исправление и воспроизведение исходного сбоя |
-| [`tdd`](plugins/dev/skills/tdd/SKILL.md) | Изменение поведения не имеет проверки, способной поймать регрессию | Осмысленный тест и минимальная реализация |
-| [`verify`](plugins/dev/skills/verify/SKILL.md) | «Готово» заявляется без выполнения относящихся к задаче проверок | Свежие команды, результаты и явно названные ограничения доказательства |
-| [`review`](plugins/dev/skills/review/SKILL.md) | Review превращается в стилистические предпочтения или рассматривает не тот diff | Находки по корректности и/или сложности с точным scope |
-| [`audit`](plugins/dev/skills/audit/SKILL.md) | Лишние зависимости и абстракции видны только по одной и не оцениваются по всему репозиторию | Ранжированный repo-wide список того, что удалить или заменить стандартными средствами |
+| [`flow`](plugins/dev/skills/flow/SKILL.md) | Когда поручаете агенту разработку или завершение изменения кода | Ведёт задачу через нужные стадии: требования, реализацию, проверки и согласованную работу с Git |
+| [`grill-docs`](plugins/dev/skills/grill-docs/SKILL.md) | Перед реализацией новой функции, когда нужно согласовать требования | Задаёт существенные вопросы и описывает границы, поведение и критерии приёмки |
+| [`debug`](plugins/dev/skills/debug/SKILL.md) | Когда программа работает неверно или падает тест | Воспроизводит сбой, находит причину и, если запрошено исправление, меняет код и проверяет результат |
+| [`tdd`](plugins/dev/skills/tdd/SKILL.md) | Когда добавляете поведение, исправляете известную ошибку или делаете рефакторинг | Подбирает содержательные тесты, пишет их до реализации, где это применимо, и проверяет изменение |
+| [`verify`](plugins/dev/skills/verify/SKILL.md) | Перед тем как считать изменение готовым | Запускает относящиеся к задаче проверки, фиксирует результаты и недостающие подтверждения |
+| [`review`](plugins/dev/skills/review/SKILL.md) | Когда нужен разбор конкретного diff или подготовленного коммита | Проверяет корректность и/или сложность изменений и указывает конкретные проблемы с их расположением |
+| [`audit`](plugins/dev/skills/audit/SKILL.md) | Когда хотите упростить весь репозиторий | Ранжирует лишние зависимости, абстракции и код, который можно удалить или заменить стандартными средствами |
 
 Встроено: инструкции и общий Occam-reference. Плагин использует Git, тесты и
 инструменты самого проекта; отдельного сервиса или фонового процесса нет.
@@ -145,14 +145,14 @@ connectors.
 Разработка этого marketplace и других наборов навыков; обычному пользователю
 математических плагинов он не нужен.
 
-| Навык | Когда нужен | Результат |
+| Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | Операционные документы расползаются и перестают быть доступны из `AGENTS.md` | Проверенная карта агентской документации |
-| [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | Навык добавляется без повторяемой проблемы, trigger-тестов или отрицательного случая | Baseline, минимальная инструкция и свежие evals |
-| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | Inbox, roadmap и проверки репозитория дрейфуют независимо | Один maintenance-проход по документированному checklist |
-| [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | Manifest, версия и установленный cache расходятся | Синхронизированные wrappers, валидация и локальная установка |
-| [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Безобидный README скрывает исполняемый код, hooks или внешние соединения | Проверка фактически устанавливаемого payload и его происхождения |
-| [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | Полезный урок сессии теряется либо сразу превращается в непроверенное общее правило | Минимальный проверяемый draft изменения навыка |
+| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | При создании или перестройке документации для агента | Проверяет дерево от `AGENTS.md`, размещение документов и ссылки между ними |
+| [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | При создании или изменении навыка, а также проверке его срабатываний | Сопоставляет инструкцию с исходной проблемой и проверяет задачи, где навык должен и не должен включаться |
+| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | Когда запускаете плановое обслуживание репозитория | Разбирает inbox, сверяет roadmap и выполняет документированные проверки |
+| [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | Когда меняете плагины этого marketplace или проверяете их установку | Согласует manifests и версии, проверяет структуру и переустанавливает плагин из локального источника |
+| [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Перед установкой или обновлением чужого навыка или плагина | Проверяет происхождение и содержимое пакета, включая скрипты, hooks и внешние подключения |
+| [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | Когда работа над marketplace выявила подтверждённое улучшение его навыков | Записывает урок сессии и готовит минимальный черновик изменения навыка |
 
 Встроено: два Python session-start hook, eval-файлы и review guards из
 `.gitattributes`. Один hook включает guarded evolution только внутри этого
@@ -196,12 +196,12 @@ installation.
 Reading and analysing mathematical texts, annotation, and explicitly requested
 formalisation.
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`extracting-precise-results`](plugins/research/skills/extracting-precise-results/SKILL.md) | A summary loses the result number, hypotheses, or exact source location | The number, full hypotheses, conclusion, and location of a theorem, lemma, or corollary |
-| [`reason`](plugins/research/skills/reason/SKILL.md) | An explanation relies on implicit or unrelated context, or conflates informal analysis with formal verification | A local analysis of a step, assumptions, example, or gap without claiming formal verification |
-| [`interlinear`](plugins/research/skills/interlinear/SKILL.md) | Translations, comments, and references lose their connection to exact source sentences | LaTeX source with stable `\itag` labels and a separate typed annotation file |
-| [`formalize`](plugins/research/skills/formalize/SKILL.md) | Generated Lean code is mistaken for a checked proof | A Lean file, pinned toolchain, and explicit `planned`, `generated`, `checked`, or `failed` status |
+| [`extracting-precise-results`](plugins/research/skills/extracting-precise-results/SKILL.md) | When reading a paper for a literature survey or citing a specific result | Extracts the statement's number, hypotheses, conclusion, and exact source location |
+| [`reason`](plugins/research/skills/reason/SKILL.md) | When working out a proof or examining an existing one | Analyses steps, assumptions, examples, and gaps informally using the specified context |
+| [`interlinear`](plugins/research/skills/interlinear/SKILL.md) | When adding sentence-level explanations, translations, or comments to a text | Labels LaTeX sentences with stable `\itag` IDs and stores typed annotations in a separate file |
+| [`formalize`](plugins/research/skills/formalize/SKILL.md) | When formalising a selected statement or checking a proof in Lean | Prepares Lean code, runs checks, records the toolchain, and distinguishes generated code from checked proofs |
 
 Bundled mechanisms: the `interlinear.sty` LaTeX package, annotation schema, and
 rendering modes. `formalize` uses local Lean; Aristotle is opt-in, uses a pinned
@@ -211,14 +211,14 @@ rendering modes. `formalize` uses local Lean; Aristotle is opt-in, uses a pinned
 
 Preparing and editing mathematical prose.
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`proofreading-pass`](plugins/math-writing/skills/proofreading-pass/SKILL.md) | Language editing may silently change mathematics or disappear into an informal list | A corrected `.tex`, categorised change log, and `latexdiff`; uncertain changes remain suggestions |
-| [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | Correct English remains unnecessarily difficult to read | More direct English with the meaning and authorial voice preserved |
-| [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | Prose grows through filler, needless cases, and rhetoric | Shorter prose with its claims preserved |
-| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | A new paper accumulates an arbitrary or conflicting set of packages, environments, and notation | A minimal LaTeX scaffold or a cautious refresh of an existing project |
-| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Literal translation breaks Russian mathematical usage or LaTeX | Russian mathematical prose in A. Perepechko's personal style |
-| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Generic editing erases a recognisable English authorial voice | English mathematical prose in A. Perepechko's personal style |
+| [`proofreading-pass`](plugins/math-writing/skills/proofreading-pass/SKILL.md) | When copyediting a LaTeX paper before sharing it with coauthors or submitting it | Applies unambiguous language and LaTeX fixes; produces a corrected source, change log, and `latexdiff` |
+| [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | When simplifying English prose | Rewrites it in direct language while preserving meaning and authorial voice |
+| [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | When tightening mathematical prose and removing filler | Cuts unnecessary rhetoric, repetition, and case splits while preserving the claims |
+| [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | When starting a new paper or refreshing an existing preamble | Selects a LaTeX scaffold, packages, notation, and environments; compares existing files before changing them |
+| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | When translating, drafting, or revising mathematical prose in Russian | Applies Russian mathematical terminology and A. Perepechko's style while preserving meaning and LaTeX |
+| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | When drafting or revising English prose in A. Perepechko's style | Applies corpus-based voice rules for word choice, rhythm, and logical transitions |
 
 Bundled mechanisms: a LaTeX scaffold, environments, notation,
 `latexmk`/`latexdiff` workflow, terminology, and two authorial corpora.
@@ -230,12 +230,12 @@ plugin is reserved but not yet a usable template.
 
 Bibliography verification and record synchronisation.
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | A plausible citation has incorrect authors, year, pages, DOI, or translation metadata | Field-by-field verification against Semantic Scholar and, for Russian publications, MathNet |
-| [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | Manual entry creates duplicates or overwrites a stable citation key | A verified record, deduplication, and synchronisation between Zotero and local records |
-| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | An MR number is guessed or copied without verification | A matched MR number or an explicit report that no match was found |
-| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | A personal bibliography is copied from divergent versions with inconsistent keys | Selected records from A. Perepechko's bundled corpus |
+| [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | When checking a bibliography or an individual citation | Verifies authors, title, year, pages, and DOI against Semantic Scholar and MathNet |
+| [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | When finding, adding, or updating Zotero records | Verifies metadata, checks for duplicates, preserves citation keys, and synchronises local records |
+| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | When you need a paper's MR number | Looks for a matching MathSciNet record through a library proxy and reports unsuccessful lookups |
+| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | When preparing A. Perepechko's publication list or using his bibliography | Selects or maintains entries in the bundled TeX corpora while preserving citation keys |
 
 Bundled mechanisms: a local `\bibitem` parser, web requests to Semantic Scholar
 and MathNet, citation-key rules, and personal TeX corpora. `zotero-library`
@@ -246,9 +246,9 @@ configuration and your institution's network or VPN; credentials are not bundled
 
 Native Typst authoring and LaTeX migration.
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`typst`](plugins/typst/skills/typst/SKILL.md) | Mechanical conversion leaves LaTeX commands and non-idiomatic structures | A Typst document with native mathematics, references, lists, tables, and figures |
+| [`typst`](plugins/typst/skills/typst/SKILL.md) | When writing a paper or slides in Typst, migrating LaTeX, or reviewing a `.typ` file | Applies native Typst syntax, uses bundled templates, and checks for leftover LaTeX constructs |
 
 Bundled mechanisms: a LaTeX-to-Typst map, Russian note and slide templates, and
 the local `check_typst_migration.py` checker. Typst is required for compilation;
@@ -259,15 +259,15 @@ the templates contain author, date, institution, and logo placeholders to replac
 Finding and maintaining research notes and related stores.
 [Detailed plugin documentation](plugins/knowledge/README.md).
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`find`](plugins/knowledge/skills/find/SKILL.md) | Searching only the current directory misses a canonical note in a linked store | Search through the documented source map with the recorded location returned |
-| [`knowledge-rule`](plugins/knowledge/skills/knowledge-rule/SKILL.md) | Notes are filed arbitrarily or acquire several canonical copies | One canonical home selected from local rules |
-| [`move`](plugins/knowledge/skills/move/SKILL.md) | A move leaves duplicates, broken links, or missing attachments | Relocation of the canonical object with dependency and source checks |
-| [`cross-boundary`](plugins/knowledge/skills/cross-boundary/SKILL.md) | A private source is copied wholesale into a shared store, or delivery is mistaken for relocation | An explicit distinction between linking, delivering a copy, and changing canonical home |
-| [`process-inbox`](plugins/knowledge/skills/process-inbox/SKILL.md) | A raw inbox indefinitely mixes temporary material and maintained records | Batch processing under the store's own lifecycle |
-| [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | Duplicates, orphans, broken links, and stale facts accumulate unnoticed | A report and proposed changes, without automatic cleanup by default |
-| [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | An attached agent's durable design drifts across runtime instruction files | A canonical `docs/charter` and explicit reporting of agent self-changes |
+| [`find`](plugins/knowledge/skills/find/SKILL.md) | When looking for a recorded idea, decision, or conversation without remembering its location | Searches the map of linked stores and returns the matching sources |
+| [`knowledge-rule`](plugins/knowledge/skills/knowledge-rule/SKILL.md) | When capturing a message, fact, or note and deciding where it belongs | Selects a canonical home under local rules and preserves the material's provenance |
+| [`move`](plugins/knowledge/skills/move/SKILL.md) | When relocating notes or other objects to a new canonical home | Transfers objects and attachments, verifies the result, removes the originals, and updates known links |
+| [`cross-boundary`](plugins/knowledge/skills/cross-boundary/SKILL.md) | When sharing material across private and shared stores or different services | Establishes the audience and transfer mode—link, copy, or move—and checks access and delivery |
+| [`process-inbox`](plugins/knowledge/skills/process-inbox/SKILL.md) | When processing an accumulated inbox or a series of materials | Classifies the material and processes it under the store's own lifecycle |
+| [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | When carrying out a periodic review of a knowledge store | Finds duplicates, orphans, broken links, and stale information; proposes corrections |
+| [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | When defining or changing an attached agent's purpose, rules, or personality | Maintains `docs/charter`, compares it with runtime instructions, and reports the agent's exact self-changes |
 
 Bundled mechanisms: storage maps, local lifecycles, and boundary rules. The
 plugin does not hard-code personal paths; it uses the current store's
@@ -277,15 +277,15 @@ instructions and available connectors.
 
 Software development, including mathematical software.
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`flow`](plugins/dev/skills/flow/SKILL.md) | An agent repeats completed phases, mixes unrelated changes, or handles Git ambiguously | One workflow from the actual current state to verified delivery under an explicit Git mode |
-| [`grill-docs`](plugins/dev/skills/grill-docs/SKILL.md) | Implementation begins before the user, boundaries, and observable outcome are aligned | A compact requirements contract and only material questions |
-| [`debug`](plugins/dev/skills/debug/SKILL.md) | A patch hides the symptom without finding the first invalid state or value | Root-cause diagnosis, a scoped fix, and reproduction of the original failure |
-| [`tdd`](plugins/dev/skills/tdd/SKILL.md) | A behaviour change lacks a check capable of catching its regression | A meaningful test and the smallest implementation |
-| [`verify`](plugins/dev/skills/verify/SKILL.md) | “Done” is claimed without running checks relevant to the task | Fresh commands, observed results, and explicit limits of the evidence |
-| [`review`](plugins/dev/skills/review/SKILL.md) | Review becomes stylistic preference or examines the wrong diff | Findings about correctness and/or complexity over an exact scope |
-| [`audit`](plugins/dev/skills/audit/SKILL.md) | Dependencies and abstractions are seen individually rather than as repository-wide bloat | A ranked repository-wide list of what to delete or replace with native facilities |
+| [`flow`](plugins/dev/skills/flow/SKILL.md) | When assigning an agent a code change or asking it to finish one | Routes the task through requirements, implementation, verification, and the agreed Git workflow |
+| [`grill-docs`](plugins/dev/skills/grill-docs/SKILL.md) | Before implementing a feature, when its requirements need clarification | Asks material questions and defines scope, behaviour, and acceptance criteria |
+| [`debug`](plugins/dev/skills/debug/SKILL.md) | When a program misbehaves or a test fails | Reproduces the failure, traces its cause, and, when a fix is requested, changes the code and verifies the result |
+| [`tdd`](plugins/dev/skills/tdd/SKILL.md) | When adding behaviour, fixing a known bug, or refactoring | Chooses meaningful tests, writes them before implementation where practical, and checks the change |
+| [`verify`](plugins/dev/skills/verify/SKILL.md) | Before declaring a change complete | Runs relevant checks and records their results and any missing evidence |
+| [`review`](plugins/dev/skills/review/SKILL.md) | When reviewing a specific diff or a prepared commit | Checks correctness and/or complexity and reports concrete issues with their locations |
+| [`audit`](plugins/dev/skills/audit/SKILL.md) | When simplifying an entire repository | Ranks dependencies, abstractions, and code that can be removed or replaced with standard facilities |
 
 Bundled mechanisms: instructions and a shared Occam reference. The plugin uses
 Git, tests, and tools from the target project; it has no separate service or
@@ -296,14 +296,14 @@ background process.
 Developing this marketplace and other skill collections. Ordinary users of the
 mathematics plugins do not need it.
 
-| Skill | When to use it | Result |
+| Skill | When to use it | What it does |
 |---|---|---|
-| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | Operational documents sprawl and cease to be reachable from `AGENTS.md` | A checked map of agent-facing repository documentation |
-| [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | A skill is added without a repeatable problem, trigger cases, or a negative control | A baseline, minimal instruction, and fresh evaluations |
-| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | The inbox, roadmap, and repository checks drift independently | One maintenance pass under the documented checklist |
-| [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | A manifest, version, and installed cache disagree | Synchronised wrappers, validation, and a local installation |
-| [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | A harmless README conceals executable code, hooks, or external connections | Inspection of the installed payload and its provenance |
-| [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | A useful session lesson is lost or immediately becomes an untested general rule | The smallest testable draft of a skill change |
+| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | When creating or reorganising agent-facing documentation | Checks the tree rooted at `AGENTS.md`, document placement, and links |
+| [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | When creating or changing a skill or evaluating its triggers | Checks the instruction against a baseline problem and tests tasks that should and should not load it |
+| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | When running routine repository maintenance | Processes the inbox, reconciles the roadmap, and runs the documented checks |
+| [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | When changing this marketplace's plugins or testing their installation | Synchronises manifests and versions, validates the structure, and reinstalls the plugin from the local source |
+| [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Before installing or updating a third-party skill or plugin | Reviews the package's provenance and payload, including scripts, hooks, and external connections |
+| [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | When marketplace work produces a validated improvement to its skills | Records the session lesson and drafts the smallest skill change for review |
 
 Bundled mechanisms: two Python session-start hooks, evaluation files, and
 review guards in `.gitattributes`. One hook enables guarded evolution only
