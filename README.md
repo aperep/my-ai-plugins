@@ -36,9 +36,9 @@ Codex.
   навык по контексту.
 - При необходимости назовите навык явно: например, «используй
   `research:reason`».
-- Навык может включать инструкции, справочные материалы, шаблоны, локальные
-  скрипты, hooks или обращение к внешнему сервису. Существенные механизмы
-  перечислены ниже.
+- Навык содержит инструкции и может использовать справочные материалы, шаблоны,
+  локальные скрипты или внешние сервисы. Плагин также может добавлять hooks.
+  Существенные механизмы перечислены ниже.
 
 ### `research`
 
@@ -56,6 +56,8 @@ Codex.
 `formalize` использует локальный Lean; Aristotle подключается только по явному
 выбору, через закреплённый `aristotlelib`, и получает только явно выбранные
 файлы.
+Для Aristotle нужны `uv`, Python ≥3.12 и переменная окружения
+`ARISTOTLE_API_KEY`; для локальной проверки — Lean с зависимостями проекта.
 
 ### `math-writing`
 
@@ -67,14 +69,16 @@ Codex.
 | [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | Когда хотите упростить английский текст | Переписывает его прямым языком, сохраняя смысл и авторский голос |
 | [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | Когда сокращаете математический текст и убираете словесный наполнитель | Убирает лишнюю риторику, повторы и разбиения на случаи, сохраняя утверждения |
 | [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | Когда начинаете новую статью или обновляете преамбулу существующей | Подбирает LaTeX- или Typst-каркас, обозначения и окружения; сравнивает с существующими файлами перед изменением |
-| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Когда переводите, пишете или редактируете математический текст по-русски | Применяет русскую математическую терминологию и стиль А. Перепечко, сохраняя смысл и LaTeX |
-| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Когда хотите написать или переработать английский текст в стиле А. Перепечко | Применяет правила авторского стиля из корпуса: лексику, ритм и логические переходы |
+| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | Когда переводите, пишете или редактируете математический текст по-русски | Применяет русскую математическую терминологию и стиль автора плагина, сохраняя смысл и LaTeX |
+| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | Когда хотите написать или переработать английский текст в стиле автора плагина | Применяет правила авторского стиля из корпуса: лексику, ритм и логические переходы |
 
 Встроено: LaTeX- и Typst-каркасы, окружения, обозначения, `latexmk`/`latexdiff` workflow,
 терминология и два авторских корпуса. `project-scaffold` содержит заглушки для
-контактов; оба voice-навыка настроены на стиль А. Перепечко.
+контактов; оба voice-навыка настроены на стиль автора плагина.
 Typst-каркас содержит все обозначения из LaTeX, русские и английские окружения
 и использует нативные формулы, ссылки и библиографию Typst.
+Для компиляции LaTeX нужны TeX-дистрибутив и `latexmk`; для `proofreading-pass` —
+также `latexdiff`. Для Typst-каркаса нужен Typst. Плагин их не устанавливает.
 
 ### `biblio`
 
@@ -84,13 +88,16 @@ Typst-каркас содержит все обозначения из LaTeX, р
 |---|---|---|
 | [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | При проверке списка литературы или отдельной библиографической записи | Сверяет авторов, название, год, страницы и DOI с Semantic Scholar и MathNet |
 | [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | Когда ищете, добавляете или обновляете записи в Zotero | Проверяет метаданные, ищет дубликаты, сохраняет ключи цитирования и синхронизирует локальные записи |
-| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | Когда нужен MR-номер статьи | Ищет совпадение в MathSciNet через библиотечный прокси; сообщает, если получить номер не удалось |
-| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | Когда готовите список работ А. Перепечко или используете его библиографию | Выбирает или обновляет записи во встроенных TeX-корпусах, сохраняя ключи цитирования |
+| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | Когда нужен MR-номер статьи | Ищет совпадение в MathSciNet через указанный прокси; сообщает, если получить номер не удалось |
+| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | Когда готовите список работ автора плагина или используете его библиографию | Выбирает или обновляет записи во встроенных TeX-корпусах, сохраняя ключи цитирования |
 
 Встроено: Python-парсер `\bibitem`, web-запросы к Semantic Scholar и MathNet,
 правила citation keys и персональные TeX-корпуса. `zotero-library` требует
 доступного Zotero connector. `mathscinet` требует частной конфигурации доступа
 и сети вашего учреждения или VPN; значения credentials в плагин не входят.
+Для локального парсера нужен Python 3; для поиска MR — также `curl`.
+Доступ к MathSciNet задаётся переменными `MATHSCINET_PROXY`,
+`MATHSCINET_PROXY_USER` и `MATHSCINET_PROXY_PASS`.
 
 ### `typst`
 
@@ -119,9 +126,11 @@ Typst-каркас содержит все обозначения из LaTeX, р
 | [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | При плановой проверке базы заметок | Ищет дубликаты, сироты, битые ссылки и устаревшие сведения; предлагает исправления |
 | [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | Когда задаёте или меняете назначение, правила и личность прикреплённого к репозиторию агента | Ведёт `docs/charter`, сравнивает его с рабочими инструкциями и сообщает точные самоизменения агента |
 
-Встроено: карты хранилищ, локальные lifecycle и правила границ. Плагин не
-зашивает личные пути; он использует инструкции текущего хранилища и доступные
-connectors.
+Встроено: правила размещения, переноса и проверки заметок. Карту хранилищ и
+локальные правила задайте в своём репозитории и свяжите с `AGENTS.md`.
+Подключения к внешним хранилищам настраиваются отдельно; плагин их не включает.
+Для агентской документации и обслуживания репозитория используйте вместе с
+`meta`; без него навыки опираются на доступные локальные инструкции.
 
 ### `dev`
 
@@ -142,24 +151,29 @@ connectors.
 
 ### `meta`
 
-Разработка этого marketplace и других наборов навыков; обычному пользователю
-математических плагинов он не нужен.
+Ведение агентской документации и плановое обслуживание любого репозитория,
+в том числе хранилищ `knowledge`; отслеживание изменений в проверенных человеком
+инструкциях. Также — разработка и проверка навыков и плагинов.
 
 | Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | При создании или перестройке документации для агента | Проверяет дерево от `AGENTS.md`, размещение документов и ссылки между ними |
+| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | При создании или перестройке документации для агента в любом репозитории | Строит и проверяет карту от `AGENTS.md`: поля `parent`, ссылки и размещение документов; отделяет документацию от содержимого репозитория |
 | [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | При создании или изменении навыка, а также проверке его срабатываний | Сопоставляет инструкцию с исходной проблемой и проверяет задачи, где навык должен и не должен включаться |
-| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | Когда запускаете плановое обслуживание репозитория | Разбирает inbox, сверяет roadmap и выполняет документированные проверки |
+| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | Когда запускаете плановое обслуживание репозитория или проверяете изменения после человеческой ревизии | Выполняет локальный регламент, разбирает inbox, ведёт roadmap и сообщает об изменениях в файлах с review guard, не меняя отметки проверки |
 | [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | Когда меняете плагины этого marketplace или проверяете их установку | Согласует manifests и версии, проверяет структуру и переустанавливает плагин из локального источника |
 | [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Перед установкой или обновлением чужого навыка или плагина | Проверяет происхождение и содержимое пакета, включая скрипты, hooks и внешние подключения |
 | [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | Когда работа над marketplace выявила подтверждённое улучшение его навыков | Записывает урок сессии и готовит минимальный черновик изменения навыка |
 
-Встроено: два Python session-start hook, eval-файлы и review guards из
-`.gitattributes`. Один hook включает guarded evolution только внутри этого
-marketplace; второй добавляет ограниченный индекс документации текущего
-репозитория.
+Встроено: Python-проверка карты документов и eval-файлы. Правила `AGENTS.md` и
+`guard=human-revised` в `.gitattributes` задают границу человеческой проверки:
+это учёт ревизий, а не запрет на редактирование и не hook.
+Два Python session-start hook: один напоминает об улучшении плагинов
+только внутри marketplace; второй добавляет правила карты и ограниченный
+индекс документации текущего репозитория.
+Для скриптов нужен Python 3. Codex запускает hooks только после того, как
+пользователь проверит их определения и разрешит выполнение.
 
-Пакет `obsidian` зарезервирован и сейчас недоступен для установки.
+Плагин `obsidian` зарезервирован и сейчас недоступен для установки.
 
 ## English
 
@@ -169,7 +183,9 @@ and managing research notes. Install only the plugins you need.
 
 ### Installation
 
-Add the marketplace and install a first plugin:
+Give your agent a link to this repository and ask it to install the plugins.
+
+Explicit installation commands for OpenAI's `codex` agent:
 
 ```sh
 codex plugin marketplace add aperep/my-ai-plugins --ref main
@@ -188,8 +204,9 @@ installation.
 - Usually, describe the task normally and Codex selects the relevant skill from
   context.
 - Name a skill explicitly when needed, for example: “use `research:reason`.”
-- A skill may include instructions, references, templates, local scripts,
-  hooks, or an external service. Material mechanisms are listed below.
+- A skill contains instructions and may use references, templates, local
+  scripts, or external services. A plugin may also add hooks. Material
+  mechanisms are listed below.
 
 ### `research`
 
@@ -206,6 +223,8 @@ formalisation.
 Bundled mechanisms: the `interlinear.sty` LaTeX package, annotation schema, and
 rendering modes. `formalize` uses local Lean; Aristotle is opt-in, uses a pinned
 `aristotlelib`, and receives only explicitly selected files.
+Aristotle requires `uv`, Python ≥3.12, and the `ARISTOTLE_API_KEY` environment
+variable; local checking requires Lean and the project's dependencies.
 
 ### `math-writing`
 
@@ -217,15 +236,18 @@ Preparing and editing mathematical prose.
 | [`simple-english`](plugins/math-writing/skills/simple-english/SKILL.md) | When simplifying English prose | Rewrites it in direct language while preserving meaning and authorial voice |
 | [`occam-no-slop`](plugins/math-writing/skills/occam-no-slop/SKILL.md) | When tightening mathematical prose and removing filler | Cuts unnecessary rhetoric, repetition, and case splits while preserving the claims |
 | [`project-scaffold`](plugins/math-writing/skills/project-scaffold/SKILL.md) | When starting a new paper or refreshing an existing preamble | Selects a LaTeX or Typst scaffold, notation, and environments; compares existing files before changing them |
-| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | When translating, drafting, or revising mathematical prose in Russian | Applies Russian mathematical terminology and A. Perepechko's style while preserving meaning and LaTeX |
-| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | When drafting or revising English prose in A. Perepechko's style | Applies corpus-based voice rules for word choice, rhythm, and logical transitions |
+| [`russian-translation`](plugins/math-writing/skills/russian-translation/SKILL.md) | When translating, drafting, or revising mathematical prose in Russian | Applies Russian mathematical terminology and the plugin author's style while preserving meaning and LaTeX |
+| [`speech-style-adaptation`](plugins/math-writing/skills/speech-style-adaptation/SKILL.md) | When drafting or revising English prose in the plugin author's style | Applies corpus-based voice rules for word choice, rhythm, and logical transitions |
 
 Bundled mechanisms: LaTeX and Typst scaffolds, environments, notation,
 `latexmk`/`latexdiff` workflow, terminology, and two authorial corpora.
 `project-scaffold` contains contact placeholders; both voice skills are
-calibrated to A. Perepechko's style. The Typst scaffold includes every LaTeX
+calibrated to the plugin author's style. The Typst scaffold includes every LaTeX
 notation macro and both theorem languages, using native Typst math,
 references, and bibliography.
+LaTeX compilation requires a TeX distribution and `latexmk`; `proofreading-pass`
+also requires `latexdiff`. The Typst scaffold requires Typst. The plugin does
+not install them.
 
 ### `biblio`
 
@@ -235,13 +257,16 @@ Bibliography verification and record synchronisation.
 |---|---|---|
 | [`bibliography-check`](plugins/biblio/skills/bibliography-check/SKILL.md) | When checking a bibliography or an individual citation | Verifies authors, title, year, pages, and DOI against Semantic Scholar and MathNet |
 | [`zotero-library`](plugins/biblio/skills/zotero-library/SKILL.md) | When finding, adding, or updating Zotero records | Verifies metadata, checks for duplicates, preserves citation keys, and synchronises local records |
-| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | When you need a paper's MR number | Looks for a matching MathSciNet record through a library proxy and reports unsuccessful lookups |
-| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | When preparing A. Perepechko's publication list or using his bibliography | Selects or maintains entries in the bundled TeX corpora while preserving citation keys |
+| [`mathscinet`](plugins/biblio/skills/mathscinet/SKILL.md) | When you need a paper's MR number | Looks for a matching MathSciNet record through the specified proxy and reports unsuccessful lookups |
+| [`personal-bibliography`](plugins/biblio/skills/personal-bibliography/SKILL.md) | When preparing the plugin author's publication list or using their bibliography | Selects or maintains entries in the bundled TeX corpora while preserving citation keys |
 
 Bundled mechanisms: a local `\bibitem` parser, web requests to Semantic Scholar
 and MathNet, citation-key rules, and personal TeX corpora. `zotero-library`
 requires an available Zotero connector. `mathscinet` requires private access
 configuration and your institution's network or VPN; credentials are not bundled.
+The local parser requires Python 3; MR lookup also requires `curl`.
+Configure MathSciNet access through `MATHSCINET_PROXY`,
+`MATHSCINET_PROXY_USER`, and `MATHSCINET_PROXY_PASS`.
 
 ### `typst`
 
@@ -270,9 +295,11 @@ Finding and maintaining research notes and related stores.
 | [`audit-knowledge`](plugins/knowledge/skills/audit-knowledge/SKILL.md) | When carrying out a periodic review of a knowledge store | Finds duplicates, orphans, broken links, and stale information; proposes corrections |
 | [`agent-charter`](plugins/knowledge/skills/agent-charter/SKILL.md) | When defining or changing an attached agent's purpose, rules, or personality | Maintains `docs/charter`, compares it with runtime instructions, and reports the agent's exact self-changes |
 
-Bundled mechanisms: storage maps, local lifecycles, and boundary rules. The
-plugin does not hard-code personal paths; it uses the current store's
-instructions and available connectors.
+Bundled mechanisms: rules for placing, moving, and auditing notes. Define the
+storage map and local rules in your own repository and link them from
+`AGENTS.md`. Configure external storage connections separately; none are bundled.
+Use with `meta` for agent-facing documentation and repository maintenance;
+without it, the skills use available local instructions.
 
 ### `dev`
 
@@ -294,26 +321,65 @@ background process.
 
 ### `meta`
 
-Developing this marketplace and other skill collections. Ordinary users of the
-mathematics plugins do not need it.
+Maintaining agent-facing documentation and running maintenance in any
+repository, including `knowledge` stores; tracking changes to human-reviewed
+instructions. Also developing and checking skills and plugins.
 
 | Skill | When to use it | What it does |
 |---|---|---|
-| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | When creating or reorganising agent-facing documentation | Checks the tree rooted at `AGENTS.md`, document placement, and links |
+| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | When creating or reorganising agent-facing documentation in any repository | Builds and checks the map rooted at `AGENTS.md`: `parent` fields, links, and document placement; separates documentation from repository content |
 | [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | When creating or changing a skill or evaluating its triggers | Checks the instruction against a baseline problem and tests tasks that should and should not load it |
-| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | When running routine repository maintenance | Processes the inbox, reconciles the roadmap, and runs the documented checks |
+| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | When running routine repository maintenance or checking changes since human review | Follows the local checklist, processes the inbox, maintains the roadmap, and reports changes to review-guarded files without changing review stamps |
 | [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | When changing this marketplace's plugins or testing their installation | Synchronises manifests and versions, validates the structure, and reinstalls the plugin from the local source |
 | [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Before installing or updating a third-party skill or plugin | Reviews the package's provenance and payload, including scripts, hooks, and external connections |
 | [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | When marketplace work produces a validated improvement to its skills | Records the session lesson and drafts the smallest skill change for review |
 
-Bundled mechanisms: two Python session-start hooks, evaluation files, and
-review guards in `.gitattributes`. One hook enables guarded evolution only
-inside this marketplace; the other adds a bounded index of documentation in
-the current repository.
+Bundled mechanisms: a Python documentation-map checker and evaluation files.
+Rules in `AGENTS.md` and `guard=human-revised` in `.gitattributes` define the
+human-review boundary: revision tracking, not an editing lock or a hook.
+Two Python session-start hooks: one prompts plugin improvements only
+inside a marketplace; the other adds map conventions and a bounded index of
+the current repository's documentation.
+The scripts require Python 3. Codex runs hooks only after the user reviews
+and trusts their definitions.
 
-The `obsidian` package is reserved and currently unavailable for installation.
+The `obsidian` plugin is reserved and currently unavailable for installation.
+
+## Свой стиль / Your own writing style
+
+В своей копии плагина замените образцы статей и заново выведите из них правила
+стиля. Одной замены корпуса недостаточно: при каждой задаче агент читает
+`voice.md`, а к статьям обращается только при необходимости.
+
+In your copy of the plugin, replace the sample papers and derive new voice
+rules from them. Replacing the corpus alone is not enough: the agent reads
+`voice.md` for every task and consults the papers only when needed.
+
+| Навык / Skill | Образец / Sample paper | Правила / Voice rules |
+|---|---|---|
+| `speech-style-adaptation` | [jems4.tex](plugins/math-writing/skills/speech-style-adaptation/references/corpus/jems4.tex) | [voice.md](plugins/math-writing/skills/speech-style-adaptation/references/voice.md) |
+| `russian-translation` | [P18_ru.tex](plugins/math-writing/skills/russian-translation/references/corpus/P18_ru.tex) | [voice.md](plugins/math-writing/skills/russian-translation/references/voice.md) |
+
+Также пересмотрите правила [введений](plugins/math-writing/skills/speech-style-adaptation/references/introductions.md),
+[терминологию](plugins/math-writing/skills/russian-translation/references/terminology.md),
+LaTeX-соглашения ([EN](plugins/math-writing/skills/speech-style-adaptation/references/latex.md),
+[RU](plugins/math-writing/skills/russian-translation/references/latex.md)) и
+[сведения об авторе](plugins/math-writing/skills/russian-translation/references/metadata.md).
+В обоих `SKILL.md` обновите имя автора и ссылки на заменённые корпуса.
+
+Also review the [introduction rules](plugins/math-writing/skills/speech-style-adaptation/references/introductions.md),
+[terminology](plugins/math-writing/skills/russian-translation/references/terminology.md),
+LaTeX conventions ([EN](plugins/math-writing/skills/speech-style-adaptation/references/latex.md),
+[RU](plugins/math-writing/skills/russian-translation/references/latex.md)), and
+[author metadata](plugins/math-writing/skills/russian-translation/references/metadata.md).
+Update the author's name and corpus links in both `SKILL.md` files.
 
 ## Compatibility / Совместимость
+
+Codex — основной клиент. У каждого плагина есть также манифест Agent Plugins
+1.0; установка в других клиентах зависит от клиента. Подробнее:
+[совместимость форматов](docs/DUAL.md) и
+[настройка рабочего репозитория](docs/consumer-snippets.md).
 
 Codex is the primary client. Each plugin also has an Agent Plugins 1.0 manifest;
 installation in other clients is client-specific. See
@@ -322,12 +388,24 @@ installation in other clients is client-specific. See
 
 ## Development / Разработка
 
-Marketplace layout and validation rules are documented in this repository's
-[agent instructions](AGENTS.md). Maintainers should validate both plugin
-manifests, every changed skill, and a local Codex installation.
+Структура marketplace и порядок проверок описаны в
+[`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md).
+При изменении плагина проверяйте оба манифеста, изменённые навыки и локальную
+установку в Codex.
+
+Marketplace layout and validation rules are documented in
+[`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md).
+When changing a plugin, validate both manifests, the changed skills, and a
+local Codex installation.
 
 ## License / Лицензия
 
-The `dev` plugin is MIT-licensed and preserves its upstream notices. The
-repository does not yet have one license covering every plugin, corpus, and
-template; do not assume redistribution rights for unlicensed bundled material.
+Оригинальные инструкции, код, документация и шаблоны — под [MIT](LICENSE).
+Встроенные корпуса статей, библиографии, исходные примеры и сторонние материалы
+исключены из этого разрешения; точные пути и сохранённые лицензии — в
+[NOTICE](NOTICE).
+
+Original instructions, code, documentation, and templates are licensed under
+[MIT](LICENSE). Bundled paper corpora, bibliographies, source examples, and
+third-party material are excluded from this grant; see [NOTICE](NOTICE) for
+the exact paths and retained licenses.
