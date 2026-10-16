@@ -142,24 +142,27 @@ connectors.
 
 ### `meta`
 
-Разработка этого marketplace и других наборов навыков; обычному пользователю
-математических плагинов он не нужен.
+Ведение агентской документации и плановое обслуживание любого репозитория,
+в том числе хранилищ `knowledge`; отслеживание изменений в проверенных человеком
+инструкциях. Также — разработка и проверка навыков и плагинов.
 
 | Навык | Когда использовать | Что делает |
 |---|---|---|
-| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | При создании или перестройке документации для агента | Проверяет дерево от `AGENTS.md`, размещение документов и ссылки между ними |
+| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | При создании или перестройке документации для агента в любом репозитории | Строит и проверяет карту от `AGENTS.md`: поля `parent`, ссылки и размещение документов; отделяет документацию от содержимого репозитория |
 | [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | При создании или изменении навыка, а также проверке его срабатываний | Сопоставляет инструкцию с исходной проблемой и проверяет задачи, где навык должен и не должен включаться |
-| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | Когда запускаете плановое обслуживание репозитория | Разбирает inbox, сверяет roadmap и выполняет документированные проверки |
+| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | Когда запускаете плановое обслуживание репозитория или проверяете изменения после человеческой ревизии | Выполняет локальный регламент, разбирает inbox, ведёт roadmap и сообщает об изменениях в файлах с review guard, не меняя отметки проверки |
 | [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | Когда меняете плагины этого marketplace или проверяете их установку | Согласует manifests и версии, проверяет структуру и переустанавливает плагин из локального источника |
 | [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Перед установкой или обновлением чужого навыка или плагина | Проверяет происхождение и содержимое пакета, включая скрипты, hooks и внешние подключения |
 | [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | Когда работа над marketplace выявила подтверждённое улучшение его навыков | Записывает урок сессии и готовит минимальный черновик изменения навыка |
 
-Встроено: два Python session-start hook, eval-файлы и review guards из
-`.gitattributes`. Один hook включает guarded evolution только внутри этого
-marketplace; второй добавляет ограниченный индекс документации текущего
-репозитория.
+Встроено: Python-проверка карты документов и eval-файлы. Правила `AGENTS.md` и
+`guard=human-revised` в `.gitattributes` задают границу человеческой проверки:
+это учёт ревизий, а не запрет на редактирование и не hook.
+Два Python session-start hook: один напоминает об улучшении плагинов
+только внутри marketplace; второй добавляет правила карты и ограниченный
+индекс документации текущего репозитория.
 
-Пакет `obsidian` зарезервирован и сейчас недоступен для установки.
+Плагин `obsidian` зарезервирован и сейчас недоступен для установки.
 
 ## English
 
@@ -293,24 +296,27 @@ background process.
 
 ### `meta`
 
-Developing this marketplace and other skill collections. Ordinary users of the
-mathematics plugins do not need it.
+Maintaining agent-facing documentation and running maintenance in any
+repository, including `knowledge` stores; tracking changes to human-reviewed
+instructions. Also developing and checking skills and plugins.
 
 | Skill | When to use it | What it does |
 |---|---|---|
-| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | When creating or reorganising agent-facing documentation | Checks the tree rooted at `AGENTS.md`, document placement, and links |
+| [`doc-map`](plugins/meta/skills/doc-map/SKILL.md) | When creating or reorganising agent-facing documentation in any repository | Builds and checks the map rooted at `AGENTS.md`: `parent` fields, links, and document placement; separates documentation from repository content |
 | [`skill-quality`](plugins/meta/skills/skill-quality/SKILL.md) | When creating or changing a skill or evaluating its triggers | Checks the instruction against a baseline problem and tests tasks that should and should not load it |
-| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | When running routine repository maintenance | Processes the inbox, reconciles the roadmap, and runs the documented checks |
+| [`maintenance`](plugins/meta/skills/maintenance/SKILL.md) | When running routine repository maintenance or checking changes since human review | Follows the local checklist, processes the inbox, maintains the roadmap, and reports changes to review-guarded files without changing review stamps |
 | [`editing-this-marketplace`](plugins/meta/skills/editing-this-marketplace/SKILL.md) | When changing this marketplace's plugins or testing their installation | Synchronises manifests and versions, validates the structure, and reinstalls the plugin from the local source |
 | [`trusting-foreign-skills`](plugins/meta/skills/trusting-foreign-skills/SKILL.md) | Before installing or updating a third-party skill or plugin | Reviews the package's provenance and payload, including scripts, hooks, and external connections |
 | [`evolving-plugins`](plugins/meta/skills/evolving-plugins/SKILL.md) | When marketplace work produces a validated improvement to its skills | Records the session lesson and drafts the smallest skill change for review |
 
-Bundled mechanisms: two Python session-start hooks, evaluation files, and
-review guards in `.gitattributes`. One hook enables guarded evolution only
-inside this marketplace; the other adds a bounded index of documentation in
-the current repository.
+Bundled mechanisms: a Python documentation-map checker and evaluation files.
+Rules in `AGENTS.md` and `guard=human-revised` in `.gitattributes` define the
+human-review boundary: revision tracking, not an editing lock or a hook.
+Two Python session-start hooks: one prompts plugin improvements only
+inside a marketplace; the other adds map conventions and a bounded index of
+the current repository's documentation.
 
-The `obsidian` package is reserved and currently unavailable for installation.
+The `obsidian` plugin is reserved and currently unavailable for installation.
 
 ## Свой стиль / Your own writing style
 
